@@ -1,0 +1,28 @@
+using Regira.Entities.Models.Abstractions;
+using Regira.Normalizing;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Webshop.Models.Entities.Catalog.Products;
+
+namespace Webshop.Models.Entities.Catalog.Categories;
+
+public class Category : IEntityWithSerial, IHasTimestamps, IHasTitle, IHasDescription, IHasNormalizedContent, IArchivable
+{
+    public int Id { get; set; }
+    [Required, MaxLength(64)]
+    public string Title { get; set; } = null!;
+    [MaxLength(1024)]
+    public string? Description { get; set; }
+    [MaxLength(1024), Normalized(SourceProperties = [nameof(Title), nameof(Description)])]
+    public string? NormalizedContent { get; set; }
+    public DateTime Created { get; set; }
+    public DateTime? LastModified { get; set; }
+    public bool IsArchived { get; set; }
+
+    public ICollection<RelatedCategory>? ParentEntities { get; set; }
+    public ICollection<RelatedCategory>? ChildEntities { get; set; }
+    public ICollection<ProductCategory>? Products { get; set; }
+
+    [NotMapped]
+    public int? ProductCount { get; set; }
+}
