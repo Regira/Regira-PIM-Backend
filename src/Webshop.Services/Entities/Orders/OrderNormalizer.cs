@@ -14,26 +14,21 @@ public class OrderNormalizer(INormalizer normalizer, WebshopDbContext dbContext,
 
     public override async Task HandleNormalizeMany(IEnumerable<Order> items)
     {
-        var productIds = items.SelectMany(x => x.OrderLines?.Select(ol => ol.ProductId) ?? []).Distinct().ToList();
+        var itemList = items.ToList();
+        var productIds = itemList.SelectMany(x => x.OrderLines?.Select(ol => ol.ProductId) ?? []).Distinct().ToList();
         _products = await dbContext.Products
             .Where(p => productIds.Contains(p.Id))
             .AsNoTrackingWithIdentityResolution()
             .ToListAsync();
 
-        await base.HandleNormalizeMany(items);
+        await base.HandleNormalizeMany(itemList);
     }
     public override async Task HandleNormalize(Order item)
     {
-        var customer = await dbContext.Customers
-            .Where(c => c.Id == item.CustomerId)
-            .Select(x => new
-            {
-                x.NormalizedTitle,
-                Organization = x.Organizations!.First(o => o.OrganizationId == orderContext.OrganizationId).Organization!.Title
-            })
-            .SingleAsync();
+        var customer = await dbContext.Parties
+            .FirstOrDefaultAsync(c => c.Id == item.CustomerId);
 
-        var contentEntries = new List<string?> { item.Code, normalizer.Normalize(item.Code), customer.NormalizedTitle, customer.Organization };
+        var contentEntries = new List<string?> { item.Code, normalizer.Normalize(item.Code), customer?.NormalizedTitle };
 
         var products = item.OrderLines
             ?.Select(ol => _products.FirstOrDefault(p => p.Id == ol.ProductId)?.NormalizedTitle)

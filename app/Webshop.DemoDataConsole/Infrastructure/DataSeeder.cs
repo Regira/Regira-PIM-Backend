@@ -4,107 +4,151 @@ using Webshop.Models.Entities.Catalog.Allergens;
 using Webshop.Models.Entities.Catalog.Categories;
 using Webshop.Models.Entities.Catalog.Parts;
 using Webshop.Models.Entities.Catalog.Products;
-using Webshop.Models.Entities.Clients.Addresses;
-using Webshop.Models.Entities.Clients.ContactData;
-using Webshop.Models.Entities.Clients.Customers;
-using Webshop.Models.Entities.Clients.Organizations;
 using Webshop.Models.Entities.Orders;
+using Webshop.Models.Entities.Stakeholders.ContactData;
+using Webshop.Models.Entities.Stakeholders.Parties;
+using Webshop.Models.Entities.Stakeholders.Parties.Relations;
+using Person = Webshop.Models.Entities.Stakeholders.Parties.Person;
 
 namespace Webshop.DemoDataConsole.Infrastructure;
 
 public class DataSeeder(IEntityService<Category> categoryService, IEntityService<Product> productService, IEntityService<Allergen> allergenService, IEntityService<Part> partService,
-    IEntityService<Organization> organizationService, IEntityService<Customer> customerService, IEntityService<Order> orderService)
+    IEntityService<Party> partyService, IEntityService<Order> orderService, IEntityService<RelationshipType> relationshipTypeService)
 {
     private const int BatchSize = 100;
 
     public async Task SeedAsync()
     {
-        var organizations = await SeedOrganization();
-        var customers = await SeedCustomer(organizations);
+        var parties = await SeedParties();
+        var relationshipTypes = await SeedRelationshipTypes();
+        await SeedRelationships(parties, relationshipTypes);
         var allergens = await SeedAllergens();
         var parts = await SeedParts();
         var categories = await SeedCategories();
         var products = await SeedProducts(categories, allergens, parts);
 
-        await SeedOrders(customers, products, allergens, parts);
+        await SeedOrders(parties, products, allergens, parts);
     }
 
-    public async Task<IList<Organization>> SeedOrganization()
+
+    public async Task<IList<Party>> SeedParties()
     {
-        var faker = new Faker<Organization>("en")
-            .RuleFor(o => o.Title, f => f.Company.CompanyName())
-            .RuleFor(o => o.Address, f => f.Address.FullAddress())
-            .RuleFor(o => o.Phone, f => f.Phone.PhoneNumber("##########"))
-            .RuleFor(o => o.Email, f => f.Internet.Email());
+        var parties = new List<Party>(1000);
 
-        var organizations = faker.Generate(20);
-
-        foreach (var org in organizations)
-            await organizationService.Save(org);
-        await organizationService.SaveChanges();
-
-        return organizations;
-    }
-
-    public async Task<IList<Customer>> SeedCustomer(IList<Organization> organizations)
-    {
-        var faker = new Faker<Customer>("en")
-            .RuleFor(c => c.GivenName, f => f.Name.FirstName())
-            .RuleFor(c => c.FamilyName, f => f.Name.LastName());
-
-        var customers = faker.Generate(1000);
-
-        for (int i = 0; i < customers.Count; i++)
+        for (int i = 0; i < 1000; i++)
         {
-            var customer = customers[i];
             var f = new Faker("en");
 
-            customer.Addresses = [
-                new CustomerAddress
+            Party party = f.Random.Bool(0.7f)
+                ? new Person { GivenName = f.Name.FirstName(), FamilyName = f.Name.LastName() }
+                : new Organization { Name = f.Company.CompanyName() };
+
+            var addresses = new List<PartyAddress>
+            {
+                new()
                 {
-                    Title = "Home",
+                    Title = party is Organization ? "Office" : "Home",
                     Street = f.Address.StreetName(),
-                    Number = f.Random.Int(1, 200).ToString(),
+                    HouseNumber = f.Random.Int(1, 200).ToString(),
                     PostalCode = f.Address.ZipCode(),
                     City = f.Address.City(),
                     CountryCode = "BE",
                     SortOrder = 0
                 }
-            ];
-
-            customer.ContactData = [
-                new CustomerContactData
+            };
+            if (f.Random.Bool(0.4f))
+                addresses.Add(new()
                 {
-                    Title = "Email",
-                    Value = f.Internet.Email(customer.GivenName, customer.FamilyName),
-                    DataType = ContactDataTypes.Email,
-                    SortOrder = 0
-                },
-                new CustomerContactData
-                {
-                    Title = "Phone",
-                    Value = f.Phone.PhoneNumber(),
-                    DataType = ContactDataTypes.Phone,
+                    Title = party is Organization ? "Billing" : "Work",
+                    Street = f.Address.StreetName(),
+                    HouseNumber = f.Random.Int(1, 200).ToString(),
+                    PostalCode = f.Address.ZipCode(),
+                    City = f.Address.City(),
+                    CountryCode = "BE",
                     SortOrder = 1
-                }
-            ];
+                });
+            party.Addresses = addresses;
 
-            var orgCount = f.Random.Int(0, 2);
-            if (orgCount > 0 && organizations.Count > 0)
+            var contactData = new List<PartyContactDetails>
             {
-                customer.Organizations = f.PickRandom(organizations, Math.Min(orgCount, organizations.Count))
-                    .DistinctBy(o => o.Id)
-                    .Select(o => new CustomerOrganization { OrganizationId = o.Id })
-                    .ToList();
-            }
+                new() { Title = "Email",  Value = f.Internet.Email(party.Title),  DataType = ContactDataTypes.Email, SortOrder = 0 },
+                new() { Title = "Phone",  Value = f.Phone.PhoneNumber(),           DataType = ContactDataTypes.Phone, SortOrder = 1 },
+            };
+            if (party is Organization && f.Random.Bool(0.8f))
+                contactData.Add(new() { Title = "Website", Value = f.Internet.Url(), DataType = ContactDataTypes.Website, SortOrder = contactData.Count });
+            if (f.Random.Bool(0.5f))
+                contactData.Add(new() { Title = "Mobile", Value = f.Phone.PhoneNumber(), DataType = ContactDataTypes.Phone, SortOrder = contactData.Count });
+            party.ContactData = contactData;
 
-            await customerService.Save(customer);
+            parties.Add(party);
+            await partyService.Save(party);
             if ((i + 1) % BatchSize == 0)
-                await customerService.SaveChanges();
+                await partyService.SaveChanges();
         }
-        await customerService.SaveChanges();
+        await partyService.SaveChanges();
 
-        return customers;
+        return parties;
+    }
+
+    public async Task<IList<RelationshipType>> SeedRelationshipTypes()
+    {
+        var types = new List<RelationshipType>
+        {
+            new() { Code = "EMP",  Title = "Employee",       Description = "Person is employed by an organization" },
+            new() { Code = "CUST", Title = "Customer",       Description = "Person is a customer of the organization" },
+            new() { Code = "SUP",  Title = "Supplier",       Description = "Organization is a supplier" },
+            new() { Code = "MBR",  Title = "Member",         Description = "Person is a member of the organization" },
+            new() { Code = "REP",  Title = "Representative", Description = "Person represents the organization" },
+            new() { Code = "CON",  Title = "Contact",        Description = "Person is a contact for the organization" },
+        };
+
+        foreach (var type in types)
+            await relationshipTypeService.Save(type);
+        await relationshipTypeService.SaveChanges();
+
+        return types;
+    }
+
+    public async Task SeedRelationships(IList<Party> parties, IList<RelationshipType> relationshipTypes)
+    {
+        var f = new Faker("en");
+        var organizations = parties.OfType<Organization>().ToList();
+        var persons = parties.OfType<Person>().ToList();
+
+        if (organizations.Count == 0 || persons.Count == 0)
+            return;
+
+        int count = 0;
+        foreach (var org in organizations)
+        {
+            if (!f.Random.Bool(0.7f))
+                continue;
+
+            var loaded = await partyService.Details(org.Id);
+            if (loaded == null)
+                continue;
+
+            var relType = f.PickRandom(relationshipTypes);
+            loaded.ChildRelationships = f.PickRandom(persons, f.Random.Int(2, Math.Min(8, persons.Count)))
+                .DistinctBy(p => p.Id)
+                .Select(p =>
+                {
+                    var contactData = new List<PartyRelationshipContactDetails>
+                    {
+                        new() { Title = "Work Email", Value = f.Internet.Email(p.Title), DataType = ContactDataTypes.Email, SortOrder = 0 },
+                    };
+                    if (f.Random.Bool(0.6f))
+                        contactData.Add(new() { Title = "Work Phone", Value = f.Phone.PhoneNumber(), DataType = ContactDataTypes.Phone, SortOrder = 1 });
+                    return new PartyRelationship { ChildId = p.Id, RelationshipTypeId = relType.Id, ContactData = contactData };
+                })
+                .ToList();
+
+            await partyService.Save(loaded);
+            count++;
+            if (count % BatchSize == 0)
+                await partyService.SaveChanges();
+        }
+        await partyService.SaveChanges();
     }
 
     public async Task<IList<Allergen>> SeedAllergens()
@@ -248,7 +292,7 @@ public class DataSeeder(IEntityService<Category> categoryService, IEntityService
         return products;
     }
 
-    public async Task<IList<Order>> SeedOrders(IList<Customer> customers, IList<Product> products, IList<Allergen> allergens, IList<Part> parts)
+    public async Task<IList<Order>> SeedOrders(IList<Party> customers, IList<Product> products, IList<Allergen> allergens, IList<Part> parts)
     {
         var f = new Faker("en");
         var statuses = Enum.GetValues<OrderStatus>();

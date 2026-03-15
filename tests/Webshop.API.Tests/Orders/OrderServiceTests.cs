@@ -3,8 +3,8 @@ using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
 using Webshop.Models.Entities.Catalog.Parts;
 using Webshop.Models.Entities.Catalog.Products;
-using Webshop.Models.Entities.Clients.Customers;
 using Webshop.Models.Entities.Orders;
+using Webshop.Models.Entities.Stakeholders.Parties;
 using Xunit;
 
 namespace Webshop.API.Tests.Orders;
@@ -15,15 +15,15 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     private IEntityService<Order, OrderSearchObject, OrderSortBy, OrderIncludes> GetService(IServiceScope scope)
         => scope.ServiceProvider.GetRequiredService<IEntityService<Order, OrderSearchObject, OrderSortBy, OrderIncludes>>();
 
-    private async Task<(Customer Customer, Product Product, Part Part)> SeedPrerequisites(IServiceScope scope)
+    private async Task<(Party Customer, Product Product, Part Part)> SeedPrerequisites(IServiceScope scope)
     {
-        var custService = scope.ServiceProvider.GetRequiredService<IEntityService<Customer, CustomerSearchObject, CustomerSortBy, CustomerIncludes>>();
+        var customerService = scope.ServiceProvider.GetRequiredService<IEntityService<Party, PartySearchObject, PartySortBy, PartyIncludes>>();
         var prodService = scope.ServiceProvider.GetRequiredService<IEntityService<Product, ProductSearchObject, ProductSortBy, ProductIncludes>>();
         var partService = scope.ServiceProvider.GetRequiredService<IEntityService<Part, PartSearchObject, PartSortBy, PartIncludes>>();
 
-        var customer = new Customer { GivenName = "Order", FamilyName = $"TestUser-{Guid.NewGuid():N}" };
-        await custService.Save(customer);
-        await custService.SaveChanges();
+        var customer = new Person { GivenName = "Order", FamilyName = $"TestUser-{Guid.NewGuid():N}" };
+        await customerService.Save(customer);
+        await customerService.SaveChanges();
 
         var product = new Product { Title = "Order Test Product", Price = 10.00m };
         await prodService.Save(product);

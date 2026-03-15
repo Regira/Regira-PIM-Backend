@@ -13,9 +13,9 @@ public class OrderIncludingQueryBuilder : IIncludableQueryBuilder<Order, int, Or
 
         if (includes.Value.HasFlag(OrderIncludes.Customer))
             query = query.Include(x => x.Customer!)
-                .ThenInclude(x => x.Organizations);
+                .ThenInclude(x => x.ParentRelationships!).ThenInclude(x => x.Parent);
 
-        if(includes.Value.HasFlag(OrderIncludes.OrderLines))
+        if (includes.Value.HasFlag(OrderIncludes.OrderLines))
             query = query.Include(x => x.OrderLines);
 
         if (includes.Value.HasFlag(OrderIncludes.OrderLinesProducts))
@@ -37,7 +37,7 @@ public class OrderIncludingQueryBuilder : IIncludableQueryBuilder<Order, int, Or
             query = query
                 .Include(x => x.OrderLines!.OrderBy(l => l.SortOrder))
                     .ThenInclude(ol => ol.Product!)
-                        .ThenInclude(p => p.Parts!).ThenInclude(p => p.Part!).ThenInclude(p=>p.Prices)
+                        .ThenInclude(p => p.Parts!).ThenInclude(p => p.Part!).ThenInclude(p => p.Prices)
                 .Include(x => x.OrderLines!)
                     .ThenInclude(ol => ol.PartAdditions!)
                         .ThenInclude(olp => olp.Part!).ThenInclude(p => p.Prices)

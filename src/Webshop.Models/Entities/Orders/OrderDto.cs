@@ -1,6 +1,6 @@
 using Webshop.Models.Entities.Catalog.Parts;
 using Webshop.Models.Entities.Catalog.Products;
-using Webshop.Models.Entities.Clients.Customers;
+using Webshop.Models.Entities.Stakeholders.Parties;
 
 namespace Webshop.Models.Entities.Orders;
 
@@ -9,7 +9,7 @@ public class OrderDto
     public int Id { get; set; }
     public string? Code { get; set; }
     public int CustomerId { get; set; }
-    public CustomerDto? Customer { get; set; }
+    public PartyDto? Customer { get; set; }
     public OrderStatus Status { get; set; }
     public decimal Total { get; set; }
     public DateTime? ScheduledDate { get; set; }

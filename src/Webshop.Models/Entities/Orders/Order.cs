@@ -1,6 +1,6 @@
 using Regira.Entities.Models.Abstractions;
 using System.ComponentModel.DataAnnotations;
-using Webshop.Models.Entities.Clients.Customers;
+using Webshop.Models.Entities.Stakeholders.Parties;
 
 namespace Webshop.Models.Entities.Orders;
 
@@ -9,7 +9,6 @@ public class Order : IEntityWithSerial, IHasCode, IHasTimestamps, IHasNormalized
     public int Id { get; set; }
     [MaxLength(32)] public string? Code { get; set; }
     public int CustomerId { get; set; }
-    public Customer? Customer { get; set; }
     public OrderStatus Status { get; set; } = OrderStatus.Pending;
     public decimal Total { get; set; }
     public DateTime? ScheduledDate { get; set; }
@@ -19,4 +18,5 @@ public class Order : IEntityWithSerial, IHasCode, IHasTimestamps, IHasNormalized
     public string? NormalizedContent { get; set; }
 
     public ICollection<OrderLine>? OrderLines { get; set; }
+    public Party? Customer { get; set; }
 }
