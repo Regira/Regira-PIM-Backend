@@ -16,8 +16,10 @@ public class ProductDto
     public UnitTypeDto? UnitType { get; set; }
     public DateTime Created { get; set; }
     public DateTime? LastModified { get; set; }
+    public bool AllowAdditions { get; set; }
     public ICollection<ProductCategoryDto>? Categories { get; set; }
     public ICollection<ProductPartDto>? Parts { get; set; }
+    public ICollection<ProductAllowedPartAdditionDto>? AllowedPartAdditions { get; set; }
     public ICollection<ProductAllergenDto>? Allergens { get; set; }
     public ICollection<PriceHistoryDto>? Prices { get; set; }
 }
@@ -36,6 +38,7 @@ public class ProductPartDto
     public int ProductId { get; set; }
     public int PartId { get; set; }
     public decimal Quantity { get; set; }
+    public bool IsOmitable { get; set; }
     public PartDto? Part { get; set; }
 }
 
@@ -45,4 +48,12 @@ public class ProductAllergenDto
     public int ProductId { get; set; }
     public int AllergenId { get; set; }
     public AllergenDto? Allergen { get; set; }
+}
+
+public class ProductAllowedPartAdditionDto
+{
+    public int Id { get; set; }
+    public int ProductId { get; set; }
+    public int PartId { get; set; }
+    public PartDto? Part { get; set; }
 }

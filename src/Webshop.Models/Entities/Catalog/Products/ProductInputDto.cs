@@ -9,8 +9,10 @@ public class ProductInputDto
     [Required, MaxLength(128)] public string Title { get; set; } = null!;
     [MaxLength(1024)] public string? Description { get; set; }
     public int? UnitTypeId { get; set; }
+    public bool AllowAdditions { get; set; } = true;
     public ICollection<ProductCategoryInputDto>? Categories { get; set; }
     public ICollection<ProductPartInputDto>? Parts { get; set; }
+    public ICollection<ProductAllowedPartAdditionInputDto>? AllowedPartAdditions { get; set; }
     public ICollection<ProductAllergenInputDto>? Allergens { get; set; }
     public ICollection<PriceHistoryInputDto>? Prices { get; set; }
 }
@@ -28,6 +30,7 @@ public class ProductPartInputDto
     public int ProductId { get; set; }
     public int PartId { get; set; }
     public decimal Quantity { get; set; }
+    public bool IsOmitable { get; set; }
 }
 
 public class ProductAllergenInputDto
@@ -35,4 +38,11 @@ public class ProductAllergenInputDto
     public int Id { get; set; }
     public int ProductId { get; set; }
     public int AllergenId { get; set; }
+}
+
+public class ProductAllowedPartAdditionInputDto
+{
+    public int Id { get; set; }
+    public int ProductId { get; set; }
+    public int PartId { get; set; }
 }

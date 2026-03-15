@@ -21,6 +21,7 @@ public class Part : IEntityWithSerial, IHasCode, IHasTitle, IHasDescription, IHa
     public DateTime Created { get; set; }
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
+    public bool IsGlobalAddition { get; set; }
     public int? UnitTypeId { get; set; }
     public UnitType? UnitType { get; set; }
 

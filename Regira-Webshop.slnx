@@ -10,11 +10,16 @@
     <File Path=".github/project.setup.md" />
   </Folder>
   <Folder Name="/app/">
+    <Project Path="app/Webshop.Admin.API/Webshop.Admin.API.csproj" Id="67dcad95-9a49-4bbb-897a-6904ef8592c2" />
     <Project Path="app/Webshop.DemoDataConsole/Webshop.DemoDataConsole.csproj" Id="1b07bb66-7cee-4940-9811-5e5289003cf3" />
     <Project Path="app/Webshop.EFConsole/Webshop.EFConsole.csproj" Id="54796c36-9a39-4310-b2f6-b874d9c57806" />
     <Project Path="app/Webshop.Public.API/Webshop.Public.API.csproj" />
   </Folder>
+  <Folder Name="/Identity/">
+    <Project Path="src/Webshop.Identity/Webshop.Identity.csproj" Id="89b45eb0-405e-45b4-a75b-b846d36b7d2b" />
+  </Folder>
   <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
     <File Path="NuGet.Config" />
   </Folder>
   <Folder Name="/src/">

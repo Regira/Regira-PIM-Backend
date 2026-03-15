@@ -19,6 +19,8 @@ public class ProductIncludingQueryBuilder : IIncludableQueryBuilder<Product, int
             query = query.Include(x => x.Parts!).ThenInclude(pp => pp.Part!).ThenInclude(p => p.Prices!.OrderByDescending(pp => pp.EndDate ?? pp.StartDate));
         if (includes.Value.HasFlag(ProductIncludes.Allergens))
             query = query.Include(x => x.Allergens!).ThenInclude(pa => pa.Allergen);
+        if (includes.Value.HasFlag(ProductIncludes.AllowedPartAdditions))
+            query = query.Include(x => x.AllowedPartAdditions!).ThenInclude(pa => pa.Part!).ThenInclude(p => p.Prices!.OrderByDescending(pp => pp.EndDate ?? pp.StartDate));
         if (includes.Value.HasFlag(ProductIncludes.PriceHistory))
             query = query.Include(x => x.Prices!.OrderByDescending(pp => pp.EndDate ?? pp.StartDate));
 

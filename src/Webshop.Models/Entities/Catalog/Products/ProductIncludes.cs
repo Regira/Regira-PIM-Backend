@@ -9,5 +9,6 @@ public enum ProductIncludes
     PriceHistory = 1 << 2,
     Parts = 1 << 3,
     Allergens = 1 << 4,
-    All = Categories | Price | PriceHistory | Parts | Allergens
+    AllowedPartAdditions = 1 << 5,
+    All = Categories | Price | PriceHistory | Parts | Allergens | AllowedPartAdditions
 }

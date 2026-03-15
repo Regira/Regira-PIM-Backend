@@ -13,6 +13,7 @@ public class PartInputDto
     [MaxLength(512)] 
     public string? Description { get; set; }
     public int? UnitTypeId { get; set; }
+    public bool IsGlobalAddition { get; set; }
 
     public ICollection<PriceHistoryInputDto>? Prices { get; set; }
 }

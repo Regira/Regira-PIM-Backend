@@ -14,6 +14,7 @@ public class PartDto
     public UnitTypeDto? UnitType { get; set; }
     public DateTime Created { get; set; }
     public DateTime? LastModified { get; set; }
+    public bool IsGlobalAddition { get; set; }
 
     public ICollection<PriceHistoryDto>? Prices { get; set; }
 }

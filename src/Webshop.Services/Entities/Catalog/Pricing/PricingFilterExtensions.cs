@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using Webshop.Models.Entities.Catalog.Pricing.Abstractions;
-using Webshop.Models.Entities.Catalog.Pricing.Utilities;
+using Webshop.Services.Entities.Extensions;
 
 namespace Webshop.Services.Entities.Catalog.Pricing;
 
@@ -76,7 +75,7 @@ public static class PricingFilterExtensions
     /// <returns></returns>
     public static IEnumerable<TPrice> FindActivePrices<TPrice>(this IEnumerable<TPrice> prices, DateTime priceDate)
         where TPrice : IPriceHistory
-        => prices.Where(PriceHistoryUtility.IsActiveOn<TPrice>(priceDate).Compile());
+        => prices.AsQueryable().FilterIsActiveOn(priceDate);
     /// <summary>
     /// Filters the given prices to only include those active for the given priceDate. The resulting query will not be ordered, so if multiple active prices exist, no specific one will be prioritized.
     /// </summary>
@@ -86,5 +85,5 @@ public static class PricingFilterExtensions
     /// <returns></returns>
     public static IQueryable<TPrice> FilterActivePrices<TPrice>(this IQueryable<TPrice> prices, DateTime priceDate)
         where TPrice : IPriceHistory
-        => prices.Where(PriceHistoryUtility.IsActiveOn<TPrice>(priceDate));
+        => prices.FilterIsActiveOn(priceDate);
 }

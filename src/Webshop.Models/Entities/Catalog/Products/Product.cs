@@ -21,11 +21,13 @@ public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasP
     public DateTime Created { get; set; }
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
+    public bool AllowAdditions { get; set; } = true;
     public int? UnitTypeId { get; set; }
     public UnitType? UnitType { get; set; }
 
     public ICollection<ProductCategory>? Categories { get; set; }
     public ICollection<ProductPart>? Parts { get; set; }
+    public ICollection<ProductAllowedPartAddition>? AllowedPartAdditions { get; set; }
     public ICollection<ProductAllergen>? Allergens { get; set; }
     public ICollection<ProductPriceHistory>? Prices { get; set; }
     ICollection<IPriceHistory>? IHasPriceHistory.Prices

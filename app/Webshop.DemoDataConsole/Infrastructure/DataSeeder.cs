@@ -156,6 +156,13 @@ public class DataSeeder(IEntityService<Category> categoryService, IEntityService
             new() { Title = "Avocado",         Description = "Fresh sliced avocado",          Prices = [new PartPriceHistory { Price = 1.50m }] },
             new() { Title = "Jalapeños",       Description = "Pickled jalapeño slices",       Prices = [new PartPriceHistory { Price = 0.35m }] },
             new() { Title = "Sriracha",        Description = "Spicy sriracha sauce",          Prices = [new PartPriceHistory { Price = 0.20m }] },
+            // Non-food items
+            new() { Title = "Cutlery",         Description = "Knife, fork and spoon set",     Prices = [new PartPriceHistory { Price = 0m }], IsGlobalAddition = true },
+            new() { Title = "Napkins",         Description = "Paper napkins",                  Prices = [new PartPriceHistory { Price = 0m }], IsGlobalAddition = true },
+            new() { Title = "Chopsticks",      Description = "Disposable wooden chopsticks",   Prices = [new PartPriceHistory { Price = 0m }], IsGlobalAddition = true },
+            new() { Title = "Straw",           Description = "Paper drinking straw",           Prices = [new PartPriceHistory { Price = 0m }], IsGlobalAddition = true },
+            new() { Title = "Extra Plate",     Description = "Additional serving plate",       Prices = [new PartPriceHistory { Price = 0.25m }] },
+            new() { Title = "Takeaway Box",    Description = "Cardboard takeaway container",   Prices = [new PartPriceHistory { Price = 0.50m }] },
         };
 
         foreach (var part in parts)
@@ -219,7 +226,14 @@ public class DataSeeder(IEntityService<Category> categoryService, IEntityService
                 Parts = f.Random.Bool(0.8f)
                     ? f.PickRandom(parts, f.Random.Int(2, Math.Min(6, parts.Count)))
                         .DistinctBy(p => p.Id)
-                        .Select(p => new ProductPart { PartId = p.Id, Quantity = f.Random.Decimal(0.5m, 5m) })
+                        .Select(p => new ProductPart { PartId = p.Id, Quantity = f.Random.Decimal(0.5m, 5m), IsOmitable = f.Random.Bool(0.4f) })
+                        .ToList()
+                    : null,
+                AllowAdditions = f.Random.Bool(0.9f),
+                AllowedPartAdditions = f.Random.Bool(0.5f)
+                    ? f.PickRandom(parts, f.Random.Int(1, Math.Min(3, parts.Count)))
+                        .DistinctBy(p => p.Id)
+                        .Select(p => new ProductAllowedPartAddition { PartId = p.Id })
                         .ToList()
                     : null,
             };

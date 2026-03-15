@@ -16,6 +16,7 @@ public static class ProductServiceConfiguration
             e.Includes<ProductIncludingQueryBuilder>();
             e.Related(x => x.Categories);
             e.Related(x => x.Parts);
+            e.Related(x => x.AllowedPartAdditions);
             e.Related(x => x.Allergens);
             e.Related(x => x.Prices);
             e.Process<ProductProcessor>();
