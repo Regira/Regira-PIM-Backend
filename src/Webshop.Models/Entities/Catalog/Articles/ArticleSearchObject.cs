@@ -8,9 +8,15 @@ public class ArticleSearchObject : SearchObject
     /// Filters articles that belong to ANY of the specified category IDs.
     /// </summary>
     public ICollection<int>? CategoryId { get; set; }
+
+    /// <summary>
+    /// Filters articles that belong to ANY of the specified assembly IDs.
+    /// </summary>
+    public ICollection<int>? AssemblyId { get; set; }
+
     /// <summary>
     /// Filters articles that contain ANY of the specified component IDs.
-    /// </summary>
+    /// </summary>    
     public ICollection<int>? ComponentId { get; set; }
     /// <summary>
     /// Filters articles that contain ALL of the specified component IDs.

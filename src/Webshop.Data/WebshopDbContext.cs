@@ -2,9 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Regira.DAL.EFcore.Extensions;
 using Webshop.Models.Entities.Catalog.Allergens;
 using Webshop.Models.Entities.Catalog.Categories;
-using Webshop.Models.Entities.Catalog.Parts;
 using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Catalog.Products;
 using Webshop.Models.Entities.Catalog.UnitTypes;
 using Webshop.Models.Entities.Orders;
 using Webshop.Models.Entities.Stakeholders.Parties;
@@ -21,8 +19,6 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<UnitType> UnitTypes { get; set; } = null!;
     public DbSet<Article> Articles { get; set; } = null!;
-    public DbSet<Product> Products { get; set; } = null!;
-    public DbSet<Part> Parts { get; set; } = null!;
     public DbSet<Allergen> Allergens { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
 
@@ -31,45 +27,11 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
         base.OnModelCreating(modelBuilder);
         modelBuilder.SetDecimalPrecisionConvention();
 
-        // Catalog
+        // Categories
         modelBuilder.Entity<RelatedCategory>(e =>
         {
             e.HasOne(c => c.Parent).WithMany(x => x.ChildEntities).OnDelete(DeleteBehavior.Restrict);
             e.HasOne(c => c.Child).WithMany(x => x.ParentEntities).OnDelete(DeleteBehavior.Restrict);
-        });
-        modelBuilder.Entity<Product>(entity =>
-        {
-            entity.HasMany(e => e.Prices).WithOne(ph => ph.Product).HasForeignKey(ph => ph.ObjectId).OnDelete(DeleteBehavior.Cascade);
-            entity.HasOne(e => e.UnitType).WithMany().OnDelete(DeleteBehavior.Restrict);
-        });
-        modelBuilder.Entity<Part>(entity =>
-        {
-            entity.HasMany(e => e.Prices).WithOne(ph => ph.Part).HasForeignKey(ph => ph.ObjectId).OnDelete(DeleteBehavior.Cascade);
-            entity.HasOne(e => e.UnitType).WithMany().OnDelete(DeleteBehavior.Restrict);
-        });
-        modelBuilder.Entity<ProductCategory>(e =>
-        {
-            e.HasIndex(pc => new { pc.ProductId, pc.CategoryId }).IsUnique();
-            e.HasOne(pc => pc.Product).WithMany(p => p.Categories).OnDelete(DeleteBehavior.Cascade);
-            e.HasOne(pc => pc.Category).WithMany().OnDelete(DeleteBehavior.Cascade);
-        });
-        modelBuilder.Entity<ProductPart>(e =>
-        {
-            e.HasIndex(pp => new { pp.ProductId, pp.PartId }).IsUnique();
-            e.HasOne(pp => pp.Product).WithMany(p => p.Parts).OnDelete(DeleteBehavior.Cascade);
-            e.HasOne(pp => pp.Part).WithMany().OnDelete(DeleteBehavior.Cascade);
-        });
-        modelBuilder.Entity<ProductAllergen>(e =>
-        {
-            e.HasIndex(pa => new { pa.ProductId, pa.AllergenId }).IsUnique();
-            e.HasOne(pa => pa.Product).WithMany(p => p.Allergens).OnDelete(DeleteBehavior.Cascade);
-            e.HasOne(pa => pa.Allergen).WithMany().OnDelete(DeleteBehavior.Cascade);
-        });
-        modelBuilder.Entity<ProductAllowedPartAddition>(e =>
-        {
-            e.HasIndex(pa => new { pa.ProductId, pa.PartId }).IsUnique();
-            e.HasOne(pa => pa.Product).WithMany(p => p.AllowedPartAdditions).OnDelete(DeleteBehavior.Cascade);
-            e.HasOne(pa => pa.Part).WithMany().OnDelete(DeleteBehavior.Cascade);
         });
 
         // Articles
@@ -86,9 +48,9 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
         });
         modelBuilder.Entity<ArticleComponent>(e =>
         {
-            e.HasIndex(ac => new { ac.ParentId, ac.ChildId }).IsUnique();
-            e.HasOne(ac => ac.Assembly).WithMany(a => a.Components).HasForeignKey(ac => ac.ParentId).OnDelete(DeleteBehavior.Restrict);
-            e.HasOne(ac => ac.Component).WithMany(a => a.Assemblies).HasForeignKey(ac => ac.ChildId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(ac => new { ParentId = ac.AssemblyId, ChildId = ac.ComponentId }).IsUnique();
+            e.HasOne(ac => ac.Assembly).WithMany(a => a.Components).HasForeignKey(ac => ac.AssemblyId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(ac => ac.Component).WithMany(a => a.Assemblies).HasForeignKey(ac => ac.ComponentId).OnDelete(DeleteBehavior.Restrict);
         });
         modelBuilder.Entity<ArticleAllowedComponentAddition>(e =>
         {
@@ -134,6 +96,7 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
             entity.HasMany(e => e.ContactData).WithOne().OnDelete(DeleteBehavior.Cascade);
         });
 
+        // Orders
         modelBuilder.Entity<Order>(e =>
         {
             e.HasIndex(o => o.Code).IsUnique();

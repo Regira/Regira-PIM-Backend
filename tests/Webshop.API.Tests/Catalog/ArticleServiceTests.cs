@@ -87,7 +87,7 @@ public class ArticleServiceTests(TestFixture fixture) : IClassFixture<TestFixtur
         var assembly = new Article
         {
             Title = "Assembly Article",
-            Components = [new ArticleComponent { ChildId = comp1.Id, Quantity = 1 }]
+            Components = [new ArticleComponent { ComponentId = comp1.Id, Quantity = 1 }]
         };
         await service.Save(assembly);
         await service.SaveChanges();
@@ -95,14 +95,14 @@ public class ArticleServiceTests(TestFixture fixture) : IClassFixture<TestFixtur
         // Update: replace comp1 with comp2
         var loaded = await service.Details(assembly.Id);
         Assert.NotNull(loaded);
-        loaded.Components = [new ArticleComponent { ChildId = comp2.Id, Quantity = 1 }];
+        loaded.Components = [new ArticleComponent { ComponentId = comp2.Id, Quantity = 1 }];
         await service.Save(loaded);
         await service.SaveChanges();
 
         var updated = await service.Details(assembly.Id);
         Assert.NotNull(updated?.Components);
         Assert.Single(updated.Components);
-        Assert.Equal(comp2.Id, updated.Components.First().ChildId);
+        Assert.Equal(comp2.Id, updated.Components.First().ComponentId);
     }
 
     [Fact]
@@ -118,7 +118,7 @@ public class ArticleServiceTests(TestFixture fixture) : IClassFixture<TestFixtur
         var assembly = new Article
         {
             Title = "Assembly With Quantity",
-            Components = [new ArticleComponent { ChildId = component.Id, Quantity = 2.5m }]
+            Components = [new ArticleComponent { ComponentId = component.Id, Quantity = 2.5m }]
         };
         await service.Save(assembly);
         await service.SaveChanges();

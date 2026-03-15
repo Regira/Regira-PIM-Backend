@@ -16,33 +16,3 @@ public class ArticleInputDto
     public ICollection<ArticleSupplierInputDto>? Suppliers { get; set; }
     public ICollection<PriceHistoryInputDto>? Prices { get; set; }
 }
-
-public class ArticleCategoryInputDto
-{
-    public int Id { get; set; }
-    public int ArticleId { get; set; }
-    public int CategoryId { get; set; }
-}
-
-public class ArticleComponentInputDto
-{
-    public int Id { get; set; }
-    public int ParentId { get; set; }
-    public int ChildId { get; set; }
-    public decimal Quantity { get; set; }
-    public bool IsOmittable { get; set; }
-}
-
-public class ArticleAllowedComponentAdditionInputDto
-{
-    public int Id { get; set; }
-    public int AssemblyId { get; set; }
-    public int ComponentId { get; set; }
-}
-
-public class ArticleSupplierInputDto
-{
-    public int Id { get; set; }
-    public int ArticleId { get; set; }
-    public int SupplierId { get; set; }
-}

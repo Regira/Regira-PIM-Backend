@@ -21,7 +21,7 @@ public class ArticleNormalizer(INormalizer normalizer, WebshopDbContext dbContex
             .Where(c => categoryIds.Contains(c.Id))
             .AsNoTrackingWithIdentityResolution()
             .ToListAsync();
-        var componentIds = items.SelectMany(x => x.Components?.Select(c => c.ChildId) ?? []).Distinct().ToList();
+        var componentIds = items.SelectMany(x => x.Components?.Select(c => c.ComponentId) ?? []).Distinct().ToList();
         _components = await dbContext.Articles
             .Where(a => componentIds.Contains(a.Id))
             .AsNoTrackingWithIdentityResolution()
@@ -43,7 +43,7 @@ public class ArticleNormalizer(INormalizer normalizer, WebshopDbContext dbContex
         var categories = item.Categories?.Select(ac => _categories.FirstOrDefault(c => c.Id == ac.CategoryId)?.Title).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
         contentEntries.AddRange(categories?.Select(normalizer.Normalize) ?? []);
 
-        var components = item.Components?.Select(ac => _components.FirstOrDefault(a => a.Id == ac.ChildId)?.Title).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
+        var components = item.Components?.Select(ac => _components.FirstOrDefault(a => a.Id == ac.ComponentId)?.Title).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
         contentEntries.AddRange(components?.Select(normalizer.Normalize) ?? []);
 
         var suppliers = item.Suppliers?.Select(s => _suppliers.FirstOrDefault(p => p.Id == s.SupplierId)?.Title).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();

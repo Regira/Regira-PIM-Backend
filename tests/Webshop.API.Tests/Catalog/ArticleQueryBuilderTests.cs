@@ -57,8 +57,8 @@ public class ArticleQueryBuilderTests
     [Fact]
     public void ComponentId_IncludesArticleWithAnyMatchingComponent()
     {
-        var match = new Article { Title = "A", Components = [new ArticleComponent { ChildId = 10 }] };
-        var noMatch = new Article { Title = "B", Components = [new ArticleComponent { ChildId = 99 }] };
+        var match = new Article { Title = "A", Components = [new ArticleComponent { ComponentId = 10 }] };
+        var noMatch = new Article { Title = "B", Components = [new ArticleComponent { ComponentId = 99 }] };
 
         var result = Build(new ArticleSearchObject { ComponentId = [10] }, match, noMatch).ToList();
 
@@ -69,9 +69,9 @@ public class ArticleQueryBuilderTests
     [Fact]
     public void ComponentId_MatchesAnyOfMultipleComponentIds()
     {
-        var compA = new Article { Title = "A", Components = [new ArticleComponent { ChildId = 1 }] };
-        var compB = new Article { Title = "B", Components = [new ArticleComponent { ChildId = 2 }] };
-        var compC = new Article { Title = "C", Components = [new ArticleComponent { ChildId = 3 }] };
+        var compA = new Article { Title = "A", Components = [new ArticleComponent { ComponentId = 1 }] };
+        var compB = new Article { Title = "B", Components = [new ArticleComponent { ComponentId = 2 }] };
+        var compC = new Article { Title = "C", Components = [new ArticleComponent { ComponentId = 3 }] };
 
         var result = Build(new ArticleSearchObject { ComponentId = [1, 2] }, compA, compB, compC).ToList();
 
@@ -87,12 +87,12 @@ public class ArticleQueryBuilderTests
         var hasAll = new Article
         {
             Title = "A",
-            Components = [new ArticleComponent { ChildId = 1 }, new ArticleComponent { ChildId = 2 }]
+            Components = [new ArticleComponent { ComponentId = 1 }, new ArticleComponent { ComponentId = 2 }]
         };
         var missingOne = new Article
         {
             Title = "B",
-            Components = [new ArticleComponent { ChildId = 1 }]
+            Components = [new ArticleComponent { ComponentId = 1 }]
         };
 
         var result = Build(new ArticleSearchObject { AllComponentId = [1, 2] }, hasAll, missingOne).ToList();
@@ -104,7 +104,7 @@ public class ArticleQueryBuilderTests
     [Fact]
     public void AllComponentId_ExcludesArticleMissingAnyRequiredComponent()
     {
-        var article = new Article { Title = "A", Components = [new ArticleComponent { ChildId = 1 }] };
+        var article = new Article { Title = "A", Components = [new ArticleComponent { ComponentId = 1 }] };
 
         var result = Build(new ArticleSearchObject { AllComponentId = [1, 2] }, article);
 

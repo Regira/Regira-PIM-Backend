@@ -11,7 +11,7 @@ using Person = Webshop.Models.Entities.Stakeholders.Parties.Person;
 
 namespace Webshop.DemoDataConsole.Infrastructure;
 
-public class DataSeeder(IEntityService<Category> categoryService, IEntityService<Article> articleService, IEntityService<Allergen> allergenService,
+public class DataSeeder(IEntityService<Category> categoryService, IEntityService<Article> articleService,
     IEntityService<Party> partyService, IEntityService<Order> orderService, IEntityService<RelationshipType> relationshipTypeService)
 {
     private const int BatchSize = 100;
@@ -21,7 +21,6 @@ public class DataSeeder(IEntityService<Category> categoryService, IEntityService
         var parties = await SeedParties();
         var relationshipTypes = await SeedRelationshipTypes();
         await SeedRelationships(parties, relationshipTypes);
-        var allergens = await SeedAllergens();
         var categories = await SeedCategories();
         var suppliers = parties.OfType<Organization>().ToList();
         var articles = await SeedArticles(categories, suppliers);
@@ -150,31 +149,6 @@ public class DataSeeder(IEntityService<Category> categoryService, IEntityService
         await partyService.SaveChanges();
     }
 
-    public async Task<IList<Allergen>> SeedAllergens()
-    {
-        var allergens = new List<Allergen>
-        {
-            new() { Title = "Gluten",    Code = "GLU", Description = "Found in wheat, barley, rye and oats" },
-            new() { Title = "Dairy",     Code = "DAI", Description = "Includes milk, cheese, butter and cream" },
-            new() { Title = "Nuts",      Code = "NUT", Description = "Tree nuts including almonds, walnuts, cashews" },
-            new() { Title = "Eggs",      Code = "EGG", Description = "Chicken eggs and derivatives" },
-            new() { Title = "Soy",       Code = "SOY", Description = "Soybeans and soy-derived products" },
-            new() { Title = "Shellfish", Code = "SHE", Description = "Shrimp, crab, lobster and other crustaceans" },
-            new() { Title = "Fish",      Code = "FIS", Description = "All species of finned fish" },
-            new() { Title = "Sesame",    Code = "SES", Description = "Sesame seeds and sesame oil" },
-            new() { Title = "Celery",    Code = "CEL", Description = "Including celeriac" },
-            new() { Title = "Mustard",   Code = "MUS", Description = "Mustard seeds and derivatives" },
-            new() { Title = "Lupin",     Code = "LUP", Description = "Lupin seeds and flour" },
-            new() { Title = "Peanuts",   Code = "PEA", Description = "Peanuts and peanut-derived products" },
-        };
-
-        foreach (var allergen in allergens)
-            await allergenService.Save(allergen);
-        await allergenService.SaveChanges();
-
-        return allergens;
-    }
-
     public async Task<IList<Category>> SeedCategories()
     {
         var categories = new List<Category>
@@ -277,7 +251,7 @@ public class DataSeeder(IEntityService<Category> categoryService, IEntityService
                     .Select(c => new ArticleCategory { CategoryId = c.Id })
                     .ToList(),
                 Components = selectedComponents
-                    .Select(c => new ArticleComponent { ChildId = c.Id, Quantity = f.Random.Decimal(0.5m, 5m), IsOmittable = f.Random.Bool(0.4f) })
+                    .Select(c => new ArticleComponent { ComponentId = c.Id, Quantity = f.Random.Decimal(0.5m, 5m), IsOmittable = f.Random.Bool(0.4f) })
                     .ToList(),
                 AllowAdditions = f.Random.Bool(0.9f),
                 AllowedComponentAdditions = f.Random.Bool(0.5f)
@@ -312,7 +286,7 @@ public class DataSeeder(IEntityService<Category> categoryService, IEntityService
 
         // Collect component articles for additions/omissions
         var componentArticles = articles
-            .SelectMany(a => a.Components?.Select(c => c.ChildId) ?? [])
+            .SelectMany(a => a.Components?.Select(c => c.ComponentId) ?? [])
             .Distinct()
             .ToList();
 
@@ -338,7 +312,7 @@ public class DataSeeder(IEntityService<Category> categoryService, IEntityService
                 List<OrderLineComponentOmission>? partOmissions = null;
                 if (article.Components?.Count > 0 && f.Random.Bool(0.3f))
                 {
-                    var omittable = article.Components.Where(c => c.IsOmittable).Select(c => c.ChildId).ToList();
+                    var omittable = article.Components.Where(c => c.IsOmittable).Select(c => c.ComponentId).ToList();
                     if (omittable.Count > 0)
                     {
                         partOmissions = f.PickRandom(omittable, f.Random.Int(1, Math.Min(2, omittable.Count)))

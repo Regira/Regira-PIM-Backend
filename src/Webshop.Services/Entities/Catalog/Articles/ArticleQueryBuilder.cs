@@ -13,10 +13,12 @@ public class ArticleQueryBuilder : FilteredQueryBuilderBase<Article, int, Articl
 
         if (so.CategoryId?.Any() == true)
             query = query.Where(x => x.Categories!.Any(ac => so.CategoryId.Contains(ac.CategoryId)));
+        if (so.AssemblyId?.Any() == true)
+            query = query.Where(x => x.Assemblies!.Any(a => so.AssemblyId.Contains(a.AssemblyId)));
         if (so.ComponentId?.Any() == true)
-            query = query.Where(x => x.Components!.Any(ac => so.ComponentId.Contains(ac.ChildId)));
+            query = query.Where(x => x.Components!.Any(ac => so.ComponentId.Contains(ac.ComponentId)));
         foreach (var componentId in so.AllComponentId ?? [])
-            query = query.Where(x => x.Components!.Any(ac => ac.ChildId == componentId));
+            query = query.Where(x => x.Components!.Any(ac => ac.ComponentId == componentId));
         if (so.SupplierId?.Any() == true)
             query = query.Where(x => x.Suppliers!.Any(s => so.SupplierId.Contains(s.SupplierId)));
 

@@ -5,8 +5,8 @@ namespace Webshop.Models.Entities.Catalog.Articles;
 public class ArticleComponent : IEntityWithSerial
 {
     public int Id { get; set; }
-    public int ParentId { get; set; }
-    public int ChildId { get; set; }
+    public int AssemblyId { get; set; }
+    public int ComponentId { get; set; }
     public decimal Quantity { get; set; }
     /// <summary>
     /// Indicates whether this component can be omitted from the article without affecting its core functionality.

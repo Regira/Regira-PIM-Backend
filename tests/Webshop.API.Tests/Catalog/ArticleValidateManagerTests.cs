@@ -197,7 +197,7 @@ public class ArticleValidateManagerTests
         var article = new Article
         {
             Title = "Test",
-            Components = [new ArticleComponent { ChildId = 1, Quantity = 0 }]
+            Components = [new ArticleComponent { ComponentId = 1, Quantity = 0 }]
         };
 
         var ex = Assert.Throws<EntityInputException<Article>>(() => sut.Validate(article));
@@ -211,7 +211,7 @@ public class ArticleValidateManagerTests
         var article = new Article
         {
             Title = "Test",
-            Components = [new ArticleComponent { ChildId = 1, Quantity = -1m }]
+            Components = [new ArticleComponent { ComponentId = 1, Quantity = -1m }]
         };
 
         var ex = Assert.Throws<EntityInputException<Article>>(() => sut.Validate(article));
@@ -225,7 +225,7 @@ public class ArticleValidateManagerTests
         sut.Validate(new Article
         {
             Title = "Test",
-            Components = [new ArticleComponent { ChildId = 1, Quantity = 2.5m }]
+            Components = [new ArticleComponent { ComponentId = 1, Quantity = 2.5m }]
         });
     }
 }
