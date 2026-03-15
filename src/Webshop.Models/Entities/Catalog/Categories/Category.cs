@@ -2,7 +2,6 @@ using Regira.Entities.Models.Abstractions;
 using Regira.Normalizing;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Webshop.Models.Entities.Catalog.Products;
 
 namespace Webshop.Models.Entities.Catalog.Categories;
 
@@ -21,8 +20,7 @@ public class Category : IEntityWithSerial, IHasTimestamps, IHasTitle, IHasDescri
 
     public ICollection<RelatedCategory>? ParentEntities { get; set; }
     public ICollection<RelatedCategory>? ChildEntities { get; set; }
-    public ICollection<ProductCategory>? Products { get; set; }
 
     [NotMapped]
-    public int? ProductCount { get; set; }
+    public int? ArticleCount { get; set; }
 }

@@ -3,6 +3,7 @@ using Regira.DAL.EFcore.Extensions;
 using Webshop.Models.Entities.Catalog.Allergens;
 using Webshop.Models.Entities.Catalog.Categories;
 using Webshop.Models.Entities.Catalog.Parts;
+using Webshop.Models.Entities.Catalog.Articles;
 using Webshop.Models.Entities.Catalog.Products;
 using Webshop.Models.Entities.Catalog.UnitTypes;
 using Webshop.Models.Entities.Orders;
@@ -17,11 +18,12 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
     public DbSet<Organization> Organizations { get; set; }
     public DbSet<Person> Persons { get; set; }
     public DbSet<RelationshipType> RelationshipTypes { get; set; }
-    public DbSet<Allergen> Allergens { get; set; } = null!;
-    public DbSet<UnitType> UnitTypes { get; set; } = null!;
-    public DbSet<Part> Parts { get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;
+    public DbSet<UnitType> UnitTypes { get; set; } = null!;
+    public DbSet<Article> Articles { get; set; } = null!;
     public DbSet<Product> Products { get; set; } = null!;
+    public DbSet<Part> Parts { get; set; } = null!;
+    public DbSet<Allergen> Allergens { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -49,7 +51,7 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
         {
             e.HasIndex(pc => new { pc.ProductId, pc.CategoryId }).IsUnique();
             e.HasOne(pc => pc.Product).WithMany(p => p.Categories).OnDelete(DeleteBehavior.Cascade);
-            e.HasOne(pc => pc.Category).WithMany(c => c.Products).OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(pc => pc.Category).WithMany().OnDelete(DeleteBehavior.Cascade);
         });
         modelBuilder.Entity<ProductPart>(e =>
         {
@@ -70,6 +72,38 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
             e.HasOne(pa => pa.Part).WithMany().OnDelete(DeleteBehavior.Cascade);
         });
 
+        // Articles
+        modelBuilder.Entity<Article>(entity =>
+        {
+            entity.HasMany(e => e.Prices).WithOne(ph => ph.Article).HasForeignKey(ph => ph.ObjectId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.UnitType).WithMany().OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<ArticleCategory>(e =>
+        {
+            e.HasIndex(ac => new { ac.ArticleId, ac.CategoryId }).IsUnique();
+            e.HasOne(ac => ac.Article).WithMany(a => a.Categories).OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(ac => ac.Category).WithMany().OnDelete(DeleteBehavior.Cascade);
+        });
+        modelBuilder.Entity<ArticleComponent>(e =>
+        {
+            e.HasIndex(ac => new { ac.ParentId, ac.ChildId }).IsUnique();
+            e.HasOne(ac => ac.Assembly).WithMany(a => a.Components).HasForeignKey(ac => ac.ParentId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(ac => ac.Component).WithMany(a => a.Assemblies).HasForeignKey(ac => ac.ChildId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<ArticleAllowedComponentAddition>(e =>
+        {
+            e.HasIndex(ac => new { ac.AssemblyId, ac.ComponentId }).IsUnique();
+            e.HasOne(ac => ac.Assembly).WithMany(a => a.AllowedComponentAdditions).HasForeignKey(ac => ac.AssemblyId).OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(ac => ac.Component).WithMany().HasForeignKey(ac => ac.ComponentId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<ArticleSupplier>(e =>
+        {
+            e.HasIndex(s => new { s.ArticleId, s.SupplierId }).IsUnique();
+            e.HasOne(s => s.Article).WithMany(a => a.Suppliers).OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(s => s.Supplier).WithMany().OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // Stakeholders
         modelBuilder.Entity<Party>(entity =>
         {
             entity.HasDiscriminator(p => p.PartyType)
@@ -109,20 +143,20 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
 
         modelBuilder.Entity<OrderLine>(e =>
         {
-            e.HasOne(ol => ol.Product).WithMany().OnDelete(DeleteBehavior.Restrict);
-            e.HasMany(ol => ol.PartAdditions).WithOne().OnDelete(DeleteBehavior.Cascade);
-            e.HasMany(ol => ol.PartOmissions).WithOne().OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(ol => ol.Article).WithMany().OnDelete(DeleteBehavior.Restrict);
+            e.HasMany(ol => ol.ComponentAdditions).WithOne().OnDelete(DeleteBehavior.Cascade);
+            e.HasMany(ol => ol.ComponentOmissions).WithOne().OnDelete(DeleteBehavior.Cascade);
         });
 
-        modelBuilder.Entity<OrderLinePartAddition>(entity =>
+        modelBuilder.Entity<OrderLineComponentAddition>(entity =>
         {
-            entity.HasOne(olp => olp.Part).WithMany().OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(olp => olp.OrderLine).WithMany(ol => ol.PartAdditions).HasForeignKey(olp => olp.OrderLineId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(olp => olp.Article).WithMany().OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(olp => olp.OrderLine).WithMany(ol => ol.ComponentAdditions).HasForeignKey(olp => olp.OrderLineId).OnDelete(DeleteBehavior.Cascade);
         });
-        modelBuilder.Entity<OrderLinePartOmission>(entity =>
+        modelBuilder.Entity<OrderLineComponentOmission>(entity =>
         {
-            entity.HasOne(olp => olp.Part).WithMany().OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(olp => olp.OrderLine).WithMany(ol => ol.PartOmissions).HasForeignKey(olp => olp.OrderLineId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(olp => olp.Article).WithMany().OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(olp => olp.OrderLine).WithMany(ol => ol.ComponentOmissions).HasForeignKey(olp => olp.OrderLineId).OnDelete(DeleteBehavior.Cascade);
         });
     }
 }

@@ -12,7 +12,7 @@ public class ProductPart : IEntityWithSerial
     /// <summary>
     /// Indicates whether this part can be omitted from the product without affecting its core functionality.
     /// </summary>
-    public bool IsOmitable { get; set; }
+    public bool IsOmittable { get; set; }
 
     public Product? Product { get; set; }
     public Part? Part { get; set; }

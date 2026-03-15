@@ -16,7 +16,7 @@ public class OrderPrepper(WebshopDbContext dbContext) : EntityPrepperBase<Order>
     }
 }
 
-public static class OrderLinePartsPrepperExtensions
+public static class OrderLineComponentsPrepperExtensions
 {
     public static void PrepareOrderLines(this Order item, WebshopDbContext dbContext, Order? original)
     {
@@ -27,8 +27,8 @@ public static class OrderLinePartsPrepperExtensions
                 var originalLine = original?.OrderLines?.FirstOrDefault(ol => ol.Id == line.Id);
                 if (originalLine != null)
                 {
-                    dbContext.UpdateRelatedCollection(line, originalLine, ol => ol.PartAdditions);
-                    dbContext.UpdateRelatedCollection(line, originalLine, ol => ol.PartOmissions);
+                    dbContext.UpdateRelatedCollection(line, originalLine, ol => ol.ComponentAdditions);
+                    dbContext.UpdateRelatedCollection(line, originalLine, ol => ol.ComponentOmissions);
                 }
             }
         }
@@ -42,8 +42,8 @@ public static class OrderPriceTotalsPrepperExtensions
         {
             foreach (var line in item.OrderLines)
             {
-                var partAddition = line.PartAdditions?.Sum(olp => olp.Price * olp.Quantity) ?? 0m;
-                var partOmission = line.PartOmissions?.Sum(olp => olp.Price * olp.Quantity) ?? 0m;
+                var partAddition = line.ComponentAdditions?.Sum(olp => olp.Price * olp.Quantity) ?? 0m;
+                var partOmission = line.ComponentOmissions?.Sum(olp => olp.Price * olp.Quantity) ?? 0m;
                 line.SubTotal = (line.UnitPrice + partAddition - partOmission) * line.Quantity;
             }
             item.Total = item.OrderLines.Sum(ol => ol.SubTotal);

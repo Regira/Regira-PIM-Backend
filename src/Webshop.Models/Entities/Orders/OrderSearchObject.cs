@@ -6,7 +6,7 @@ public class OrderSearchObject : SearchObject
 {
     public string? Code { get; set; }
     public ICollection<int>? CustomerId { get; set; }
-    public ICollection<int>? ProductId { get; set; }
+    public ICollection<int>? ArticleId { get; set; }
     public bool? HasAdditions { get; set; }
     public bool? HasOmissions { get; set; }
     public ICollection<OrderStatus>? Status { get; set; }

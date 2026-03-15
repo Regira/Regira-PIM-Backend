@@ -1,8 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
-using Webshop.Models.Entities.Catalog.Parts;
-using Webshop.Models.Entities.Catalog.Products;
+using Webshop.Models.Entities.Catalog.Articles;
 using Webshop.Models.Entities.Orders;
 using Webshop.Models.Entities.Stakeholders.Parties;
 using Xunit;
@@ -15,25 +14,24 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     private IEntityService<Order, OrderSearchObject, OrderSortBy, OrderIncludes> GetService(IServiceScope scope)
         => scope.ServiceProvider.GetRequiredService<IEntityService<Order, OrderSearchObject, OrderSortBy, OrderIncludes>>();
 
-    private async Task<(Party Customer, Product Product, Part Part)> SeedPrerequisites(IServiceScope scope)
+    private async Task<(Party Customer, Article Article, Article Component)> SeedPrerequisites(IServiceScope scope)
     {
         var customerService = scope.ServiceProvider.GetRequiredService<IEntityService<Party, PartySearchObject, PartySortBy, PartyIncludes>>();
-        var prodService = scope.ServiceProvider.GetRequiredService<IEntityService<Product, ProductSearchObject, ProductSortBy, ProductIncludes>>();
-        var partService = scope.ServiceProvider.GetRequiredService<IEntityService<Part, PartSearchObject, PartSortBy, PartIncludes>>();
+        var articleService = scope.ServiceProvider.GetRequiredService<IEntityService<Article, ArticleSearchObject, ArticleSortBy, ArticleIncludes>>();
 
         var customer = new Person { GivenName = "Order", FamilyName = $"TestUser-{Guid.NewGuid():N}" };
         await customerService.Save(customer);
         await customerService.SaveChanges();
 
-        var product = new Product { Title = "Order Test Product", Price = 10.00m };
-        await prodService.Save(product);
-        await prodService.SaveChanges();
+        var article = new Article { Title = "Order Test Article", Prices = [new ArticlePriceHistory { Price = 10.00m }] };
+        await articleService.Save(article);
+        await articleService.SaveChanges();
 
-        var part = new Part { Title = "Order Test Part", Price = 1.50m };
-        await partService.Save(part);
-        await partService.SaveChanges();
+        var component = new Article { Title = "Order Test Component", Prices = [new ArticlePriceHistory { Price = 1.50m }] };
+        await articleService.Save(component);
+        await articleService.SaveChanges();
 
-        return (customer, product, part);
+        return (customer, article, component);
     }
 
     [Fact]
@@ -53,12 +51,12 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     {
         using var scope = fixture.CreateScope();
         var service = GetService(scope);
-        var (customer, product, _) = await SeedPrerequisites(scope);
+        var (customer, article, _) = await SeedPrerequisites(scope);
 
         var order = new Order
         {
             CustomerId = customer.Id,
-            OrderLines = [new OrderLine { ProductId = product.Id, Quantity = 1, UnitPrice = product.Price ?? 0m }]
+            OrderLines = [new OrderLine { ArticleId = article.Id, Quantity = 1, UnitPrice = 10.00m }]
         };
         await service.Save(order);
         await service.SaveChanges();
@@ -72,15 +70,15 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     {
         using var scope = fixture.CreateScope();
         var service = GetService(scope);
-        var (customer, product, _) = await SeedPrerequisites(scope);
+        var (customer, article, _) = await SeedPrerequisites(scope);
 
         var order = new Order
         {
             CustomerId = customer.Id,
             OrderLines =
             [
-                new OrderLine { ProductId = product.Id, Quantity = 2, UnitPrice = 10.00m },
-                new OrderLine { ProductId = product.Id, Quantity = 1, UnitPrice = 5.00m }
+                new OrderLine { ArticleId = article.Id, Quantity = 2, UnitPrice = 10.00m },
+                new OrderLine { ArticleId = article.Id, Quantity = 1, UnitPrice = 5.00m }
             ]
         };
         await service.Save(order);
@@ -94,7 +92,7 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     {
         using var scope = fixture.CreateScope();
         var service = GetService(scope);
-        var (customer, product, part) = await SeedPrerequisites(scope);
+        var (customer, article, component) = await SeedPrerequisites(scope);
 
         var order = new Order
         {
@@ -103,10 +101,10 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
             [
                 new OrderLine
                 {
-                    ProductId = product.Id,
+                    ArticleId = article.Id,
                     Quantity = 2,
                     UnitPrice = 10.00m,
-                    PartAdditions = [new OrderLinePartAddition { PartId = part.Id, Price = 1.50m }]
+                    ComponentAdditions = [new OrderLineComponentAddition { ArticleId = component.Id, Price = 1.50m }]
                 }
             ]
         };
@@ -123,7 +121,7 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     {
         using var scope = fixture.CreateScope();
         var service = GetService(scope);
-        var (customer, product, part) = await SeedPrerequisites(scope);
+        var (customer, article, component) = await SeedPrerequisites(scope);
 
         var order = new Order
         {
@@ -132,10 +130,10 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
             [
                 new OrderLine
                 {
-                    ProductId = product.Id,
+                    ArticleId = article.Id,
                     Quantity = 3,
                     UnitPrice = 10.00m,
-                    PartOmissions = [new OrderLinePartOmission { PartId = part.Id, Price = 1.50m }]
+                    ComponentOmissions = [new OrderLineComponentOmission { ArticleId = component.Id, Price = 1.50m }]
                 }
             ]
         };
@@ -152,7 +150,7 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     {
         using var scope = fixture.CreateScope();
         var service = GetService(scope);
-        var (customer, product, part) = await SeedPrerequisites(scope);
+        var (customer, article, component) = await SeedPrerequisites(scope);
 
         var order = new Order
         {
@@ -161,11 +159,11 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
             [
                 new OrderLine
                 {
-                    ProductId = product.Id,
+                    ArticleId = article.Id,
                     Quantity = 2,
                     UnitPrice = 10.00m,
-                    PartAdditions  = [new OrderLinePartAddition { PartId = part.Id, Price = 2.00m }],
-                    PartOmissions = [new OrderLinePartOmission { PartId = part.Id, Price = 0.50m }]
+                    ComponentAdditions  = [new OrderLineComponentAddition { ArticleId = component.Id, Price = 2.00m }],
+                    ComponentOmissions = [new OrderLineComponentOmission { ArticleId = component.Id, Price = 0.50m }]
                 }
             ]
         };
@@ -182,13 +180,13 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     {
         using var scope = fixture.CreateScope();
         var service = GetService(scope);
-        var (customer, product, _) = await SeedPrerequisites(scope);
+        var (customer, article, _) = await SeedPrerequisites(scope);
 
         var order = new Order
         {
             CustomerId = customer.Id,
             ScheduledDate = DateTime.UtcNow.AddDays(-5),
-            OrderLines = [new OrderLine { ProductId = product.Id, Quantity = 1, UnitPrice = 10.00m }]
+            OrderLines = [new OrderLine { ArticleId = article.Id, Quantity = 1, UnitPrice = 10.00m }]
         };
         await service.Save(order);
         await service.SaveChanges();
@@ -204,13 +202,13 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     {
         using var scope = fixture.CreateScope();
         var service = GetService(scope);
-        var (customer, product, _) = await SeedPrerequisites(scope);
+        var (customer, article, _) = await SeedPrerequisites(scope);
 
         var order = new Order
         {
             CustomerId = customer.Id,
             ScheduledDate = DateTime.UtcNow.AddDays(30),
-            OrderLines = [new OrderLine { ProductId = product.Id, Quantity = 1, UnitPrice = 10.00m }]
+            OrderLines = [new OrderLine { ArticleId = article.Id, Quantity = 1, UnitPrice = 10.00m }]
         };
         await service.Save(order);
         await service.SaveChanges();
@@ -219,7 +217,7 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
         await service.Modify(order);
         await service.SaveChanges();
 
-       var modified = await service.Details(order.Id);
+        var modified = await service.Details(order.Id);
 
         Assert.NotNull(modified);
         Assert.Equal(OrderStatus.Processing, modified.Status);

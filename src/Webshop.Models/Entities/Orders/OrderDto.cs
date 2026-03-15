@@ -1,5 +1,4 @@
-using Webshop.Models.Entities.Catalog.Parts;
-using Webshop.Models.Entities.Catalog.Products;
+using Webshop.Models.Entities.Catalog.Articles;
 using Webshop.Models.Entities.Stakeholders.Parties;
 
 namespace Webshop.Models.Entities.Orders;
@@ -22,22 +21,22 @@ public class OrderLineDto
 {
     public int Id { get; set; }
     public int OrderId { get; set; }
-    public int ProductId { get; set; }
-    public ProductDto? Product { get; set; }
+    public int ArticleId { get; set; }
+    public ArticleCoreDto? Article { get; set; }
     public decimal Quantity { get; set; }
     public decimal UnitPrice { get; set; }
     public decimal SubTotal { get; set; }
     public int SortOrder { get; set; }
-    public ICollection<OrderLinePartDto>? PartAdditions { get; set; }
-    public ICollection<OrderLinePartDto>? PartOmissions { get; set; }
+    public ICollection<OrderLineComponentDto>? PartAdditions { get; set; }
+    public ICollection<OrderLineComponentDto>? PartOmissions { get; set; }
 }
 
-public class OrderLinePartDto
+public class OrderLineComponentDto
 {
     public int Id { get; set; }
     public int OrderLineId { get; set; }
-    public int PartId { get; set; }
+    public int ArticleId { get; set; }
     public decimal Price { get; set; }
     public decimal Quantity { get; set; }
-    public PartDto? Part { get; set; }
+    public ArticleCoreDto? Article { get; set; }
 }

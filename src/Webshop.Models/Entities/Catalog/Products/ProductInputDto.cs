@@ -30,7 +30,7 @@ public class ProductPartInputDto
     public int ProductId { get; set; }
     public int PartId { get; set; }
     public decimal Quantity { get; set; }
-    public bool IsOmitable { get; set; }
+    public bool IsOmittable { get; set; }
 }
 
 public class ProductAllergenInputDto

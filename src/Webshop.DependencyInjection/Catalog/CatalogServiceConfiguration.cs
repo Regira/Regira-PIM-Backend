@@ -10,6 +10,7 @@ public static class CatalogServiceConfiguration
     {
         return services
             .AddCategories()
+            .AddArticles()
             .AddProducts()
             .AddParts()
             .AddAllergens()
