@@ -11,7 +11,7 @@ using Webshop.Models.Entities.Orders;
 
 namespace Webshop.Data;
 
-public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbContext(options)
+public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbContext(options)
 {
     public DbSet<Allergen> Allergens { get; set; } = null!;
     public DbSet<UnitType> UnitTypes { get; set; } = null!;
@@ -63,6 +63,13 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
             e.HasIndex(pa => new { pa.ProductId, pa.AllergenId }).IsUnique();
             e.HasOne(pa => pa.Product).WithMany(p => p.Allergens).OnDelete(DeleteBehavior.Cascade);
             e.HasOne(pa => pa.Allergen).WithMany().OnDelete(DeleteBehavior.Cascade);
+        });
+        modelBuilder.Entity<ProductAllowedPartAddition>(e =>
+        {
+            e.HasKey(pa => pa.Id);
+            e.HasIndex(pa => new { pa.ProductId, pa.PartId }).IsUnique();
+            e.HasOne(pa => pa.Product).WithMany(p => p.AllowedPartAdditions).OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(pa => pa.Part).WithMany().OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Customer>(entity =>

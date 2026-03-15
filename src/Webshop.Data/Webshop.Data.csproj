@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<ProjectReference Include="..\Webshop.Identity\Webshop.Identity.csproj" />
 	<ProjectReference Include="..\Webshop.Models\Webshop.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="*" />
+	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.5" />
+	<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="10.0.5" />
   </ItemGroup>
 
 </Project>
