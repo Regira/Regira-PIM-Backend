@@ -1,21 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Webshop.Models.Entities.Catalog.Pricing.Abstractions;
+using Webshop.Models.Entities.Catalog.Pricing.Utilities;
 
 namespace Webshop.Services.Entities.Catalog.Pricing;
 
 public static class PricingFilterExtensions
 {
-    /// <summary>
-    /// A price is active if the priceDate is within the StartDate and EndDate (inclusive).
-    /// </summary>
-    /// <typeparam name="TPrice"></typeparam>
-    /// <param name="priceDate"></param>
-    /// <returns></returns>
-    static Expression<Func<TPrice, bool>> IsActiveOn<TPrice>(DateTime priceDate)
-        where TPrice : IPriceHistory
-        => p => (p.StartDate == null || p.StartDate <= priceDate)
-                && (p.EndDate == null || p.EndDate >= priceDate);
     /// <summary>
     /// When multiple active prices exist, the one with the latest EndDate (or StartDate if EndDate is null) should be selected.
     /// </summary>
@@ -85,7 +76,7 @@ public static class PricingFilterExtensions
     /// <returns></returns>
     public static IEnumerable<TPrice> FindActivePrices<TPrice>(this IEnumerable<TPrice> prices, DateTime priceDate)
         where TPrice : IPriceHistory
-        => prices.Where(IsActiveOn<TPrice>(priceDate).Compile());
+        => prices.Where(PriceHistoryUtility.IsActiveOn<TPrice>(priceDate).Compile());
     /// <summary>
     /// Filters the given prices to only include those active for the given priceDate. The resulting query will not be ordered, so if multiple active prices exist, no specific one will be prioritized.
     /// </summary>
@@ -95,5 +86,5 @@ public static class PricingFilterExtensions
     /// <returns></returns>
     public static IQueryable<TPrice> FilterActivePrices<TPrice>(this IQueryable<TPrice> prices, DateTime priceDate)
         where TPrice : IPriceHistory
-        => prices.Where(IsActiveOn<TPrice>(priceDate));
+        => prices.Where(PriceHistoryUtility.IsActiveOn<TPrice>(priceDate));
 }

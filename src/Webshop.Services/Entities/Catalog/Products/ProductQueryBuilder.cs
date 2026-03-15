@@ -1,4 +1,5 @@
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
+using Webshop.Models.Entities.Catalog.Pricing.Utilities;
 using Webshop.Models.Entities.Catalog.Products;
 
 namespace Webshop.Services.Entities.Catalog.Products;
@@ -14,6 +15,8 @@ public class ProductQueryBuilder : FilteredQueryBuilderBase<Product, int, Produc
             query = query.Where(x => x.Categories!.Any(pc => so.CategoryId.Contains(pc.CategoryId)));
         if (so.PartId?.Any() == true)
             query = query.Where(x => x.Parts!.Any(pp => so.PartId.Contains(pp.PartId)));
+        foreach (var partId in so.AllPartId ?? [])
+            query = query.Where(x => x.Parts!.Any(pp => pp.PartId == partId));
         if (so.AllergenId?.Any() == true)
             query = query.Where(x => x.Allergens!.Any(pa => so.AllergenId.Contains(pa.AllergenId)));
 
@@ -22,6 +25,8 @@ public class ProductQueryBuilder : FilteredQueryBuilderBase<Product, int, Produc
             query = query.Where(p => p.Prices!.Any(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate) && ph.Price >= so.MinPrice));
         if (so.MaxPrice.HasValue)
             query = query.Where(p => p.Prices!.Any(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate) && ph.Price <= so.MaxPrice));
+        if (so.HasPrice.HasValue)
+            query = query.Where(p => so.HasPrice.Value == p.Prices!.Any(PriceHistoryUtility.IsActiveOn<ProductPriceHistory>(priceDate).Compile()));
 
         return query;
     }
