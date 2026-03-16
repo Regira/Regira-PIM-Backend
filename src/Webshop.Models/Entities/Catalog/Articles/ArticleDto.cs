@@ -1,6 +1,6 @@
-using Webshop.Models.Entities.Catalog.Categories;
 using Webshop.Models.Entities.Catalog.Pricing;
 using Webshop.Models.Entities.Catalog.UnitTypes;
+using Webshop.Models.Entities.Classification.Categories;
 
 namespace Webshop.Models.Entities.Catalog.Articles;
 
@@ -23,7 +23,7 @@ public class ArticleDto : ArticleCoreDto
     public ICollection<ArticleComponentDto>? Components { get; set; }
     public ICollection<ArticleAllowedComponentAdditionDto>? AllowedComponentAdditions { get; set; }
     public ICollection<ArticleSupplierDto>? Suppliers { get; set; }
-    public ICollection<PriceHistoryDto>? Prices { get; set; }
+    public ICollection<PricePeriodDto>? Prices { get; set; }
 }
 
 public class ArticleCategoryDto

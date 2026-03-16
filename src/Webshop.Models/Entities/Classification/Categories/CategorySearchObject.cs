@@ -1,6 +1,6 @@
 using Regira.Entities.Models;
 
-namespace Webshop.Models.Entities.Catalog.Categories;
+namespace Webshop.Models.Entities.Classification.Categories;
 
 public class CategorySearchObject : SearchObject
 {

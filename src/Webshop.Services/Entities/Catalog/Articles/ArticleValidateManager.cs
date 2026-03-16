@@ -34,7 +34,7 @@ public class ArticleValidateManager(IEntityRepository<Article, ArticleSearchObje
         var errors = new Dictionary<string, string>();
 
         // Pricing
-        var priceErrors = item.Validate<Article, ArticlePriceHistory>();
+        var priceErrors = item.Validate<Article, ArticlePricePeriod>();
         foreach (var error in priceErrors)
         {
             errors.Add(error.Key, error.Value);

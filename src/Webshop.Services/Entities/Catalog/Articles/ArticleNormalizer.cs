@@ -3,7 +3,7 @@ using Regira.Entities.EFcore.Normalizing.Abstractions;
 using Regira.Normalizing.Abstractions;
 using Webshop.Data;
 using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Catalog.Categories;
+using Webshop.Models.Entities.Classification.Categories;
 using Webshop.Models.Entities.Stakeholders.Parties;
 
 namespace Webshop.Services.Entities.Catalog.Articles;

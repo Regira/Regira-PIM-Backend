@@ -13,13 +13,13 @@ public static class PricingFilterExtensions
     /// <param name="prices"></param>
     /// <returns></returns>
     static IQueryable<TPrice> OrderActivePrices<TPrice>(this IQueryable<TPrice> prices)
-        where TPrice : IPriceHistory
+        where TPrice : IPricePeriod
         => prices
             .OrderByDescending(ph => (ph.EndDate ?? ph.StartDate) == null) // nulls first
             .ThenByDescending(ph => ph.EndDate ?? ph.StartDate);
     /// <inheritdoc cref="OrderActivePrices{TPrice}(IQueryable{TPrice})"/>
     static IEnumerable<TPrice> OrderActivePrices<TPrice>(this IEnumerable<TPrice> prices)
-        where TPrice : IPriceHistory
+        where TPrice : IPricePeriod
         => prices
             .AsQueryable()
             .OrderActivePrices();
@@ -30,7 +30,7 @@ public static class PricingFilterExtensions
     /// <param name="item"></param>
     /// <param name="priceDate"></param>
     /// <returns></returns>
-    public static IPriceHistory? FindActivePrice(this IHasPriceHistory item, DateTime priceDate)
+    public static IPricePeriod? FindActivePrice(this IHasPricePeriod item, DateTime priceDate)
         => item.Prices?
             .FindActivePrices(priceDate)
             .OrderActivePrices()
@@ -44,8 +44,8 @@ public static class PricingFilterExtensions
     /// <param name="priceDate"></param>
     /// <returns></returns>
     public static IQueryable<TPrice> FilterActivePrices<THasPrices, TPrice>(this IQueryable<THasPrices> query, DateTime priceDate)
-        where TPrice : IPriceHistory
-        where THasPrices : IHasPriceHistory<TPrice>
+        where TPrice : IPricePeriod
+        where THasPrices : IHasPricePeriod<TPrice>
         => query
             .SelectMany(pp => pp.Prices!)
             .FilterActivePrices(priceDate)
@@ -59,8 +59,8 @@ public static class PricingFilterExtensions
     /// <param name="priceDate"></param>
     /// <returns></returns>
     public static Task<Dictionary<int, decimal>> GetActivePrices<THasPrices, TPrice>(this IQueryable<THasPrices> query, DateTime priceDate)
-        where TPrice : IPriceHistory
-        where THasPrices : IHasPriceHistory<TPrice>
+        where TPrice : IPricePeriod
+        where THasPrices : IHasPricePeriod<TPrice>
         => query
             .FilterActivePrices<THasPrices, TPrice>(priceDate)
             .GroupBy(ph => ph.ObjectId)
@@ -74,7 +74,7 @@ public static class PricingFilterExtensions
     /// <param name="priceDate"></param>
     /// <returns></returns>
     public static IEnumerable<TPrice> FindActivePrices<TPrice>(this IEnumerable<TPrice> prices, DateTime priceDate)
-        where TPrice : IPriceHistory
+        where TPrice : IPricePeriod
         => prices.AsQueryable().FilterIsActiveOn(priceDate);
     /// <summary>
     /// Filters the given prices to only include those active for the given priceDate. The resulting query will not be ordered, so if multiple active prices exist, no specific one will be prioritized.
@@ -84,6 +84,6 @@ public static class PricingFilterExtensions
     /// <param name="priceDate"></param>
     /// <returns></returns>
     public static IQueryable<TPrice> FilterActivePrices<TPrice>(this IQueryable<TPrice> prices, DateTime priceDate)
-        where TPrice : IPriceHistory
+        where TPrice : IPricePeriod
         => prices.FilterIsActiveOn(priceDate);
 }

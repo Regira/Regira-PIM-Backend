@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Regira.Entities.Services.Abstractions;
 using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Catalog.Categories;
 using Regira.Entities.Models;
 using Xunit;
+using Webshop.Models.Entities.Classification.Categories;
 
 namespace Webshop.API.Tests.Catalog;
 
@@ -45,9 +45,9 @@ public class ArticleServiceTests(TestFixture fixture) : IClassFixture<TestFixtur
         using var scope = fixture.CreateScope();
         var service = GetArticleService(scope);
 
-        await service.Save(new Article { Title = "Cheap Article", Prices = [new ArticlePriceHistory { Price = 1.00m }] });
-        await service.Save(new Article { Title = "Mid Article", Prices = [new ArticlePriceHistory { Price = 5.00m }] });
-        await service.Save(new Article { Title = "Expensive Article", Prices = [new ArticlePriceHistory { Price = 20.00m }] });
+        await service.Save(new Article { Title = "Cheap Article", Prices = [new ArticlePricePeriod { Price = 1.00m }] });
+        await service.Save(new Article { Title = "Mid Article", Prices = [new ArticlePricePeriod { Price = 5.00m }] });
+        await service.Save(new Article { Title = "Expensive Article", Prices = [new ArticlePricePeriod { Price = 20.00m }] });
         await service.SaveChanges();
 
         var results = await service.List([new ArticleSearchObject { MinPrice = 3.00m, MaxPrice = 10.00m }], [], ArticleIncludes.Price);
@@ -60,9 +60,9 @@ public class ArticleServiceTests(TestFixture fixture) : IClassFixture<TestFixtur
         using var scope = fixture.CreateScope();
         var service = GetArticleService(scope);
 
-        await service.Save(new Article { Title = "B-Priced Article", Prices = [new ArticlePriceHistory { Price = 15.00m }] });
-        await service.Save(new Article { Title = "A-Priced Article", Prices = [new ArticlePriceHistory { Price = 5.00m }] });
-        await service.Save(new Article { Title = "C-Priced Article", Prices = [new ArticlePriceHistory { Price = 25.00m }] });
+        await service.Save(new Article { Title = "B-Priced Article", Prices = [new ArticlePricePeriod { Price = 15.00m }] });
+        await service.Save(new Article { Title = "A-Priced Article", Prices = [new ArticlePricePeriod { Price = 5.00m }] });
+        await service.Save(new Article { Title = "C-Priced Article", Prices = [new ArticlePricePeriod { Price = 25.00m }] });
         await service.SaveChanges();
 
         var results = await service.List([new ArticleSearchObject()], [ArticleSortBy.Price]);

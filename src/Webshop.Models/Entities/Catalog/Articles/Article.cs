@@ -7,7 +7,7 @@ using Webshop.Models.Entities.Catalog.UnitTypes;
 
 namespace Webshop.Models.Entities.Catalog.Articles;
 
-public class Article : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasPriceHistory, IHasPriceHistory<ArticlePriceHistory>, IHasNormalizedTitle, IHasNormalizedContent, IArchivable
+public class Article : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasPricePeriod, IHasPricePeriod<ArticlePricePeriod>, IHasNormalizedTitle, IHasNormalizedContent, IArchivable
 {
     public int Id { get; set; }
 
@@ -47,11 +47,11 @@ public class Article : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasP
     public ICollection<ArticleComponent>? Components { get; set; } // children
     public ICollection<ArticleAllowedComponentAddition>? AllowedComponentAdditions { get; set; }
     public ICollection<ArticleSupplier>? Suppliers { get; set; }
-    public ICollection<ArticlePriceHistory>? Prices { get; set; }
-    ICollection<IPriceHistory>? IHasPriceHistory.Prices
+    public ICollection<ArticlePricePeriod>? Prices { get; set; }
+    ICollection<IPricePeriod>? IHasPricePeriod.Prices
     {
-        get => Prices?.Cast<IPriceHistory>().ToList();
-        set => Prices = value?.Cast<ArticlePriceHistory>().ToList();
+        get => Prices?.Cast<IPricePeriod>().ToList();
+        set => Prices = value?.Cast<ArticlePricePeriod>().ToList();
     }
 
     /// <summary> Gets or sets the current price of the product, calculated from the price history. </summary>

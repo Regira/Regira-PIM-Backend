@@ -21,7 +21,7 @@ public class ArticleIncludingQueryBuilder : IIncludableQueryBuilder<Article, int
             query = query.Include(x => x.AllowedComponentAdditions!).ThenInclude(ac => ac.Component!).ThenInclude(a => a.Prices!.OrderByDescending(ph => ph.EndDate ?? ph.StartDate));
         if (includes.Value.HasFlag(ArticleIncludes.Suppliers))
             query = query.Include(x => x.Suppliers!).ThenInclude(s => s.Supplier);
-        if (includes.Value.HasFlag(ArticleIncludes.PriceHistory))
+        if (includes.Value.HasFlag(ArticleIncludes.PricePeriod))
             query = query.Include(x => x.Prices!.OrderByDescending(ph => ph.EndDate ?? ph.StartDate));
 
         return query;

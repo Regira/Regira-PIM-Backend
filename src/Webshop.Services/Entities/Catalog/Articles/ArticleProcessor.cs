@@ -10,7 +10,7 @@ public class ArticleProcessor(WebshopDbContext dbContext, IOrderContext orderCon
 {
     public async Task Process(IList<Article> items, ArticleIncludes? includes)
     {
-        if (includes?.HasFlag(ArticleIncludes.PriceHistory) == true)
+        if (includes?.HasFlag(ArticleIncludes.PricePeriod) == true)
         {
             foreach (var item in items)
             {
@@ -24,7 +24,7 @@ public class ArticleProcessor(WebshopDbContext dbContext, IOrderContext orderCon
 
             var activePrices = await dbContext.Articles
                 .Where(a => itemIds.Contains(a.Id))
-                .GetActivePrices<Article, ArticlePriceHistory>(priceDate);
+                .GetActivePrices<Article, ArticlePricePeriod>(priceDate);
 
             foreach (var item in items)
                 item.Price = activePrices.TryGetValue(item.Id, out var price) ? price : null;

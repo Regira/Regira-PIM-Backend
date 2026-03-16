@@ -38,7 +38,7 @@ public class ArticleValidateManagerTests
         sut.Validate(new Article
         {
             Title = "Test",
-            Prices = [new ArticlePriceHistory { Price = 10m }]
+            Prices = [new ArticlePricePeriod { Price = 10m }]
         });
     }
 
@@ -51,8 +51,8 @@ public class ArticleValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ArticlePriceHistory { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 1, 31) },
-                new ArticlePriceHistory { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 2, 28) }
+                new ArticlePricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 1, 31) },
+                new ArticlePricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 2, 28) }
             ]
         });
     }
@@ -66,8 +66,8 @@ public class ArticleValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ArticlePriceHistory { Price = 9m,  StartDate = null,                    EndDate = new DateTime(2025, 1, 31) },
-                new ArticlePriceHistory { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = null }
+                new ArticlePricePeriod { Price = 9m,  StartDate = null,                    EndDate = new DateTime(2025, 1, 31) },
+                new ArticlePricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = null }
             ]
         });
     }
@@ -81,8 +81,8 @@ public class ArticleValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ArticlePriceHistory { Price = 9m,  StartDate = new DateTime(2025, 1, 1),  EndDate = new DateTime(2025, 1, 31) },
-                new ArticlePriceHistory { Price = 10m, StartDate = new DateTime(2025, 1, 31), EndDate = new DateTime(2025, 2, 28) }
+                new ArticlePricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1),  EndDate = new DateTime(2025, 1, 31) },
+                new ArticlePricePeriod { Price = 10m, StartDate = new DateTime(2025, 1, 31), EndDate = new DateTime(2025, 2, 28) }
             ]
         });
     }
@@ -100,8 +100,8 @@ public class ArticleValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ArticlePriceHistory { Price = 9m,  StartDate = null, EndDate = new DateTime(2025, 1, 31) },
-                new ArticlePriceHistory { Price = 10m, StartDate = null, EndDate = new DateTime(2025, 3, 31) }
+                new ArticlePricePeriod { Price = 9m,  StartDate = null, EndDate = new DateTime(2025, 1, 31) },
+                new ArticlePricePeriod { Price = 10m, StartDate = null, EndDate = new DateTime(2025, 3, 31) }
             ]
         };
 
@@ -119,8 +119,8 @@ public class ArticleValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ArticlePriceHistory { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = null },
-                new ArticlePriceHistory { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = null }
+                new ArticlePricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = null },
+                new ArticlePricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = null }
             ]
         };
 
@@ -138,8 +138,8 @@ public class ArticleValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ArticlePriceHistory { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 2, 28) },
-                new ArticlePriceHistory { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 3, 31) }
+                new ArticlePricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 2, 28) },
+                new ArticlePricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 3, 31) }
             ]
         };
 
@@ -157,8 +157,8 @@ public class ArticleValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ArticlePriceHistory { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 3, 31) },
-                new ArticlePriceHistory { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 2, 28) }
+                new ArticlePricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 3, 31) },
+                new ArticlePricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 2, 28) }
             ]
         };
 
@@ -176,8 +176,8 @@ public class ArticleValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ArticlePriceHistory { Price = 9m,  StartDate = null,                    EndDate = new DateTime(2025, 2, 28) },
-                new ArticlePriceHistory { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 3, 31) }
+                new ArticlePricePeriod { Price = 9m,  StartDate = null,                    EndDate = new DateTime(2025, 2, 28) },
+                new ArticlePricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 3, 31) }
             ]
         };
 

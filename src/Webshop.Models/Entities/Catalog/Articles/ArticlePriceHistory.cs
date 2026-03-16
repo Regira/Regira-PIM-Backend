@@ -2,7 +2,7 @@
 
 namespace Webshop.Models.Entities.Catalog.Articles;
 
-public class ArticlePriceHistory : PriceHistoryBase
+public class ArticlePricePeriod : PricePeriodBase
 {
     public Article? Article { get; set; }
 }

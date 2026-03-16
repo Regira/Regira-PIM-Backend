@@ -23,11 +23,11 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
         await customerService.Save(customer);
         await customerService.SaveChanges();
 
-        var article = new Article { Title = "Order Test Article", Prices = [new ArticlePriceHistory { Price = 10.00m }] };
+        var article = new Article { Title = "Order Test Article", Prices = [new ArticlePricePeriod { Price = 10.00m }] };
         await articleService.Save(article);
         await articleService.SaveChanges();
 
-        var component = new Article { Title = "Order Test Component", Prices = [new ArticlePriceHistory { Price = 1.50m }] };
+        var component = new Article { Title = "Order Test Component", Prices = [new ArticlePricePeriod { Price = 1.50m }] };
         await articleService.Save(component);
         await articleService.SaveChanges();
 

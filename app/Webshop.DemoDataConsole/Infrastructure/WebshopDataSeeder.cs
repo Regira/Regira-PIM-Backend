@@ -1,7 +1,7 @@
 using Bogus;
 using Regira.Entities.Services.Abstractions;
 using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Catalog.Categories;
+using Webshop.Models.Entities.Classification.Categories;
 using Webshop.Models.Entities.Orders;
 using Webshop.Models.Entities.Stakeholders.ContactData;
 using Webshop.Models.Entities.Stakeholders.Parties;
@@ -180,36 +180,36 @@ public class WebshopDataSeeder(IEntityService<Category> categoryService, IEntity
         // Phase 1: seed component articles (ingredients/toppings)
         var components = new List<Article>
         {
-            new() { Title = "Cheese",          Description = "Cheddar cheese slice",         Prices = [new ArticlePriceHistory { Price = 0.75m }] },
-            new() { Title = "Lettuce",         Description = "Fresh romaine lettuce",         Prices = [new ArticlePriceHistory { Price = 0.25m }] },
-            new() { Title = "Tomato",          Description = "Sliced ripe tomato",            Prices = [new ArticlePriceHistory { Price = 0.30m }] },
-            new() { Title = "Onion",           Description = "Sliced red onion",              Prices = [new ArticlePriceHistory { Price = 0.20m }] },
-            new() { Title = "Pickles",         Description = "Dill pickle slices",            Prices = [new ArticlePriceHistory { Price = 0.25m }] },
-            new() { Title = "Bacon",           Description = "Crispy smoked bacon strips",    Prices = [new ArticlePriceHistory { Price = 1.50m }] },
-            new() { Title = "Ham",             Description = "Sliced smoked ham",             Prices = [new ArticlePriceHistory { Price = 1.25m }] },
-            new() { Title = "Turkey",          Description = "Sliced roasted turkey",         Prices = [new ArticlePriceHistory { Price = 1.50m }] },
-            new() { Title = "Mayonnaise",      Description = "Classic mayo",                  Prices = [new ArticlePriceHistory { Price = 0.15m }] },
-            new() { Title = "Ketchup",         Description = "Tomato ketchup",                Prices = [new ArticlePriceHistory { Price = 0.15m }] },
-            new() { Title = "Mustard Sauce",   Description = "Yellow mustard",                Prices = [new ArticlePriceHistory { Price = 0.15m }] },
-            new() { Title = "Extra Shot",      Description = "Additional espresso shot",      Prices = [new ArticlePriceHistory { Price = 0.80m }] },
-            new() { Title = "Oat Milk",        Description = "Barista oat milk",              Prices = [new ArticlePriceHistory { Price = 0.60m }] },
-            new() { Title = "Soy Milk",        Description = "Organic soy milk",              Prices = [new ArticlePriceHistory { Price = 0.50m }] },
-            new() { Title = "Whipped Cream",   Description = "Fresh whipped cream topping",   Prices = [new ArticlePriceHistory { Price = 0.50m }] },
-            new() { Title = "Chocolate Sauce", Description = "Dark chocolate drizzle",        Prices = [new ArticlePriceHistory { Price = 0.40m }] },
-            new() { Title = "Caramel Syrup",   Description = "Caramel flavored syrup",        Prices = [new ArticlePriceHistory { Price = 0.45m }] },
-            new() { Title = "Avocado",         Description = "Fresh sliced avocado",          Prices = [new ArticlePriceHistory { Price = 1.50m }] },
-            new() { Title = "Jalapeños",       Description = "Pickled jalapeño slices",       Prices = [new ArticlePriceHistory { Price = 0.35m }] },
-            new() { Title = "Sriracha",        Description = "Spicy sriracha sauce",          Prices = [new ArticlePriceHistory { Price = 0.20m }] },
-            new() { Title = "Beef Patty",      Description = "Seasoned beef patty",           Prices = [new ArticlePriceHistory { Price = 2.00m }] },
-            new() { Title = "Chicken Breast",  Description = "Grilled chicken breast",        Prices = [new ArticlePriceHistory { Price = 2.50m }] },
-            new() { Title = "Bun",             Description = "Brioche burger bun",            Prices = [new ArticlePriceHistory { Price = 0.50m }] },
-            new() { Title = "Tortilla",        Description = "Flour tortilla wrap",           Prices = [new ArticlePriceHistory { Price = 0.40m }] },
-            new() { Title = "Pizza Dough",     Description = "Stone-baked pizza base",        Prices = [new ArticlePriceHistory { Price = 1.00m }] },
-            new() { Title = "Mozzarella",      Description = "Fresh mozzarella cheese",       Prices = [new ArticlePriceHistory { Price = 1.20m }] },
-            new() { Title = "Tomato Sauce",    Description = "Classic pizza tomato sauce",    Prices = [new ArticlePriceHistory { Price = 0.35m }] },
-            new() { Title = "Pepperoni",       Description = "Sliced pepperoni",              Prices = [new ArticlePriceHistory { Price = 1.00m }] },
-            new() { Title = "Mushrooms",       Description = "Sliced button mushrooms",       Prices = [new ArticlePriceHistory { Price = 0.45m }] },
-            new() { Title = "Bell Pepper",     Description = "Sliced mixed bell peppers",     Prices = [new ArticlePriceHistory { Price = 0.40m }] },
+            new() { Title = "Cheese",          Description = "Cheddar cheese slice",         Prices = [new ArticlePricePeriod { Price = 0.75m }] },
+            new() { Title = "Lettuce",         Description = "Fresh romaine lettuce",         Prices = [new ArticlePricePeriod { Price = 0.25m }] },
+            new() { Title = "Tomato",          Description = "Sliced ripe tomato",            Prices = [new ArticlePricePeriod { Price = 0.30m }] },
+            new() { Title = "Onion",           Description = "Sliced red onion",              Prices = [new ArticlePricePeriod { Price = 0.20m }] },
+            new() { Title = "Pickles",         Description = "Dill pickle slices",            Prices = [new ArticlePricePeriod { Price = 0.25m }] },
+            new() { Title = "Bacon",           Description = "Crispy smoked bacon strips",    Prices = [new ArticlePricePeriod { Price = 1.50m }] },
+            new() { Title = "Ham",             Description = "Sliced smoked ham",             Prices = [new ArticlePricePeriod { Price = 1.25m }] },
+            new() { Title = "Turkey",          Description = "Sliced roasted turkey",         Prices = [new ArticlePricePeriod { Price = 1.50m }] },
+            new() { Title = "Mayonnaise",      Description = "Classic mayo",                  Prices = [new ArticlePricePeriod { Price = 0.15m }] },
+            new() { Title = "Ketchup",         Description = "Tomato ketchup",                Prices = [new ArticlePricePeriod { Price = 0.15m }] },
+            new() { Title = "Mustard Sauce",   Description = "Yellow mustard",                Prices = [new ArticlePricePeriod { Price = 0.15m }] },
+            new() { Title = "Extra Shot",      Description = "Additional espresso shot",      Prices = [new ArticlePricePeriod { Price = 0.80m }] },
+            new() { Title = "Oat Milk",        Description = "Barista oat milk",              Prices = [new ArticlePricePeriod { Price = 0.60m }] },
+            new() { Title = "Soy Milk",        Description = "Organic soy milk",              Prices = [new ArticlePricePeriod { Price = 0.50m }] },
+            new() { Title = "Whipped Cream",   Description = "Fresh whipped cream topping",   Prices = [new ArticlePricePeriod { Price = 0.50m }] },
+            new() { Title = "Chocolate Sauce", Description = "Dark chocolate drizzle",        Prices = [new ArticlePricePeriod { Price = 0.40m }] },
+            new() { Title = "Caramel Syrup",   Description = "Caramel flavored syrup",        Prices = [new ArticlePricePeriod { Price = 0.45m }] },
+            new() { Title = "Avocado",         Description = "Fresh sliced avocado",          Prices = [new ArticlePricePeriod { Price = 1.50m }] },
+            new() { Title = "Jalapeños",       Description = "Pickled jalapeño slices",       Prices = [new ArticlePricePeriod { Price = 0.35m }] },
+            new() { Title = "Sriracha",        Description = "Spicy sriracha sauce",          Prices = [new ArticlePricePeriod { Price = 0.20m }] },
+            new() { Title = "Beef Patty",      Description = "Seasoned beef patty",           Prices = [new ArticlePricePeriod { Price = 2.00m }] },
+            new() { Title = "Chicken Breast",  Description = "Grilled chicken breast",        Prices = [new ArticlePricePeriod { Price = 2.50m }] },
+            new() { Title = "Bun",             Description = "Brioche burger bun",            Prices = [new ArticlePricePeriod { Price = 0.50m }] },
+            new() { Title = "Tortilla",        Description = "Flour tortilla wrap",           Prices = [new ArticlePricePeriod { Price = 0.40m }] },
+            new() { Title = "Pizza Dough",     Description = "Stone-baked pizza base",        Prices = [new ArticlePricePeriod { Price = 1.00m }] },
+            new() { Title = "Mozzarella",      Description = "Fresh mozzarella cheese",       Prices = [new ArticlePricePeriod { Price = 1.20m }] },
+            new() { Title = "Tomato Sauce",    Description = "Classic pizza tomato sauce",    Prices = [new ArticlePricePeriod { Price = 0.35m }] },
+            new() { Title = "Pepperoni",       Description = "Sliced pepperoni",              Prices = [new ArticlePricePeriod { Price = 1.00m }] },
+            new() { Title = "Mushrooms",       Description = "Sliced button mushrooms",       Prices = [new ArticlePricePeriod { Price = 0.45m }] },
+            new() { Title = "Bell Pepper",     Description = "Sliced mixed bell peppers",     Prices = [new ArticlePricePeriod { Price = 0.40m }] },
         };
 
         foreach (var component in components)
@@ -244,7 +244,7 @@ public class WebshopDataSeeder(IEntityService<Category> categoryService, IEntity
             {
                 Title = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
                 Description = f.Lorem.Sentence(),
-                Prices = [new ArticlePriceHistory { Price = price }],
+                Prices = [new ArticlePricePeriod { Price = price }],
                 Categories = f.PickRandom(categories, f.Random.Int(1, 3))
                     .DistinctBy(c => c.Id)
                     .Select(c => new ArticleCategory { CategoryId = c.Id })

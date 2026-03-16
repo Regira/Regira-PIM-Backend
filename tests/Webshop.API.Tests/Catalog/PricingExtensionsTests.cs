@@ -8,7 +8,7 @@ public class PricingExtensionsTests
 {
     private static readonly DateTime RefDate = new(2026, 3, 14, 12, 0, 0, DateTimeKind.Utc);
 
-    private static ArticlePriceHistory Price(decimal amount, DateTime? start = null, DateTime? end = null)
+    private static ArticlePricePeriod Price(decimal amount, DateTime? start = null, DateTime? end = null)
         => new() { Price = amount, StartDate = start, EndDate = end };
 
     // ── FindActivePrices (IEnumerable) ─────────────────────────────────────────
@@ -161,8 +161,8 @@ public class PricingExtensionsTests
         {
             Prices =
             [
-                new ArticlePriceHistory { Price = 8m,  StartDate = RefDate.AddDays(-5), EndDate = RefDate.AddDays(5) }, // active, older
-                new ArticlePriceHistory { Price = 12m, StartDate = RefDate.AddDays(-2), EndDate = RefDate.AddDays(8) }, // active, more recent
+                new ArticlePricePeriod { Price = 8m,  StartDate = RefDate.AddDays(-5), EndDate = RefDate.AddDays(5) }, // active, older
+                new ArticlePricePeriod { Price = 12m, StartDate = RefDate.AddDays(-2), EndDate = RefDate.AddDays(8) }, // active, more recent
             ]
         };
 
@@ -179,8 +179,8 @@ public class PricingExtensionsTests
         {
             Prices =
             [
-                new ArticlePriceHistory { Price = 5m,  StartDate = RefDate.AddDays(-10), EndDate = RefDate.AddDays(-1) }, // expired
-                new ArticlePriceHistory { Price = 12m, StartDate = RefDate.AddDays(-3),  EndDate = RefDate.AddDays(7)  }, // active
+                new ArticlePricePeriod { Price = 5m,  StartDate = RefDate.AddDays(-10), EndDate = RefDate.AddDays(-1) }, // expired
+                new ArticlePricePeriod { Price = 12m, StartDate = RefDate.AddDays(-3),  EndDate = RefDate.AddDays(7)  }, // active
             ]
         };
 
@@ -195,7 +195,7 @@ public class PricingExtensionsTests
     {
         var article = new Article
         {
-            Prices = [new ArticlePriceHistory { Price = 5m, StartDate = RefDate.AddDays(-10), EndDate = RefDate.AddDays(-1) }]
+            Prices = [new ArticlePricePeriod { Price = 5m, StartDate = RefDate.AddDays(-10), EndDate = RefDate.AddDays(-1) }]
         };
 
         Assert.Null(article.FindActivePrice(RefDate));

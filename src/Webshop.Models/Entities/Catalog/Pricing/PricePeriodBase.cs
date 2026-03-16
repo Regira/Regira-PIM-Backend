@@ -4,7 +4,7 @@ using Webshop.Models.Entities.Catalog.Pricing.Abstractions;
 
 namespace Webshop.Models.Entities.Catalog.Pricing;
 
-public abstract class PriceHistoryBase : IPriceHistory, IHasDescription, IHasTimestamps
+public abstract class PricePeriodBase : IPricePeriod, IHasDescription, IHasTimestamps
 {
     public int Id { get; set; }
     public int ObjectId { get; set; }

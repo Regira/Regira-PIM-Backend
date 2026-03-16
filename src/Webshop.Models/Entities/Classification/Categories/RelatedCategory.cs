@@ -1,6 +1,6 @@
 using Regira.Entities.Models.Abstractions;
 
-namespace Webshop.Models.Entities.Catalog.Categories;
+namespace Webshop.Models.Entities.Classification.Categories;
 
 public class RelatedCategory : IEntityWithSerial
 {

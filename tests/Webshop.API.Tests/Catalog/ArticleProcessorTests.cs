@@ -57,7 +57,7 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
         var article = new Article
         {
             Title = "DB Price Article",
-            Prices = [new ArticlePriceHistory { Price = 9.99m }]
+            Prices = [new ArticlePricePeriod { Price = 9.99m }]
         };
         db.Articles.Add(article);
         await db.SaveChangesAsync();
@@ -80,8 +80,8 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
             Title = "Adjacent Boundary Article",
             Prices =
             [
-                new ArticlePriceHistory { Price = 8.00m,  StartDate = RefDate.AddDays(-5), EndDate = RefDate              },
-                new ArticlePriceHistory { Price = 12.00m, StartDate = RefDate,             EndDate = RefDate.AddDays(5)   },
+                new ArticlePricePeriod { Price = 8.00m,  StartDate = RefDate.AddDays(-5), EndDate = RefDate              },
+                new ArticlePricePeriod { Price = 12.00m, StartDate = RefDate,             EndDate = RefDate.AddDays(5)   },
             ]
         };
         db.Articles.Add(article);
@@ -94,29 +94,29 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
         Assert.Equal(12.00m, target.Price);
     }
 
-    // ── ArticleIncludes.PriceHistory (in-memory path) ───────────────────────
+    // ── ArticleIncludes.PricePeriod (in-memory path) ───────────────────────
 
     [Fact]
-    public async Task PriceHistory_Include_WithLoadedPrices_Sets_Price_From_Collection()
+    public async Task PricePeriod_Include_WithLoadedPrices_Sets_Price_From_Collection()
     {
         using var scope = fixture.CreateScope();
         var article = new Article
         {
-            Prices = [new ArticlePriceHistory { Price = 7.50m }]
+            Prices = [new ArticlePricePeriod { Price = 7.50m }]
         };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.PriceHistory);
+        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.PricePeriod);
 
         Assert.Equal(7.50m, article.Price);
     }
 
     [Fact]
-    public async Task PriceHistory_Include_WithNullPrices_Sets_Price_To_Null()
+    public async Task PricePeriod_Include_WithNullPrices_Sets_Price_To_Null()
     {
         using var scope = fixture.CreateScope();
         var article = new Article { Price = 42m, Prices = null };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.PriceHistory);
+        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.PricePeriod);
 
         Assert.Null(article.Price);
     }
@@ -124,28 +124,28 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
     // ── Flag priority ──────────────────────────────────────────────────────────
 
     [Fact]
-    public async Task PriceHistory_Takes_Priority_Over_Price_Flag()
+    public async Task PricePeriod_Takes_Priority_Over_Price_Flag()
     {
         using var scope = fixture.CreateScope();
         var article = new Article
         {
             Id = int.MaxValue,
-            Prices = [new ArticlePriceHistory { Price = 15.00m }]
+            Prices = [new ArticlePricePeriod { Price = 15.00m }]
         };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.Price | ArticleIncludes.PriceHistory);
+        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.Price | ArticleIncludes.PricePeriod);
 
         Assert.Equal(15.00m, article.Price);
     }
 
     [Fact]
-    public async Task All_Includes_Uses_PriceHistory_Path()
+    public async Task All_Includes_Uses_PricePeriod_Path()
     {
         using var scope = fixture.CreateScope();
         var article = new Article
         {
             Id = int.MaxValue,
-            Prices = [new ArticlePriceHistory { Price = 15.00m }]
+            Prices = [new ArticlePricePeriod { Price = 15.00m }]
         };
 
         await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.All);

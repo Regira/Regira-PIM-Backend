@@ -12,7 +12,7 @@ public class ArticleQueryBuilderTests
     private IEnumerable<Article> Build(ArticleSearchObject? so, params Article[] articles)
         => _builder.Build(articles.AsQueryable(), so);
 
-    private static ArticlePriceHistory Price(decimal amount, DateTime? start = null, DateTime? end = null)
+    private static ArticlePricePeriod Price(decimal amount, DateTime? start = null, DateTime? end = null)
         => new() { Price = amount, StartDate = start, EndDate = end };
 
     // ── Null SearchObject ──────────────────────────────────────────────────────

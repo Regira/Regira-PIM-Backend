@@ -17,5 +17,5 @@ public class ArticleDto : ArticleCoreDto
     public ICollection<ArticleComponentDto>? Components { get; set; }
     public ICollection<ArticleAllowedComponentAdditionDto>? AllowedComponentAdditions { get; set; }
     public ICollection<ArticleSupplierDto>? Suppliers { get; set; }
-    public ICollection<PriceHistoryDto>? Prices { get; set; }
+    public ICollection<PricePeriodDto>? Prices { get; set; }
 }

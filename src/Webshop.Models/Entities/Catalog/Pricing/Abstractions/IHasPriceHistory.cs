@@ -1,12 +1,12 @@
 ﻿namespace Webshop.Models.Entities.Catalog.Pricing.Abstractions;
 
-public interface IHasPriceHistory
+public interface IHasPricePeriod
 {
-    public ICollection<IPriceHistory>? Prices { get; set; }
+    public ICollection<IPricePeriod>? Prices { get; set; }
 }
 
-public interface IHasPriceHistory<T>
-    where T : IPriceHistory
+public interface IHasPricePeriod<T>
+    where T : IPricePeriod
 {
     public decimal? Price { get; set; }
     public ICollection<T>? Prices { get; set; }

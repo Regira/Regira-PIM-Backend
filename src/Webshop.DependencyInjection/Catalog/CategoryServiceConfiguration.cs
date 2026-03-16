@@ -2,8 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Regira.Entities.Models;
 using Webshop.Data;
-using Webshop.Models.Entities.Catalog.Categories;
-using Webshop.Services.Entities.Catalog.Categories;
+using Webshop.Models.Entities.Classification.Categories;
 
 namespace Webshop.DependencyInjection.Catalog;
 
@@ -25,7 +24,7 @@ public static class CategoryServiceConfiguration
                         : query.Where(x => x.ParentEntities!.Any());
                 return query;
             });
-            e.SortBy((query, sortBy) => query.OrderBy(x => x.Title));
+            e.SortBy((query, _) => query.OrderBy(x => x.Title));
             e.Includes((query, includes) =>
             {
                 if (includes?.HasFlag(CategoryIncludes.Parents) == true)
@@ -34,7 +33,6 @@ public static class CategoryServiceConfiguration
                     query = query.Include(x => x.ChildEntities!).ThenInclude(x => x.Child);
                 return query;
             });
-            e.Process<CategoryProcessor>();
             e.Related(x => x.ParentEntities);
             e.Related(x => x.ChildEntities);
         });

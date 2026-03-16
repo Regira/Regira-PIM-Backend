@@ -14,5 +14,5 @@ public class ArticleInputDto
     public ICollection<ArticleComponentInputDto>? Components { get; set; }
     public ICollection<ArticleAllowedComponentAdditionInputDto>? AllowedComponentAdditions { get; set; }
     public ICollection<ArticleSupplierInputDto>? Suppliers { get; set; }
-    public ICollection<PriceHistoryInputDto>? Prices { get; set; }
+    public ICollection<PricePeriodInputDto>? Prices { get; set; }
 }

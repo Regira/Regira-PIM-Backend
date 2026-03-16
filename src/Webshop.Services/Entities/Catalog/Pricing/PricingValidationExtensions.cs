@@ -5,8 +5,8 @@ namespace Webshop.Services.Entities.Catalog.Pricing;
 public static class PricingValidationExtensions
 {
     public static IDictionary<string, string> Validate<TEntity, TPrice>(this TEntity item)
-        where TPrice : class, IPriceHistory
-        where TEntity : class, IHasPriceHistory<TPrice>
+        where TPrice : class, IPricePeriod
+        where TEntity : class, IHasPricePeriod<TPrice>
     {
         var priceList = item.Prices?.ToList();
         if (priceList == null || priceList.Count < 2)

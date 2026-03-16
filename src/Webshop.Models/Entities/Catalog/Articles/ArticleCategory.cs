@@ -1,5 +1,5 @@
 ﻿using Regira.Entities.Models.Abstractions;
-using Webshop.Models.Entities.Catalog.Categories;
+using Webshop.Models.Entities.Classification.Categories;
 
 namespace Webshop.Models.Entities.Catalog.Articles;
 

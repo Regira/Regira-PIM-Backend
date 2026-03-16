@@ -28,7 +28,7 @@ public class ArticleQueryBuilder : FilteredQueryBuilderBase<Article, int, Articl
         if (so.MaxPrice.HasValue)
             query = query.Where(a => a.Prices!.Any(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate) && ph.Price <= so.MaxPrice));
         if (so.HasPrice.HasValue)
-            query = query.Where(a => so.HasPrice.Value == a.Prices!.AsQueryable().Any(PriceHistoryUtility.IsActiveOn<ArticlePriceHistory>(priceDate)));
+            query = query.Where(a => so.HasPrice.Value == a.Prices!.AsQueryable().Any(PricePeriodUtility.IsActiveOn<ArticlePricePeriod>(priceDate)));
 
         return query;
     }
