@@ -13,8 +13,8 @@ namespace Webshop.Data;
 
 public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbContext(options)
 {
-    public DbSet<PartyUser> Users { get; set; }
     public DbSet<Party> Parties { get; set; }
+    public DbSet<PartyUser> PartyUsers { get; set; }
     public DbSet<Organization> Organizations { get; set; }
     public DbSet<Person> Persons { get; set; }
     public DbSet<RelationshipType> RelationshipTypes { get; set; }

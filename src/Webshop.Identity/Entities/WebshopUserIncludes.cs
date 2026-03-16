@@ -1,4 +1,4 @@
-namespace Webshop.Admin.Entities;
+namespace Webshop.Identity.Entities;
 
 [Flags]
 public enum WebshopUserIncludes

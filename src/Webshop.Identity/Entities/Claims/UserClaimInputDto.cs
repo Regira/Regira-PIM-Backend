@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Webshop.Admin.Entities.Claims;
+namespace Webshop.Identity.Entities.Claims;
 
 public class UserClaimInputDto
 {

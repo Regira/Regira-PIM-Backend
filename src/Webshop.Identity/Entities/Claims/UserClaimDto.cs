@@ -1,4 +1,4 @@
-﻿namespace Webshop.Admin.Entities.Claims;
+﻿namespace Webshop.Identity.Entities.Claims;
 
 public class UserClaimDto
 {

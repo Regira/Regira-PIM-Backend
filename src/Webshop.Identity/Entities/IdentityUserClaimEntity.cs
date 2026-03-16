@@ -1,6 +1,6 @@
 ﻿using Regira.Entities.Models.Abstractions;
 
-namespace Webshop.Admin.Entities;
+namespace Webshop.Identity.Entities;
 
 public class IdentityUserClaimEntity : IEntityWithSerial
 {

@@ -2,7 +2,7 @@
 using Regira.Entities.Models.Abstractions;
 using Webshop.Identity.Models;
 
-namespace Webshop.Admin.Entities;
+namespace Webshop.Identity.Entities;
 
 /// <summary>
 /// Simpler POCO implementation of <see cref="WebshopUser"/> without the <see cref="IdentityUser"/> overhead

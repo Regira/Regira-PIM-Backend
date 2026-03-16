@@ -1,6 +1,6 @@
 using Regira.Entities.Models;
 
-namespace Webshop.Admin.Entities;
+namespace Webshop.Identity.Entities;
 
 public class WebshopUserSearchObject : SearchObject<string>
 {

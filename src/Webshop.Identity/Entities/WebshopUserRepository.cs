@@ -9,7 +9,7 @@ using Regira.Utilities;
 using Webshop.Identity.Data;
 using Webshop.Identity.Models;
 
-namespace Webshop.Admin.Entities;
+namespace Webshop.Identity.Entities;
 
 public class WebshopUserRepository(AccountsDbContext dbContext, UserManager<WebshopUser> userManager, IEnumerable<IFilteredQueryBuilder<WebshopUser, string, WebshopUserSearchObject>> queryFilters, IMapper mapper)
     : IEntityRepository<WebshopUserEntity, string, WebshopUserSearchObject, EntitySortBy, WebshopUserIncludes>

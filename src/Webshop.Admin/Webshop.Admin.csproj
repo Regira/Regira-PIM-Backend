@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Regira.Entities.DependencyInjection" Version="5.0.8" />
-	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="5.0.8" />
-  </ItemGroup>
-
-  <ItemGroup>
 	<ProjectReference Include="..\Webshop.Identity\Webshop.Identity.csproj" />
   </ItemGroup>
 

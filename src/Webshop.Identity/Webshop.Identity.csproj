@@ -9,7 +9,8 @@
   <ItemGroup>
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="*" />
 	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.5" />
-	<PackageReference Include="Regira.Entities" Version="5.0.8" />
+	<PackageReference Include="Regira.Entities.DependencyInjection" Version="5.0.8" />
+	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="5.0.8" />
 	<PackageReference Include="Regira.Office" Version="5.0.2" />
 	<PackageReference Include="Regira.Security.Authentication.Web" Version="5.0.2" />
   </ItemGroup>

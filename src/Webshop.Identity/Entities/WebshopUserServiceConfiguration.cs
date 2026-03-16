@@ -2,7 +2,7 @@
 using Regira.Entities.Models;
 using Webshop.Identity.Data;
 
-namespace Webshop.Admin.Entities;
+namespace Webshop.Identity.Entities;
 
 public static class WebshopUserServiceConfiguration
 {

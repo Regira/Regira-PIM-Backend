@@ -2,7 +2,7 @@ using Bogus;
 using Microsoft.Extensions.Configuration;
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
-using Webshop.Admin.Entities;
+using Webshop.Identity.Entities;
 using Webshop.Identity.Services;
 
 namespace Webshop.DemoDataConsole.Infrastructure;

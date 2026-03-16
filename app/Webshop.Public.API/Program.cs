@@ -1,8 +1,14 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Regira.Office.Mail.MailGun;
+using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
 using System.Text.Json.Serialization;
 using Webshop.Data;
 using Webshop.DependencyInjection;
+using Webshop.Identity.Data;
+using Webshop.Identity.DependencyInjection;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 
@@ -18,9 +24,21 @@ try
             options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
-    builder.Services.AddOpenApi();
+    builder.Services.AddOpenApi(options =>
+    {
+        options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+    });
 
-    builder.Services.AddWebshopServices(builder.Configuration);
+    builder.Services
+        .AddWebshopAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection("MailGun").Get<MailgunConfig>()!))
+        .WithJwtAuthentication();
+
+    builder.Services
+        .AddDbContext<AccountsDbContext>((sp, options) =>
+        {
+            options.UseSqlite(builder.Configuration.GetConnectionString("Accounts"), db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+        })
+        .AddWebshopServices(builder.Configuration);
 
     var app = builder.Build();
 
@@ -31,11 +49,25 @@ try
         await db.Database.EnsureCreatedAsync();
     }
 
-    app.MapOpenApi();
-    app.MapScalarApiReference();
+    app.MapOpenApi()
+        .AllowAnonymous();
+    app.MapScalarApiReference(options =>
+    {
+        options.Authentication = new ScalarAuthenticationOptions
+        {
+            PreferredSecuritySchemes = [JwtBearerDefaults.AuthenticationScheme]
+        };
+    });
     app.UseHttpsRedirection();
-    app.UseAuthorization();
-    app.MapControllers();
+    app
+        .UseRouting()
+        .UseAuthentication()
+        .UseAuthorization()
+        .UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers()
+                .RequireAuthorization();
+        });
     app.Run();
 }
 catch (Exception ex)

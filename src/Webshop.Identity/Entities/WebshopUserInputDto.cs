@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Webshop.Admin.Entities.Claims;
+using Webshop.Identity.Entities.Claims;
 
-namespace Webshop.Admin.Entities;
+namespace Webshop.Identity.Entities;
 
 public class WebshopUserInputDto
 {

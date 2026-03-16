@@ -30,6 +30,7 @@ try
     builder.Services
         .AddWebshopAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection("MailGun").Get<MailgunConfig>()!))
         .WithJwtAuthentication();
+
     builder.Services
         .AddWebshopServices(builder.Configuration)
         .AddAdminServices(builder.Configuration);
