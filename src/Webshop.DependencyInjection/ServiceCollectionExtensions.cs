@@ -27,6 +27,8 @@ public static class ServiceCollectionExtensions
 
             services
                 .AddHttpContextAccessor()
+                // OrderContext
+                .AddScoped<IOrderContext, OrderContext>()
                 .AddDbContext<WebshopDbContext>((sp, options) =>
                 {
                     options
@@ -41,9 +43,6 @@ public static class ServiceCollectionExtensions
 
         public IServiceCollection AddEntityServices()
         {
-            // OrderContext
-            services.AddScoped<IOrderContext, OrderContext>();
-
             services
                 .UseEntities<WebshopDbContext>(options =>
                 {

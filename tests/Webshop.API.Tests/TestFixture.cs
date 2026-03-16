@@ -6,6 +6,7 @@ using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
 using Webshop.Data;
 using Webshop.DependencyInjection;
+using Webshop.Models.Contexts;
 
 namespace Webshop.API.Tests;
 
@@ -21,6 +22,7 @@ public class TestFixture : IDisposable
 
         var services = new ServiceCollection();
         services.AddLogging();
+        services.AddSingleton<IOrderContext, NullOrderContext>();
         services.AddDbContext<WebshopDbContext>((sp, options) =>
             options.UseSqlite(_connection, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                 .AddPrimerInterceptors(sp)
@@ -42,4 +44,11 @@ public class TestFixture : IDisposable
         _connection.Close();
         _connection.Dispose();
     }
+}
+
+file sealed class NullOrderContext : IOrderContext
+{
+    public int? CustomerId => null;
+    public int? OrganizationId => null;
+    public DateTime? OrderDate => null;
 }
