@@ -14,6 +14,7 @@
 	<PackageReference Include="Serilog.Sinks.File" Version="*" />
 	<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="*" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="*" />
+	<PackageReference Include="Regira.Security.Authentication.Web" Version="*" />
 	<PackageReference Include="Scalar.AspNetCore" Version="*" />
   </ItemGroup>
 

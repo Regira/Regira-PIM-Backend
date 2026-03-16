@@ -6,6 +6,7 @@ using Regira.Entities.DependencyInjection.ServiceBuilders.Extensions;
 using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
 using Regira.Entities.Mapping.Mapster;
+using Webshop.Admin.Entities;
 using Webshop.Identity.Data;
 
 namespace Webshop.Admin.DependencyInjection;
@@ -19,7 +20,8 @@ public static class AdminServiceCollectionExtensions
             var connectionString = config.GetConnectionString("Accounts");
 
             services
-                .AddDbContext<WebshopAccountsDbContext>((sp, options) =>
+                .AddHttpContextAccessor()
+                .AddDbContext<AccountsDbContext>((sp, options) =>
                 {
                     options
                         .UseSqlite(connectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
@@ -27,17 +29,14 @@ public static class AdminServiceCollectionExtensions
                         .AddNormalizerInterceptors(sp)
                         .AddAutoTruncateInterceptors();
                 })
-                .AddHttpContextAccessor()
                 .AddEntityServices();
             return services;
         }
 
         public IServiceCollection AddEntityServices()
         {
-            services.AddHttpContextAccessor();
-
             services
-                .UseEntities<WebshopAccountsDbContext>(options =>
+                .UseEntities<AccountsDbContext>(options =>
                 {
                     options.UseDefaults();
                     options.UseMapsterMapping();

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Regira.DAL.Paging;
-using Regira.Entities.EFcore.Extensions;
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
@@ -12,10 +11,10 @@ using Webshop.Identity.Models;
 
 namespace Webshop.Admin.Entities;
 
-public class WebshopUserRepository(WebshopAccountsDbContext dbContext, UserManager<WebshopUser> userManager, IEnumerable<IFilteredQueryBuilder<WebshopUser, string, WebshopUserSearchObject>> queryFilters, IMapper mapper)
+public class WebshopUserRepository(AccountsDbContext dbContext, UserManager<WebshopUser> userManager, IEnumerable<IFilteredQueryBuilder<WebshopUser, string, WebshopUserSearchObject>> queryFilters, IMapper mapper)
     : IEntityRepository<WebshopUserEntity, string, WebshopUserSearchObject, EntitySortBy, WebshopUserIncludes>
 {
-    protected WebshopAccountsDbContext DbContext => dbContext;
+    protected AccountsDbContext DbContext => dbContext;
 
     public async Task<WebshopUserEntity?> Details(string id)
     {
@@ -174,11 +173,39 @@ public class WebshopUserRepository(WebshopAccountsDbContext dbContext, UserManag
     }
     public Task Modify(WebshopUserEntity item, WebshopUser original)
     {
-        if (item.UserClaims != null)
+        var modified = mapper.Map<WebshopUser>(item);
+        if (modified.UserClaims != null)
         {
-            var originalEntity = mapper.Map<WebshopUserEntity>(original);
+            var originalClaims = original.UserClaims!;
+            var claimsToRemove = originalClaims
+                .Where(oc => modified.UserClaims.All(c => c.Id != oc.Id))
+                .ToArray();
+            var claimsToAdd = modified.UserClaims
+                .Where(c => originalClaims.All(oc => c.Id != oc.Id))
+                .ToArray();
+            var claimsToUpdate = originalClaims.Except(claimsToRemove)
+                .ToArray();
 
-            dbContext.UpdateRelatedCollection<WebshopUserEntity, IdentityUserClaimEntity, string, string>(item, originalEntity, x => x.UserClaims);
+            if (claimsToRemove.Any())
+            {
+                dbContext.UserClaims.RemoveRange(claimsToRemove);
+            }
+            if (claimsToAdd.Any())
+            {
+                dbContext.UserClaims.AddRange(claimsToAdd);
+            }
+            if (claimsToUpdate.Any())
+            {
+                foreach (var claim in claimsToUpdate)
+                {
+                    var itemClaim = modified.UserClaims.First(c => c.Id == claim.Id);
+                    if (itemClaim.ClaimValue != claim.ClaimValue)
+                    {
+                        claim.ClaimValue = itemClaim.ClaimValue;
+                        dbContext.Entry(claim).State = EntityState.Modified;
+                    }
+                }
+            }
         }
 
         return Task.CompletedTask;

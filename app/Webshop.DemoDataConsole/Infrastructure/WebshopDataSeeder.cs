@@ -1,6 +1,5 @@
 using Bogus;
 using Regira.Entities.Services.Abstractions;
-using Webshop.Models.Entities.Catalog.Allergens;
 using Webshop.Models.Entities.Catalog.Articles;
 using Webshop.Models.Entities.Catalog.Categories;
 using Webshop.Models.Entities.Orders;
@@ -11,7 +10,7 @@ using Person = Webshop.Models.Entities.Stakeholders.Parties.Person;
 
 namespace Webshop.DemoDataConsole.Infrastructure;
 
-public class DataSeeder(IEntityService<Category> categoryService, IEntityService<Article> articleService,
+public class WebshopDataSeeder(IEntityService<Category> categoryService, IEntityService<Article> articleService,
     IEntityService<Party> partyService, IEntityService<Order> orderService, IEntityService<RelationshipType> relationshipTypeService)
 {
     private const int BatchSize = 100;

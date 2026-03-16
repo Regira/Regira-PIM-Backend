@@ -26,6 +26,7 @@ public static class ServiceCollectionExtensions
             var connectionString = config.GetConnectionString("Webshop");
 
             services
+                .AddHttpContextAccessor()
                 .AddDbContext<WebshopDbContext>((sp, options) =>
                 {
                     options
@@ -34,7 +35,6 @@ public static class ServiceCollectionExtensions
                         .AddNormalizerInterceptors(sp)
                         .AddAutoTruncateInterceptors();
                 })
-                .AddHttpContextAccessor()
                 .AddEntityServices();
             return services;
         }

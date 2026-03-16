@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<ProjectReference Include="..\..\src\Webshop.Admin\Webshop.Admin.csproj" />
 	<ProjectReference Include="..\..\src\Webshop.DependencyInjection\Webshop.DependencyInjection.csproj" />
   </ItemGroup>
 

@@ -5,7 +5,7 @@ using Webshop.Identity.Models;
 
 namespace Webshop.Identity.Data;
 
-public class WebshopAccountsDbContext(DbContextOptions<WebshopAccountsDbContext> options) : IdentityDbContext<WebshopUser, IdentityRole, string>(options)
+public class AccountsDbContext(DbContextOptions<AccountsDbContext> options) : IdentityDbContext<WebshopUser, IdentityRole, string>(options)
 {
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -28,7 +28,7 @@ public class WebshopAccountsDbContext(DbContextOptions<WebshopAccountsDbContext>
                 .WithOne()
                 .HasForeignKey(e => e.UserId);
         });
-        builder.Entity<IdentityUserClaim<string>>(entity =>
+        builder.Entity<IdentityUserClaim<int>>(entity =>
         {
             entity.HasIndex(e => e.UserId);
             entity.Property(e => e.ClaimType).HasMaxLength(64);

@@ -1,13 +1,12 @@
 ﻿using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Regira.Entities.Models;
-using Webshop.Admin.Entities;
 using Webshop.Identity.Data;
 
-namespace Webshop.Admin.DependencyInjection;
+namespace Webshop.Admin.Entities;
 
 public static class WebshopUserServiceConfiguration
 {
-    public static IEntityServiceCollection<WebshopAccountsDbContext> AddWebshopUsers(this IEntityServiceCollection<WebshopAccountsDbContext> services)
+    public static IEntityServiceCollection<AccountsDbContext> AddWebshopUsers(this IEntityServiceCollection<AccountsDbContext> services)
     {
         services.For<WebshopUserEntity, string, WebshopUserSearchObject, EntitySortBy, WebshopUserIncludes>(e =>
         {

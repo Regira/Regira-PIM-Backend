@@ -1,10 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Regira.Office.Mail.MailGun;
+using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
 using System.Text.Json.Serialization;
 using Webshop.Admin.DependencyInjection;
 using Webshop.DependencyInjection;
-using Webshop.Identity.Data;
 using Webshop.Identity.DependencyInjection;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
@@ -21,36 +22,40 @@ try
             options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
-    builder.Services.AddOpenApi();
+    builder.Services.AddOpenApi(options =>
+    {
+        options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+    });
 
     builder.Services
-        .AddWebshopAuthentication(o =>
-        {
-            var config = builder.Configuration;
-            var options = config.GetSection("Identity").Get<WebshopIdentityOptions>()!;
-            o.SecretKey = options.SecretKey;
-            o.Audiences.AddRange(options.Audiences);
-            o.AddMailer(_ => new MailGunMailer(config.GetSection("MailGun").Get<MailgunConfig>()!));
-        });
+        .AddWebshopAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection("MailGun").Get<MailgunConfig>()!))
+        .WithJwtAuthentication();
     builder.Services
-        .AddWebshopServices(builder.Configuration);
-    builder.Services
+        .AddWebshopServices(builder.Configuration)
         .AddAdminServices(builder.Configuration);
 
     var app = builder.Build();
 
-    if (app.Environment.IsDevelopment())
+    app.MapOpenApi()
+        .AllowAnonymous();
+    app.MapScalarApiReference(options =>
     {
-        using var scope = app.Services.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<WebshopAccountsDbContext>();
-        await db.Database.EnsureCreatedAsync();
-    }
-
-    app.MapOpenApi();
-    app.MapScalarApiReference();
+        options.Authentication = new ScalarAuthenticationOptions
+        {
+            PreferredSecuritySchemes = [JwtBearerDefaults.AuthenticationScheme]
+        };
+    });
     app.UseHttpsRedirection();
-    app.UseAuthorization();
-    app.MapControllers();
+    app
+        .UseRouting()
+        .UseAuthentication()
+        .UseAuthorization()
+        .UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers()
+                .RequireAuthorization()
+                ;
+        });
     app.Run();
 }
 catch (Exception ex)
