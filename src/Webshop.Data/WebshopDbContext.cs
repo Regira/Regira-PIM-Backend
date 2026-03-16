@@ -3,7 +3,7 @@ using Regira.DAL.EFcore.Extensions;
 using Webshop.Models.Entities.Catalog.Allergens;
 using Webshop.Models.Entities.Catalog.Articles;
 using Webshop.Models.Entities.Catalog.UnitTypes;
-using Webshop.Models.Entities.Classification.Categories;
+using Webshop.Models.Entities.Taxonomy.Facets;
 using Webshop.Models.Entities.Orders;
 using Webshop.Models.Entities.Stakeholders.Identity;
 using Webshop.Models.Entities.Stakeholders.Parties;
@@ -18,7 +18,7 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
     public DbSet<Organization> Organizations { get; set; }
     public DbSet<Person> Persons { get; set; }
     public DbSet<RelationshipType> RelationshipTypes { get; set; }
-    public DbSet<Category> Categories { get; set; } = null!;
+    public DbSet<Facet> Facets { get; set; } = null!;
     public DbSet<UnitType> UnitTypes { get; set; } = null!;
     public DbSet<Article> Articles { get; set; } = null!;
     public DbSet<Allergen> Allergens { get; set; } = null!;
@@ -29,8 +29,8 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
         base.OnModelCreating(modelBuilder);
         modelBuilder.SetDecimalPrecisionConvention();
 
-        // Categories
-        modelBuilder.Entity<RelatedCategory>(e =>
+        // Facets
+        modelBuilder.Entity<RelatedFacet>(e =>
         {
             e.HasOne(c => c.Parent).WithMany(x => x.ChildEntities).OnDelete(DeleteBehavior.Restrict);
             e.HasOne(c => c.Child).WithMany(x => x.ParentEntities).OnDelete(DeleteBehavior.Restrict);
@@ -42,11 +42,11 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
             entity.HasMany(e => e.Prices).WithOne(ph => ph.Article).HasForeignKey(ph => ph.ObjectId).OnDelete(DeleteBehavior.Cascade);
             entity.HasOne(e => e.UnitType).WithMany().OnDelete(DeleteBehavior.Restrict);
         });
-        modelBuilder.Entity<ArticleCategory>(e =>
+        modelBuilder.Entity<ArticleFacet>(e =>
         {
-            e.HasIndex(ac => new { ac.ArticleId, ac.CategoryId }).IsUnique();
-            e.HasOne(ac => ac.Article).WithMany(a => a.Categories).OnDelete(DeleteBehavior.Cascade);
-            e.HasOne(ac => ac.Category).WithMany().OnDelete(DeleteBehavior.Cascade);
+            e.HasIndex(ac => new { ac.ArticleId, ac.FacetId }).IsUnique();
+            e.HasOne(ac => ac.Article).WithMany(a => a.Facets).OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(ac => ac.Facet).WithMany().OnDelete(DeleteBehavior.Cascade);
         });
         modelBuilder.Entity<ArticleComponent>(e =>
         {

@@ -30,10 +30,10 @@ public class ArticleQueryBuilderTests
     [Fact]
     public void CategoryId_IncludesArticleInMatchingCategory()
     {
-        var match = new Article { Title = "A", Categories = [new ArticleCategory { CategoryId = 1 }] };
-        var noMatch = new Article { Title = "B", Categories = [new ArticleCategory { CategoryId = 2 }] };
+        var match = new Article { Title = "A", Facets = [new ArticleFacet { FacetId = 1 }] };
+        var noMatch = new Article { Title = "B", Facets = [new ArticleFacet { FacetId = 2 }] };
 
-        var result = Build(new ArticleSearchObject { CategoryId = [1] }, match, noMatch).ToList();
+        var result = Build(new ArticleSearchObject { FacetId = [1] }, match, noMatch).ToList();
 
         Assert.Single(result);
         Assert.Equal("A", result[0].Title);
@@ -42,11 +42,11 @@ public class ArticleQueryBuilderTests
     [Fact]
     public void CategoryId_MatchesAnyOfMultipleIds()
     {
-        var cat1 = new Article { Title = "Cat1", Categories = [new ArticleCategory { CategoryId = 1 }] };
-        var cat2 = new Article { Title = "Cat2", Categories = [new ArticleCategory { CategoryId = 2 }] };
-        var cat3 = new Article { Title = "Cat3", Categories = [new ArticleCategory { CategoryId = 3 }] };
+        var cat1 = new Article { Title = "Cat1", Facets = [new ArticleFacet { FacetId = 1 }] };
+        var cat2 = new Article { Title = "Cat2", Facets = [new ArticleFacet { FacetId = 2 }] };
+        var cat3 = new Article { Title = "Cat3", Facets = [new ArticleFacet { FacetId = 3 }] };
 
-        var result = Build(new ArticleSearchObject { CategoryId = [1, 2] }, cat1, cat2, cat3).ToList();
+        var result = Build(new ArticleSearchObject { FacetId = [1, 2] }, cat1, cat2, cat3).ToList();
 
         Assert.Equal(2, result.Count);
         Assert.DoesNotContain(result, a => a.Title == "Cat3");

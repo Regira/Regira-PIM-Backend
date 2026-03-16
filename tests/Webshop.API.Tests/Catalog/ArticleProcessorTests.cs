@@ -41,7 +41,7 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
         using var scope = fixture.CreateScope();
         var article = new Article { Price = 42m };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.Categories);
+        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.Facets);
 
         Assert.Equal(42m, article.Price);
     }

@@ -2,15 +2,15 @@ using Microsoft.EntityFrameworkCore;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Regira.Entities.Models;
 using Webshop.Data;
-using Webshop.Models.Entities.Classification.Categories;
+using Webshop.Models.Entities.Taxonomy.Facets;
 
 namespace Webshop.DependencyInjection.Catalog;
 
-public static class CategoryServiceConfiguration
+public static class FacetServiceConfiguration
 {
-    public static IEntityServiceCollection<WebshopDbContext> AddCategories(this IEntityServiceCollection<WebshopDbContext> services)
+    public static IEntityServiceCollection<WebshopDbContext> AddFacets(this IEntityServiceCollection<WebshopDbContext> services)
     {
-        services.For<Category, CategorySearchObject, EntitySortBy, CategoryIncludes>(e =>
+        services.For<Facet, FacetSearchObject, EntitySortBy, FacetIncludes>(e =>
         {
             e.Filter((query, so) =>
             {
@@ -27,9 +27,9 @@ public static class CategoryServiceConfiguration
             e.SortBy((query, _) => query.OrderBy(x => x.Title));
             e.Includes((query, includes) =>
             {
-                if (includes?.HasFlag(CategoryIncludes.Parents) == true)
+                if (includes?.HasFlag(FacetIncludes.Parents) == true)
                     query = query.Include(x => x.ParentEntities!).ThenInclude(x => x.Parent);
-                if (includes?.HasFlag(CategoryIncludes.Children) == true)
+                if (includes?.HasFlag(FacetIncludes.Children) == true)
                     query = query.Include(x => x.ChildEntities!).ThenInclude(x => x.Child);
                 return query;
             });

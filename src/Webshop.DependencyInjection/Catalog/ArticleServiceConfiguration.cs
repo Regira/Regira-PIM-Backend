@@ -14,7 +14,7 @@ public static class ArticleServiceConfiguration
             e.AddQueryFilter<ArticleQueryBuilder>();
             e.SortBy<ArticleSortingQueryBuilder>();
             e.Includes<ArticleIncludingQueryBuilder>();
-            e.Related(x => x.Categories);
+            e.Related(x => x.Facets);
             e.Related(x => x.Components);
             e.Related(x => x.AllowedComponentAdditions);
             e.Related(x => x.Suppliers);

@@ -1,6 +1,6 @@
 using Webshop.Models.Entities.Catalog.Pricing;
 using Webshop.Models.Entities.Catalog.UnitTypes;
-using Webshop.Models.Entities.Classification.Categories;
+using Webshop.Models.Entities.Taxonomy.Facets;
 
 namespace Webshop.Models.Entities.Catalog.Articles;
 
@@ -19,19 +19,19 @@ public class ArticleCoreDto
 public class ArticleDto : ArticleCoreDto
 {
     public bool AllowAdditions { get; set; }
-    public ICollection<ArticleCategoryDto>? Categories { get; set; }
+    public ICollection<ArticleFacetDto>? Facets { get; set; }
     public ICollection<ArticleComponentDto>? Components { get; set; }
     public ICollection<ArticleAllowedComponentAdditionDto>? AllowedComponentAdditions { get; set; }
     public ICollection<ArticleSupplierDto>? Suppliers { get; set; }
     public ICollection<PricePeriodDto>? Prices { get; set; }
 }
 
-public class ArticleCategoryDto
+public class ArticleFacetDto
 {
     public int Id { get; set; }
     public int ArticleId { get; set; }
-    public int CategoryId { get; set; }
-    public CategoryCoreDto? Category { get; set; }
+    public int FacetId { get; set; }
+    public FacetCoreDto? Facet { get; set; }
 }
 
 public class ArticleComponentDto

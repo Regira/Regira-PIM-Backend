@@ -11,8 +11,8 @@ public class ArticleQueryBuilder : FilteredQueryBuilderBase<Article, int, Articl
         if (so == null)
             return query;
 
-        if (so.CategoryId?.Any() == true)
-            query = query.Where(x => x.Categories!.Any(ac => so.CategoryId.Contains(ac.CategoryId)));
+        if (so.FacetId?.Any() == true)
+            query = query.Where(x => x.Facets!.Any(ac => so.FacetId.Contains(ac.FacetId)));
         if (so.AssemblyId?.Any() == true)
             query = query.Where(x => x.Assemblies!.Any(a => so.AssemblyId.Contains(a.AssemblyId)));
         if (so.ComponentId?.Any() == true)

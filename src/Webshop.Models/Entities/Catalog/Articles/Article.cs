@@ -28,7 +28,7 @@ public class Article : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasP
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
 
-    public ICollection<ArticleCategory>? Categories { get; set; }
+    public ICollection<ArticleFacet>? Facets { get; set; }
     /// <summary>
     /// The collection of assemblies associated with this article.
     /// </summary>

@@ -3,7 +3,7 @@ using Regira.Entities.Services.Abstractions;
 using Webshop.Models.Entities.Catalog.Articles;
 using Regira.Entities.Models;
 using Xunit;
-using Webshop.Models.Entities.Classification.Categories;
+using Webshop.Models.Entities.Taxonomy.Facets;
 
 namespace Webshop.API.Tests.Catalog;
 
@@ -13,29 +13,29 @@ public class ArticleServiceTests(TestFixture fixture) : IClassFixture<TestFixtur
     private IEntityService<Article, ArticleSearchObject, ArticleSortBy, ArticleIncludes> GetArticleService(IServiceScope scope)
         => scope.ServiceProvider.GetRequiredService<IEntityService<Article, ArticleSearchObject, ArticleSortBy, ArticleIncludes>>();
 
-    private IEntityService<Category, CategorySearchObject, EntitySortBy, CategoryIncludes> GetCategoryService(IServiceScope scope)
-        => scope.ServiceProvider.GetRequiredService<IEntityService<Category, CategorySearchObject, EntitySortBy, CategoryIncludes>>();
+    private IEntityService<Facet, FacetSearchObject, EntitySortBy, FacetIncludes> GetFacetService(IServiceScope scope)
+        => scope.ServiceProvider.GetRequiredService<IEntityService<Facet, FacetSearchObject, EntitySortBy, FacetIncludes>>();
 
     [Fact]
     public async Task Can_Create_Article_With_Categories()
     {
         using var scope = fixture.CreateScope();
-        var catService = GetCategoryService(scope);
+        var facetService = GetFacetService(scope);
         var articleService = GetArticleService(scope);
 
-        var cat = new Category { Title = "Test Category" };
-        await catService.Save(cat);
-        await catService.SaveChanges();
+        var facet = new Facet { Title = "Test Category" };
+        await facetService.Save(facet);
+        await facetService.SaveChanges();
 
         var article = new Article
         {
             Title = "Test Article",
-            Categories = [new ArticleCategory { CategoryId = cat.Id }]
+            Facets = [new ArticleFacet { FacetId = facet.Id }]
         };
         await articleService.Save(article);
         await articleService.SaveChanges();
 
-        var results = await articleService.List(new ArticleSearchObject { CategoryId = [cat.Id] });
+        var results = await articleService.List(new ArticleSearchObject { FacetId = [facet.Id] });
         Assert.Contains(results, a => a.Title == "Test Article");
     }
 

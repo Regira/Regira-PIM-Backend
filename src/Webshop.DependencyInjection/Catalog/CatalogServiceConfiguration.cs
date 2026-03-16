@@ -9,7 +9,7 @@ public static class CatalogServiceConfiguration
     public static IEntityServiceCollection<WebshopDbContext> AddCatalog(this IEntityServiceCollection<WebshopDbContext> services)
     {
         return services
-            .AddCategories()
+            .AddFacets()
             .AddArticles()
             .AddUnitTypes();
     }

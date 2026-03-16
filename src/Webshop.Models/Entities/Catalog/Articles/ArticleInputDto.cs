@@ -10,18 +10,18 @@ public class ArticleInputDto
     [MaxLength(1024)] public string? Description { get; set; }
     public int? UnitTypeId { get; set; }
     public bool AllowAdditions { get; set; } = true;
-    public ICollection<ArticleCategoryInputDto>? Categories { get; set; }
+    public ICollection<ArticleFacetInputDto>? Facets { get; set; }
     public ICollection<ArticleComponentInputDto>? Components { get; set; }
     public ICollection<ArticleAllowedComponentAdditionInputDto>? AllowedComponentAdditions { get; set; }
     public ICollection<ArticleSupplierInputDto>? Suppliers { get; set; }
     public ICollection<PricePeriodInputDto>? Prices { get; set; }
 }
 
-public class ArticleCategoryInputDto
+public class ArticleFacetInputDto
 {
     public int Id { get; set; }
     public int ArticleId { get; set; }
-    public int CategoryId { get; set; }
+    public int FacetId { get; set; }
 }
 
 public class ArticleComponentInputDto

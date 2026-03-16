@@ -1,7 +1,7 @@
 using Bogus;
 using Regira.Entities.Services.Abstractions;
 using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Classification.Categories;
+using Webshop.Models.Entities.Taxonomy.Facets;
 using Webshop.Models.Entities.Orders;
 using Webshop.Models.Entities.Stakeholders.ContactData;
 using Webshop.Models.Entities.Stakeholders.Parties;
@@ -10,7 +10,7 @@ using Person = Webshop.Models.Entities.Stakeholders.Parties.Person;
 
 namespace Webshop.DemoDataConsole.Infrastructure;
 
-public class WebshopDataSeeder(IEntityService<Category> categoryService, IEntityService<Article> articleService,
+public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityService<Article> articleService,
     IEntityService<Party> partyService, IEntityService<Order> orderService, IEntityService<RelationshipType> relationshipTypeService)
 {
     private const int BatchSize = 100;
@@ -20,9 +20,9 @@ public class WebshopDataSeeder(IEntityService<Category> categoryService, IEntity
         var parties = await SeedParties();
         var relationshipTypes = await SeedRelationshipTypes();
         await SeedRelationships(parties, relationshipTypes);
-        var categories = await SeedCategories();
+        var facets = await SeedFacets();
         var suppliers = parties.OfType<Organization>().ToList();
-        var articles = await SeedArticles(categories, suppliers);
+        var articles = await SeedArticles(facets, suppliers);
 
         await SeedOrders(parties, articles);
     }
@@ -148,9 +148,9 @@ public class WebshopDataSeeder(IEntityService<Category> categoryService, IEntity
         await partyService.SaveChanges();
     }
 
-    public async Task<IList<Category>> SeedCategories()
+    public async Task<IList<Facet>> SeedFacets()
     {
-        var categories = new List<Category>
+        var facets = new List<Facet>
         {
             new() { Title = "Burgers",    Description = "Classic and gourmet burgers" },
             new() { Title = "Sandwiches", Description = "Hot and cold sandwiches" },
@@ -166,14 +166,14 @@ public class WebshopDataSeeder(IEntityService<Category> categoryService, IEntity
             new() { Title = "Vegan",      Description = "Plant-based options" },
         };
 
-        foreach (var category in categories)
-            await categoryService.Save(category);
-        await categoryService.SaveChanges();
+        foreach (var facet in facets)
+            await facetService.Save(facet);
+        await facetService.SaveChanges();
 
-        return categories;
+        return facets;
     }
 
-    public async Task<IList<Article>> SeedArticles(IList<Category> categories, IList<Organization> suppliers)
+    public async Task<IList<Article>> SeedArticles(IList<Facet> facets, IList<Organization> suppliers)
     {
         var f = new Faker("en");
 
@@ -245,9 +245,9 @@ public class WebshopDataSeeder(IEntityService<Category> categoryService, IEntity
                 Title = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
                 Description = f.Lorem.Sentence(),
                 Prices = [new ArticlePricePeriod { Price = price }],
-                Categories = f.PickRandom(categories, f.Random.Int(1, 3))
+                Facets = f.PickRandom(facets, f.Random.Int(1, 3))
                     .DistinctBy(c => c.Id)
-                    .Select(c => new ArticleCategory { CategoryId = c.Id })
+                    .Select(c => new ArticleFacet { FacetId = c.Id })
                     .ToList(),
                 Components = selectedComponents
                     .Select(c => new ArticleComponent { ComponentId = c.Id, Quantity = f.Random.Decimal(0.5m, 5m), IsOmittable = f.Random.Bool(0.4f) })

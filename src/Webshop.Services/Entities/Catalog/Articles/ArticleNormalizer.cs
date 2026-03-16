@@ -3,22 +3,22 @@ using Regira.Entities.EFcore.Normalizing.Abstractions;
 using Regira.Normalizing.Abstractions;
 using Webshop.Data;
 using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Classification.Categories;
+using Webshop.Models.Entities.Taxonomy.Facets;
 using Webshop.Models.Entities.Stakeholders.Parties;
 
 namespace Webshop.Services.Entities.Catalog.Articles;
 
 public class ArticleNormalizer(INormalizer normalizer, WebshopDbContext dbContext) : EntityNormalizerBase<Article>
 {
-    private IList<Category> _categories = null!;
+    private IList<Facet> _facets = null!;
     private IList<Article> _components = null!;
     private IList<Party> _suppliers = null!;
 
     public override async Task HandleNormalizeMany(IEnumerable<Article> items)
     {
-        var categoryIds = items.SelectMany(x => x.Categories?.Select(c => c.CategoryId) ?? []).Distinct().ToList();
-        _categories = await dbContext.Categories
-            .Where(c => categoryIds.Contains(c.Id))
+        var facetIds = items.SelectMany(x => x.Facets?.Select(c => c.FacetId) ?? []).Distinct().ToList();
+        _facets = await dbContext.Facets
+            .Where(c => facetIds.Contains(c.Id))
             .AsNoTrackingWithIdentityResolution()
             .ToListAsync();
         var componentIds = items.SelectMany(x => x.Components?.Select(c => c.ComponentId) ?? []).Distinct().ToList();
@@ -40,8 +40,8 @@ public class ArticleNormalizer(INormalizer normalizer, WebshopDbContext dbContex
 
         var contentEntries = new List<string?> { item.NormalizedContent };
 
-        var categories = item.Categories?.Select(ac => _categories.FirstOrDefault(c => c.Id == ac.CategoryId)?.Title).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
-        contentEntries.AddRange(categories?.Select(normalizer.Normalize) ?? []);
+        var facets = item.Facets?.Select(ac => _facets.FirstOrDefault(c => c.Id == ac.FacetId)?.Title).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
+        contentEntries.AddRange(facets?.Select(normalizer.Normalize) ?? []);
 
         var components = item.Components?.Select(ac => _components.FirstOrDefault(a => a.Id == ac.ComponentId)?.Title).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
         contentEntries.AddRange(components?.Select(normalizer.Normalize) ?? []);

@@ -1,8 +1,8 @@
 namespace Webshop.Models.Entities.Catalog.Articles.DTO;
 
-public class ArticleCategoryInputDto
+public class ArticleFacetInputDto
 {
     public int Id { get; set; }
     public int ArticleId { get; set; }
-    public int CategoryId { get; set; }
+    public int FacetId { get; set; }
 }

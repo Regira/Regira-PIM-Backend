@@ -5,9 +5,9 @@ namespace Webshop.Models.Entities.Catalog.Articles;
 public class ArticleSearchObject : SearchObject
 {
     /// <summary>
-    /// Filters articles that belong to ANY of the specified category IDs.
+    /// Filters articles that belong to ANY of the specified facet IDs.
     /// </summary>
-    public ICollection<int>? CategoryId { get; set; }
+    public ICollection<int>? FacetId { get; set; }
 
     /// <summary>
     /// Filters articles that belong to ANY of the specified assembly IDs.

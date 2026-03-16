@@ -13,8 +13,8 @@ public class ArticleIncludingQueryBuilder : IIncludableQueryBuilder<Article, int
         if (includes == null)
             return query;
 
-        if (includes.Value.HasFlag(ArticleIncludes.Categories))
-            query = query.Include(x => x.Categories!).ThenInclude(ac => ac.Category);
+        if (includes.Value.HasFlag(ArticleIncludes.Facets))
+            query = query.Include(x => x.Facets!).ThenInclude(ac => ac.Facet);
         if (includes.Value.HasFlag(ArticleIncludes.Components))
             query = query.Include(x => x.Components!).ThenInclude(ac => ac.Component!).ThenInclude(a => a.Prices!.OrderByDescending(ph => ph.EndDate ?? ph.StartDate));
         if (includes.Value.HasFlag(ArticleIncludes.AllowedComponentAdditions))
