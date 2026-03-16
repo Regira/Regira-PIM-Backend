@@ -13,55 +13,58 @@ using Webshop.DependencyInjection.Orders;
 using Webshop.DependencyInjection.Stakeholders;
 using Webshop.Models.Contexts;
 using Webshop.Models.Entities.Stakeholders.Parties;
+using Webshop.Web;
 
 namespace Webshop.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddWebshopServices(this IServiceCollection services, IConfiguration config)
+    extension(IServiceCollection services)
     {
-        var connectionString = config.GetConnectionString("Webshop");
+        public IServiceCollection AddWebshopServices(IConfiguration config)
+        {
+            var connectionString = config.GetConnectionString("Webshop");
 
-        services
-            .AddDbContext<WebshopDbContext>((sp, options) =>
-            {
-                options
-                    .UseSqlite(connectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
-                    .AddPrimerInterceptors(sp)
-                    .AddNormalizerInterceptors(sp)
-                    .AddAutoTruncateInterceptors();
-            })
-            .AddHttpContextAccessor()
-            .AddEntityServices();
-        return services;
-    }
-    public static IServiceCollection AddEntityServices(this IServiceCollection services)
-    {
-        // OrderContext
-        services
-            .AddHttpContextAccessor()
-            .AddScoped<IOrderContext, OrderContext>();
-
-        services
-            .UseEntities<WebshopDbContext>(options =>
-            {
-                options.UseDefaults();
-                options.UseMapsterMapping(cfg =>
+            services
+                .AddDbContext<WebshopDbContext>((sp, options) =>
                 {
-                    cfg.ForType<Party, PartyDto>()
-                        .MapWith(src => (src as Person) != null
-                            ? (src as Person).Adapt<PersonDto>()
-                            : (src as Organization).Adapt<OrganizationDto>());
-                    cfg.ForType<PartyInputDto, Party>()
-                        .MapWith(src => (src as PersonInputDto) != null
-                            ? (Party)(src as PersonInputDto).Adapt<Person>()
-                            : (src as OrganizationInputDto).Adapt<Organization>());
-                });
-            })
-            .AddCatalog()
-            .AddOrders()
-            .AddStakeholders();
+                    options
+                        .UseSqlite(connectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                        .AddPrimerInterceptors(sp)
+                        .AddNormalizerInterceptors(sp)
+                        .AddAutoTruncateInterceptors();
+                })
+                .AddHttpContextAccessor()
+                .AddEntityServices();
+            return services;
+        }
 
-        return services;
+        public IServiceCollection AddEntityServices()
+        {
+            // OrderContext
+            services.AddScoped<IOrderContext, OrderContext>();
+
+            services
+                .UseEntities<WebshopDbContext>(options =>
+                {
+                    options.UseDefaults();
+                    options.UseMapsterMapping(cfg =>
+                    {
+                        cfg.ForType<Party, PartyDto>()
+                            .MapWith(src => (src as Person) != null
+                                ? (src as Person).Adapt<PersonDto>()
+                                : (src as Organization).Adapt<OrganizationDto>());
+                        cfg.ForType<PartyInputDto, Party>()
+                            .MapWith(src => (src as PersonInputDto) != null
+                                ? (src as PersonInputDto).Adapt<Person>()
+                                : (src as OrganizationInputDto).Adapt<Organization>());
+                    });
+                })
+                .AddCatalog()
+                .AddOrders()
+                .AddStakeholders();
+
+            return services;
+        }
     }
 }

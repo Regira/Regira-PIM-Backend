@@ -1,17 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Regira.DAL.EFcore.Extensions;
 using Webshop.Models.Entities.Catalog.Allergens;
-using Webshop.Models.Entities.Catalog.Categories;
 using Webshop.Models.Entities.Catalog.Articles;
+using Webshop.Models.Entities.Catalog.Categories;
 using Webshop.Models.Entities.Catalog.UnitTypes;
 using Webshop.Models.Entities.Orders;
+using Webshop.Models.Entities.Stakeholders.Identity;
 using Webshop.Models.Entities.Stakeholders.Parties;
 using Webshop.Models.Entities.Stakeholders.Parties.Relations;
 
 namespace Webshop.Data;
 
-public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbContext(options)
+public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbContext(options)
 {
+    public DbSet<PartyUser> Users { get; set; }
     public DbSet<Party> Parties { get; set; }
     public DbSet<Organization> Organizations { get; set; }
     public DbSet<Person> Persons { get; set; }
@@ -66,6 +68,10 @@ public partial class WebshopDbContext(DbContextOptions<WebshopDbContext> options
         });
 
         // Stakeholders
+        modelBuilder.Entity<PartyUser>(entity =>
+        {
+            entity.HasOne(pu => pu.Party).WithOne().HasForeignKey<PartyUser>(pu => pu.PartyId).OnDelete(DeleteBehavior.Cascade);
+        });
         modelBuilder.Entity<Party>(entity =>
         {
             entity.HasDiscriminator(p => p.PartyType)

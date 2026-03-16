@@ -1,8 +1,11 @@
+using Regira.Office.Mail.MailGun;
 using Scalar.AspNetCore;
 using Serilog;
 using System.Text.Json.Serialization;
-using Webshop.Data;
+using Webshop.Admin.DependencyInjection;
 using Webshop.DependencyInjection;
+using Webshop.Identity.Data;
+using Webshop.Identity.DependencyInjection;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 
@@ -20,14 +23,26 @@ try
         });
     builder.Services.AddOpenApi();
 
-    builder.Services.AddWebshopServices(builder.Configuration);
+    builder.Services
+        .AddWebshopAuthentication(o =>
+        {
+            var config = builder.Configuration;
+            var options = config.GetSection("Identity").Get<WebshopIdentityOptions>()!;
+            o.SecretKey = options.SecretKey;
+            o.Audiences.AddRange(options.Audiences);
+            o.AddMailer(_ => new MailGunMailer(config.GetSection("MailGun").Get<MailgunConfig>()!));
+        });
+    builder.Services
+        .AddWebshopServices(builder.Configuration);
+    builder.Services
+        .AddAdminServices(builder.Configuration);
 
     var app = builder.Build();
 
     if (app.Environment.IsDevelopment())
     {
         using var scope = app.Services.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<WebshopDbContext>();
+        var db = scope.ServiceProvider.GetRequiredService<WebshopAccountsDbContext>();
         await db.Database.EnsureCreatedAsync();
     }
 

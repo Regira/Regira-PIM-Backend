@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\Webshop.Data\Webshop.Data.csproj" />
-	<ProjectReference Include="..\Webshop.Models\Webshop.Models.csproj" />
 	<ProjectReference Include="..\Webshop.Services\Webshop.Services.csproj" />
+	<ProjectReference Include="..\Webshop.Web\Webshop.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Regira.Entities.DependencyInjection" Version="5.0.7" />
-	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="5.0.7" />
+	<PackageReference Include="Regira.Entities.DependencyInjection" Version="5.0.8" />
+	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="5.0.8" />
+	<PackageReference Include="Regira.Office.Mail.MailGun" Version="5.0.2" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Identity.Models;
 
-namespace Webshop.Data;
+namespace Webshop.Identity.Data;
 
 public class WebshopAccountsDbContext(DbContextOptions<WebshopAccountsDbContext> options) : IdentityDbContext<WebshopUser, IdentityRole, string>(options)
 {

@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Regira.Entities.Models.Abstractions;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Webshop.Identity.Models;
 
-public class WebshopUser : IdentityUser, IEntity<string>
+public class WebshopUser : IdentityUser
 {
     [PersonalData]
     [MaxLength(64)]

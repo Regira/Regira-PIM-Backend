@@ -7,12 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\Webshop.Models\Webshop.Models.csproj" />
+	<ProjectReference Include="..\Webshop.Data\Webshop.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="*" />
-	<PackageReference Include="Regira.Entities.EFcore" Version="5.0.8" />
+	<PackageReference Include="Regira.Security.Authentication.Web" Version="5.0.2" />
   </ItemGroup>
 
 </Project>

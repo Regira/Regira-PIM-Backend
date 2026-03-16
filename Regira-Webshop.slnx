@@ -15,9 +15,6 @@
     <Project Path="app/Webshop.EFConsole/Webshop.EFConsole.csproj" Id="54796c36-9a39-4310-b2f6-b874d9c57806" />
     <Project Path="app/Webshop.Public.API/Webshop.Public.API.csproj" />
   </Folder>
-  <Folder Name="/Identity/">
-    <Project Path="src/Webshop.Identity/Webshop.Identity.csproj" Id="89b45eb0-405e-45b4-a75b-b846d36b7d2b" />
-  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
     <File Path="NuGet.Config" />
@@ -28,6 +25,13 @@
     <Project Path="src/Webshop.DependencyInjection/Webshop.DependencyInjection.csproj" />
     <Project Path="src/Webshop.Models/Webshop.Models.csproj" Id="f12fe296-f2ec-464f-b5ee-a6f6ef3860b5" />
     <Project Path="src/Webshop.Services/Webshop.Services.csproj" Id="8342e77b-e731-4f47-b5ba-fe173c97da85" />
+    <Project Path="src/Webshop.Web/Webshop.Web.csproj" Id="814aa097-412a-4941-ba69-bc4c71b0f5c3" />
+  </Folder>
+  <Folder Name="/src/Admin/">
+    <Project Path="src/Webshop.Admin/Webshop.Admin.csproj" Id="c06b34bd-c925-4a6b-ab56-1c28d89f63d6" />
+  </Folder>
+  <Folder Name="/src/Identity/">
+    <Project Path="src/Webshop.Identity/Webshop.Identity.csproj" Id="89b45eb0-405e-45b4-a75b-b846d36b7d2b" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Webshop.API.Tests/Webshop.API.Tests.csproj" />
