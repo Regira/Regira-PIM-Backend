@@ -13,7 +13,7 @@ using Webshop.DependencyInjection.Orders;
 using Webshop.DependencyInjection.Stakeholders;
 using Webshop.Models.Contexts;
 using Webshop.Models.Entities.Stakeholders.Parties;
-using Webshop.Web;
+using Webshop.Web.Models;
 
 namespace Webshop.DependencyInjection;
 

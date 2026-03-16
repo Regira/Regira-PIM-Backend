@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Webshop.Models.Contexts;
 
-namespace Webshop.Web;
+namespace Webshop.Web.Models;
 
 public class OrderContext(IHttpContextAccessor httpContextAccessor) : IOrderContext
 {

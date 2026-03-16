@@ -34,7 +34,7 @@ try
         .WithJwtAuthentication();
 
     builder.Services
-        .AddDbContext<AccountsDbContext>((sp, options) =>
+        .AddDbContext<AccountsDbContext>(options =>
         {
             options.UseSqlite(builder.Configuration.GetConnectionString("Accounts"), db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
         })

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Regira.Entities.Web.Controllers.Abstractions;
 using Webshop.Models.Entities.Orders;
 
-namespace Webshop.Public.API.Controllers;
+namespace Webshop.Web.Controllers;
 
 [ApiController, Route("orders")]
 public class OrderController

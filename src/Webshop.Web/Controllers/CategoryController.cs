@@ -3,7 +3,7 @@ using Regira.Entities.Models;
 using Regira.Entities.Web.Controllers.Abstractions;
 using Webshop.Models.Entities.Catalog.Categories;
 
-namespace Webshop.Public.API.Controllers;
+namespace Webshop.Web.Controllers;
 
 [ApiController, Route("categories")]
 public class CategoryController

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Regira.Entities.Web.Controllers.Abstractions;
 using Webshop.Models.Entities.Catalog.Articles;
 
-namespace Webshop.Public.API.Controllers;
+namespace Webshop.Web.Controllers;
 
 [ApiController, Route("articles")]
 public class ArticleController
