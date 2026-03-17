@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Webshop.Models.Contexts;
+using Webshop.Core.Abstractions;
+using Webshop.Core.Constants;
 
 namespace Webshop.Web.Models;
 
-public class OrderContext(IHttpContextAccessor httpContextAccessor) : IOrderContext
+public class OrderContext(IHttpContextAccessor httpContextAccessor) : UserContext(httpContextAccessor), IOrderContext
 {
-    public int? CustomerId => int.TryParse(httpContextAccessor.HttpContext?.Request.Query["customerId"], out var customerId) ? customerId : null;
-    public int? OrganizationId => int.TryParse(httpContextAccessor.HttpContext?.Request.Query["organizationId"], out var organizationId) ? organizationId : null;
-    public DateTime? OrderDate => DateTime.TryParse(httpContextAccessor.HttpContext?.Request.Query["orderDate"], out var orderDate) ? orderDate : null;
+    public int? CustomerId => int.TryParse(HttpContext?.User.Claims.FirstOrDefault(c => c.Type == WebshopClaimTypes.CustomerId)?.Value, out var customerId) ? customerId : null;
+    public DateTime? OrderDate => DateTime.TryParse(HttpContext?.Request.Query["orderDate"], out var orderDate) ? orderDate : null;
 }

@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
-using Regira.Entities.Services.Abstractions;
-using Webshop.Models.Entities.Catalog.Articles;
 using Regira.Entities.Models;
+using Regira.Entities.Services.Abstractions;
+using Webshop.Models.Catalog.Articles;
+using Webshop.Models.Taxonomy.Facets;
 using Xunit;
-using Webshop.Models.Entities.Taxonomy.Facets;
 
 namespace Webshop.API.Tests.Catalog;
 

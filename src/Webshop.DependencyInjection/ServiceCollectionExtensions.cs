@@ -7,12 +7,13 @@ using Regira.Entities.DependencyInjection.ServiceBuilders.Extensions;
 using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
 using Regira.Entities.Mapping.Mapster;
+using Webshop.Core.Abstractions;
+using Webshop.Core.Constants;
 using Webshop.Data;
 using Webshop.DependencyInjection.Catalog;
 using Webshop.DependencyInjection.Orders;
 using Webshop.DependencyInjection.Stakeholders;
-using Webshop.Models.Contexts;
-using Webshop.Models.Entities.Stakeholders.Parties;
+using Webshop.Models.Stakeholders.Parties;
 using Webshop.Web.Models;
 
 namespace Webshop.DependencyInjection;
@@ -21,14 +22,16 @@ public static class ServiceCollectionExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddWebshopServices(IConfiguration config)
+        public IServiceCollection AddWebshopServices(IConfiguration config, bool isAdmin)
         {
-            var connectionString = config.GetConnectionString("Webshop");
+            var connectionString = config.GetConnectionString(WebshopConfig.WebshopDbConnectionStringName);
 
             services
                 .AddHttpContextAccessor()
-                // OrderContext
+                // Webshop Contexts
                 .AddScoped<IOrderContext, OrderContext>()
+                .AddScoped<IUserContext, UserContext>()
+                // DbContext
                 .AddDbContext<WebshopDbContext>((sp, options) =>
                 {
                     options
@@ -37,11 +40,11 @@ public static class ServiceCollectionExtensions
                         .AddNormalizerInterceptors(sp)
                         .AddAutoTruncateInterceptors();
                 })
-                .AddEntityServices();
+                .AddEntityServices(isAdmin);
             return services;
         }
 
-        public IServiceCollection AddEntityServices()
+        public IServiceCollection AddEntityServices(bool isAdmin)
         {
             services
                 .UseEntities<WebshopDbContext>(options =>
@@ -60,7 +63,7 @@ public static class ServiceCollectionExtensions
                     });
                 })
                 .AddCatalog()
-                .AddOrders()
+                .AddOrders(isAdmin)
                 .AddStakeholders();
 
             return services;

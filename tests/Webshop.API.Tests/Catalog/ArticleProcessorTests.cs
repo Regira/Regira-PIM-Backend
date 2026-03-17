@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
+using Webshop.Core.Abstractions;
 using Webshop.Data;
-using Webshop.Models.Contexts;
-using Webshop.Models.Entities.Catalog.Articles;
+using Webshop.Models.Catalog.Articles;
 using Webshop.Services.Entities.Catalog.Articles;
 using Xunit;
 

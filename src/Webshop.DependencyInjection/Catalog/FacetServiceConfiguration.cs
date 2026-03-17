@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Regira.Entities.Models;
 using Webshop.Data;
-using Webshop.Models.Entities.Taxonomy.Facets;
+using Webshop.Models.Taxonomy.Facets;
 
 namespace Webshop.DependencyInjection.Catalog;
 

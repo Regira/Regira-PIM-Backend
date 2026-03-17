@@ -1,5 +1,5 @@
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
-using Webshop.Models.Entities.Orders;
+using Webshop.Models.Orders;
 
 namespace Webshop.Services.Entities.Orders;
 

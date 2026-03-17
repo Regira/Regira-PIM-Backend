@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Regira.DAL.EFcore.Extensions;
-using Webshop.Models.Entities.Catalog.Allergens;
-using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Catalog.UnitTypes;
-using Webshop.Models.Entities.Taxonomy.Facets;
-using Webshop.Models.Entities.Orders;
-using Webshop.Models.Entities.Stakeholders.Identity;
-using Webshop.Models.Entities.Stakeholders.Parties;
-using Webshop.Models.Entities.Stakeholders.Parties.Relations;
+using Webshop.Models.Catalog.Allergens;
+using Webshop.Models.Catalog.Articles;
+using Webshop.Models.Catalog.UnitTypes;
+using Webshop.Models.Orders;
+using Webshop.Models.Stakeholders.Identity;
+using Webshop.Models.Stakeholders.Parties;
+using Webshop.Models.Stakeholders.Parties.Relations;
+using Webshop.Models.Taxonomy.Facets;
 
 namespace Webshop.Data;
 

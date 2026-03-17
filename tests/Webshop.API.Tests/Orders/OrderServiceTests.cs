@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
-using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Orders;
-using Webshop.Models.Entities.Stakeholders.Parties;
+using Webshop.Models.Catalog.Articles;
+using Webshop.Models.Orders;
+using Webshop.Models.Stakeholders.Parties;
 using Xunit;
 
 namespace Webshop.API.Tests.Orders;

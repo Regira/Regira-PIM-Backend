@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Regira.Entities.Models;
 using Regira.Entities.Web.Controllers.Abstractions;
-using Webshop.Models.Entities.Taxonomy.Facets;
+using Webshop.Models.Taxonomy.Facets;
 
 namespace Webshop.Web.Controllers;
 

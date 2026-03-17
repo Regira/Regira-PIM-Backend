@@ -1,4 +1,4 @@
-using Webshop.Models.Entities.Catalog.Articles;
+using Webshop.Models.Catalog.Articles;
 using Webshop.Services.Entities.Catalog.Pricing;
 using Xunit;
 

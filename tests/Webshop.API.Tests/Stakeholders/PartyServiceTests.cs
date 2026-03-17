@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Regira.Entities.Services.Abstractions;
-using Webshop.Models.Entities.Stakeholders.ContactData;
-using Webshop.Models.Entities.Stakeholders.Parties;
+using Webshop.Models.Stakeholders.ContactData;
+using Webshop.Models.Stakeholders.Parties;
 using Xunit;
 
 namespace Webshop.API.Tests.Stakeholders;

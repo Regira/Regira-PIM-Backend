@@ -1,6 +1,6 @@
 ﻿using Regira.Globalization;
 using Regira.Normalizing.Abstractions;
-using Webshop.Models.Entities.Stakeholders.Addresses;
+using Webshop.Models.Stakeholders.Addresses;
 
 namespace Webshop.Services.Entities.Stakeholders.Addresses;
 

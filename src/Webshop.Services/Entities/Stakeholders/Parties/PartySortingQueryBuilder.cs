@@ -1,5 +1,5 @@
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
-using Webshop.Models.Entities.Stakeholders.Parties;
+using Webshop.Models.Stakeholders.Parties;
 
 namespace Webshop.Services.Entities.Stakeholders.Parties;
 

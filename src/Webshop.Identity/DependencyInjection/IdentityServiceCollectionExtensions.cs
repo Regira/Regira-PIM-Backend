@@ -40,7 +40,7 @@ public static class IdentityServiceCollectionExtensions
         configure.Invoke(options);
 
         var builder = services
-             .AddIdentityCore<WebshopUser>(o =>
+             .AddIdentityCore<WebshopIdentityUser>(o =>
              {
                  o.SignIn.RequireConfirmedAccount = false;
                  o.User.RequireUniqueEmail = true;
@@ -55,7 +55,7 @@ public static class IdentityServiceCollectionExtensions
              })
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<AccountsDbContext>()
-             .AddUserManager<UserManager<WebshopUser>>()
+             .AddUserManager<UserManager<WebshopIdentityUser>>()
              .AddClaimsPrincipalFactory<WebshopUserClaimsPrincipalFactory>()
              .AddDefaultTokenProviders();
 

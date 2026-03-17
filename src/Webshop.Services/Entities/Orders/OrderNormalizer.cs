@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Regira.Entities.EFcore.Normalizing.Abstractions;
 using Regira.Normalizing.Abstractions;
+using Webshop.Core.Abstractions;
 using Webshop.Data;
-using Webshop.Models.Contexts;
-using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Orders;
+using Webshop.Models.Catalog.Articles;
+using Webshop.Models.Orders;
 
 namespace Webshop.Services.Entities.Orders;
 

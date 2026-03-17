@@ -1,4 +1,4 @@
-﻿using Webshop.Models.Entities.Catalog.Pricing.Abstractions;
+﻿using Webshop.Models.Catalog.Pricing.Abstractions;
 
 namespace Webshop.Services.Entities.Catalog.Pricing;
 

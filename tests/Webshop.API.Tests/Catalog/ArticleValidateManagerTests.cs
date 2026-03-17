@@ -1,5 +1,5 @@
 using Regira.Entities.Models;
-using Webshop.Models.Entities.Catalog.Articles;
+using Webshop.Models.Catalog.Articles;
 using Webshop.Services.Entities.Catalog.Articles;
 using Xunit;
 

@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using Webshop.Core.Constants;
 using Webshop.Identity.Models;
 
 namespace Webshop.Identity.Services;
 
-public class WebshopUserClaimsPrincipalFactory(UserManager<WebshopUser> userManager, RoleManager<IdentityRole> roleManager ,IOptions<IdentityOptions> options)
-    : UserClaimsPrincipalFactory<WebshopUser, IdentityRole>(userManager, roleManager, options)
+public class WebshopUserClaimsPrincipalFactory(UserManager<WebshopIdentityUser> userManager, RoleManager<IdentityRole> roleManager ,IOptions<IdentityOptions> options)
+    : UserClaimsPrincipalFactory<WebshopIdentityUser, IdentityRole>(userManager, roleManager, options)
 {
-    protected override async Task<ClaimsIdentity> GenerateClaimsAsync(WebshopUser user)
+    protected override async Task<ClaimsIdentity> GenerateClaimsAsync(WebshopIdentityUser user)
     {
         var identity = await base.GenerateClaimsAsync(user);
 
@@ -27,12 +28,4 @@ public class WebshopUserClaimsPrincipalFactory(UserManager<WebshopUser> userMana
 
         return identity;
     }
-}
-public static class WebshopClaimTypes
-{
-    public const string SuperUser = "super_user";
-
-    public const string Permission = "permissions";
-
-    public const string DisplayName = "display_name";
 }

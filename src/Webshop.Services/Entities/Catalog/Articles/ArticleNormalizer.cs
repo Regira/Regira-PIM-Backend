@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Regira.Entities.EFcore.Normalizing.Abstractions;
 using Regira.Normalizing.Abstractions;
 using Webshop.Data;
-using Webshop.Models.Entities.Catalog.Articles;
-using Webshop.Models.Entities.Taxonomy.Facets;
-using Webshop.Models.Entities.Stakeholders.Parties;
+using Webshop.Models.Catalog.Articles;
+using Webshop.Models.Stakeholders.Parties;
+using Webshop.Models.Taxonomy.Facets;
 
 namespace Webshop.Services.Entities.Catalog.Articles;
 

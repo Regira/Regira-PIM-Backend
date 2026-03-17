@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Webshop.Models.Entities.Catalog.Pricing.Abstractions;
+using Webshop.Models.Catalog.Pricing.Abstractions;
 using Webshop.Services.Entities.Extensions;
 
 namespace Webshop.Services.Entities.Catalog.Pricing;

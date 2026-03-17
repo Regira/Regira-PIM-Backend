@@ -5,10 +5,12 @@ using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
 using System.Text.Json.Serialization;
+using Webshop.Core.Constants;
 using Webshop.Data;
 using Webshop.DependencyInjection;
 using Webshop.Identity.Data;
 using Webshop.Identity.DependencyInjection;
+using Webshop.Public.API.Infrastructure;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 
@@ -17,7 +19,10 @@ try
     var builder = WebApplication.CreateBuilder(args);
     builder.Host.UseSerilog((ctx, cfg) => cfg.ReadFrom.Configuration(ctx.Configuration));
 
-    builder.Services.AddControllers()
+    builder.Services.AddControllers(options =>
+        {
+            options.Filters.Add<WriteAuthorizationFilter>();
+        })
         .AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
@@ -30,15 +35,21 @@ try
     });
 
     builder.Services
-        .AddWebshopAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection("MailGun").Get<MailgunConfig>()!))
+        .AddWebshopAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection(WebshopConfig.MailGunSectionName).Get<MailgunConfig>()!))
         .WithJwtAuthentication();
+
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy(WebshopPolicies.CustomerOnly, policy =>
+            policy.RequireClaim(WebshopClaimTypes.Permission, WebshopPermissionValues.Customer));
+    });
 
     builder.Services
         .AddDbContext<AccountsDbContext>(options =>
         {
-            options.UseSqlite(builder.Configuration.GetConnectionString("Accounts"), db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+            options.UseSqlite(builder.Configuration.GetConnectionString(WebshopConfig.AccountsDbConnectionStringName), db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
         })
-        .AddWebshopServices(builder.Configuration);
+        .AddWebshopServices(builder.Configuration, false);
 
     var app = builder.Build();
 
@@ -65,8 +76,7 @@ try
         .UseAuthorization()
         .UseEndpoints(endpoints =>
         {
-            endpoints.MapControllers()
-                .RequireAuthorization();
+            endpoints.MapControllers();
         });
     app.Run();
 }

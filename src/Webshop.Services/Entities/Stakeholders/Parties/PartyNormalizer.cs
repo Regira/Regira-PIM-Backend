@@ -1,5 +1,5 @@
 using Regira.Entities.EFcore.Normalizing.Abstractions;
-using Webshop.Models.Entities.Stakeholders.Parties;
+using Webshop.Models.Stakeholders.Parties;
 using Webshop.Services.Entities.Stakeholders.Addresses;
 using Webshop.Services.Entities.Stakeholders.ContactData;
 

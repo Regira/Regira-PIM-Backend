@@ -7,7 +7,7 @@ using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
 using Regira.Entities.Mapping.Mapster;
 using Webshop.Identity.Data;
-using Webshop.Identity.Entities;
+using Webshop.Identity.Models;
 
 namespace Webshop.Admin.DependencyInjection;
 

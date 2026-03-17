@@ -1,7 +1,7 @@
 ﻿using Regira.Entities.EFcore.Normalizing.Abstractions;
 using Regira.Globalization.LibPhoneNumber;
 using Regira.Normalizing.Abstractions;
-using Webshop.Models.Entities.Stakeholders.ContactData;
+using Webshop.Models.Stakeholders.ContactData;
 
 namespace Webshop.Services.Entities.Stakeholders.ContactData;
 

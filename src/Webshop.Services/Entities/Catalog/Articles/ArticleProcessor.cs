@@ -1,7 +1,7 @@
 using Regira.Entities.EFcore.Processing.Abstractions;
+using Webshop.Core.Abstractions;
 using Webshop.Data;
-using Webshop.Models.Contexts;
-using Webshop.Models.Entities.Catalog.Articles;
+using Webshop.Models.Catalog.Articles;
 using Webshop.Services.Entities.Catalog.Pricing;
 
 namespace Webshop.Services.Entities.Catalog.Articles;

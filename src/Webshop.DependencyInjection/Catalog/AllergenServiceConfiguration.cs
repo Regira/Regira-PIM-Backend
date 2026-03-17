@@ -2,7 +2,7 @@ using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Regira.Entities.EFcore.Extensions;
 using Regira.Entities.Models;
 using Webshop.Data;
-using Webshop.Models.Entities.Catalog.Allergens;
+using Webshop.Models.Catalog.Allergens;
 
 namespace Webshop.DependencyInjection.Catalog;
 

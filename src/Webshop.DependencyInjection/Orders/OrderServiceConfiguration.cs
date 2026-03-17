@@ -2,14 +2,14 @@ using Regira.Entities.DependencyInjection.Preppers;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Regira.Entities.Extensions;
 using Webshop.Data;
-using Webshop.Models.Entities.Orders;
+using Webshop.Models.Orders;
 using Webshop.Services.Entities.Orders;
 
 namespace Webshop.DependencyInjection.Orders;
 
 public static class OrderServiceConfiguration
 {
-    public static IEntityServiceCollection<WebshopDbContext> AddOrders(this IEntityServiceCollection<WebshopDbContext> services)
+    public static IEntityServiceCollection<WebshopDbContext> AddOrders(this IEntityServiceCollection<WebshopDbContext> services, bool isAdmin)
     {
         services.For<Order, OrderSearchObject, OrderSortBy, OrderIncludes>(e =>
         {
@@ -20,8 +20,16 @@ public static class OrderServiceConfiguration
             e.AddPrepper<OrderPrepper>();
             e.AddTransient<IOrderService, OrderManager>();
             e.AddNormalizer<OrderNormalizer>();
-            e.UseEntityService<OrderManager>();
+            if (isAdmin)
+            {
+                e.UseEntityService<OrderManager>();
+            }
+            else
+            {
+                e.UseEntityService<PersonalOrderManager>();
+            }
         });
+        
         return services;
     }
 }

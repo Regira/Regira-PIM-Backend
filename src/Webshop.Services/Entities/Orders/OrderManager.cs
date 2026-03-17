@@ -1,6 +1,6 @@
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
-using Webshop.Models.Entities.Orders;
+using Webshop.Models.Orders;
 
 namespace Webshop.Services.Entities.Orders;
 
@@ -30,7 +30,7 @@ public class OrderManager(IEntityRepository<Order, OrderSearchObject, OrderSortB
         if (item.Id != 0)
             ValidateModifiable(item);
         if (string.IsNullOrWhiteSpace(item.Code))
-            item.Code = $"ORD-{DateTime.UtcNow.Ticks:X}";
+            item.Code = $"ORD{DateTime.UtcNow.Ticks:X}";
         return base.Save(item);
     }
 

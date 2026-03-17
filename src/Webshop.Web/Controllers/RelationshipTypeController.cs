@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Regira.Entities.Web.Controllers.Abstractions;
-using Webshop.Models.Entities.Stakeholders.Parties.Relations;
+using Webshop.Models.Stakeholders.Parties.Relations;
 
 namespace Webshop.Web.Controllers;
 

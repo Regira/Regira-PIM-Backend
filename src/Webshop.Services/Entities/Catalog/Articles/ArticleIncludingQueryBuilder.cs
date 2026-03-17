@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
-using Webshop.Models.Entities.Catalog.Articles;
+using Webshop.Models.Catalog.Articles;
 
 namespace Webshop.Services.Entities.Catalog.Articles;
 

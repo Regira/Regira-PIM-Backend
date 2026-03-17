@@ -9,11 +9,15 @@
     <File Path=".github/entities.signatures.md" />
     <File Path=".github/project.setup.md" />
   </Folder>
-  <Folder Name="/app/">
-    <Project Path="app/Webshop.Admin.API/Webshop.Admin.API.csproj" Id="67dcad95-9a49-4bbb-897a-6904ef8592c2" />
-    <Project Path="app/Webshop.DemoDataConsole/Webshop.DemoDataConsole.csproj" Id="1b07bb66-7cee-4940-9811-5e5289003cf3" />
-    <Project Path="app/Webshop.EFConsole/Webshop.EFConsole.csproj" Id="54796c36-9a39-4310-b2f6-b874d9c57806" />
+  <Folder Name="/app/" />
+  <Folder Name="/app/APIs/">
+    <Project Path="app/Webshop.Manager.API/Webshop.Manager.API.csproj" Id="7f9fa34f-522f-424a-bc1d-0f6d9efe704f" />
     <Project Path="app/Webshop.Public.API/Webshop.Public.API.csproj" />
+  </Folder>
+  <Folder Name="/app/Data/">
+    <Project Path="app/Webshop.AccountDataGenerator/Webshop.AccountDataGenerator.csproj" />
+    <Project Path="app/Webshop.EFConsole/Webshop.EFConsole.csproj" Id="54796c36-9a39-4310-b2f6-b874d9c57806" />
+    <Project Path="app/Webshop.WebshopDataGenerator/Webshop.WebshopDataGenerator.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />

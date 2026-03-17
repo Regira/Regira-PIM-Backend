@@ -5,14 +5,14 @@ using Webshop.Identity.Models;
 
 namespace Webshop.Identity.Data;
 
-public class AccountsDbContext(DbContextOptions<AccountsDbContext> options) : IdentityDbContext<WebshopUser, IdentityRole, string>(options)
+public class AccountsDbContext(DbContextOptions<AccountsDbContext> options) : IdentityDbContext<WebshopIdentityUser, IdentityRole, string>(options)
 {
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
 
-        builder.Entity<WebshopUser>(entity =>
+        builder.Entity<WebshopIdentityUser>(entity =>
         {
             entity.Property(e => e.Id).HasMaxLength(64);
             entity.Property(e => e.UserName).HasMaxLength(256);

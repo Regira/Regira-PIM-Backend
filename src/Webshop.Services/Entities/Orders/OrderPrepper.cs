@@ -1,7 +1,7 @@
 ﻿using Regira.Entities.EFcore.Extensions;
 using Regira.Entities.EFcore.Preppers.Abstractions;
 using Webshop.Data;
-using Webshop.Models.Entities.Orders;
+using Webshop.Models.Orders;
 
 namespace Webshop.Services.Entities.Orders;
 

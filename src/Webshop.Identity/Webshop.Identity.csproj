@@ -15,4 +15,8 @@
 	<PackageReference Include="Regira.Security.Authentication.Web" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Webshop.Core\Webshop.Core.csproj" />
+  </ItemGroup>
+
 </Project>

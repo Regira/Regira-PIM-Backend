@@ -1,6 +1,6 @@
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
-using Webshop.Models.Entities.Catalog.Articles;
+using Webshop.Models.Catalog.Articles;
 using Webshop.Services.Entities.Catalog.Pricing;
 
 namespace Webshop.Services.Entities.Catalog.Articles;
