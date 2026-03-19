@@ -9,7 +9,7 @@ namespace Webshop.DependencyInjection.Orders;
 
 public static class OrderServiceConfiguration
 {
-    public static IEntityServiceCollection<WebshopDbContext> AddOrders(this IEntityServiceCollection<WebshopDbContext> services, bool isAdmin)
+    public static IEntityServiceCollection<WebshopDbContext> AddOrders(this IEntityServiceCollection<WebshopDbContext> services)
     {
         services.For<Order, OrderSearchObject, OrderSortBy, OrderIncludes>(e =>
         {
@@ -18,18 +18,11 @@ public static class OrderServiceConfiguration
             e.Includes<OrderIncludingQueryBuilder>();
             e.Related(x => x.OrderLines, item => item.OrderLines?.SetSortOrder());
             e.AddPrepper<OrderPrepper>();
-            e.AddTransient<IOrderService, OrderManager>();
             e.AddNormalizer<OrderNormalizer>();
-            if (isAdmin)
-            {
-                e.UseEntityService<OrderManager>();
-            }
-            else
-            {
-                e.UseEntityService<PersonalOrderManager>();
-            }
+            e.AddTransient<IOrderService, OrderManager>();
+            e.UseEntityService<OrderManager>();
         });
-        
+
         return services;
     }
 }

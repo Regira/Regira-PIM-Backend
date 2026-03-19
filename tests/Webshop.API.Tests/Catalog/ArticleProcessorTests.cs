@@ -16,12 +16,6 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
 {
     private static readonly DateTime RefDate = new(2026, 3, 14, 12, 0, 0, DateTimeKind.Utc);
 
-    private static ArticleProcessor CreateProcessor(WebshopDbContext db, DateTime? orderDate = null)
-        => new(db, new FakeOrderContext { OrderDate = orderDate ?? RefDate });
-
-    private static WebshopDbContext GetDb(IServiceScope scope)
-        => scope.ServiceProvider.GetRequiredService<WebshopDbContext>();
-
     // ── No price-related includes ──────────────────────────────────────────────
 
     [Fact]
@@ -30,7 +24,8 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
         using var scope = fixture.CreateScope();
         var article = new Article { Price = 42m };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.None);
+        var processor = scope.ServiceProvider.GetRequiredService<ArticleProcessor>();
+        await processor.Process([article], ArticleIncludes.None);
 
         Assert.Equal(42m, article.Price);
     }
@@ -41,7 +36,8 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
         using var scope = fixture.CreateScope();
         var article = new Article { Price = 42m };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.Facets);
+        var processor = scope.ServiceProvider.GetRequiredService<ArticleProcessor>();
+        await processor.Process([article], ArticleIncludes.Facets);
 
         Assert.Equal(42m, article.Price);
     }
@@ -52,7 +48,7 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
     public async Task Price_Include_Fetches_Price_From_Db()
     {
         using var scope = fixture.CreateScope();
-        var db = GetDb(scope);
+        var db = scope.ServiceProvider.GetRequiredService<WebshopDbContext>();
 
         var article = new Article
         {
@@ -64,7 +60,8 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
         db.ChangeTracker.Clear();
 
         var target = new Article { Id = article.Id };
-        await CreateProcessor(db).Process([target], ArticleIncludes.Price);
+        var processor = scope.ServiceProvider.GetRequiredService<ArticleProcessor>();
+        await processor.Process([target], ArticleIncludes.Price);
 
         Assert.Equal(9.99m, target.Price);
     }
@@ -73,7 +70,9 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
     public async Task Price_Include_AdjacentBoundary_Selects_Entry_With_Later_EndDate()
     {
         using var scope = fixture.CreateScope();
-        var db = GetDb(scope);
+        var db = scope.ServiceProvider.GetRequiredService<WebshopDbContext>();
+        var orderContext = scope.ServiceProvider.GetRequiredService<IOrderContext>();
+        ((TestFixture.FakeOrderContext)orderContext).OrderDate = RefDate;
 
         var article = new Article
         {
@@ -89,7 +88,8 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
         db.ChangeTracker.Clear();
 
         var target = new Article { Id = article.Id };
-        await CreateProcessor(db).Process([target], ArticleIncludes.Price);
+        var processor = scope.ServiceProvider.GetRequiredService<ArticleProcessor>();
+        await processor.Process([target], ArticleIncludes.Price);
 
         Assert.Equal(12.00m, target.Price);
     }
@@ -105,7 +105,8 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
             Prices = [new ArticlePricePeriod { Price = 7.50m }]
         };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.PricePeriod);
+        var processor = scope.ServiceProvider.GetRequiredService<ArticleProcessor>();
+        await processor.Process([article], ArticleIncludes.PricePeriod);
 
         Assert.Equal(7.50m, article.Price);
     }
@@ -116,7 +117,8 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
         using var scope = fixture.CreateScope();
         var article = new Article { Price = 42m, Prices = null };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.PricePeriod);
+        var processor = scope.ServiceProvider.GetRequiredService<ArticleProcessor>();
+        await processor.Process([article], ArticleIncludes.PricePeriod);
 
         Assert.Null(article.Price);
     }
@@ -133,7 +135,8 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
             Prices = [new ArticlePricePeriod { Price = 15.00m }]
         };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.Price | ArticleIncludes.PricePeriod);
+        var processor = scope.ServiceProvider.GetRequiredService<ArticleProcessor>();
+        await processor.Process([article], ArticleIncludes.Price | ArticleIncludes.PricePeriod);
 
         Assert.Equal(15.00m, article.Price);
     }
@@ -148,15 +151,10 @@ public class ArticleProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
             Prices = [new ArticlePricePeriod { Price = 15.00m }]
         };
 
-        await CreateProcessor(GetDb(scope)).Process([article], ArticleIncludes.All);
+        var processor = scope.ServiceProvider.GetRequiredService<ArticleProcessor>();
+        await processor.Process([article], ArticleIncludes.All);
 
         Assert.Equal(15.00m, article.Price);
     }
 }
 
-file sealed class FakeOrderContext : IOrderContext
-{
-    public int? CustomerId => null;
-    public int? OrganizationId => null;
-    public DateTime? OrderDate { get; set; }
-}

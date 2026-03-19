@@ -6,7 +6,6 @@ using Scalar.AspNetCore;
 using Serilog;
 using System.Text.Json.Serialization;
 using Webshop.Core.Constants;
-using Webshop.Data;
 using Webshop.DependencyInjection;
 using Webshop.Identity.Data;
 using Webshop.Identity.DependencyInjection;
@@ -17,12 +16,13 @@ Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-    
+
     // Logging (Serilog)
     builder.Host.UseSerilog((ctx, cfg) => cfg.ReadFrom.Configuration(ctx.Configuration));
 
     // Controllers & JSON
-    builder.Services.AddControllers(options =>
+    builder.Services
+        .AddControllers(options =>
         {
             options.Filters.Add<WriteAuthorizationFilter>();
         })
@@ -52,13 +52,23 @@ try
             policy.RequireClaim(WebshopClaimTypes.Permission, WebshopPermissionValues.Customer));
     });
 
+    // CORS
+    var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? [];
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(policy =>
+            policy.WithOrigins(allowedOrigins)
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+    });
+
     // Entity services + DbContexts
     builder.Services
         .AddDbContext<AccountsDbContext>(options =>
         {
             options.UseSqlite(builder.Configuration.GetConnectionString(WebshopConfig.AccountsDbConnectionStringName), db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
         })
-        .AddWebshopServices(builder.Configuration, false);
+        .AddWebshopServices(builder.Configuration);
 
     // APP configuration
     var app = builder.Build();
@@ -78,6 +88,10 @@ try
     app
         // HTTPS
         .UseHttpsRedirection()
+        // CORS (must be before routing)
+        .UseCors()
+        // Request logging (Serilog)
+        .UseSerilogRequestLogging()
         // Routing
         .UseRouting()
         // Authentication

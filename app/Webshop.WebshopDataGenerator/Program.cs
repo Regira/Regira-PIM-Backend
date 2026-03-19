@@ -28,7 +28,7 @@ try
         .AddWebshopAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection("MailGun").Get<MailgunConfig>()!));
 
     builder.Services
-        .AddWebshopServices(builder.Configuration, true)
+        .AddWebshopServices(builder.Configuration)
         .AddAdminServices(builder.Configuration)
         .AddTransient<WebshopDataSeeder>();
 

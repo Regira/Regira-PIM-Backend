@@ -1,17 +1,16 @@
-using Regira.Entities.Models.Abstractions;
+﻿using Regira.Entities.Models.Abstractions;
 using Regira.Normalizing;
 using System.ComponentModel.DataAnnotations;
-using Webshop.Models.Taxonomy.FacetGroups;
 
-namespace Webshop.Models.Taxonomy.Facets;
+namespace Webshop.Models.Taxonomy.FacetGroups;
 
-public class Facet : IEntityWithSerial, IHasCode, IHasTimestamps, IHasNormalizedTitle, IHasDescription, IHasNormalizedContent, IArchivable
+public class FacetGroup : IEntityWithSerial, IHasCode, IHasNormalizedTitle, IHasTimestamps, IHasNormalizedContent, IArchivable
 {
     public int Id { get; set; }
     [MaxLength(32)]
     public string? Code { get; set; }
     [Required, MaxLength(64)]
-    public string Title { get; set; } = null!;
+    public string? Title { get; set; }
     [MaxLength(128), Normalized(SourceProperties = [nameof(Title), nameof(Code)])]
     public string? NormalizedTitle { get; set; }
     [MaxLength(1024)]
@@ -22,8 +21,5 @@ public class Facet : IEntityWithSerial, IHasCode, IHasTimestamps, IHasNormalized
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
 
-    public ICollection<RelatedFacet>? ParentEntities { get; set; }
-    public ICollection<RelatedFacet>? ChildEntities { get; set; }
-
-    public ICollection<FacetGroupLink>? FacetGroups { get; set; }
+    public ICollection<FacetGroupLink>? Facets { get; set; }
 }

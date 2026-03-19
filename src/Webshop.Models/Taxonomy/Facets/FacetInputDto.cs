@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Webshop.Models.Taxonomy.FacetGroups;
 
 namespace Webshop.Models.Taxonomy.Facets;
 
@@ -9,4 +10,5 @@ public class FacetInputDto
     [MaxLength(1024)] public string? Description { get; set; }
     public ICollection<RelatedFacetInputDto>? ParentEntities { get; set; }
     public ICollection<RelatedFacetInputDto>? ChildEntities { get; set; }
+    public ICollection<FacetGroupLinkInputDto>? FacetGroups { get; set; }
 }

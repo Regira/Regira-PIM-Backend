@@ -23,7 +23,7 @@ public static class ServiceCollectionExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddWebshopServices(IConfiguration config, bool isAdmin)
+        public IServiceCollection AddWebshopServices(IConfiguration config)
         {
             var connectionString = config.GetConnectionString(WebshopConfig.WebshopDbConnectionStringName);
 
@@ -42,11 +42,11 @@ public static class ServiceCollectionExtensions
                         .AddNormalizerInterceptors(sp)
                         .AddAutoTruncateInterceptors();
                 })
-                .AddEntityServices(isAdmin);
+                .AddEntityServices();
             return services;
         }
 
-        public IServiceCollection AddEntityServices(bool isAdmin)
+        public IServiceCollection AddEntityServices()
         {
             services
                 .UseEntities<WebshopDbContext>(options =>
@@ -66,7 +66,7 @@ public static class ServiceCollectionExtensions
                 })
                 .AddCountries()
                 .AddCatalog()
-                .AddOrders(isAdmin)
+                .AddOrders()
                 .AddStakeholders();
 
             return services;

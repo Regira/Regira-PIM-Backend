@@ -8,6 +8,7 @@ using Webshop.Models.Stakeholders.Identity;
 using Webshop.Models.Stakeholders.Parties;
 using Webshop.Models.Stakeholders.Parties.Relations;
 using Webshop.Models.Taxonomy.Facets;
+using Webshop.Models.Taxonomy.FacetGroups;
 
 namespace Webshop.Data;
 
@@ -19,6 +20,7 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
     public DbSet<Person> Persons { get; set; }
     public DbSet<RelationshipType> RelationshipTypes { get; set; }
     public DbSet<Facet> Facets { get; set; } = null!;
+    public DbSet<FacetGroup> FacetGroups { get; set; } = null!;
     public DbSet<UnitType> UnitTypes { get; set; } = null!;
     public DbSet<Article> Articles { get; set; } = null!;
     public DbSet<Allergen> Allergens { get; set; } = null!;
@@ -34,6 +36,14 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
         {
             e.HasOne(c => c.Parent).WithMany(x => x.ChildEntities).OnDelete(DeleteBehavior.Restrict);
             e.HasOne(c => c.Child).WithMany(x => x.ParentEntities).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // FacetGroups
+        modelBuilder.Entity<FacetGroupLink>(e =>
+        {
+            e.HasIndex(x => new { x.ParentId, x.ChildId }).IsUnique();
+            e.HasOne(x => x.Parent).WithMany(g => g.Facets).HasForeignKey(x => x.ParentId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.Child).WithMany(f => f.FacetGroups).HasForeignKey(x => x.ChildId).OnDelete(DeleteBehavior.Restrict);
         });
 
         // Articles

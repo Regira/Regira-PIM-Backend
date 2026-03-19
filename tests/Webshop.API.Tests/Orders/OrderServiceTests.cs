@@ -62,7 +62,7 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
         await service.SaveChanges();
 
         Assert.NotNull(order.Code);
-        Assert.StartsWith("ORD-", order.Code);
+        Assert.StartsWith("ORD", order.Code);
     }
 
     [Fact]

@@ -1,3 +1,5 @@
+using Webshop.Models.Taxonomy.FacetGroups;
+
 namespace Webshop.Models.Taxonomy.Facets;
 
 public class FacetCoreDto
@@ -13,5 +15,6 @@ public class FacetDto : FacetCoreDto
 {
     public ICollection<ParentFacetDto>? ParentEntities { get; set; }
     public ICollection<ChildFacetDto>? ChildEntities { get; set; }
+    public ICollection<FacetGroupLinkParentDto>? FacetGroups { get; set; }
     public int? ProductCount { get; set; }
 }

@@ -4,42 +4,73 @@ using Microsoft.Extensions.DependencyInjection;
 using Regira.DAL.EFcore.Services;
 using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
+using System.Globalization;
+using Webshop.Core.Abstractions;
 using Webshop.Data;
 using Webshop.DependencyInjection;
+using Webshop.Services.Entities.Catalog.Articles;
 
 namespace Webshop.API.Tests;
 
-public class TestFixture : IDisposable
+public class TestFixture
 {
-    private readonly SqliteConnection _connection;
+    class FakeCultureContext : ICultureContext
+    {
+        public CultureInfo Culture => CultureInfo.InvariantCulture;
+        public string LangCode => Culture.TwoLetterISOLanguageName;
+        public string? CountryCode => Culture.Name.Split('-').LastOrDefault();
+    }
+    public class FakeOrderContext : IOrderContext
+    {
+        public int? CustomerId => null;
+        public DateTime? OrderDate { get; set; }
+    }
+    public class FakeUserContext : IUserContext
+    {
+        public string? UserId => null;
+        public ICollection<string> Permissions => [];
+    }
+
     public IServiceProvider ServiceProvider { get; }
 
     public TestFixture()
     {
-        _connection = new SqliteConnection("Data Source=:memory:");
-        _connection.Open();
-
-        var services = new ServiceCollection();
-        services.AddLogging();
-        services.AddDbContext<WebshopDbContext>((sp, options) =>
-            options.UseSqlite(_connection, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
-                .AddPrimerInterceptors(sp)
-                .AddNormalizerInterceptors(sp)
-                .AddAutoTruncateInterceptors());
-        services.AddEntityServices(true);
+        var services = new ServiceCollection()
+            .AddLogging()
+            .AddHttpContextAccessor()
+            // Webshop Contexts
+            .AddScoped<ICultureContext, FakeCultureContext>()
+            .AddScoped<IOrderContext, FakeOrderContext>()
+            .AddScoped<IUserContext, FakeUserContext>()
+            // Each scope gets its own in-memory SQLite database
+            .AddScoped(_ =>
+            {
+                var connection = new SqliteConnection("Data Source=:memory:");
+                connection.Open();
+                return connection;
+            })
+            // DbContext
+            .AddDbContext<WebshopDbContext>((sp, options) =>
+            {
+                options
+                    .UseSqlite(sp.GetRequiredService<SqliteConnection>(), db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                    .AddPrimerInterceptors(sp)
+                    .AddNormalizerInterceptors(sp)
+                    .AddAutoTruncateInterceptors();
+            })
+            // Entity Services
+            .AddEntityServices()
+            // Concrete service registrations for tests
+            .AddScoped<ArticleProcessor>();
 
         ServiceProvider = services.BuildServiceProvider();
-
-        using var scope = ServiceProvider.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<WebshopDbContext>();
-        db.Database.EnsureCreated();
     }
 
-    public IServiceScope CreateScope() => ServiceProvider.CreateScope();
-
-    public void Dispose()
+    public IServiceScope CreateScope()
     {
-        _connection.Close();
-        _connection.Dispose();
+        var scope = ServiceProvider.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<WebshopDbContext>();
+        db.Database.EnsureCreated();
+        return scope;
     }
 }

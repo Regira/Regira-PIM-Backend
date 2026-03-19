@@ -20,7 +20,8 @@ try
     builder.Host.UseSerilog((ctx, cfg) => cfg.ReadFrom.Configuration(ctx.Configuration));
 
     // Controllers & JSON
-    builder.Services.AddControllers(options =>
+    builder.Services
+        .AddControllers(options =>
         {
             options.Filters.Add<PermissionAuthorizationFilter>();
         })
@@ -68,7 +69,7 @@ try
 
     // Entity services
     builder.Services
-        .AddWebshopServices(builder.Configuration, true)
+        .AddWebshopServices(builder.Configuration)
         .AddAdminServices(builder.Configuration);
 
     // APP configuration
