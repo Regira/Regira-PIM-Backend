@@ -11,6 +11,7 @@ using Webshop.Core.Abstractions;
 using Webshop.Core.Constants;
 using Webshop.Data;
 using Webshop.DependencyInjection.Catalog;
+using Webshop.DependencyInjection.Countries;
 using Webshop.DependencyInjection.Orders;
 using Webshop.DependencyInjection.Stakeholders;
 using Webshop.Models.Stakeholders.Parties;
@@ -29,6 +30,7 @@ public static class ServiceCollectionExtensions
             services
                 .AddHttpContextAccessor()
                 // Webshop Contexts
+                .AddScoped<ICultureContext, CultureContext>()
                 .AddScoped<IOrderContext, OrderContext>()
                 .AddScoped<IUserContext, UserContext>()
                 // DbContext
@@ -62,6 +64,7 @@ public static class ServiceCollectionExtensions
                                 : (src as OrganizationInputDto).Adapt<Organization>());
                     });
                 })
+                .AddCountries()
                 .AddCatalog()
                 .AddOrders(isAdmin)
                 .AddStakeholders();

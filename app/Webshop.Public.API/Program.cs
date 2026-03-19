@@ -17,8 +17,11 @@ Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 try
 {
     var builder = WebApplication.CreateBuilder(args);
+    
+    // Logging (Serilog)
     builder.Host.UseSerilog((ctx, cfg) => cfg.ReadFrom.Configuration(ctx.Configuration));
 
+    // Controllers & JSON
     builder.Services.AddControllers(options =>
         {
             options.Filters.Add<WriteAuthorizationFilter>();
@@ -29,21 +32,27 @@ try
             options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
+
+    // OpenAPI
     builder.Services.AddOpenApi(options =>
     {
         options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
     });
 
+    // Authentication (JWT)
     builder.Services
         .AddWebshopAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection(WebshopConfig.MailGunSectionName).Get<MailgunConfig>()!))
         .WithJwtAuthentication();
 
+    // Authorization policies
     builder.Services.AddAuthorization(options =>
     {
+        // Customer can only view and manage their own orders
         options.AddPolicy(WebshopPolicies.CustomerOnly, policy =>
             policy.RequireClaim(WebshopClaimTypes.Permission, WebshopPermissionValues.Customer));
     });
 
+    // Entity services + DbContexts
     builder.Services
         .AddDbContext<AccountsDbContext>(options =>
         {
@@ -51,32 +60,34 @@ try
         })
         .AddWebshopServices(builder.Configuration, false);
 
+    // APP configuration
     var app = builder.Build();
 
-    if (app.Environment.IsDevelopment())
-    {
-        using var scope = app.Services.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<WebshopDbContext>();
-        await db.Database.EnsureCreatedAsync();
-    }
-
+    // OpenAPI
     app.MapOpenApi()
         .AllowAnonymous();
+    // Scalar API reference with JWT authentication
     app.MapScalarApiReference(options =>
     {
         options.Authentication = new ScalarAuthenticationOptions
         {
             PreferredSecuritySchemes = [JwtBearerDefaults.AuthenticationScheme]
         };
-    });
-    app.UseHttpsRedirection();
+    }).AllowAnonymous();
+
     app
+        // HTTPS
+        .UseHttpsRedirection()
+        // Routing
         .UseRouting()
+        // Authentication
         .UseAuthentication()
+        // Authorization
         .UseAuthorization()
         .UseEndpoints(endpoints =>
         {
-            endpoints.MapControllers();
+            endpoints.MapControllers()
+                .RequireAuthorization(WebshopPolicies.CustomerOnly);
         });
     app.Run();
 }
