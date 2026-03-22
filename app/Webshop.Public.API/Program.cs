@@ -68,7 +68,7 @@ try
         {
             options.UseSqlite(builder.Configuration.GetConnectionString(WebshopConfig.AccountsDbConnectionStringName), db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
         })
-        .AddWebshopServices(builder.Configuration);
+        .AddWebshopServices(builder.Configuration, WebshopAppTypes.Public);
 
     // APP configuration
     var app = builder.Build();

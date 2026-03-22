@@ -5,7 +5,29 @@ namespace Webshop.Web.Models;
 
 public class CultureContext : ICultureContext
 {
-    public CultureInfo Culture { get; set; } = CultureInfo.CurrentCulture;
-    public string LangCode { get; set; } = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-    public string? CountryCode { get; set; } = CultureInfo.CurrentCulture.Name.Split('-').LastOrDefault();
+    public static CultureInfo DefaultCultureInfo = CultureInfo.CurrentCulture;
+
+    public CultureInfo Culture { get; set; } = DefaultCultureInfo;
+    public string LangCode { get; set; } = DefaultCultureInfo.TwoLetterISOLanguageName;
+    public string? CountryCode { get; set; } = DefaultCultureInfo.Name.Split('-').LastOrDefault();
+
+    public Task Init(string? culture)
+    {
+        if (!string.IsNullOrWhiteSpace(culture))
+        {
+            try
+            {
+                Culture = new CultureInfo(culture);
+                LangCode = Culture.TwoLetterISOLanguageName;
+                CountryCode = Culture.Name.Split('-').LastOrDefault();
+            }
+            catch (CultureNotFoundException)
+            {
+                Culture = DefaultCultureInfo;
+                LangCode = Culture.TwoLetterISOLanguageName;
+                CountryCode = Culture.Name.Split('-').LastOrDefault();
+            }
+        }
+        return Task.CompletedTask;
+    }
 }

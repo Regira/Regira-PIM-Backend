@@ -23,13 +23,14 @@ public static class ServiceCollectionExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddWebshopServices(IConfiguration config)
+        public IServiceCollection AddWebshopServices(IConfiguration config, WebshopAppTypes webshopType)
         {
             var connectionString = config.GetConnectionString(WebshopConfig.WebshopDbConnectionStringName);
 
             services
                 .AddHttpContextAccessor()
                 // Webshop Contexts
+                .AddScoped<IAppContext>(_ => new WebshopAppContext { AppType = webshopType })
                 .AddScoped<ICultureContext, CultureContext>()
                 .AddScoped<IOrderContext, OrderContext>()
                 .AddScoped<IUserContext, UserContext>()

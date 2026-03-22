@@ -2,8 +2,9 @@
 
 public static class WebshopClaimTypes
 {
-    public const string DisplayName = "DisplayName";
-    public const string CustomerId = "CustomerId";
-    public const string Permission = "Permission";
-    public const string SuperUser = "SuperUser";
+    public const string DisplayName = "displayName";
+    public const string Culture = "culture";
+    public const string CustomerId = "customerId";
+    public const string Permission = "permission";
+    public const string SuperUser = "superUser";
 }

@@ -19,6 +19,10 @@ public class TestFixture
         public CultureInfo Culture => CultureInfo.InvariantCulture;
         public string LangCode => Culture.TwoLetterISOLanguageName;
         public string? CountryCode => Culture.Name.Split('-').LastOrDefault();
+        public Task Init()
+        {
+            return Task.CompletedTask;
+        }
     }
     public class FakeOrderContext : IOrderContext
     {

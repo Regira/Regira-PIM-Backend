@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using Webshop.Core.Abstractions;
 using Webshop.Core.Constants;
 using Webshop.Identity.Models;
 
 namespace Webshop.Identity.Services;
 
-public class WebshopUserClaimsPrincipalFactory(UserManager<WebshopIdentityUser> userManager, RoleManager<IdentityRole> roleManager ,IOptions<IdentityOptions> options)
+public class WebshopUserClaimsPrincipalFactory(UserManager<WebshopIdentityUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<IdentityOptions> options, ICultureContext cultureContext)
     : UserClaimsPrincipalFactory<WebshopIdentityUser, IdentityRole>(userManager, roleManager, options)
 {
     protected override async Task<ClaimsIdentity> GenerateClaimsAsync(WebshopIdentityUser user)
@@ -24,6 +25,8 @@ public class WebshopUserClaimsPrincipalFactory(UserManager<WebshopIdentityUser> 
         {
             identity.AddClaim(new Claim(WebshopClaimTypes.Permission, WebshopClaimTypes.SuperUser));
         }
+
+        identity.AddClaim(new Claim(WebshopClaimTypes.Culture, cultureContext.Culture.Name));
 
 
         return identity;

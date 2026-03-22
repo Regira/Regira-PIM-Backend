@@ -69,7 +69,7 @@ try
 
     // Entity services
     builder.Services
-        .AddWebshopServices(builder.Configuration)
+        .AddWebshopServices(builder.Configuration, WebshopAppTypes.Manager)
         .AddAdminServices(builder.Configuration);
 
     // APP configuration

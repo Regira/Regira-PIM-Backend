@@ -1,6 +1,7 @@
 using Bogus;
 using Regira.Entities.Services.Abstractions;
 using Webshop.Models.Catalog.Articles;
+using Webshop.Models.Catalog.UnitTypes;
 using Webshop.Models.Orders;
 using Webshop.Models.Stakeholders.ContactData;
 using Webshop.Models.Stakeholders.Parties;
@@ -12,7 +13,8 @@ using Person = Webshop.Models.Stakeholders.Parties.Person;
 namespace Webshop.WebshopDataGenerator.Infrastructure;
 
 public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityService<FacetGroup> facetGroupService, IEntityService<Article> articleService,
-    IEntityService<Party> partyService, IEntityService<Order> orderService, IEntityService<RelationshipType> relationshipTypeService)
+    IEntityService<Party> partyService, IEntityService<Order> orderService, IEntityService<RelationshipType> relationshipTypeService,
+    IEntityService<UnitType> unitTypeService)
 {
     private const int BatchSize = 100;
 
@@ -23,8 +25,9 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
         await SeedRelationships(parties, relationshipTypes);
         var facets = await SeedFacets();
         await SeedFacetGroups(facets);
+        var unitTypes = await SeedUnitTypes();
         var suppliers = parties.OfType<Organization>().ToList();
-        var articles = await SeedArticles(facets, suppliers);
+        var articles = await SeedArticles(facets, suppliers, unitTypes);
 
         await SeedOrders(parties, articles);
     }
@@ -291,7 +294,28 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
         return groups;
     }
 
-    public async Task<IList<Article>> SeedArticles(IList<Facet> facets, IList<Organization> suppliers)
+    public async Task<IList<UnitType>> SeedUnitTypes()
+    {
+        var types = new List<UnitType>
+        {
+            new() { Code = "PC",      Title = "Piece"      },
+            new() { Code = "PORTION", Title = "Portion"    },
+            new() { Code = "SLICE",   Title = "Slice"      },
+            new() { Code = "CUP",     Title = "Cup"        },
+            new() { Code = "G",       Title = "Gram"       },
+            new() { Code = "KG",      Title = "Kilogram"   },
+            new() { Code = "ML",      Title = "Milliliter" },
+            new() { Code = "L",       Title = "Liter"      },
+        };
+
+        foreach (var type in types)
+            await unitTypeService.Save(type);
+        await unitTypeService.SaveChanges();
+
+        return types;
+    }
+
+    public async Task<IList<Article>> SeedArticles(IList<Facet> facets, IList<Organization> suppliers, IList<UnitType> unitTypes)
     {
         var f = new Faker("en");
         var facetByTitle = facets.ToDictionary(x => x.Title, x => x);
@@ -367,14 +391,54 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
         }
         await articleService.SaveChanges();
 
+
         // Lookup helpers
+        var byCode = unitTypes.ToDictionary(u => u.Code!, u => u);
         var ing = ingredients.ToDictionary(i => i.Title, i => i);
+
+        // Unit type assignment per ingredient
+        var ingredientUnitTypes = new Dictionary<string, string>
+        {
+            // Proteins
+            ["Beef Patty"] = "PC", ["Veggie Patty"] = "PC", ["Chicken Breast"] = "G",
+            ["Ground Beef"] = "G", ["Bacon"] = "G", ["Ham"] = "G", ["Turkey"] = "G",
+            ["Pepperoni"] = "G", ["Egg"] = "PC",
+            // Dairy
+            ["Cheese"] = "G", ["Mozzarella"] = "G", ["Parmesan"] = "G",
+            ["Feta Cheese"] = "G", ["Cream"] = "ML", ["Butter"] = "G",
+            ["Yogurt"] = "ML",
+            // Vegetables
+            ["Lettuce"] = "G", ["Tomato"] = "PC", ["Onion"] = "PC",
+            ["Cucumber"] = "PC", ["Bell Pepper"] = "PC", ["Mushrooms"] = "G",
+            ["Olives"] = "G", ["Avocado"] = "PC", ["Pickles"] = "G", ["Jalapeños"] = "G",
+            // Sauces
+            ["Ketchup"] = "ML", ["Mustard Sauce"] = "ML", ["Mayonnaise"] = "ML",
+            ["Tomato Sauce"] = "ML", ["Caesar Dressing"] = "ML", ["Sriracha"] = "ML",
+            ["Chocolate Sauce"] = "ML", ["Caramel Syrup"] = "ML", ["Maple Syrup"] = "ML",
+            // Bases
+            ["Bun"] = "PC", ["Pizza Dough"] = "PC", ["Tortilla"] = "PC",
+            ["Spaghetti"] = "G", ["Croutons"] = "G",
+            // Beverages
+            ["Espresso"] = "ML", ["Extra Shot"] = "ML", ["Tea Leaves"] = "G",
+            ["Oat Milk"] = "ML", ["Soy Milk"] = "ML", ["Mixed Fruit"] = "G",
+            ["Whipped Cream"] = "ML",
+        };
+
+        foreach (var ingredient in ingredients)
+        {
+            if (ingredientUnitTypes.TryGetValue(ingredient.Title!, out var code))
+                ingredient.UnitTypeId = byCode[code].Id;
+            await articleService.Save(ingredient);
+        }
+        await articleService.SaveChanges();
         ArticleComponent Comp(string name, decimal qty = 1, bool omittable = false)
             => new() { ComponentId = ing[name].Id, Quantity = qty, IsOmittable = omittable };
         ArticleAllowedComponentAddition Extra(string name)
             => new() { ComponentId = ing[name].Id };
         ArticleFacet Tag(string name)
             => new() { FacetId = facetByTitle[name].Id };
+        int UnitId(string code)
+            => byCode[code].Id;
 
         // Phase 2: menu items derived from leaf-level facets
         var menuItems = new List<Article>
@@ -386,6 +450,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Traditional beef burger with lettuce and tomato",
                 Prices = [new ArticlePricePeriod { Price = 8.99m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PORTION"),
                 Facets = [Tag("Classic Burger"), Tag("Burgers"), Tag("Food")],
                 Components =
                 [
@@ -402,6 +467,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Beef burger with melted cheese",
                 Prices = [new ArticlePricePeriod { Price = 9.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PORTION"),
                 Facets = [Tag("Cheeseburger"), Tag("Burgers"), Tag("Food")],
                 Components =
                 [
@@ -417,6 +483,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Plant-based burger patty with fresh toppings",
                 Prices = [new ArticlePricePeriod { Price = 9.99m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PORTION"),
                 Facets = [Tag("Veggie Burger"), Tag("Burgers"), Tag("Food"), Tag("Vegan"), Tag("Vegetarian")],
                 Components =
                 [
@@ -433,6 +500,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Classic tomato and mozzarella pizza",
                 Prices = [new ArticlePricePeriod { Price = 11.99m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("SLICE"),
                 Facets = [Tag("Margherita"), Tag("Pizza"), Tag("Food"), Tag("Vegetarian")],
                 Components =
                 [
@@ -446,6 +514,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Pizza topped with spicy pepperoni",
                 Prices = [new ArticlePricePeriod { Price = 13.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("SLICE"),
                 Facets = [Tag("Pepperoni Pizza"), Tag("Pizza"), Tag("Food")],
                 Components =
                 [
@@ -461,6 +530,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Romaine lettuce with Caesar dressing and croutons",
                 Prices = [new ArticlePricePeriod { Price = 8.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PORTION"),
                 Facets = [Tag("Caesar Salad"), Tag("Salads"), Tag("Food")],
                 Components =
                 [
@@ -476,6 +546,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Tomato, cucumber, olives and feta cheese",
                 Prices = [new ArticlePricePeriod { Price = 7.99m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PORTION"),
                 Facets = [Tag("Greek Salad"), Tag("Salads"), Tag("Food"), Tag("Vegetarian")],
                 Components =
                 [
@@ -492,6 +563,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Creamy egg and bacon pasta",
                 Prices = [new ArticlePricePeriod { Price = 12.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PORTION"),
                 Facets = [Tag("Carbonara"), Tag("Pasta"), Tag("Food")],
                 Components =
                 [
@@ -506,6 +578,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Rich meat sauce pasta",
                 Prices = [new ArticlePricePeriod { Price = 11.99m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PORTION"),
                 Facets = [Tag("Bolognese"), Tag("Pasta"), Tag("Food")],
                 Components =
                 [
@@ -522,6 +595,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Assorted ice cream flavors",
                 Prices = [new ArticlePricePeriod { Price = 4.99m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PC"),
                 Facets = [Tag("Ice Cream"), Tag("Desserts"), Tag("Food")],
                 Components = [Comp("Whipped Cream", omittable: true)],
                 AllowedComponentAdditions = [Extra("Chocolate Sauce"), Extra("Caramel Syrup")]
@@ -532,6 +606,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Freshly baked cakes and slices",
                 Prices = [new ArticlePricePeriod { Price = 5.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("SLICE"),
                 Facets = [Tag("Cake"), Tag("Desserts"), Tag("Food")],
                 Components =
                 [
@@ -547,6 +622,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Espresso-based beverages",
                 Prices = [new ArticlePricePeriod { Price = 3.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("CUP"),
                 Facets = [Tag("Coffee"), Tag("Hot Drinks"), Tag("Beverages")],
                 Components = [Comp("Espresso")],
                 AllowedComponentAdditions = [Extra("Extra Shot"), Extra("Oat Milk"), Extra("Soy Milk"), Extra("Whipped Cream"), Extra("Caramel Syrup")]
@@ -557,6 +633,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Hot and iced tea varieties",
                 Prices = [new ArticlePricePeriod { Price = 2.99m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("CUP"),
                 Facets = [Tag("Tea"), Tag("Hot Drinks"), Tag("Beverages")],
                 Components = [Comp("Tea Leaves")],
                 AllowedComponentAdditions = [Extra("Oat Milk"), Extra("Soy Milk")]
@@ -568,6 +645,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Freshly squeezed fruit juices",
                 Prices = [new ArticlePricePeriod { Price = 4.49m }],
                 AllowAdditions = false,
+                UnitTypeId = UnitId("ML"),
                 Facets = [Tag("Fresh Juice"), Tag("Cold Drinks"), Tag("Beverages"), Tag("Vegan")],
                 Components = [Comp("Mixed Fruit", qty: 3)]
             },
@@ -577,6 +655,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Blended fruit and yogurt smoothies",
                 Prices = [new ArticlePricePeriod { Price = 5.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("ML"),
                 Facets = [Tag("Smoothies"), Tag("Cold Drinks"), Tag("Beverages"), Tag("Vegetarian")],
                 Components = [Comp("Mixed Fruit", qty: 2), Comp("Yogurt")],
                 AllowedComponentAdditions = [Extra("Whipped Cream"), Extra("Chocolate Sauce")]
@@ -588,6 +667,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Fluffy breakfast pancakes",
                 Prices = [new ArticlePricePeriod { Price = 7.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PC"),
                 Facets = [Tag("Pancakes"), Tag("Breakfast"), Tag("Food"), Tag("Vegetarian")],
                 Components =
                 [
@@ -601,6 +681,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Buttery French pastry",
                 Prices = [new ArticlePricePeriod { Price = 3.49m }],
                 AllowAdditions = true,
+                UnitTypeId = UnitId("PC"),
                 Facets = [Tag("Croissant"), Tag("Breakfast"), Tag("Food"), Tag("Vegetarian")],
                 Components = [Comp("Butter")],
                 AllowedComponentAdditions = [Extra("Cheese"), Extra("Ham")]
@@ -639,6 +720,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Title = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
                 Description = f.Lorem.Sentence(),
                 Prices = [new ArticlePricePeriod { Price = price }],
+                UnitTypeId = f.PickRandom(unitTypes).Id,
                 Facets = f.PickRandom(facets, f.Random.Int(1, 3))
                     .DistinctBy(c => c.Id)
                     .Select(c => new ArticleFacet { FacetId = c.Id })

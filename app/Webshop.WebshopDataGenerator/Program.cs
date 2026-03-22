@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Regira.Office.Mail.MailGun;
 using Serilog;
 using Webshop.Admin.DependencyInjection;
+using Webshop.Core.Constants;
 using Webshop.Data;
 using Webshop.DependencyInjection;
 using Webshop.Identity.DependencyInjection;
@@ -28,7 +29,7 @@ try
         .AddWebshopAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection("MailGun").Get<MailgunConfig>()!));
 
     builder.Services
-        .AddWebshopServices(builder.Configuration)
+        .AddWebshopServices(builder.Configuration, WebshopAppTypes.System)
         .AddAdminServices(builder.Configuration)
         .AddTransient<WebshopDataSeeder>();
 
