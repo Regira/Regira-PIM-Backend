@@ -19,7 +19,8 @@ public class TestFixture
         public CultureInfo Culture => CultureInfo.InvariantCulture;
         public string LangCode => Culture.TwoLetterISOLanguageName;
         public string? CountryCode => Culture.Name.Split('-').LastOrDefault();
-        public Task Init()
+
+        public Task Init(string? culture)
         {
             return Task.CompletedTask;
         }

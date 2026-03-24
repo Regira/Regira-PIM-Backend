@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Regira.Entities.Web.Controllers.Abstractions;
 using Webshop.Models.Catalog.Articles;
+using Webshop.Models.Catalog.Articles.DTO;
 
 namespace Webshop.Web.Controllers;
 

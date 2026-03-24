@@ -1,4 +1,4 @@
-using Webshop.Models.Catalog.Articles;
+using Webshop.Models.Catalog.Articles.DTO;
 using Webshop.Models.Stakeholders.Parties;
 
 namespace Webshop.Models.Orders;
