@@ -11,6 +11,7 @@ public class ArticleInputDto
     public int? UnitTypeId { get; set; }
     public bool AllowAdditions { get; set; } = true;
     public ICollection<ArticleFacetInputDto>? Facets { get; set; }
+    public ICollection<ArticleComponentInputDto>? Assemblies { get; set; }
     public ICollection<ArticleComponentInputDto>? Components { get; set; }
     public ICollection<ArticleAllowedComponentAdditionInputDto>? AllowedComponentAdditions { get; set; }
     public ICollection<ArticleSupplierInputDto>? Suppliers { get; set; }

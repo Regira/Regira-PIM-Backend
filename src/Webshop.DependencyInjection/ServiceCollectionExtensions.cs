@@ -1,5 +1,6 @@
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Regira.DAL.EFcore.Services;
@@ -41,7 +42,8 @@ public static class ServiceCollectionExtensions
                         .UseSqlite(connectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                         .AddPrimerInterceptors(sp)
                         .AddNormalizerInterceptors(sp)
-                        .AddAutoTruncateInterceptors();
+                        .AddAutoTruncateInterceptors()
+                        .ConfigureWarnings(w => w.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
                 })
                 .AddEntityServices();
             return services;

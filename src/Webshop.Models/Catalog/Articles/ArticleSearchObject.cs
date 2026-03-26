@@ -9,6 +9,9 @@ public class ArticleSearchObject : SearchObject
     /// </summary>
     public ICollection<int>? FacetId { get; set; }
 
+    public bool? IsComponent { get; set; }
+    public bool? IsAssembly { get; set; }
+
     /// <summary>
     /// Filters articles that belong to ANY of the specified assembly IDs.
     /// </summary>

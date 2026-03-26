@@ -13,6 +13,12 @@ public class ArticleQueryBuilder : FilteredQueryBuilderBase<Article, int, Articl
 
         if (so.FacetId?.Any() == true)
             query = query.Where(x => x.Facets!.Any(ac => so.FacetId.Contains(ac.FacetId)));
+
+        if (so.IsComponent.HasValue)
+            query = query.Where(x => so.IsComponent.Value == x.Assemblies!.Any());
+        if (so.IsAssembly.HasValue)
+            query = query.Where(x => so.IsAssembly.Value == x.Components!.Any());
+
         if (so.AssemblyId?.Any() == true)
             query = query.Where(x => x.Assemblies!.Any(a => so.AssemblyId.Contains(a.AssemblyId)));
         if (so.ComponentId?.Any() == true)
