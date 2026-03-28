@@ -732,10 +732,10 @@ public partial class EntityServiceBuilder<TContext, TEntity, TKey>
         Func<IServiceProvider, TImplementation> factory)
         where TImplementation : class, IQueryBuilder<TEntity, TKey, SearchObject<TKey>, EntitySortBy, EntityIncludes>;
 
-    EntityServiceBuilder<TContext, TEntity, TKey> AddQueryFilter<TImplementation>()
+    EntityServiceBuilder<TContext, TEntity, TKey> AddFilter<TImplementation>()
         where TImplementation : class, IFilteredQueryBuilder<TEntity, TKey, SearchObject<TKey>>;
 
-    EntityServiceBuilder<TContext, TEntity, TKey> AddQueryFilter<TImplementation>(
+    EntityServiceBuilder<TContext, TEntity, TKey> AddFilter<TImplementation>(
         Func<IServiceProvider, TImplementation> factory)
         where TImplementation : class, IFilteredQueryBuilder<TEntity, TKey, SearchObject<TKey>>;
 
@@ -749,7 +749,6 @@ public partial class EntityServiceBuilder<TContext, TEntity, TKey>
     EntityServiceBuilder<TContext, TEntity, TKey> Includes(
         Func<IQueryable<TEntity>, EntityIncludes?, IQueryable<TEntity>> addIncludes);
 
-    // Primers
     EntityServiceBuilder<TContext, TEntity, TKey> AddPrimer<TPrimer>()
         where TPrimer : class, IEntityPrimer<TEntity>;
 
@@ -764,14 +763,28 @@ public partial class EntityServiceBuilder<TContext, TEntity, TKey>
     EntityServiceBuilder<TContext, TEntity, TKey> Process(
         Action<TEntity, EntityIncludes?> process);
 
-    EntityServiceBuilder<TContext, TEntity, TKey> Process<TProcessor>()
+    EntityServiceBuilder<TContext, TEntity, TKey> AddProcessor<TProcessor>()
         where TProcessor : class, IEntityProcessor<TEntity, EntityIncludes>;
 
-    // Preppers (inline — for class-based preppers implement IEntityPrepper<TEntity>)
+    // Preppers
+    // inline shortcuts:
     EntityServiceBuilder<TContext, TEntity, TKey> Prepare(Action<TEntity> prepareFunc);
 
     EntityServiceBuilder<TContext, TEntity, TKey> Prepare(
         Func<TEntity, TContext, Task> prepareFunc);
+
+    // class-based:
+    EntityServiceBuilder<TContext, TEntity, TKey> AddPrepper<TPrepper>()
+        where TPrepper : class, IEntityPrepper<TEntity>;
+
+    // Primers
+    // inline shortcuts:
+    EntityServiceBuilder<TContext, TEntity, TKey> Prime(Action<TEntity> primeFunc);
+
+    EntityServiceBuilder<TContext, TEntity, TKey> Prime(
+        Func<TEntity, EntityEntry, TContext, Task> primeFunc);
+
+    // class-based (moved here from above)
 
     // Related child collections (managed by RelatedCollectionPrepper)
     EntityServiceBuilder<TContext, TEntity, TKey> Related<TRelated, TRelatedKey>(
@@ -805,10 +818,10 @@ public partial class EntitySearchObjectServiceBuilder<TContext, TEntity, TKey, T
     EntitySearchObjectServiceBuilder<...> UseEntityService<TService>()
         where TService : class, IEntityService<TEntity, TKey, TSearchObject>;
 
-    EntitySearchObjectServiceBuilder<...> AddQueryFilter<TImplementation>()
+    EntitySearchObjectServiceBuilder<...> AddFilter<TImplementation>()
         where TImplementation : class, IFilteredQueryBuilder<TEntity, TKey, TSearchObject>;
 
-    EntitySearchObjectServiceBuilder<...> AddQueryFilter<TImplementation>(
+    EntitySearchObjectServiceBuilder<...> AddFilter<TImplementation>(
         Func<IServiceProvider, TImplementation> factory)
         where TImplementation : class, IFilteredQueryBuilder<TEntity, TKey, TSearchObject>;
 
@@ -891,7 +904,7 @@ public partial class ComplexEntityServiceBuilder<TContext, TEntity, TKey, TSearc
         where TImplementation : class, IQueryBuilder<TEntity, TKey, TSearchObject, TSortBy, TIncludes>;
 
     // NEW: typed sorting
-    ComplexEntityServiceBuilder<...> SortBy<TImplementation>()
+    ComplexEntityServiceBuilder<...> AddSortBy<TImplementation>()
         where TImplementation : class, ISortedQueryBuilder<TEntity, TKey, TSortBy>;
 
     ComplexEntityServiceBuilder<...> SortBy(
@@ -907,7 +920,7 @@ public partial class ComplexEntityServiceBuilder<TContext, TEntity, TKey, TSearc
     // NEW: typed processors
     ComplexEntityServiceBuilder<...> Process(Func<IList<TEntity>, TIncludes?, Task> process);
     ComplexEntityServiceBuilder<...> Process(Action<TEntity, TIncludes?> process);
-    ComplexEntityServiceBuilder<...> Process<TImplementation>()
+    ComplexEntityServiceBuilder<...> AddProcessor<TImplementation>()
         where TImplementation : class, IEntityProcessor<TEntity, TIncludes>;
 
     void Build();

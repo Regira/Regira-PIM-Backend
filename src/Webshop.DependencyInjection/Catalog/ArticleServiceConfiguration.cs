@@ -11,15 +11,15 @@ public static class ArticleServiceConfiguration
     {
         services.For<Article, ArticleSearchObject, ArticleSortBy, ArticleIncludes>(e =>
         {
-            e.AddQueryFilter<ArticleQueryBuilder>();
-            e.SortBy<ArticleSortingQueryBuilder>();
-            e.Includes<ArticleIncludingQueryBuilder>();
+            e.AddFilter<ArticleQueryBuilder>();
+            e.AddSortBy<ArticleSortingQueryBuilder>();
+            e.AddIncludes<ArticleIncludingQueryBuilder>();
             e.Related(x => x.Facets);
             e.Related(x => x.Components);
             e.Related(x => x.AllowedComponentAdditions);
             e.Related(x => x.Suppliers);
             e.Related(x => x.Prices);
-            e.Process<ArticleProcessor>();
+            e.AddProcessor<ArticleProcessor>();
             e.AddNormalizer<ArticleNormalizer>();
             e.UseEntityService<ArticleValidateManager>();
         });

@@ -235,7 +235,7 @@ public static IEntityServiceCollection<WebshopDbContext> AddCategories(this IEnt
                 query = query.Include(x => x.ChildEntities!).ThenInclude(x => x.Child);
             return query;
         });
-        e.Process<CategoryProcessor>();
+        e.AddProcessor<CategoryProcessor>();
         e.Related(x => x.ParentEntities);
         e.Related(x => x.ChildEntities);
     });
@@ -315,7 +315,7 @@ public static IEntityServiceCollection<WebshopDbContext> AddProducts(this IEntit
 {
     services.For<Product, ProductSearchObject, ProductSortBy, EntityIncludes>(e =>
     {
-        e.AddQueryFilter<ProductQueryBuilder>();
+        e.AddFilter<ProductQueryBuilder>();
         e.SortBy((query, sortBy) =>
         {
             if (typeof(IOrderedQueryable).IsAssignableFrom(query.Expression.Type) && query is IOrderedQueryable<Product> sorted)
@@ -502,7 +502,7 @@ public static IEntityServiceCollection<WebshopDbContext> AddOrders(this IEntityS
 {
     services.For<Order, OrderSearchObject, EntitySortBy, OrderIncludes>(e =>
     {
-        e.AddQueryFilter<OrderQueryBuilder>();
+        e.AddFilter<OrderQueryBuilder>();
         e.SortBy((query, sortBy) => query.OrderByDescending(x => x.Created));
         e.Includes((query, includes) => query
             .Include(x => x.Customer!)
@@ -578,7 +578,7 @@ public class ProductPrepper : EntityPrepperBase<Product>
         return Task.CompletedTask;
     }
 }
-// Registration: e.Prepare<ProductPrepper>();
+// Registration: e.AddPrepper<ProductPrepper>();
 ```
 
 ### Primers

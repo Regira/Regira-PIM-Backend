@@ -17,9 +17,9 @@ public static class OrderServiceConfiguration
     {
         services.For<Order, OrderSearchObject, OrderSortBy, OrderIncludes>(e =>
         {
-            e.AddQueryFilter<OrderQueryBuilder>();
-            e.SortBy<OrderSortingQueryBuilder>();
-            e.Includes<OrderIncludingQueryBuilder>();
+            e.AddFilter<OrderQueryBuilder>();
+            e.AddSortBy<OrderSortingQueryBuilder>();
+            e.AddIncludes<OrderIncludingQueryBuilder>();
             e.Related(x => x.OrderLines, item => item.OrderLines?.SetSortOrder());
             e.AddPrepper<OrderPrepper>();
             e.AddNormalizer<OrderNormalizer>();

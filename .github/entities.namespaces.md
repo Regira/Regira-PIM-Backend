@@ -88,7 +88,7 @@
 | `Regira.Entities.DependencyInjection.ServiceBuilders` | `EntityServiceCollection<>`, `EntityServiceBuilder<>`, `EntityIntServiceBuilder<>`, `EntitySearchObjectServiceBuilder<>`, `ComplexEntityServiceBuilder<>`, `ComplexEntityIntServiceBuilder<>` |
 | `Regira.Entities.DependencyInjection.ServiceBuilders.Models` | `EntityServiceCollectionOptions` |
 | `Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions` | `IEntityServiceCollection<>` |
-| `Regira.Entities.DependencyInjection.QueryBuilders` | `ServiceCollectionQueryFilterExtensions` *(`AddQueryFilter<>()`, `AddGlobalFilterQueryBuilder<>()`, `RemoveGlobalQueryFilters()`, `AddDefaultGlobalQueryFilters()` — on `IServiceCollection` and `EntityServiceCollectionOptions`)* |
+| `Regira.Entities.DependencyInjection.QueryBuilders` | `ServiceCollectionQueryFilterExtensions` *(`AddFilter<>()`, `AddGlobalFilterQueryBuilder<>()`, `RemoveGlobalQueryFilters()`, `AddDefaultGlobalQueryFilters()` — on `IServiceCollection` and `EntityServiceCollectionOptions`)* |
 | `Regira.Entities.DependencyInjection.Preppers` | `ServiceCollectionPrepperExtensions` *(`AddPrepper<>()` — on `IServiceCollection` and `EntityServiceCollectionOptions`)* |
 | `Regira.Entities.DependencyInjection.Mapping` | `ServiceCollectionMappingExtensions` *(`AddMapping<>()`, `AddAfterMapper<>()`, `AfterMap<>()` — on `EntityServiceCollectionOptions`)*, `MappedEntityServiceBuilder<>` |
 

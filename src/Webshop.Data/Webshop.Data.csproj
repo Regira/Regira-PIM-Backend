@@ -12,7 +12,7 @@
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="*" />
-	<PackageReference Include="Regira.Entities.EFcore" Version="5.0.8" />
+	<PackageReference Include="Regira.Entities.EFcore" Version="5.0.9" />
   </ItemGroup>
 
 </Project>

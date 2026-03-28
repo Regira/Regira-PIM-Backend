@@ -23,7 +23,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="*" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="*" />
 		<PackageReference Include="Regira.Security.Authentication.Web" Version="*" />
-		<PackageReference Include="Scalar.AspNetCore" Version="*" />
+		<PackageReference Include="Scalar.AspNetCore" Version="2.13.15" />
 	</ItemGroup>
 
 	<ItemGroup>

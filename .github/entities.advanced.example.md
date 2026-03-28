@@ -459,7 +459,7 @@ public static class StakeholderServiceCollectionExtensions
                     };
                 });
 
-                e.Process<StakeholderProcessor>();
+                e.AddProcessor<StakeholderProcessor>();
                 e.AddPrimer<StakeholderPrimer>();
             });
 }
@@ -469,8 +469,8 @@ public static class ProjectServiceCollectionExtensions
         => services
             .For<Project, ProjectSearchObject, ProjectSortBy, ProjectIncludes>(e =>
             {
-                e.AddQueryFilter<ProjectFilteredQueryBuilder>();
-                e.SortBy<ProjectSortingQueryBuilder>();
+                e.AddFilter<ProjectFilteredQueryBuilder>();
+                e.AddSortBy<ProjectSortingQueryBuilder>();
                 e.Includes<ProjectIncludingQueryBuilder>();
 
                 e.UseEntityService<ProjectManager>();

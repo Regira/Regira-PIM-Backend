@@ -647,7 +647,7 @@ but can also be registered manually if you want to customize the configuration.
 | Problem | Likely Cause | Fix |
 |---------|-------------|-----|
 | Navigation properties not loaded | Missing `Includes` config or wrong flag | Check `e.Includes(...)` and that the client sends the correct `includes` flag |
-| Filter not applied | Query builder not registered or wrong `SearchObject` property name | Verify `e.AddQueryFilter<>()` or `e.Filter(...)` and check property names |
+| Filter not applied | Query builder not registered or wrong `SearchObject` property name | Verify `e.AddFilter<>()` or `e.Filter(...)` and check property names |
 | Mapping errors | Mapster/AutoMapper not configured or property name mismatch | Ensure `options.UseMapsterMapping()` is called; check DTO property names |
 | Normalizer not running | `AddNormalizerInterceptors(sp)` missing or wrong overload | Use `(sp, options) =>` factory overload in `AddDbContext` |
 | Primers not running | `AddPrimerInterceptors(sp)` missing | Same as above |
