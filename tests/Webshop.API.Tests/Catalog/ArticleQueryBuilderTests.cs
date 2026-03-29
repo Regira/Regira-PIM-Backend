@@ -7,7 +7,7 @@ namespace Webshop.API.Tests.Catalog;
 public class ArticleQueryBuilderTests
 {
     private static readonly DateTime RefDate = new(2026, 3, 14, 12, 0, 0, DateTimeKind.Utc);
-    private readonly ArticleQueryBuilder _builder = new();
+    private readonly ArticleQueryFilter _builder = new();
 
     private IEnumerable<Article> Build(ArticleSearchObject? so, params Article[] articles)
         => _builder.Build(articles.AsQueryable(), so);

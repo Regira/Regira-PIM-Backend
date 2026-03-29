@@ -11,7 +11,7 @@ public static class ArticleServiceConfiguration
     {
         services.For<Article, ArticleSearchObject, ArticleSortBy, ArticleIncludes>(e =>
         {
-            e.AddFilter<ArticleQueryBuilder>();
+            e.AddFilter<ArticleQueryFilter>();
             e.AddSortBy<ArticleSortingQueryBuilder>();
             e.AddIncludes<ArticleIncludingQueryBuilder>();
             e.Related(x => x.Facets);

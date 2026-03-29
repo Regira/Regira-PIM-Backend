@@ -4,7 +4,7 @@ using Webshop.Models.Catalog.Pricing.Utilities;
 
 namespace Webshop.Services.Entities.Catalog.Articles;
 
-public class ArticleQueryBuilder : FilteredQueryBuilderBase<Article, int, ArticleSearchObject>
+public class ArticleQueryFilter : FilteredQueryBuilderBase<Article, int, ArticleSearchObject>
 {
     public override IQueryable<Article> Build(IQueryable<Article> query, ArticleSearchObject? so)
     {

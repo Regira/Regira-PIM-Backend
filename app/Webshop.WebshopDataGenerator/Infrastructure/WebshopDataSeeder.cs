@@ -298,14 +298,16 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
     {
         var types = new List<UnitType>
         {
-            new() { Code = "PC",      Title = "Piece"      },
-            new() { Code = "PORTION", Title = "Portion"    },
-            new() { Code = "SLICE",   Title = "Slice"      },
-            new() { Code = "CUP",     Title = "Cup"        },
-            new() { Code = "G",       Title = "Gram"       },
-            new() { Code = "KG",      Title = "Kilogram"   },
-            new() { Code = "ML",      Title = "Milliliter" },
-            new() { Code = "L",       Title = "Liter"      },
+            new() { Code = "pc",      Title = "Piece"      },
+            new() { Code = "portion", Title = "Portion"    },
+            new() { Code = "slice",   Title = "Slice"      },
+            new() { Code = "cup",     Title = "Cup"        },
+            new() { Code = "bowl",    Title = "Bowl"       },
+            new() { Code = "plate",   Title = "Plate"      },
+            new() { Code = "g",       Title = "Gram"       },
+            new() { Code = "kg",      Title = "Kilogram"   },
+            new() { Code = "ml",      Title = "Milliliter" },
+            new() { Code = "l",       Title = "Liter"      },
         };
 
         foreach (var type in types)
@@ -705,6 +707,18 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
         string[] adjectives = ["Spicy", "Smoky", "Crispy", "Golden", "Grilled", "Fresh", "Loaded", "Signature", "Double", "BBQ"];
         string[] nouns = ["Burger", "Sandwich", "Wrap", "Bowl", "Salad", "Pizza", "Pasta", "Toast", "Roll", "Plate"];
 
+        var servingUnitTypes = unitTypes.Where(u => u.Code is "PC" or "PORTION" or "SLICE" or "CUP" or "BOWL" or "PLATE").ToList();
+        decimal ComponentQty(Article component) =>
+            ingredientUnitTypes.TryGetValue(component.Title!, out var uCode) ? uCode switch
+            {
+                "PC" => (decimal)f.Random.Int(1, 3),
+                "G"  => f.PickRandom(new[] { 25m, 50m, 75m, 100m, 150m }),
+                "ML" => f.PickRandom(new[] { 15m, 30m, 50m, 100m, 150m }),
+                "KG" => f.PickRandom(new[] { 0.25m, 0.5m, 1m }),
+                "L"  => f.PickRandom(new[] { 0.25m, 0.5m, 1m }),
+                _    => 1m
+            } : 1m;
+
         var allArticles = new List<Article>(menuItems);
 
         for (int i = 0; i < 500; i++)
@@ -720,13 +734,13 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Title = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
                 Description = f.Lorem.Sentence(),
                 Prices = [new ArticlePricePeriod { Price = price }],
-                UnitTypeId = f.PickRandom(unitTypes).Id,
+                UnitTypeId = f.PickRandom(servingUnitTypes).Id,
                 Facets = f.PickRandom(facets, f.Random.Int(1, 3))
                     .DistinctBy(c => c.Id)
                     .Select(c => new ArticleFacet { FacetId = c.Id })
                     .ToList(),
                 Components = selectedIngredients
-                    .Select(c => new ArticleComponent { ComponentId = c.Id, Quantity = f.Random.Decimal(0.5m, 5m), IsOmittable = f.Random.Bool(0.4f) })
+                    .Select(c => new ArticleComponent { ComponentId = c.Id, Quantity = ComponentQty(c), IsOmittable = f.Random.Bool(0.4f) })
                     .ToList(),
                 AllowAdditions = f.Random.Bool(0.9f),
                 AllowedComponentAdditions = f.Random.Bool(0.5f)
@@ -773,7 +787,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
             var orderLines = selectedArticles.Select((article, idx) =>
             {
                 var unitPrice = article.Prices?.FirstOrDefault()?.Price ?? 0m;
-                var quantity = f.Random.Decimal(1m, 3m);
+                var quantity = (decimal)f.Random.Int(1, 3);
 
                 List<OrderLineComponentAddition>? partAdditions = null;
                 if (f.Random.Bool(0.4f) && componentArticles.Count > 0)

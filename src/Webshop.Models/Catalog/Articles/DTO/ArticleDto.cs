@@ -12,7 +12,6 @@ public class ArticleDto : ArticleCoreDto
     public bool AllowAdditions { get; set; }
 
     public ICollection<ArticleFacetDto>? Facets { get; set; }
-    public ICollection<ArticleComponentDto>? Assemblies { get; set; }
     public ICollection<ArticleComponentDto>? Components { get; set; }
     public ICollection<ArticleAllowedComponentAdditionDto>? AllowedComponentAdditions { get; set; }
     public ICollection<ArticleSupplierDto>? Suppliers { get; set; }

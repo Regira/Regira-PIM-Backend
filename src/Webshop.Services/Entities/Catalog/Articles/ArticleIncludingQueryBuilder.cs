@@ -15,14 +15,12 @@ public class ArticleIncludingQueryBuilder : IIncludableQueryBuilder<Article, int
 
         if (includes.Value.HasFlag(ArticleIncludes.Facets))
             query = query.Include(x => x.Facets!).ThenInclude(ac => ac.Facet);
-        if (includes.Value.HasFlag(ArticleIncludes.Assemblies))
-            query = query.Include(x => x.Assemblies!).ThenInclude(ac => ac.Component!);
         if (includes.Value.HasFlag(ArticleIncludes.Components))
-            query = query.Include(x => x.Components!).ThenInclude(ac => ac.Component!).ThenInclude(x => x.UnitType);
+            query = query.Include(x => x.Components!.OrderBy(c => c.Component!.Title)).ThenInclude(ac => ac.Component!).ThenInclude(x => x.UnitType);
         if (includes.Value.HasFlag(ArticleIncludes.AllowedComponentAdditions))
             query = query.Include(x => x.AllowedComponentAdditions!).ThenInclude(ac => ac.Component!).ThenInclude(a => a.Prices!.OrderByDescending(ph => ph.EndDate ?? ph.StartDate));
         if (includes.Value.HasFlag(ArticleIncludes.Suppliers))
-            query = query.Include(x => x.Suppliers!).ThenInclude(s => s.Supplier);
+            query = query.Include(x => x.Suppliers!.OrderBy(s => s.Supplier!.Id)).ThenInclude(s => s.Supplier);
         if (includes.Value.HasFlag(ArticleIncludes.PricePeriod))
             query = query.Include(x => x.Prices!.OrderByDescending(ph => ph.EndDate ?? ph.StartDate));
 
