@@ -402,28 +402,28 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
         var ingredientUnitTypes = new Dictionary<string, string>
         {
             // Proteins
-            ["Beef Patty"] = "PC", ["Veggie Patty"] = "PC", ["Chicken Breast"] = "G",
-            ["Ground Beef"] = "G", ["Bacon"] = "G", ["Ham"] = "G", ["Turkey"] = "G",
-            ["Pepperoni"] = "G", ["Egg"] = "PC",
+            ["Beef Patty"] = "pc", ["Veggie Patty"] = "pc", ["Chicken Breast"] = "g",
+            ["Ground Beef"] = "g", ["Bacon"] = "g", ["Ham"] = "g", ["Turkey"] = "g",
+            ["Pepperoni"] = "g", ["Egg"] = "pc",
             // Dairy
-            ["Cheese"] = "G", ["Mozzarella"] = "G", ["Parmesan"] = "G",
-            ["Feta Cheese"] = "G", ["Cream"] = "ML", ["Butter"] = "G",
-            ["Yogurt"] = "ML",
+            ["Cheese"] = "g", ["Mozzarella"] = "g", ["Parmesan"] = "g",
+            ["Feta Cheese"] = "g", ["Cream"] = "ml", ["Butter"] = "g",
+            ["Yogurt"] = "ml",
             // Vegetables
-            ["Lettuce"] = "G", ["Tomato"] = "PC", ["Onion"] = "PC",
-            ["Cucumber"] = "PC", ["Bell Pepper"] = "PC", ["Mushrooms"] = "G",
-            ["Olives"] = "G", ["Avocado"] = "PC", ["Pickles"] = "G", ["Jalapeños"] = "G",
+            ["Lettuce"] = "g", ["Tomato"] = "pc", ["Onion"] = "pc",
+            ["Cucumber"] = "pc", ["Bell Pepper"] = "pc", ["Mushrooms"] = "g",
+            ["Olives"] = "g", ["Avocado"] = "pc", ["Pickles"] = "g", ["Jalapeños"] = "g",
             // Sauces
-            ["Ketchup"] = "ML", ["Mustard Sauce"] = "ML", ["Mayonnaise"] = "ML",
-            ["Tomato Sauce"] = "ML", ["Caesar Dressing"] = "ML", ["Sriracha"] = "ML",
-            ["Chocolate Sauce"] = "ML", ["Caramel Syrup"] = "ML", ["Maple Syrup"] = "ML",
+            ["Ketchup"] = "ml", ["Mustard Sauce"] = "ml", ["Mayonnaise"] = "ml",
+            ["Tomato Sauce"] = "ml", ["Caesar Dressing"] = "ml", ["Sriracha"] = "ml",
+            ["Chocolate Sauce"] = "ml", ["Caramel Syrup"] = "ml", ["Maple Syrup"] = "ml",
             // Bases
-            ["Bun"] = "PC", ["Pizza Dough"] = "PC", ["Tortilla"] = "PC",
-            ["Spaghetti"] = "G", ["Croutons"] = "G",
+            ["Bun"] = "pc", ["Pizza Dough"] = "pc", ["Tortilla"] = "pc",
+            ["Spaghetti"] = "g", ["Croutons"] = "g",
             // Beverages
-            ["Espresso"] = "ML", ["Extra Shot"] = "ML", ["Tea Leaves"] = "G",
-            ["Oat Milk"] = "ML", ["Soy Milk"] = "ML", ["Mixed Fruit"] = "G",
-            ["Whipped Cream"] = "ML",
+            ["Espresso"] = "ml", ["Extra Shot"] = "ml", ["Tea Leaves"] = "g",
+            ["Oat Milk"] = "ml", ["Soy Milk"] = "ml", ["Mixed Fruit"] = "g",
+            ["Whipped Cream"] = "ml",
         };
 
         foreach (var ingredient in ingredients)
@@ -452,7 +452,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Traditional beef burger with lettuce and tomato",
                 Prices = [new ArticlePricePeriod { Price = 8.99m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PORTION"),
+                UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Classic Burger"), Tag("Burgers"), Tag("Food")],
                 Components =
                 [
@@ -469,7 +469,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Beef burger with melted cheese",
                 Prices = [new ArticlePricePeriod { Price = 9.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PORTION"),
+                UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Cheeseburger"), Tag("Burgers"), Tag("Food")],
                 Components =
                 [
@@ -485,7 +485,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Plant-based burger patty with fresh toppings",
                 Prices = [new ArticlePricePeriod { Price = 9.99m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PORTION"),
+                UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Veggie Burger"), Tag("Burgers"), Tag("Food"), Tag("Vegan"), Tag("Vegetarian")],
                 Components =
                 [
@@ -502,7 +502,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Classic tomato and mozzarella pizza",
                 Prices = [new ArticlePricePeriod { Price = 11.99m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("SLICE"),
+                UnitTypeId = UnitId("slice"),
                 Facets = [Tag("Margherita"), Tag("Pizza"), Tag("Food"), Tag("Vegetarian")],
                 Components =
                 [
@@ -516,7 +516,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Pizza topped with spicy pepperoni",
                 Prices = [new ArticlePricePeriod { Price = 13.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("SLICE"),
+                UnitTypeId = UnitId("slice"),
                 Facets = [Tag("Pepperoni Pizza"), Tag("Pizza"), Tag("Food")],
                 Components =
                 [
@@ -532,7 +532,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Romaine lettuce with Caesar dressing and croutons",
                 Prices = [new ArticlePricePeriod { Price = 8.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PORTION"),
+                UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Caesar Salad"), Tag("Salads"), Tag("Food")],
                 Components =
                 [
@@ -548,7 +548,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Tomato, cucumber, olives and feta cheese",
                 Prices = [new ArticlePricePeriod { Price = 7.99m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PORTION"),
+                UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Greek Salad"), Tag("Salads"), Tag("Food"), Tag("Vegetarian")],
                 Components =
                 [
@@ -565,7 +565,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Creamy egg and bacon pasta",
                 Prices = [new ArticlePricePeriod { Price = 12.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PORTION"),
+                UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Carbonara"), Tag("Pasta"), Tag("Food")],
                 Components =
                 [
@@ -580,7 +580,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Rich meat sauce pasta",
                 Prices = [new ArticlePricePeriod { Price = 11.99m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PORTION"),
+                UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Bolognese"), Tag("Pasta"), Tag("Food")],
                 Components =
                 [
@@ -597,7 +597,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Assorted ice cream flavors",
                 Prices = [new ArticlePricePeriod { Price = 4.99m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PC"),
+                UnitTypeId = UnitId("pc"),
                 Facets = [Tag("Ice Cream"), Tag("Desserts"), Tag("Food")],
                 Components = [Comp("Whipped Cream", omittable: true)],
                 AllowedComponentAdditions = [Extra("Chocolate Sauce"), Extra("Caramel Syrup")]
@@ -608,7 +608,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Freshly baked cakes and slices",
                 Prices = [new ArticlePricePeriod { Price = 5.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("SLICE"),
+                UnitTypeId = UnitId("slice"),
                 Facets = [Tag("Cake"), Tag("Desserts"), Tag("Food")],
                 Components =
                 [
@@ -624,7 +624,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Espresso-based beverages",
                 Prices = [new ArticlePricePeriod { Price = 3.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("CUP"),
+                UnitTypeId = UnitId("cup"),
                 Facets = [Tag("Coffee"), Tag("Hot Drinks"), Tag("Beverages")],
                 Components = [Comp("Espresso")],
                 AllowedComponentAdditions = [Extra("Extra Shot"), Extra("Oat Milk"), Extra("Soy Milk"), Extra("Whipped Cream"), Extra("Caramel Syrup")]
@@ -635,7 +635,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Hot and iced tea varieties",
                 Prices = [new ArticlePricePeriod { Price = 2.99m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("CUP"),
+                UnitTypeId = UnitId("cup"),
                 Facets = [Tag("Tea"), Tag("Hot Drinks"), Tag("Beverages")],
                 Components = [Comp("Tea Leaves")],
                 AllowedComponentAdditions = [Extra("Oat Milk"), Extra("Soy Milk")]
@@ -647,7 +647,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Freshly squeezed fruit juices",
                 Prices = [new ArticlePricePeriod { Price = 4.49m }],
                 AllowAdditions = false,
-                UnitTypeId = UnitId("ML"),
+                UnitTypeId = UnitId("ml"),
                 Facets = [Tag("Fresh Juice"), Tag("Cold Drinks"), Tag("Beverages"), Tag("Vegan")],
                 Components = [Comp("Mixed Fruit", qty: 3)]
             },
@@ -657,7 +657,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Blended fruit and yogurt smoothies",
                 Prices = [new ArticlePricePeriod { Price = 5.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("ML"),
+                UnitTypeId = UnitId("ml"),
                 Facets = [Tag("Smoothies"), Tag("Cold Drinks"), Tag("Beverages"), Tag("Vegetarian")],
                 Components = [Comp("Mixed Fruit", qty: 2), Comp("Yogurt")],
                 AllowedComponentAdditions = [Extra("Whipped Cream"), Extra("Chocolate Sauce")]
@@ -669,7 +669,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Fluffy breakfast pancakes",
                 Prices = [new ArticlePricePeriod { Price = 7.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PC"),
+                UnitTypeId = UnitId("pc"),
                 Facets = [Tag("Pancakes"), Tag("Breakfast"), Tag("Food"), Tag("Vegetarian")],
                 Components =
                 [
@@ -683,7 +683,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
                 Description = "Buttery French pastry",
                 Prices = [new ArticlePricePeriod { Price = 3.49m }],
                 AllowAdditions = true,
-                UnitTypeId = UnitId("PC"),
+                UnitTypeId = UnitId("pc"),
                 Facets = [Tag("Croissant"), Tag("Breakfast"), Tag("Food"), Tag("Vegetarian")],
                 Components = [Comp("Butter")],
                 AllowedComponentAdditions = [Extra("Cheese"), Extra("Ham")]
@@ -707,15 +707,15 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
         string[] adjectives = ["Spicy", "Smoky", "Crispy", "Golden", "Grilled", "Fresh", "Loaded", "Signature", "Double", "BBQ"];
         string[] nouns = ["Burger", "Sandwich", "Wrap", "Bowl", "Salad", "Pizza", "Pasta", "Toast", "Roll", "Plate"];
 
-        var servingUnitTypes = unitTypes.Where(u => u.Code is "PC" or "PORTION" or "SLICE" or "CUP" or "BOWL" or "PLATE").ToList();
+        var servingUnitTypes = unitTypes.Where(u => u.Code is "pc" or "portion" or "slice" or "cup" or "bowl" or "plate").ToList();
         decimal ComponentQty(Article component) =>
             ingredientUnitTypes.TryGetValue(component.Title!, out var uCode) ? uCode switch
             {
-                "PC" => (decimal)f.Random.Int(1, 3),
-                "G"  => f.PickRandom(new[] { 25m, 50m, 75m, 100m, 150m }),
-                "ML" => f.PickRandom(new[] { 15m, 30m, 50m, 100m, 150m }),
-                "KG" => f.PickRandom(new[] { 0.25m, 0.5m, 1m }),
-                "L"  => f.PickRandom(new[] { 0.25m, 0.5m, 1m }),
+                "pc" => (decimal)f.Random.Int(1, 3),
+                "g"  => f.PickRandom(new[] { 25m, 50m, 75m, 100m, 150m }),
+                "ml" => f.PickRandom(new[] { 15m, 30m, 50m, 100m, 150m }),
+                "kg" => f.PickRandom(new[] { 0.25m, 0.5m, 1m }),
+                "l"  => f.PickRandom(new[] { 0.25m, 0.5m, 1m }),
                 _    => 1m
             } : 1m;
 

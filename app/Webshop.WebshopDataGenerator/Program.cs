@@ -43,7 +43,7 @@ try
 
     var webshopDb = scope.ServiceProvider.GetRequiredService<WebshopDbContext>();
     await webshopDb.Database.EnsureCreatedAsync();
-    if (!webshopDb.Articles.Any())
+    if (!webshopDb.Orders.Any())
     {
         var seeder = scope.ServiceProvider.GetRequiredService<WebshopDataSeeder>();
         await seeder.SeedAsync();
