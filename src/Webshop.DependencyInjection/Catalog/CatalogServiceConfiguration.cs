@@ -1,5 +1,6 @@
 ﻿using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Webshop.Data;
+using Webshop.DependencyInjection.Taxonomy;
 
 namespace Webshop.DependencyInjection.Catalog;
 

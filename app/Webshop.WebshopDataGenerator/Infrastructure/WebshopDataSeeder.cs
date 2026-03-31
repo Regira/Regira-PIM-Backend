@@ -237,7 +237,7 @@ public class WebshopDataSeeder(IEntityService<Facet> facetService, IEntityServic
     {
         var byTitle = facets.ToDictionary(f => f.Title, f => f);
 
-        FacetGroupLink Link(Facet facet) => new() { ChildId = facet.Id };
+        FacetGroupLink Link(Facet facet) => new() { FacetId = facet.Id };
 
         var groups = new List<FacetGroup>
         {

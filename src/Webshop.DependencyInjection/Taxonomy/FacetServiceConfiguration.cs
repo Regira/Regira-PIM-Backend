@@ -4,7 +4,7 @@ using Regira.Entities.Models;
 using Webshop.Data;
 using Webshop.Models.Taxonomy.Facets;
 
-namespace Webshop.DependencyInjection.Catalog;
+namespace Webshop.DependencyInjection.Taxonomy;
 
 public static class FacetServiceConfiguration
 {
@@ -19,7 +19,7 @@ public static class FacetServiceConfiguration
                 if (so?.ChildId?.Any() == true)
                     query = query.Where(x => x.ChildEntities!.Any(ce => so.ChildId.Contains(ce.ChildId)));
                 if (so?.FacetGroupId?.Any() == true)
-                    query = query.Where(x => x.FacetGroups!.Any(fg => so.FacetGroupId.Contains(fg.ParentId)));
+                    query = query.Where(x => x.FacetGroups!.Any(fg => so.FacetGroupId.Contains(fg.FacetGroupId)));
                 if (so?.IsRoot != null)
                     query = so.IsRoot.Value
                         ? query.Where(x => !x.ParentEntities!.Any())
@@ -33,8 +33,8 @@ public static class FacetServiceConfiguration
                     query = query.Include(x => x.ParentEntities!).ThenInclude(x => x.Parent);
                 if (includes?.HasFlag(FacetIncludes.Children) == true)
                     query = query.Include(x => x.ChildEntities!).ThenInclude(x => x.Child);
-                if (includes?.HasFlag(FacetIncludes.Groups) == true)
-                    query = query.Include(x => x.FacetGroups!).ThenInclude(x => x.Parent);
+                if (includes?.HasFlag(FacetIncludes.FacetGroups) == true)
+                    query = query.Include(x => x.FacetGroups!).ThenInclude(x => x.FacetGroup);
                 return query;
             });
             e.Related(x => x.ParentEntities);

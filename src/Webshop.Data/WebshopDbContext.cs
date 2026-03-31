@@ -41,9 +41,9 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
         // FacetGroups
         modelBuilder.Entity<FacetGroupLink>(e =>
         {
-            e.HasIndex(x => new { x.ParentId, x.ChildId }).IsUnique();
-            e.HasOne(x => x.Parent).WithMany(g => g.Facets).HasForeignKey(x => x.ParentId).OnDelete(DeleteBehavior.Restrict);
-            e.HasOne(x => x.Child).WithMany(f => f.FacetGroups).HasForeignKey(x => x.ChildId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => new { ParentId = x.FacetGroupId, ChildId = x.FacetId }).IsUnique();
+            e.HasOne(x => x.FacetGroup).WithMany(g => g.Facets).HasForeignKey(x => x.FacetGroupId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.Facet).WithMany(f => f.FacetGroups).HasForeignKey(x => x.FacetId).OnDelete(DeleteBehavior.Restrict);
         });
 
         // Articles

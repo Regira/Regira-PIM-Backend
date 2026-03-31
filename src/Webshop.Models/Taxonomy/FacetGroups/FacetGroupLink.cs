@@ -6,9 +6,9 @@ namespace Webshop.Models.Taxonomy.FacetGroups;
 public class FacetGroupLink : IEntityWithSerial
 {
     public int Id { get; set; }
-    public int ParentId { get; set; }
-    public int ChildId { get; set; }
+    public int FacetGroupId { get; set; }
+    public int FacetId { get; set; }
 
-    public FacetGroup? Parent { get; set; }
-    public Facet? Child { get; set; }
+    public FacetGroup? FacetGroup { get; set; }
+    public Facet? Facet { get; set; }
 }
