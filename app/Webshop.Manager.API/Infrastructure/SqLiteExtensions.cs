@@ -15,8 +15,11 @@ public static class SqLiteExtensions
                      sp.GetRequiredService<Webshop.Identity.Data.AccountsDbContext>()
                  })
         {
-            await db.Database.ExecuteSqlRawAsync("PRAGMA journal_mode=WAL;");
-            await db.Database.ExecuteSqlRawAsync("PRAGMA busy_timeout=5000;");
+            if (db.Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
+            {
+                await db.Database.ExecuteSqlRawAsync("PRAGMA journal_mode=WAL;");
+                await db.Database.ExecuteSqlRawAsync("PRAGMA busy_timeout=5000;");
+            }
         }
-    }   
+    }
 }

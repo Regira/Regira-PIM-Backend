@@ -4,6 +4,8 @@ namespace Webshop.Models.Taxonomy.FacetGroups;
 public enum FacetGroupIncludes
 {
     Default = 0,
-    Facets = 1 << 0,
+    ParentFacets = 1 << 0,
+    ChildFacets = 1 << 1,
+    Facets = ParentFacets | ChildFacets,
     All = Facets
 }

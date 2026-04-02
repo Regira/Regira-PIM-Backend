@@ -22,8 +22,9 @@ public class Facet : IEntityWithSerial, IHasCode, IHasTimestamps, IHasNormalized
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
 
-    public ICollection<RelatedFacet>? ParentEntities { get; set; }
-    public ICollection<RelatedFacet>? ChildEntities { get; set; }
+    public ICollection<FacetLink>? ParentEntities { get; set; }
+    public ICollection<FacetLink>? ChildEntities { get; set; }
 
-    public ICollection<FacetGroupLink>? FacetGroups { get; set; }
+    public ICollection<FacetParentGroup>? FacetParentGroups { get; set; }
+    public ICollection<FacetChildGroup>? FacetChildGroups { get; set; }
 }

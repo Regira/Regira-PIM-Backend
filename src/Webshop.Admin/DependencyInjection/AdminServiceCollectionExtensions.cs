@@ -17,14 +17,17 @@ public static class AdminServiceCollectionExtensions
     {
         public IServiceCollection AddAdminServices(IConfiguration config)
         {
-            var connectionString = config.GetConnectionString("Accounts");
+            var sqlServerConnectionString = config["ConnectionStrings:SqlServer:Accounts"];
+            var sqliteConnectionString = config["ConnectionStrings:Sqlite:Accounts"];
 
             services
                 .AddHttpContextAccessor()
                 .AddDbContext<AccountsDbContext>((sp, options) =>
                 {
-                    options
-                        .UseSqlite(connectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                    var dbBuilder = !string.IsNullOrWhiteSpace(sqlServerConnectionString)
+                        ? options.UseSqlServer(sqlServerConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                        : options.UseSqlite(sqliteConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+                    dbBuilder
                         .AddPrimerInterceptors(sp)
                         .AddNormalizerInterceptors(sp)
                         .AddAutoTruncateInterceptors();

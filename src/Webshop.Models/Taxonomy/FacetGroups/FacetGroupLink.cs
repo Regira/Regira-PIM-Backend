@@ -3,7 +3,7 @@ using Webshop.Models.Taxonomy.Facets;
 
 namespace Webshop.Models.Taxonomy.FacetGroups;
 
-public class FacetGroupLink : IEntityWithSerial
+public abstract class FacetGroupLink : IEntityWithSerial
 {
     public int Id { get; set; }
     public int FacetGroupId { get; set; }
@@ -12,3 +12,5 @@ public class FacetGroupLink : IEntityWithSerial
     public FacetGroup? FacetGroup { get; set; }
     public Facet? Facet { get; set; }
 }
+public class FacetParentGroup : FacetGroupLink;
+public class FacetChildGroup : FacetGroupLink;

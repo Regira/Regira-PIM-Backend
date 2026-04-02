@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Regira.DAL.EFcore.Extensions;
+using Webshop.Core.Constants;
 using Webshop.Models.Catalog.Allergens;
 using Webshop.Models.Catalog.Articles;
 using Webshop.Models.Catalog.UnitTypes;
@@ -32,18 +33,32 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
         modelBuilder.SetDecimalPrecisionConvention();
 
         // Facets
-        modelBuilder.Entity<RelatedFacet>(e =>
+        modelBuilder.Entity<Facet>(entity =>
         {
-            e.HasOne(c => c.Parent).WithMany(x => x.ChildEntities).OnDelete(DeleteBehavior.Restrict);
-            e.HasOne(c => c.Child).WithMany(x => x.ParentEntities).OnDelete(DeleteBehavior.Restrict);
+            entity.HasMany(e => e.ParentEntities).WithOne(e => e.Child).HasForeignKey(e => e.ChildId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasMany(e => e.ChildEntities).WithOne(e => e.Parent).HasForeignKey(e => e.ParentId).OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasMany(e => e.FacetParentGroups).WithOne(e => e.Facet).HasForeignKey(e => e.FacetId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasMany(e => e.FacetChildGroups).WithOne(e => e.Facet).HasForeignKey(e => e.FacetId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<FacetLink>(entity =>
+        {
+            entity.HasIndex(x => new { x.ParentId, x.ChildId }).IsUnique();
         });
 
         // FacetGroups
-        modelBuilder.Entity<FacetGroupLink>(e =>
+        modelBuilder.Entity<FacetGroup>(entity =>
         {
-            e.HasIndex(x => new { ParentId = x.FacetGroupId, ChildId = x.FacetId }).IsUnique();
-            e.HasOne(x => x.FacetGroup).WithMany(g => g.Facets).HasForeignKey(x => x.FacetGroupId).OnDelete(DeleteBehavior.Restrict);
-            e.HasOne(x => x.Facet).WithMany(f => f.FacetGroups).HasForeignKey(x => x.FacetId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasMany(e => e.ParentFacets).WithOne(e => e.FacetGroup).HasForeignKey(e => e.FacetGroupId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasMany(e => e.ChildFacets).WithOne(e => e.FacetGroup).HasForeignKey(e => e.FacetGroupId).OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<FacetParentGroup>(e =>
+        {
+            e.HasIndex(x => new { x.FacetGroupId, x.FacetId }).IsUnique();
+        });
+        modelBuilder.Entity<FacetChildGroup>(e =>
+        {
+            e.HasIndex(x => new { x.FacetGroupId, x.FacetId }).IsUnique();
         });
 
         // Articles
@@ -60,7 +75,7 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
         });
         modelBuilder.Entity<ArticleComponent>(e =>
         {
-            e.HasIndex(ac => new { ParentId = ac.AssemblyId, ChildId = ac.ComponentId }).IsUnique();
+            e.HasIndex(ac => new { ac.AssemblyId, ac.ComponentId }).IsUnique();
             e.HasOne(ac => ac.Assembly).WithMany(a => a.Components).HasForeignKey(ac => ac.AssemblyId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne(ac => ac.Component).WithMany(a => a.Assemblies).HasForeignKey(ac => ac.ComponentId).OnDelete(DeleteBehavior.Restrict);
         });
@@ -85,8 +100,8 @@ public class WebshopDbContext(DbContextOptions<WebshopDbContext> options) : DbCo
         modelBuilder.Entity<Party>(entity =>
         {
             entity.HasDiscriminator(p => p.PartyType)
-                .HasValue<Person>("PERSON")
-                .HasValue<Organization>("ORGANIZATION");
+                .HasValue<Person>(PartyTypes.Person)
+                .HasValue<Organization>(PartyTypes.Organization);
             entity.HasMany(e => e.ContactData).WithOne().OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(e => e.Addresses).WithOne().HasForeignKey(a => a.PartyId).OnDelete(DeleteBehavior.Cascade);
         });

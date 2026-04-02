@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Regira.Entities.Services.Abstractions;
+using Webshop.Core.Constants;
 using Webshop.Models.Stakeholders.ContactData;
 using Webshop.Models.Stakeholders.Parties;
 using Xunit;
@@ -25,7 +26,7 @@ public class PartyServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
         var result = await service.Details(person.Id);
 
         Assert.NotNull(result);
-        Assert.Equal("PERSON", result.PartyType);
+        Assert.Equal(PartyTypes.Person, result.PartyType);
         Assert.IsType<Person>(result);
         Assert.Equal("Jane", ((Person)result).GivenName);
     }
@@ -43,7 +44,7 @@ public class PartyServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
         var result = await service.Details(org.Id);
 
         Assert.NotNull(result);
-        Assert.Equal("ORGANIZATION", result.PartyType);
+        Assert.Equal(PartyTypes.Organization, result.PartyType);
         Assert.IsType<Organization>(result);
         Assert.Equal("Acme Corp", ((Organization)result).Name);
     }
@@ -59,11 +60,11 @@ public class PartyServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
         await service.Save(new Organization { Name = $"Filter-Org-{suffix}" });
         await service.SaveChanges();
 
-        var persons = await service.List(new PartySearchObject { PartyType = "PERSON", Query = suffix });
-        var orgs = await service.List(new PartySearchObject { PartyType = "ORGANIZATION", Query = suffix });
+        var persons = await service.List(new PartySearchObject { PartyType = PartyTypes.Person, Query = suffix });
+        var orgs = await service.List(new PartySearchObject { PartyType = PartyTypes.Organization, Query = suffix });
 
-        Assert.All(persons, p => Assert.Equal("PERSON", p.PartyType));
-        Assert.All(orgs, o => Assert.Equal("ORGANIZATION", o.PartyType));
+        Assert.All(persons, p => Assert.Equal(PartyTypes.Person, p.PartyType));
+        Assert.All(orgs, o => Assert.Equal(PartyTypes.Organization, o.PartyType));
     }
 
     [Fact]

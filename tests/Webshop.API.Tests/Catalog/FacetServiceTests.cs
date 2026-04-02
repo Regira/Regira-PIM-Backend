@@ -25,7 +25,7 @@ public class FacetServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
         var child = new Facet
         {
             Title = "Child Cat",
-            ParentEntities = [new RelatedFacet { ParentId = parent.Id }]
+            ParentEntities = [new FacetLink { ParentId = parent.Id }]
         };
         await service.Save(child);
         await service.SaveChanges();

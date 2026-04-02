@@ -1,12 +1,13 @@
 ﻿using System.Text.Json.Serialization;
+using Webshop.Core.Constants;
 using Webshop.Models.Stakeholders.Addresses;
 using Webshop.Models.Stakeholders.ContactData;
 
 namespace Webshop.Models.Stakeholders.Parties;
 
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "partyType")]
-[JsonDerivedType(typeof(PersonDto), "PERSON")]
-[JsonDerivedType(typeof(OrganizationDto), "ORGANIZATION")]
+[JsonDerivedType(typeof(PersonDto), PartyTypes.Person)]
+[JsonDerivedType(typeof(OrganizationDto), PartyTypes.Organization)]
 public abstract class PartyDto
 {
     public int Id { get; set; }

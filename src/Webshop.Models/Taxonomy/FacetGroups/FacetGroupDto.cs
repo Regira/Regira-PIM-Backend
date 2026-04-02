@@ -12,5 +12,6 @@ public class FacetGroupCoreDto
 
 public class FacetGroupDto : FacetGroupCoreDto
 {
-    public ICollection<FacetGroupLinkDto>? Facets { get; set; }
+    public ICollection<FacetGroupLinkDto>? ParentFacets { get; set; }
+    public ICollection<FacetGroupLinkDto>? ChildFacets { get; set; }
 }

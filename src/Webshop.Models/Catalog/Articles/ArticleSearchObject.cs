@@ -9,6 +9,7 @@ public class ArticleSearchObject : SearchObject
     /// </summary>
     public ICollection<int>? FacetId { get; set; }
 
+    public bool? IsRoot { get; set; }
     public bool? IsComponent { get; set; }
     public bool? IsAssembly { get; set; }
 

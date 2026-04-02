@@ -21,5 +21,6 @@ public class FacetGroup : IEntityWithSerial, IHasCode, IHasNormalizedTitle, IHas
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
 
-    public ICollection<FacetGroupLink>? Facets { get; set; }
+    public ICollection<FacetChildGroup>? ParentFacets { get; set; }
+    public ICollection<FacetParentGroup>? ChildFacets { get; set; }
 }

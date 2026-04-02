@@ -26,7 +26,8 @@ public static class ServiceCollectionExtensions
     {
         public IServiceCollection AddWebshopServices(IConfiguration config, WebshopAppTypes webshopType)
         {
-            var connectionString = config.GetConnectionString(WebshopConfig.WebshopDbConnectionStringName);
+            var sqlServerConnectionString = config["ConnectionStrings:SqlServer:Webshop"];
+            var sqliteConnectionString = config["ConnectionStrings:Sqlite:Webshop"];
 
             services
                 .AddHttpContextAccessor()
@@ -38,12 +39,14 @@ public static class ServiceCollectionExtensions
                 // DbContext
                 .AddDbContext<WebshopDbContext>((sp, options) =>
                 {
-                    options
-                        .UseSqlite(connectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
-                        .AddPrimerInterceptors(sp)
-                        .AddNormalizerInterceptors(sp)
-                        .AddAutoTruncateInterceptors()
-                        .ConfigureWarnings(w => w.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
+                    var dbBuilder = !string.IsNullOrWhiteSpace(sqlServerConnectionString)
+                        ? options.UseSqlServer(sqlServerConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                        : options.UseSqlite(sqliteConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+                    dbBuilder
+                            .AddPrimerInterceptors(sp)
+                            .AddNormalizerInterceptors(sp)
+                            .AddAutoTruncateInterceptors()
+                            .ConfigureWarnings(w => w.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
                 })
                 .AddEntityServices();
             return services;

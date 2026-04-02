@@ -1,9 +1,10 @@
 ﻿using Regira.Normalizing;
 using System.ComponentModel.DataAnnotations;
+using Webshop.Core.Constants;
 
 namespace Webshop.Models.Stakeholders.Parties;
 
-public class Person() : Party("PERSON")
+public class Person() : Party(PartyTypes.Person)
 {
     [MaxLength(32)]
     public string? Salutation { get; set; }

@@ -31,6 +31,10 @@ try
     builder.Services
         .AddWebshopServices(builder.Configuration, WebshopAppTypes.System)
         .AddAdminServices(builder.Configuration)
+        .AddTransient<StakeholderSeeder>()
+        .AddTransient<TaxonomySeeder>()
+        .AddTransient<CatalogSeeder>()
+        .AddTransient<OrderSeeder>()
         .AddTransient<WebshopDataSeeder>();
 
     var host = builder.Build();

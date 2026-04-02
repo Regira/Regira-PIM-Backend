@@ -66,7 +66,12 @@ try
     builder.Services
         .AddDbContext<AccountsDbContext>(options =>
         {
-            options.UseSqlite(builder.Configuration.GetConnectionString(WebshopConfig.AccountsDbConnectionStringName), db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+            var sqlServerConnectionString = builder.Configuration["ConnectionStrings:SqlServer:Accounts"];
+            var sqliteConnectionString = builder.Configuration["ConnectionStrings:Sqlite:Accounts"];
+
+            _ = !string.IsNullOrWhiteSpace(sqlServerConnectionString)
+                ? options.UseSqlServer(sqlServerConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                : options.UseSqlite(sqliteConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
         })
         .AddWebshopServices(builder.Configuration, WebshopAppTypes.Public);
 

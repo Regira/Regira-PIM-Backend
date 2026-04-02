@@ -2,7 +2,7 @@ using Regira.Entities.Models.Abstractions;
 
 namespace Webshop.Models.Taxonomy.Facets;
 
-public class RelatedFacet : IEntityWithSerial
+public class FacetLink : IEntityWithSerial
 {
     public int Id { get; set; }
     public int ChildId { get; set; }

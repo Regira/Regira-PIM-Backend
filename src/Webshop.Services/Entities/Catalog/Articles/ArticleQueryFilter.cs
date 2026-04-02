@@ -14,6 +14,8 @@ public class ArticleQueryFilter : FilteredQueryBuilderBase<Article, int, Article
         if (so.FacetId?.Any() == true)
             query = query.Where(x => x.Facets!.Any(ac => so.FacetId.Contains(ac.FacetId)));
 
+        if (so.IsRoot.HasValue)
+            query = query.Where(x => so.IsRoot.Value == !x.Assemblies!.Any());
         if (so.IsComponent.HasValue)
             query = query.Where(x => so.IsComponent.Value == x.Assemblies!.Any());
         if (so.IsAssembly.HasValue)
