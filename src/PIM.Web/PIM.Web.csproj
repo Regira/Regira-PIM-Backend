@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net10.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Regira.Entities.DependencyInjection" Version="5.0.10" />
+	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="5.0.10" />
+	<PackageReference Include="Regira.Security.Authentication.Web" Version="5.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\PIM.Services\PIM.Services.csproj" />
+  </ItemGroup>
+
+</Project>

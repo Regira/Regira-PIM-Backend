@@ -1,0 +1,46 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path=".github/copilot-instructions.md" />
+    <File Path=".github/entities.advanced.example.md" />
+    <File Path=".github/entities.examples.md" />
+    <File Path=".github/entities.instructions.md" />
+    <File Path=".github/entities.namespaces.md" />
+    <File Path=".github/entities.setup.md" />
+    <File Path=".github/entities.signatures.md" />
+    <File Path=".github/project.setup.md" />
+  </Folder>
+  <Folder Name="/app/" />
+  <Folder Name="/app/APIs/">
+    <Project Path="app/PIM.Manager.API/PIM.Admin.API.csproj" Id="7f9fa34f-522f-424a-bc1d-0f6d9efe704f" />
+    <Project Path="app/PIM.Public.API/PIM.Shop.API.csproj" />
+  </Folder>
+  <Folder Name="/app/Data/">
+    <Project Path="app/PIM.AccountDataGenerator/PIM.AccountDataGenerator.csproj" />
+    <Project Path="app/PIM.EFConsole/PIM.EFConsole.csproj" Id="54796c36-9a39-4310-b2f6-b874d9c57806" />
+    <Project Path="app/PIM.DataGenerator/PIM.DataGenerator.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="NuGet.Config" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/PIM.Core/PIM.Core.csproj" />
+    <Project Path="src/PIM.Data/PIM.Data.csproj" Id="c7a0e3d7-0bae-4d00-9a56-92a9ace2d017" />
+    <Project Path="src/PIM.DependencyInjection/PIM.DependencyInjection.csproj" />
+    <Project Path="src/PIM.Models/PIM.Models.csproj" Id="f12fe296-f2ec-464f-b5ee-a6f6ef3860b5" />
+    <Project Path="src/PIM.Services/PIM.Services.csproj" Id="8342e77b-e731-4f47-b5ba-fe173c97da85" />
+    <Project Path="src/PIM.Web/PIM.Web.csproj" Id="814aa097-412a-4941-ba69-bc4c71b0f5c3" />
+  </Folder>
+  <Folder Name="/src/Admin/">
+    <Project Path="src/PIM.Admin/PIM.Admin.csproj" Id="c06b34bd-c925-4a6b-ab56-1c28d89f63d6" />
+  </Folder>
+  <Folder Name="/src/Identity/">
+    <Project Path="src/PIM.Identity/PIM.Identity.csproj" Id="89b45eb0-405e-45b4-a75b-b846d36b7d2b" />
+  </Folder>
+  <Folder Name="/src/Shop/">
+    <Project Path="src/PIM.Shop/PIM.Shop.csproj" Id="f83eadca-9adf-465c-90a4-f16b52c1d447" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PIM.API.Tests/PIM.API.Tests.csproj" />
+  </Folder>
+</Solution>
