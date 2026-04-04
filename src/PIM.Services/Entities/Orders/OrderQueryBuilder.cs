@@ -13,8 +13,8 @@ public class OrderQueryBuilder : IFilteredQueryBuilder<Order, int, OrderSearchOb
             query = query.FilterCode(so.Code);
         if (so.CustomerId?.Any() == true)
             query = query.Where(x => so.CustomerId.Contains(x.CustomerId));
-        if (so.ArticleId?.Any() == true)
-            query = query.Where(x => x.OrderLines!.Any(ol => so.ArticleId.Contains(ol.ArticleId)));
+        if (so.ProductId?.Any() == true)
+            query = query.Where(x => x.OrderLines!.Any(ol => so.ProductId.Contains(ol.ProductId)));
         if (so.HasAdditions.HasValue)
             query = query.Where(x => so.HasAdditions == x.OrderLines!.Any(ol => ol.ComponentAdditions!.Any()));
         if (so.HasOmissions.HasValue)

@@ -1,6 +1,6 @@
 using Bogus;
 using Microsoft.Extensions.Logging;
-using PIM.Models.Catalog.Articles;
+using PIM.Models.Catalog.Products;
 using PIM.Models.Orders;
 using PIM.Models.Stakeholders.Parties;
 using Regira.Entities.Services.Abstractions;
@@ -13,12 +13,12 @@ public class OrderSeeder(
 {
     private const int BatchSize = 100;
 
-    public async Task<IList<Order>> SeedAsync(IList<Party> customers, IList<Article> articles)
+    public async Task<IList<Order>> SeedAsync(IList<Party> customers, IList<Product> products)
     {
-        return await SeedOrders(customers, articles);
+        return await SeedOrders(customers, products);
     }
 
-    public async Task<IList<Order>> SeedOrders(IList<Party> customers, IList<Article> articles)
+    public async Task<IList<Order>> SeedOrders(IList<Party> customers, IList<Product> products)
     {
         var orders = await orderService.List();
 
@@ -32,8 +32,8 @@ public class OrderSeeder(
         var statuses = Enum.GetValues<OrderStatus>();
         orders = new List<Order>(10000);
 
-        // Collect component article ids for additions/omissions
-        var componentArticles = articles
+        // Collect component product ids for additions/omissions
+        var componentProducts = products
             .SelectMany(a => a.Components?.Select(c => c.ComponentId) ?? [])
             .Distinct()
             .ToList();
@@ -42,38 +42,38 @@ public class OrderSeeder(
         for (int i = 0; i < 10000; i++)
         {
             var customer = f.PickRandom(customers);
-            var selectedArticles = f.PickRandom(articles, f.Random.Int(1, 5)).DistinctBy(a => a.Id).ToList();
+            var selectedProducts = f.PickRandom(products, f.Random.Int(1, 5)).DistinctBy(a => a.Id).ToList();
 
-            var orderLines = selectedArticles.Select((article, idx) =>
+            var orderLines = selectedProducts.Select((product, idx) =>
             {
-                var unitPrice = article.Prices?.FirstOrDefault()?.Price ?? 0m;
+                var unitPrice = product.Prices?.FirstOrDefault()?.Price ?? 0m;
                 var quantity = (decimal)f.Random.Int(1, 3);
 
                 List<OrderLineComponentAddition>? partAdditions = null;
-                if (f.Random.Bool(0.4f) && componentArticles.Count > 0)
+                if (f.Random.Bool(0.4f) && componentProducts.Count > 0)
                 {
-                    partAdditions = f.PickRandom(componentArticles, f.Random.Int(1, Math.Min(3, componentArticles.Count)))
+                    partAdditions = f.PickRandom(componentProducts, f.Random.Int(1, Math.Min(3, componentProducts.Count)))
                         .Distinct()
-                        .Select(id => new OrderLineComponentAddition { ArticleId = id, Price = f.Random.Decimal(0.15m, 1.50m) })
+                        .Select(id => new OrderLineComponentAddition { ProductId = id, Price = f.Random.Decimal(0.15m, 1.50m) })
                         .ToList();
                 }
 
                 List<OrderLineComponentOmission>? partOmissions = null;
-                if (article.Components?.Count > 0 && f.Random.Bool(0.3f))
+                if (product.Components?.Count > 0 && f.Random.Bool(0.3f))
                 {
-                    var omittable = article.Components.Where(c => c.IsOmittable).Select(c => c.ComponentId).ToList();
+                    var omittable = product.Components.Where(c => c.IsOmittable).Select(c => c.ComponentId).ToList();
                     if (omittable.Count > 0)
                     {
                         partOmissions = f.PickRandom(omittable, f.Random.Int(1, Math.Min(2, omittable.Count)))
                             .Distinct()
-                            .Select(id => new OrderLineComponentOmission { ArticleId = id, Price = f.Random.Decimal(0.15m, 1.50m) })
+                            .Select(id => new OrderLineComponentOmission { ProductId = id, Price = f.Random.Decimal(0.15m, 1.50m) })
                             .ToList();
                     }
                 }
 
                 return new OrderLine
                 {
-                    ArticleId = article.Id,
+                    ProductId = product.Id,
                     Quantity = quantity,
                     UnitPrice = unitPrice,
                     SortOrder = idx,

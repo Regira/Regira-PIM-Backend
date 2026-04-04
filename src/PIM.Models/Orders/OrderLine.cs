@@ -1,4 +1,4 @@
-using PIM.Models.Catalog.Articles;
+using PIM.Models.Catalog.Products;
 using Regira.Entities.Models.Abstractions;
 
 namespace PIM.Models.Orders;
@@ -8,8 +8,8 @@ public class OrderLine : IEntityWithSerial, IHasTimestamps, ISortable
     public int Id { get; set; }
     public int OrderId { get; set; }
     public Order? Order { get; set; }
-    public int ArticleId { get; set; }
-    public Article? Article { get; set; }
+    public int ProductId { get; set; }
+    public Product? Product { get; set; }
     public decimal Quantity { get; set; }
     public decimal UnitPrice { get; set; }
     public decimal SubTotal { get; set; }

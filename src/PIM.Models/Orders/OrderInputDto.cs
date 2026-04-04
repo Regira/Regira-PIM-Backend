@@ -16,7 +16,7 @@ public class OrderLineInputDto
 {
     public int Id { get; set; }
     public int OrderId { get; set; }
-    public int ArticleId { get; set; }
+    public int ProductId { get; set; }
     public decimal Quantity { get; set; }
     public decimal UnitPrice { get; set; }
     public ICollection<OrderLineComponentInputDto>? PartAdditions { get; set; }
@@ -27,7 +27,7 @@ public class OrderLineComponentInputDto
 {
     public int Id { get; set; }
     public int OrderLineId { get; set; }
-    public int ArticleId { get; set; }
+    public int ProductId { get; set; }
     public decimal Price { get; set; }
     public decimal Quantity { get; set; } = 1;
 }

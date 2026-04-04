@@ -10,8 +10,8 @@ public class PimDataSeeder(StakeholderSeeder partySeeder, TaxonomySeeder taxonom
         var parties = await partySeeder.SeedAsync();
         var facets = await taxonomySeeder.SeedAsync();
         var suppliers = parties.OfType<Organization>().ToList();
-        var articles = await catalogSeeder.SeedAsync(facets, suppliers);
-        await orderSeeder.SeedAsync(parties, articles);
+        var products = await catalogSeeder.SeedAsync(facets, suppliers);
+        await orderSeeder.SeedAsync(parties, products);
     }
 }
 

@@ -18,32 +18,32 @@ public class OrderIncludingQueryBuilder : IIncludableQueryBuilder<Order, int, Or
         if (includes.Value.HasFlag(OrderIncludes.OrderLines))
             query = query.Include(x => x.OrderLines);
 
-        if (includes.Value.HasFlag(OrderIncludes.OrderLinesArticles))
+        if (includes.Value.HasFlag(OrderIncludes.OrderLinesProducts))
             query = query
                 .Include(x => x.OrderLines!.OrderBy(l => l.SortOrder))
-                    .ThenInclude(ol => ol.Article!)
+                    .ThenInclude(ol => ol.Product!)
                         .ThenInclude(a => a.Components!).ThenInclude(ac => ac.Component!).ThenInclude(c => c.Prices);
 
-        if (includes.Value.HasFlag(OrderIncludes.OrderLinesArticleComponents))
+        if (includes.Value.HasFlag(OrderIncludes.OrderLinesProductComponents))
             query = query
                 .Include(x => x.OrderLines!)
                     .ThenInclude(ol => ol.ComponentAdditions!)
-                        .ThenInclude(olp => olp.Article!).ThenInclude(a => a.Prices)
+                        .ThenInclude(olp => olp.Product!).ThenInclude(a => a.Prices)
                 .Include(x => x.OrderLines!)
                     .ThenInclude(ol => ol.ComponentOmissions!)
-                        .ThenInclude(olp => olp.Article!).ThenInclude(a => a.Prices);
+                        .ThenInclude(olp => olp.Product!).ThenInclude(a => a.Prices);
 
-        if (includes.Value.HasFlag(OrderIncludes.OrderLinesArticlesWithComponents))
+        if (includes.Value.HasFlag(OrderIncludes.OrderLinesProductsWithComponents))
             query = query
                 .Include(x => x.OrderLines!.OrderBy(l => l.SortOrder))
-                    .ThenInclude(ol => ol.Article!)
+                    .ThenInclude(ol => ol.Product!)
                         .ThenInclude(a => a.Components!).ThenInclude(ac => ac.Component!).ThenInclude(c => c.Prices)
                 .Include(x => x.OrderLines!)
                     .ThenInclude(ol => ol.ComponentAdditions!)
-                        .ThenInclude(olp => olp.Article!).ThenInclude(a => a.Prices)
+                        .ThenInclude(olp => olp.Product!).ThenInclude(a => a.Prices)
                 .Include(x => x.OrderLines!)
                     .ThenInclude(ol => ol.ComponentOmissions!)
-                        .ThenInclude(olp => olp.Article!).ThenInclude(a => a.Prices);
+                        .ThenInclude(olp => olp.Product!).ThenInclude(a => a.Prices);
 
         return query;
     }
