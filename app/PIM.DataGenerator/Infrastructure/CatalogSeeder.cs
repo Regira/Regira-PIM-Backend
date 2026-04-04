@@ -1,6 +1,6 @@
 using Bogus;
 using Microsoft.Extensions.Logging;
-using PIM.Models.Catalog.Articles;
+using PIM.Models.Catalog.Products;
 using PIM.Models.Catalog.UnitTypes;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Taxonomy.Facets;
@@ -8,14 +8,14 @@ using Regira.Entities.Services.Abstractions;
 
 namespace PIM.DataGenerator.Infrastructure;
 
-public class CatalogSeeder(IEntityRepository<Article> articleService, IEntityService<UnitType> unitTypeService, ILogger<CatalogSeeder> logger)
+public class CatalogSeeder(IEntityRepository<Product> productService, IEntityService<UnitType> unitTypeService, ILogger<CatalogSeeder> logger)
 {
     private const int BatchSize = 100;
 
-    public async Task<IList<Article>> SeedAsync(IList<Facet> facets, IList<Organization> suppliers)
+    public async Task<IList<Product>> SeedAsync(IList<Facet> facets, IList<Organization> suppliers)
     {
         var unitTypes = await SeedUnitTypes();
-        return await SeedArticles(facets, suppliers, unitTypes);
+        return await SeedProducts(facets, suppliers, unitTypes);
     }
 
     public async Task<IList<UnitType>> SeedUnitTypes()
@@ -50,89 +50,89 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
         return types;
     }
 
-    public async Task<IList<Article>> SeedArticles(IList<Facet> facets, IList<Organization> suppliers, IList<UnitType> unitTypes)
+    public async Task<IList<Product>> SeedProducts(IList<Facet> facets, IList<Organization> suppliers, IList<UnitType> unitTypes)
     {
-        var articles = await articleService.List();
+        var products = await productService.List();
 
-        if (articles.Any())
+        if (products.Any())
         {
-            logger.LogInformation("Articles already exist, skipping seeding.");
-            return articles;
+            logger.LogInformation("Products already exist, skipping seeding.");
+            return products;
         }
 
         var f = new Faker();
         var facetByTitle = facets.ToDictionary(x => x.Title, x => x);
 
-        // Phase 1: seed ingredient articles
-        var ingredients = new List<Article>
+        // Phase 1: seed ingredient products
+        var ingredients = new List<Product>
         {
             // Proteins
-            new() { Title = "Beef Patty",      Description = "Seasoned beef patty",           Prices = [new ArticlePricePeriod { Price = 2.00m }] },
-            new() { Title = "Veggie Patty",    Description = "Plant-based burger patty",      Prices = [new ArticlePricePeriod { Price = 2.25m }] },
-            new() { Title = "Chicken Breast",  Description = "Grilled chicken breast",        Prices = [new ArticlePricePeriod { Price = 2.50m }] },
-            new() { Title = "Ground Beef",     Description = "Seasoned ground beef",          Prices = [new ArticlePricePeriod { Price = 2.00m }] },
-            new() { Title = "Bacon",           Description = "Crispy smoked bacon strips",    Prices = [new ArticlePricePeriod { Price = 1.50m }] },
-            new() { Title = "Ham",             Description = "Sliced smoked ham",             Prices = [new ArticlePricePeriod { Price = 1.25m }] },
-            new() { Title = "Turkey",          Description = "Sliced roasted turkey",         Prices = [new ArticlePricePeriod { Price = 1.50m }] },
-            new() { Title = "Pepperoni",       Description = "Sliced pepperoni",              Prices = [new ArticlePricePeriod { Price = 1.00m }] },
-            new() { Title = "Egg",             Description = "Free-range egg",                Prices = [new ArticlePricePeriod { Price = 0.35m }] },
+            new() { Title = "Beef Patty",      Description = "Seasoned beef patty",           Prices = [new ProductPricePeriod { Price = 2.00m }] },
+            new() { Title = "Veggie Patty",    Description = "Plant-based burger patty",      Prices = [new ProductPricePeriod { Price = 2.25m }] },
+            new() { Title = "Chicken Breast",  Description = "Grilled chicken breast",        Prices = [new ProductPricePeriod { Price = 2.50m }] },
+            new() { Title = "Ground Beef",     Description = "Seasoned ground beef",          Prices = [new ProductPricePeriod { Price = 2.00m }] },
+            new() { Title = "Bacon",           Description = "Crispy smoked bacon strips",    Prices = [new ProductPricePeriod { Price = 1.50m }] },
+            new() { Title = "Ham",             Description = "Sliced smoked ham",             Prices = [new ProductPricePeriod { Price = 1.25m }] },
+            new() { Title = "Turkey",          Description = "Sliced roasted turkey",         Prices = [new ProductPricePeriod { Price = 1.50m }] },
+            new() { Title = "Pepperoni",       Description = "Sliced pepperoni",              Prices = [new ProductPricePeriod { Price = 1.00m }] },
+            new() { Title = "Egg",             Description = "Free-range egg",                Prices = [new ProductPricePeriod { Price = 0.35m }] },
             // Dairy
-            new() { Title = "Cheese",          Description = "Cheddar cheese slice",          Prices = [new ArticlePricePeriod { Price = 0.75m }] },
-            new() { Title = "Mozzarella",      Description = "Fresh mozzarella cheese",       Prices = [new ArticlePricePeriod { Price = 1.20m }] },
-            new() { Title = "Parmesan",        Description = "Grated Parmesan cheese",        Prices = [new ArticlePricePeriod { Price = 1.00m }] },
-            new() { Title = "Feta Cheese",     Description = "Crumbled feta cheese",          Prices = [new ArticlePricePeriod { Price = 1.10m }] },
-            new() { Title = "Cream",           Description = "Heavy cooking cream",           Prices = [new ArticlePricePeriod { Price = 0.60m }] },
-            new() { Title = "Butter",          Description = "Salted butter",                 Prices = [new ArticlePricePeriod { Price = 0.40m }] },
-            new() { Title = "Yogurt",          Description = "Natural Greek yogurt",          Prices = [new ArticlePricePeriod { Price = 0.55m }] },
+            new() { Title = "Cheese",          Description = "Cheddar cheese slice",          Prices = [new ProductPricePeriod { Price = 0.75m }] },
+            new() { Title = "Mozzarella",      Description = "Fresh mozzarella cheese",       Prices = [new ProductPricePeriod { Price = 1.20m }] },
+            new() { Title = "Parmesan",        Description = "Grated Parmesan cheese",        Prices = [new ProductPricePeriod { Price = 1.00m }] },
+            new() { Title = "Feta Cheese",     Description = "Crumbled feta cheese",          Prices = [new ProductPricePeriod { Price = 1.10m }] },
+            new() { Title = "Cream",           Description = "Heavy cooking cream",           Prices = [new ProductPricePeriod { Price = 0.60m }] },
+            new() { Title = "Butter",          Description = "Salted butter",                 Prices = [new ProductPricePeriod { Price = 0.40m }] },
+            new() { Title = "Yogurt",          Description = "Natural Greek yogurt",          Prices = [new ProductPricePeriod { Price = 0.55m }] },
             // Vegetables
-            new() { Title = "Lettuce",         Description = "Fresh romaine lettuce",         Prices = [new ArticlePricePeriod { Price = 0.25m }] },
-            new() { Title = "Tomato",          Description = "Sliced ripe tomato",            Prices = [new ArticlePricePeriod { Price = 0.30m }] },
-            new() { Title = "Onion",           Description = "Sliced red onion",              Prices = [new ArticlePricePeriod { Price = 0.20m }] },
-            new() { Title = "Cucumber",        Description = "Sliced fresh cucumber",         Prices = [new ArticlePricePeriod { Price = 0.25m }] },
-            new() { Title = "Bell Pepper",     Description = "Sliced mixed bell peppers",     Prices = [new ArticlePricePeriod { Price = 0.40m }] },
-            new() { Title = "Mushrooms",       Description = "Sliced button mushrooms",       Prices = [new ArticlePricePeriod { Price = 0.45m }] },
-            new() { Title = "Olives",          Description = "Kalamata olives",               Prices = [new ArticlePricePeriod { Price = 0.50m }] },
-            new() { Title = "Avocado",         Description = "Fresh sliced avocado",          Prices = [new ArticlePricePeriod { Price = 1.50m }] },
-            new() { Title = "Pickles",         Description = "Dill pickle slices",            Prices = [new ArticlePricePeriod { Price = 0.25m }] },
-            new() { Title = "Jalapeños",       Description = "Pickled jalapeño slices",       Prices = [new ArticlePricePeriod { Price = 0.35m }] },
+            new() { Title = "Lettuce",         Description = "Fresh romaine lettuce",         Prices = [new ProductPricePeriod { Price = 0.25m }] },
+            new() { Title = "Tomato",          Description = "Sliced ripe tomato",            Prices = [new ProductPricePeriod { Price = 0.30m }] },
+            new() { Title = "Onion",           Description = "Sliced red onion",              Prices = [new ProductPricePeriod { Price = 0.20m }] },
+            new() { Title = "Cucumber",        Description = "Sliced fresh cucumber",         Prices = [new ProductPricePeriod { Price = 0.25m }] },
+            new() { Title = "Bell Pepper",     Description = "Sliced mixed bell peppers",     Prices = [new ProductPricePeriod { Price = 0.40m }] },
+            new() { Title = "Mushrooms",       Description = "Sliced button mushrooms",       Prices = [new ProductPricePeriod { Price = 0.45m }] },
+            new() { Title = "Olives",          Description = "Kalamata olives",               Prices = [new ProductPricePeriod { Price = 0.50m }] },
+            new() { Title = "Avocado",         Description = "Fresh sliced avocado",          Prices = [new ProductPricePeriod { Price = 1.50m }] },
+            new() { Title = "Pickles",         Description = "Dill pickle slices",            Prices = [new ProductPricePeriod { Price = 0.25m }] },
+            new() { Title = "Jalapeños",       Description = "Pickled jalapeño slices",       Prices = [new ProductPricePeriod { Price = 0.35m }] },
             // Sauces & condiments
-            new() { Title = "Ketchup",         Description = "Tomato ketchup",                Prices = [new ArticlePricePeriod { Price = 0.15m }] },
-            new() { Title = "Mustard Sauce",   Description = "Yellow mustard",                Prices = [new ArticlePricePeriod { Price = 0.15m }] },
-            new() { Title = "Mayonnaise",      Description = "Classic mayo",                  Prices = [new ArticlePricePeriod { Price = 0.15m }] },
-            new() { Title = "Tomato Sauce",    Description = "Classic pizza tomato sauce",     Prices = [new ArticlePricePeriod { Price = 0.35m }] },
-            new() { Title = "Caesar Dressing", Description = "Creamy Caesar salad dressing",  Prices = [new ArticlePricePeriod { Price = 0.45m }] },
-            new() { Title = "Sriracha",        Description = "Spicy sriracha sauce",          Prices = [new ArticlePricePeriod { Price = 0.20m }] },
-            new() { Title = "Chocolate Sauce", Description = "Dark chocolate drizzle",        Prices = [new ArticlePricePeriod { Price = 0.40m }] },
-            new() { Title = "Caramel Syrup",   Description = "Caramel flavored syrup",        Prices = [new ArticlePricePeriod { Price = 0.45m }] },
-            new() { Title = "Maple Syrup",     Description = "Pure maple syrup",              Prices = [new ArticlePricePeriod { Price = 0.50m }] },
+            new() { Title = "Ketchup",         Description = "Tomato ketchup",                Prices = [new ProductPricePeriod { Price = 0.15m }] },
+            new() { Title = "Mustard Sauce",   Description = "Yellow mustard",                Prices = [new ProductPricePeriod { Price = 0.15m }] },
+            new() { Title = "Mayonnaise",      Description = "Classic mayo",                  Prices = [new ProductPricePeriod { Price = 0.15m }] },
+            new() { Title = "Tomato Sauce",    Description = "Classic pizza tomato sauce",     Prices = [new ProductPricePeriod { Price = 0.35m }] },
+            new() { Title = "Caesar Dressing", Description = "Creamy Caesar salad dressing",  Prices = [new ProductPricePeriod { Price = 0.45m }] },
+            new() { Title = "Sriracha",        Description = "Spicy sriracha sauce",          Prices = [new ProductPricePeriod { Price = 0.20m }] },
+            new() { Title = "Chocolate Sauce", Description = "Dark chocolate drizzle",        Prices = [new ProductPricePeriod { Price = 0.40m }] },
+            new() { Title = "Caramel Syrup",   Description = "Caramel flavored syrup",        Prices = [new ProductPricePeriod { Price = 0.45m }] },
+            new() { Title = "Maple Syrup",     Description = "Pure maple syrup",              Prices = [new ProductPricePeriod { Price = 0.50m }] },
             // Bases & grains
-            new() { Title = "Bun",             Description = "Brioche burger bun",            Prices = [new ArticlePricePeriod { Price = 0.50m }] },
-            new() { Title = "Pizza Dough",     Description = "Stone-baked pizza base",        Prices = [new ArticlePricePeriod { Price = 1.00m }] },
-            new() { Title = "Tortilla",        Description = "Flour tortilla wrap",           Prices = [new ArticlePricePeriod { Price = 0.40m }] },
-            new() { Title = "Spaghetti",       Description = "Italian durum wheat spaghetti", Prices = [new ArticlePricePeriod { Price = 0.55m }] },
-            new() { Title = "Croutons",        Description = "Garlic herb croutons",          Prices = [new ArticlePricePeriod { Price = 0.30m }] },
+            new() { Title = "Bun",             Description = "Brioche burger bun",            Prices = [new ProductPricePeriod { Price = 0.50m }] },
+            new() { Title = "Pizza Dough",     Description = "Stone-baked pizza base",        Prices = [new ProductPricePeriod { Price = 1.00m }] },
+            new() { Title = "Tortilla",        Description = "Flour tortilla wrap",           Prices = [new ProductPricePeriod { Price = 0.40m }] },
+            new() { Title = "Spaghetti",       Description = "Italian durum wheat spaghetti", Prices = [new ProductPricePeriod { Price = 0.55m }] },
+            new() { Title = "Croutons",        Description = "Garlic herb croutons",          Prices = [new ProductPricePeriod { Price = 0.30m }] },
             // Beverages & extras
-            new() { Title = "Espresso",        Description = "Single espresso shot",          Prices = [new ArticlePricePeriod { Price = 0.80m }] },
-            new() { Title = "Extra Shot",      Description = "Additional espresso shot",      Prices = [new ArticlePricePeriod { Price = 0.80m }] },
-            new() { Title = "Tea Leaves",      Description = "Premium loose-leaf tea",        Prices = [new ArticlePricePeriod { Price = 0.60m }] },
-            new() { Title = "Oat Milk",        Description = "Barista oat milk",              Prices = [new ArticlePricePeriod { Price = 0.60m }] },
-            new() { Title = "Soy Milk",        Description = "Organic soy milk",              Prices = [new ArticlePricePeriod { Price = 0.50m }] },
-            new() { Title = "Mixed Fruit",     Description = "Seasonal fresh fruit blend",    Prices = [new ArticlePricePeriod { Price = 1.20m }] },
-            new() { Title = "Whipped Cream",   Description = "Fresh whipped cream topping",   Prices = [new ArticlePricePeriod { Price = 0.50m }] },
+            new() { Title = "Espresso",        Description = "Single espresso shot",          Prices = [new ProductPricePeriod { Price = 0.80m }] },
+            new() { Title = "Extra Shot",      Description = "Additional espresso shot",      Prices = [new ProductPricePeriod { Price = 0.80m }] },
+            new() { Title = "Tea Leaves",      Description = "Premium loose-leaf tea",        Prices = [new ProductPricePeriod { Price = 0.60m }] },
+            new() { Title = "Oat Milk",        Description = "Barista oat milk",              Prices = [new ProductPricePeriod { Price = 0.60m }] },
+            new() { Title = "Soy Milk",        Description = "Organic soy milk",              Prices = [new ProductPricePeriod { Price = 0.50m }] },
+            new() { Title = "Mixed Fruit",     Description = "Seasonal fresh fruit blend",    Prices = [new ProductPricePeriod { Price = 1.20m }] },
+            new() { Title = "Whipped Cream",   Description = "Fresh whipped cream topping",   Prices = [new ProductPricePeriod { Price = 0.50m }] },
         };
 
-        logger.LogInformation("Seeding articles...");
+        logger.LogInformation("Seeding products...");
         foreach (var ingredient in ingredients)
         {
             if (f.Random.Bool(0.6f))
             {
                 ingredient.Suppliers = f.PickRandom(suppliers, f.Random.Int(1, Math.Min(3, suppliers.Count)))
                     .DistinctBy(s => s.Id)
-                    .Select(s => new ArticleSupplier { SupplierId = s.Id })
+                    .Select(s => new ProductSupplier { SupplierId = s.Id })
                     .ToList();
             }
-            await articleService.Save(ingredient);
-            await articleService.SaveChanges();
+            await productService.Save(ingredient);
+            await productService.SaveChanges();
         }
 
         // Lookup helpers
@@ -201,28 +201,28 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
         {
             if (ingredientUnitTypes.TryGetValue(ingredient.Title, out var code))
                 ingredient.UnitTypeId = byCode[code].Id;
-            await articleService.Save(ingredient);
+            await productService.Save(ingredient);
         }
-        await articleService.SaveChanges();
+        await productService.SaveChanges();
 
-        ArticleComponent Comp(string name, decimal qty = 1, bool omittable = false)
+        ProductComponent Comp(string name, decimal qty = 1, bool omittable = false)
             => new() { ComponentId = ing[name].Id, Quantity = qty, IsOmittable = omittable };
-        ArticleAllowedComponentAddition Extra(string name)
+        ProductAllowedComponentAddition Extra(string name)
             => new() { ComponentId = ing[name].Id };
-        ArticleFacet Tag(string name)
+        ProductFacet Tag(string name)
             => new() { FacetId = facetByTitle[name].Id };
         int UnitId(string code)
             => byCode[code].Id;
 
         // Phase 2: menu items derived from leaf-level facets
-        var menuItems = new List<Article>
+        var menuItems = new List<Product>
         {
             // --- Burgers ---
             new()
             {
                 Title = "Classic Burger",
                 Description = "Traditional beef burger with lettuce and tomato",
-                Prices = [new ArticlePricePeriod { Price = 8.99m }],
+                Prices = [new ProductPricePeriod { Price = 8.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Classic Burger"), Tag("Burgers"), Tag("Food")],
@@ -239,7 +239,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Cheeseburger",
                 Description = "Beef burger with melted cheese",
-                Prices = [new ArticlePricePeriod { Price = 9.49m }],
+                Prices = [new ProductPricePeriod { Price = 9.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Cheeseburger"), Tag("Burgers"), Tag("Food")],
@@ -255,7 +255,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Veggie Burger",
                 Description = "Plant-based burger patty with fresh toppings",
-                Prices = [new ArticlePricePeriod { Price = 9.99m }],
+                Prices = [new ProductPricePeriod { Price = 9.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Veggie Burger"), Tag("Burgers"), Tag("Food"), Tag("Vegan"), Tag("Vegetarian")],
@@ -272,7 +272,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Margherita",
                 Description = "Classic tomato and mozzarella pizza",
-                Prices = [new ArticlePricePeriod { Price = 11.99m }],
+                Prices = [new ProductPricePeriod { Price = 11.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("slice"),
                 Facets = [Tag("Margherita"), Tag("Pizza"), Tag("Food"), Tag("Vegetarian")],
@@ -286,7 +286,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Pepperoni Pizza",
                 Description = "Pizza topped with spicy pepperoni",
-                Prices = [new ArticlePricePeriod { Price = 13.49m }],
+                Prices = [new ProductPricePeriod { Price = 13.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("slice"),
                 Facets = [Tag("Pepperoni Pizza"), Tag("Pizza"), Tag("Food")],
@@ -302,7 +302,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Caesar Salad",
                 Description = "Romaine lettuce with Caesar dressing and croutons",
-                Prices = [new ArticlePricePeriod { Price = 8.49m }],
+                Prices = [new ProductPricePeriod { Price = 8.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Caesar Salad"), Tag("Salads"), Tag("Food")],
@@ -318,7 +318,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Greek Salad",
                 Description = "Tomato, cucumber, olives and feta cheese",
-                Prices = [new ArticlePricePeriod { Price = 7.99m }],
+                Prices = [new ProductPricePeriod { Price = 7.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Greek Salad"), Tag("Salads"), Tag("Food"), Tag("Vegetarian")],
@@ -335,7 +335,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Carbonara",
                 Description = "Creamy egg and bacon pasta",
-                Prices = [new ArticlePricePeriod { Price = 12.49m }],
+                Prices = [new ProductPricePeriod { Price = 12.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Carbonara"), Tag("Pasta"), Tag("Food")],
@@ -350,7 +350,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Bolognese",
                 Description = "Rich meat sauce pasta",
-                Prices = [new ArticlePricePeriod { Price = 11.99m }],
+                Prices = [new ProductPricePeriod { Price = 11.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
                 Facets = [Tag("Bolognese"), Tag("Pasta"), Tag("Food")],
@@ -367,7 +367,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Ice Cream",
                 Description = "Assorted ice cream flavors",
-                Prices = [new ArticlePricePeriod { Price = 4.99m }],
+                Prices = [new ProductPricePeriod { Price = 4.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("pc"),
                 Facets = [Tag("Ice Cream"), Tag("Desserts"), Tag("Food")],
@@ -378,7 +378,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Cake",
                 Description = "Freshly baked cakes and slices",
-                Prices = [new ArticlePricePeriod { Price = 5.49m }],
+                Prices = [new ProductPricePeriod { Price = 5.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("slice"),
                 Facets = [Tag("Cake"), Tag("Desserts"), Tag("Food")],
@@ -394,7 +394,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Coffee",
                 Description = "Espresso-based beverages",
-                Prices = [new ArticlePricePeriod { Price = 3.49m }],
+                Prices = [new ProductPricePeriod { Price = 3.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("cup"),
                 Facets = [Tag("Coffee"), Tag("Hot Drinks"), Tag("Beverages")],
@@ -405,7 +405,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Tea",
                 Description = "Hot and iced tea varieties",
-                Prices = [new ArticlePricePeriod { Price = 2.99m }],
+                Prices = [new ProductPricePeriod { Price = 2.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("cup"),
                 Facets = [Tag("Tea"), Tag("Hot Drinks"), Tag("Beverages")],
@@ -417,7 +417,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Fresh Juice",
                 Description = "Freshly squeezed fruit juices",
-                Prices = [new ArticlePricePeriod { Price = 4.49m }],
+                Prices = [new ProductPricePeriod { Price = 4.49m }],
                 AllowAdditions = false,
                 UnitTypeId = UnitId("ml"),
                 Facets = [Tag("Fresh Juice"), Tag("Cold Drinks"), Tag("Beverages"), Tag("Vegan")],
@@ -427,7 +427,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Smoothie",
                 Description = "Blended fruit and yogurt smoothies",
-                Prices = [new ArticlePricePeriod { Price = 5.49m }],
+                Prices = [new ProductPricePeriod { Price = 5.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("ml"),
                 Facets = [Tag("Smoothies"), Tag("Cold Drinks"), Tag("Beverages"), Tag("Vegetarian")],
@@ -439,7 +439,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Pancakes",
                 Description = "Fluffy breakfast pancakes",
-                Prices = [new ArticlePricePeriod { Price = 7.49m }],
+                Prices = [new ProductPricePeriod { Price = 7.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("pc"),
                 Facets = [Tag("Pancakes"), Tag("Breakfast"), Tag("Food"), Tag("Vegetarian")],
@@ -453,7 +453,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 Title = "Croissant",
                 Description = "Buttery French pastry",
-                Prices = [new ArticlePricePeriod { Price = 3.49m }],
+                Prices = [new ProductPricePeriod { Price = 3.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("pc"),
                 Facets = [Tag("Croissant"), Tag("Breakfast"), Tag("Food"), Tag("Vegetarian")],
@@ -468,20 +468,20 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
             {
                 item.Suppliers = f.PickRandom(suppliers, f.Random.Int(1, Math.Min(2, suppliers.Count)))
                     .DistinctBy(s => s.Id)
-                    .Select(s => new ArticleSupplier { SupplierId = s.Id })
+                    .Select(s => new ProductSupplier { SupplierId = s.Id })
                     .ToList();
             }
-            await articleService.Save(item);
+            await productService.Save(item);
         }
-        await articleService.SaveChanges();
+        await productService.SaveChanges();
 
-        // Phase 3: random article variants for volume
+        // Phase 3: random product variants for volume
         string[] adjectives = ["Spicy", "Smoky", "Crispy", "Golden", "Grilled", "Fresh", "Loaded", "Signature", "Double", "BBQ"];
         string[] nouns = ["Burger", "Sandwich", "Wrap", "Bowl", "Salad", "Pizza", "Pasta", "Toast", "Roll", "Plate"];
 
         var servingUnitTypes = unitTypes.Where(u => u.Code is "pc" or "portion" or "slice" or "cup" or "bowl" or "plate").ToList();
 
-        decimal ComponentQty(Article component) =>
+        decimal ComponentQty(Product component) =>
             ingredientUnitTypes.TryGetValue(component.Title, out var uCode) ? uCode switch
             {
                 "pc" => f.Random.Int(1, 3),
@@ -492,7 +492,7 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
                 _ => 1m
             } : 1m;
 
-        var allArticles = new List<Article>(menuItems);
+        var allProducts = new List<Product>(menuItems);
 
         for (int i = 0; i < 500; i++)
         {
@@ -502,41 +502,41 @@ public class CatalogSeeder(IEntityRepository<Article> articleService, IEntitySer
                 .DistinctBy(c => c.Id)
                 .ToList();
 
-            var article = new Article
+            var product = new Product
             {
                 Title = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
                 Description = f.Lorem.Sentence(),
-                Prices = [new ArticlePricePeriod { Price = price }],
+                Prices = [new ProductPricePeriod { Price = price }],
                 UnitTypeId = f.PickRandom(servingUnitTypes).Id,
                 Facets = f.PickRandom(facets, f.Random.Int(1, 3))
                     .DistinctBy(c => c.Id)
-                    .Select(c => new ArticleFacet { FacetId = c.Id })
+                    .Select(c => new ProductFacet { FacetId = c.Id })
                     .ToList(),
                 Components = selectedIngredients
-                    .Select(c => new ArticleComponent { ComponentId = c.Id, Quantity = ComponentQty(c), IsOmittable = f.Random.Bool(0.4f) })
+                    .Select(c => new ProductComponent { ComponentId = c.Id, Quantity = ComponentQty(c), IsOmittable = f.Random.Bool(0.4f) })
                     .ToList(),
                 AllowAdditions = f.Random.Bool(0.9f),
                 AllowedComponentAdditions = f.Random.Bool(0.5f)
                     ? f.PickRandom(ingredients, f.Random.Int(1, Math.Min(3, ingredients.Count)))
                         .DistinctBy(c => c.Id)
-                        .Select(c => new ArticleAllowedComponentAddition { ComponentId = c.Id })
+                        .Select(c => new ProductAllowedComponentAddition { ComponentId = c.Id })
                         .ToList()
                     : null,
                 Suppliers = f.Random.Bool(0.5f)
                     ? f.PickRandom(suppliers, f.Random.Int(1, Math.Min(2, suppliers.Count)))
                         .DistinctBy(s => s.Id)
-                        .Select(s => new ArticleSupplier { SupplierId = s.Id })
+                        .Select(s => new ProductSupplier { SupplierId = s.Id })
                         .ToList()
                     : null,
             };
 
-            allArticles.Add(article);
-            await articleService.Save(article);
+            allProducts.Add(product);
+            await productService.Save(product);
             if ((i + 1) % BatchSize == 0)
-                await articleService.SaveChanges();
+                await productService.SaveChanges();
         }
-        await articleService.SaveChanges();
+        await productService.SaveChanges();
 
-        return allArticles;
+        return allProducts;
     }
 }

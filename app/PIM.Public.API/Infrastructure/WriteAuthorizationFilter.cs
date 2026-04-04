@@ -8,7 +8,7 @@ namespace PIM.Shop.API.Infrastructure;
 /// <summary>
 /// Central authorization filter for the Public API:
 /// - [AllowAnonymous] endpoints (AccountController, PasswordController) → pass through
-/// - Article controller → GET/Search/List are public; write operations (Save, Create, Modify, Delete) are forbidden
+/// - Product controller → GET/Search/List are public; write operations (Save, Create, Modify, Delete) are forbidden
 /// - Order controller → requires Customer permission for all operations (read + write)
 /// - All other write operations → Forbidden
 /// - All other read operations → require authenticated user
@@ -39,8 +39,8 @@ public class WriteAuthorizationFilter : IAsyncActionFilter
 
         var controller = context.RouteData.Values["controller"]?.ToString();
 
-        // Articles are publicly readable, but not writable
-        if (string.Equals(controller, "Article", StringComparison.OrdinalIgnoreCase))
+        // Products are publicly readable, but not writable
+        if (string.Equals(controller, "Product", StringComparison.OrdinalIgnoreCase))
         {
             if (IsWriteOperation(context))
             {

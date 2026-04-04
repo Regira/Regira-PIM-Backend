@@ -1,4 +1,4 @@
-using PIM.Models.Catalog.Articles;
+using PIM.Models.Catalog.Products;
 using PIM.Services.Entities.Catalog.Pricing;
 using Xunit;
 
@@ -8,7 +8,7 @@ public class PricingExtensionsTests
 {
     private static readonly DateTime RefDate = new(2026, 3, 14, 12, 0, 0, DateTimeKind.Utc);
 
-    private static ArticlePricePeriod Price(decimal amount, DateTime? start = null, DateTime? end = null)
+    private static ProductPricePeriod Price(decimal amount, DateTime? start = null, DateTime? end = null)
         => new() { Price = amount, StartDate = start, EndDate = end };
 
     // ── FindActivePrices (IEnumerable) ─────────────────────────────────────────
@@ -157,16 +157,16 @@ public class PricingExtensionsTests
     public void FindCurrentPrice_MultipleActivePrices_ReturnsMostRecentByStartDate()
     {
         // Overlapping ranges are prevented by validation but may still exist in edge cases
-        var article = new Article
+        var product = new Product
         {
             Prices =
             [
-                new ArticlePricePeriod { Price = 8m,  StartDate = RefDate.AddDays(-5), EndDate = RefDate.AddDays(5) }, // active, older
-                new ArticlePricePeriod { Price = 12m, StartDate = RefDate.AddDays(-2), EndDate = RefDate.AddDays(8) }, // active, more recent
+                new ProductPricePeriod { Price = 8m,  StartDate = RefDate.AddDays(-5), EndDate = RefDate.AddDays(5) }, // active, older
+                new ProductPricePeriod { Price = 12m, StartDate = RefDate.AddDays(-2), EndDate = RefDate.AddDays(8) }, // active, more recent
             ]
         };
 
-        var result = article.FindActivePrice(RefDate);
+        var result = product.FindActivePrice(RefDate);
 
         Assert.NotNull(result);
         Assert.Equal(12m, result.Price);
@@ -175,16 +175,16 @@ public class PricingExtensionsTests
     [Fact]
     public void FindCurrentPrice_ReturnsFirstActivePrice()
     {
-        var article = new Article
+        var product = new Product
         {
             Prices =
             [
-                new ArticlePricePeriod { Price = 5m,  StartDate = RefDate.AddDays(-10), EndDate = RefDate.AddDays(-1) }, // expired
-                new ArticlePricePeriod { Price = 12m, StartDate = RefDate.AddDays(-3),  EndDate = RefDate.AddDays(7)  }, // active
+                new ProductPricePeriod { Price = 5m,  StartDate = RefDate.AddDays(-10), EndDate = RefDate.AddDays(-1) }, // expired
+                new ProductPricePeriod { Price = 12m, StartDate = RefDate.AddDays(-3),  EndDate = RefDate.AddDays(7)  }, // active
             ]
         };
 
-        var result = article.FindActivePrice(RefDate);
+        var result = product.FindActivePrice(RefDate);
 
         Assert.NotNull(result);
         Assert.Equal(12m, result.Price);
@@ -193,19 +193,19 @@ public class PricingExtensionsTests
     [Fact]
     public void FindCurrentPrice_NoActivePrice_ReturnsNull()
     {
-        var article = new Article
+        var product = new Product
         {
-            Prices = [new ArticlePricePeriod { Price = 5m, StartDate = RefDate.AddDays(-10), EndDate = RefDate.AddDays(-1) }]
+            Prices = [new ProductPricePeriod { Price = 5m, StartDate = RefDate.AddDays(-10), EndDate = RefDate.AddDays(-1) }]
         };
 
-        Assert.Null(article.FindActivePrice(RefDate));
+        Assert.Null(product.FindActivePrice(RefDate));
     }
 
     [Fact]
     public void FindCurrentPrice_PricesIsNull_ReturnsNull()
     {
-        var article = new Article { Prices = null };
+        var product = new Product { Prices = null };
 
-        Assert.Null(article.FindActivePrice(RefDate));
+        Assert.Null(product.FindActivePrice(RefDate));
     }
 }

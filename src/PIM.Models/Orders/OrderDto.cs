@@ -1,4 +1,4 @@
-using PIM.Models.Catalog.Articles.DTO;
+using PIM.Models.Catalog.Products.DTO;
 using PIM.Models.Stakeholders.Parties;
 
 namespace PIM.Models.Orders;
@@ -21,8 +21,8 @@ public class OrderLineDto
 {
     public int Id { get; set; }
     public int OrderId { get; set; }
-    public int ArticleId { get; set; }
-    public ArticleCoreDto? Article { get; set; }
+    public int ProductId { get; set; }
+    public ProductCoreDto? Product { get; set; }
     public decimal Quantity { get; set; }
     public decimal UnitPrice { get; set; }
     public decimal SubTotal { get; set; }
@@ -35,8 +35,8 @@ public class OrderLineComponentDto
 {
     public int Id { get; set; }
     public int OrderLineId { get; set; }
-    public int ArticleId { get; set; }
+    public int ProductId { get; set; }
     public decimal Price { get; set; }
     public decimal Quantity { get; set; }
-    public ArticleCoreDto? Article { get; set; }
+    public ProductCoreDto? Product { get; set; }
 }

@@ -12,7 +12,7 @@ public static class CatalogServiceConfiguration
         return services
             .AddFacets()
             .AddFacetGroups()
-            .AddArticles()
+            .AddProducts()
             .AddUnitTypes();
     }
 }

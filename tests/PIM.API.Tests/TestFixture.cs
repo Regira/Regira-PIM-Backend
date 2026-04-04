@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PIM.Core.Abstractions;
 using PIM.Data;
 using PIM.DependencyInjection;
-using PIM.Services.Entities.Catalog.Articles;
+using PIM.Services.Entities.Catalog.Products;
 using Regira.DAL.EFcore.Services;
 using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
@@ -66,7 +66,7 @@ public class TestFixture
             // Entity Services
             .AddEntityServices()
             // Concrete service registrations for tests
-            .AddScoped<ArticleProcessor>();
+            .AddScoped<ProductProcessor>();
 
         ServiceProvider = services.BuildServiceProvider();
     }
