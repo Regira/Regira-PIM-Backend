@@ -42,6 +42,10 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
         var vegetarian = new Facet { Title = "Vegetarian", Description = "Meat-free options" };
         var glutenFree = new Facet { Title = "Gluten-Free", Description = "Gluten-free options" };
         var keto = new Facet { Title = "Keto", Description = "Low-carb, high-fat options" };
+        var poultry = new Facet { Title = "Poultry", Description = "Chicken, turkey and other poultry dishes" };
+        var fish = new Facet { Title = "Fish & Seafood", Description = "Fish and seafood dishes" };
+        var redMeat = new Facet { Title = "Red Meat", Description = "Beef, pork and other red meat dishes" };
+        var sauces = new Facet { Title = "Sauces", Description = "House-made composite sauces and condiments" };
 
         // Leaf-level specifics
         var classicBurger = new Facet { Title = "Classic Burger", Description = "Traditional beef burger with lettuce and tomato" };
@@ -61,14 +65,33 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
         var smoothies = new Facet { Title = "Smoothies", Description = "Blended fruit and yogurt smoothies" };
         var pancakes = new Facet { Title = "Pancakes", Description = "Fluffy breakfast pancakes" };
         var croissant = new Facet { Title = "Croissant", Description = "Buttery French pastry" };
+        // Leaf: Poultry
+        var chickenWings = new Facet { Title = "Chicken Wings", Description = "Crispy fried chicken wings" };
+        var chickenWrap = new Facet { Title = "Chicken Wrap", Description = "Grilled chicken in a tortilla wrap" };
+        var grilledChicken = new Facet { Title = "Grilled Chicken", Description = "Grilled chicken breast" };
+        // Leaf: Fish & Seafood
+        var fishAndChips = new Facet { Title = "Fish & Chips", Description = "Battered fish with fries" };
+        var grilledSalmon = new Facet { Title = "Grilled Salmon", Description = "Grilled salmon fillet" };
+        // Leaf: Red Meat
+        var steak = new Facet { Title = "Steak", Description = "Grilled beef steak" };
+        var bbqRibs = new Facet { Title = "BBQ Ribs", Description = "Slow-cooked BBQ pork ribs" };
+        // Leaf: Sauces
+        var cocktailSauce = new Facet { Title = "Cocktail Sauce", Description = "Classic tangy seafood cocktail sauce" };
+        var aioli = new Facet { Title = "Aioli", Description = "Rich garlic mayonnaise" };
+        var bbqSauceFacet = new Facet { Title = "BBQ Sauce", Description = "Smoky and sweet BBQ sauce" };
 
         facets = new List<Facet>
         {
             burgers, sandwiches, pizza, salads, pasta, wraps, soups, desserts, breakfast, snacks,
             hotDrinks, coldDrinks, vegan, vegetarian, glutenFree, keto,
+            poultry, fish, redMeat, sauces,
             classicBurger, cheeseburger, veggieBurger, margherita, pepperoniPizza,
             caesarSalad, greekSalad, carbonara, bolognese,
-            iceCream, cake, coffee, tea, freshJuice, smoothies, pancakes, croissant
+            iceCream, cake, coffee, tea, freshJuice, smoothies, pancakes, croissant,
+            chickenWings, chickenWrap, grilledChicken,
+            fishAndChips, grilledSalmon,
+            steak, bbqRibs,
+            cocktailSauce, aioli, bbqSauceFacet
         };
 
         foreach (var facet in facets)
@@ -86,9 +109,13 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
         hotDrinks.ChildEntities = [Child(coffee), Child(tea)];
         coldDrinks.ChildEntities = [Child(freshJuice), Child(smoothies)];
         breakfast.ChildEntities = [Child(pancakes), Child(croissant)];
+        poultry.ChildEntities = [Child(chickenWings), Child(chickenWrap), Child(grilledChicken)];
+        fish.ChildEntities = [Child(fishAndChips), Child(grilledSalmon)];
+        redMeat.ChildEntities = [Child(steak), Child(bbqRibs)];
+        sauces.ChildEntities = [Child(cocktailSauce), Child(aioli), Child(bbqSauceFacet)];
 
         logger.LogInformation("Seeding facets...");
-        foreach (var parent in new[] { burgers, pizza, salads, pasta, desserts, hotDrinks, coldDrinks, breakfast })
+        foreach (var parent in new[] { burgers, pizza, salads, pasta, desserts, hotDrinks, coldDrinks, breakfast, poultry, fish, redMeat, sauces })
             await facetService.Save(parent);
         await facetService.SaveChanges();
 
@@ -117,7 +144,9 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
                 ChildFacets = [Link(byTitle["Burgers"]), Link(byTitle["Sandwiches"]),
                           Link(byTitle["Pizza"]), Link(byTitle["Salads"]), Link(byTitle["Pasta"]),
                           Link(byTitle["Wraps"]), Link(byTitle["Soups"]), Link(byTitle["Desserts"]),
-                          Link(byTitle["Breakfast"]), Link(byTitle["Snacks"])]
+                          Link(byTitle["Breakfast"]), Link(byTitle["Snacks"]),
+                          Link(byTitle["Poultry"]), Link(byTitle["Fish & Seafood"]), Link(byTitle["Red Meat"]),
+                          Link(byTitle["Sauces"])]
             },
             new()
             {

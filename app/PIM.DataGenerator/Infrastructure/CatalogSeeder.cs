@@ -119,6 +119,19 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             new() { Title = "Soy Milk",        Description = "Organic soy milk",              Prices = [new ProductPricePeriod { Price = 0.50m }] },
             new() { Title = "Mixed Fruit",     Description = "Seasonal fresh fruit blend",    Prices = [new ProductPricePeriod { Price = 1.20m }] },
             new() { Title = "Whipped Cream",   Description = "Fresh whipped cream topping",   Prices = [new ProductPricePeriod { Price = 0.50m }] },
+            // Sauce bases & extras
+            new() { Title = "Vinegar",   Description = "White wine vinegar",         Prices = [new ProductPricePeriod { Price = 0.10m }] },
+            new() { Title = "Salt",      Description = "Fine sea salt",             Prices = [new ProductPricePeriod { Price = 0.05m }] },
+            new() { Title = "Pepper",    Description = "Ground black pepper",       Prices = [new ProductPricePeriod { Price = 0.05m }] },
+            // Herbs & aromatics
+            new() { Title = "Parsley",   Description = "Fresh flat-leaf parsley",    Prices = [new ProductPricePeriod { Price = 0.10m }] },
+            new() { Title = "Chives",    Description = "Fresh chives",               Prices = [new ProductPricePeriod { Price = 0.10m }] },
+            new() { Title = "Dill",      Description = "Fresh dill",                 Prices = [new ProductPricePeriod { Price = 0.10m }] },
+            new() { Title = "Basil",     Description = "Fresh sweet basil",          Prices = [new ProductPricePeriod { Price = 0.10m }] },
+            new() { Title = "Thyme",      Description = "Fresh thyme",                Prices = [new ProductPricePeriod { Price = 0.10m }] },
+            new() { Title = "Coriander",  Description = "Fresh coriander (cilantro)",  Prices = [new ProductPricePeriod { Price = 0.10m }] },
+            new() { Title = "Whisky",    Description = "A splash of Scotch whisky",  Prices = [new ProductPricePeriod { Price = 0.40m }] },
+            new() { Title = "Garlic",    Description = "Fresh garlic cloves",        Prices = [new ProductPricePeriod { Price = 0.15m }] },
         };
 
         logger.LogInformation("Seeding products...");
@@ -195,6 +208,16 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             ["Soy Milk"] = "ml",
             ["Mixed Fruit"] = "g",
             ["Whipped Cream"] = "ml",
+            // Sauce bases & extras
+            ["Vinegar"] = "ml",
+            ["Parsley"] = "g",
+            ["Chives"] = "g",
+            ["Dill"] = "g",
+            ["Basil"] = "g",
+            ["Thyme"] = "g",
+            ["Coriander"] = "g",
+            ["Whisky"] = "ml",
+            ["Garlic"] = "g",
         };
 
         foreach (var ingredient in ingredients)
@@ -233,7 +256,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Comp("Onion", omittable: true), Comp("Pickles", omittable: true),
                     Comp("Ketchup", omittable: true), Comp("Mustard Sauce", omittable: true)
                 ],
-                AllowedComponentAdditions = [Extra("Cheese"), Extra("Bacon"), Extra("Avocado"), Extra("Jalapeños"), Extra("Mayonnaise")]
+                AllowedComponentAdditions = [Extra("Cheese"), Extra("Bacon"), Extra("Avocado"), Extra("Jalapeños"), Extra("Mayonnaise"), Extra("Coriander")]
             },
             new()
             {
@@ -249,7 +272,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Comp("Lettuce"), Comp("Tomato"),
                     Comp("Pickles", omittable: true), Comp("Ketchup", omittable: true)
                 ],
-                AllowedComponentAdditions = [Extra("Bacon"), Extra("Avocado"), Extra("Jalapeños"), Extra("Onion"), Extra("Mayonnaise")]
+                AllowedComponentAdditions = [Extra("Bacon"), Extra("Avocado"), Extra("Jalapeños"), Extra("Onion"), Extra("Mayonnaise"), Extra("Coriander")]
             },
             new()
             {
@@ -265,7 +288,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Comp("Lettuce"), Comp("Tomato"), Comp("Avocado"),
                     Comp("Onion", omittable: true), Comp("Mustard Sauce", omittable: true)
                 ],
-                AllowedComponentAdditions = [Extra("Cheese"), Extra("Jalapeños"), Extra("Mayonnaise"), Extra("Ketchup")]
+                AllowedComponentAdditions = [Extra("Cheese"), Extra("Jalapeños"), Extra("Mayonnaise"), Extra("Ketchup"), Extra("Coriander")]
             },
             // --- Pizza ---
             new()
@@ -328,7 +351,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Comp("Feta Cheese"), Comp("Onion", omittable: true),
                     Comp("Bell Pepper", omittable: true)
                 ],
-                AllowedComponentAdditions = [Extra("Avocado"), Extra("Chicken Breast")]
+                AllowedComponentAdditions = [Extra("Avocado"), Extra("Chicken Breast"), Extra("Coriander")]
             },
             // --- Pasta ---
             new()
@@ -360,7 +383,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Comp("Tomato Sauce"), Comp("Onion"),
                     Comp("Mushrooms", omittable: true)
                 ],
-                AllowedComponentAdditions = [Extra("Parmesan"), Extra("Bell Pepper"), Extra("Jalapeños")]
+                AllowedComponentAdditions = [Extra("Parmesan"), Extra("Bell Pepper"), Extra("Jalapeños"), Extra("Coriander")]
             },
             // --- Desserts ---
             new()
@@ -433,6 +456,52 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Facets = [Tag("Smoothies"), Tag("Cold Drinks"), Tag("Vegetarian")],
                 Components = [Comp("Mixed Fruit", qty: 2), Comp("Yogurt")],
                 AllowedComponentAdditions = [Extra("Whipped Cream"), Extra("Chocolate Sauce")]
+            },
+            // --- Sauces ---
+            new()
+            {
+                Title = "Cocktail Sauce",
+                Description = "Tangy seafood cocktail sauce with a hint of whisky",
+                Prices = [new ProductPricePeriod { Price = 1.99m }],
+                AllowAdditions = false,
+                UnitTypeId = UnitId("ml"),
+                Facets = [Tag("Cocktail Sauce"), Tag("Sauces")],
+                Components =
+                [
+                    Comp("Mayonnaise", qty: 60), Comp("Ketchup", qty: 20),
+                    Comp("Vinegar", qty: 5),
+                    Comp("Parsley", qty: 2), Comp("Chives", qty: 2), Comp("Dill", qty: 2),
+                    Comp("Coriander", qty: 2, omittable: true),
+                    Comp("Whisky", qty: 10, omittable: true)
+                ]
+            },
+            new()
+            {
+                Title = "Aioli",
+                Description = "Rich and creamy garlic mayonnaise",
+                Prices = [new ProductPricePeriod { Price = 1.49m }],
+                AllowAdditions = false,
+                UnitTypeId = UnitId("ml"),
+                Facets = [Tag("Aioli"), Tag("Sauces")],
+                Components =
+                [
+                    Comp("Mayonnaise", qty: 80), Comp("Garlic", qty: 5),
+                    Comp("Parsley", qty: 3), Comp("Chives", qty: 3)
+                ]
+            },
+            new()
+            {
+                Title = "BBQ Sauce",
+                Description = "Smoky and sweet house-made BBQ sauce",
+                Prices = [new ProductPricePeriod { Price = 1.59m }],
+                AllowAdditions = false,
+                UnitTypeId = UnitId("ml"),
+                Facets = [Tag("BBQ Sauce"), Tag("Sauces")],
+                Components =
+                [
+                    Comp("Ketchup", qty: 50), Comp("Mustard Sauce", qty: 15),
+                    Comp("Maple Syrup", qty: 20), Comp("Sriracha", qty: 10, omittable: true)
+                ]
             },
             // --- Breakfast ---
             new()
