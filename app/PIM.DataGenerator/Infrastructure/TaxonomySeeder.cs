@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using PIM.Models.Taxonomy.FacetGroupFacets;
 using PIM.Models.Taxonomy.FacetGroups;
 using PIM.Models.Taxonomy.Facets;
 using Regira.Entities.Services.Abstractions;
@@ -23,11 +24,6 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
             logger.LogInformation("Facets already exist, skipping seeding.");
             return facets;
         }
-
-        // Root categories
-        var food = new Facet { Title = "Food", Description = "All food items" };
-        var beverages = new Facet { Title = "Beverages", Description = "All drinks and beverages" };
-        var dietary = new Facet { Title = "Dietary", Description = "Dietary preference categories" };
 
         // Mid-level categories
         var burgers = new Facet { Title = "Burgers", Description = "Classic and gourmet burgers" };
@@ -68,7 +64,6 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
 
         facets = new List<Facet>
         {
-            food, beverages, dietary,
             burgers, sandwiches, pizza, salads, pasta, wraps, soups, desserts, breakfast, snacks,
             hotDrinks, coldDrinks, vegan, vegetarian, glutenFree, keto,
             classicBurger, cheeseburger, veggieBurger, margherita, pepperoniPizza,
@@ -83,9 +78,6 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
         // Parent-child relationships — saved after flush so parent Ids are set
         FacetLink Child(Facet child) => new() { ChildId = child.Id };
 
-        food.ChildEntities = [Child(burgers), Child(sandwiches), Child(pizza), Child(salads), Child(pasta), Child(wraps), Child(soups), Child(desserts), Child(breakfast), Child(snacks)];
-        beverages.ChildEntities = [Child(hotDrinks), Child(coldDrinks)];
-        dietary.ChildEntities = [Child(vegan), Child(vegetarian), Child(glutenFree), Child(keto)];
         burgers.ChildEntities = [Child(classicBurger), Child(cheeseburger), Child(veggieBurger)];
         pizza.ChildEntities = [Child(margherita), Child(pepperoniPizza)];
         salads.ChildEntities = [Child(caesarSalad), Child(greekSalad)];
@@ -96,7 +88,7 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
         breakfast.ChildEntities = [Child(pancakes), Child(croissant)];
 
         logger.LogInformation("Seeding facets...");
-        foreach (var parent in new[] { food, beverages, dietary, burgers, pizza, salads, pasta, desserts, hotDrinks, coldDrinks, breakfast })
+        foreach (var parent in new[] { burgers, pizza, salads, pasta, desserts, hotDrinks, coldDrinks, breakfast })
             await facetService.Save(parent);
         await facetService.SaveChanges();
 
@@ -121,40 +113,22 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
         {
             new()
             {
-                Code = "MAIN", Title = "Main Dishes", Description = "Hearty main course items",
-                ChildFacets = [Link(byTitle["Food"]), Link(byTitle["Burgers"]), Link(byTitle["Sandwiches"]),
-                          Link(byTitle["Pizza"]), Link(byTitle["Pasta"]), Link(byTitle["Wraps"]),
-                          Link(byTitle["Classic Burger"]), Link(byTitle["Cheeseburger"]),
-                          Link(byTitle["Margherita"]), Link(byTitle["Pepperoni Pizza"]),
-                          Link(byTitle["Carbonara"]), Link(byTitle["Bolognese"])]
+                Code = "FOOD", Title = "Food", Description = "All food items",
+                ChildFacets = [Link(byTitle["Burgers"]), Link(byTitle["Sandwiches"]),
+                          Link(byTitle["Pizza"]), Link(byTitle["Salads"]), Link(byTitle["Pasta"]),
+                          Link(byTitle["Wraps"]), Link(byTitle["Soups"]), Link(byTitle["Desserts"]),
+                          Link(byTitle["Breakfast"]), Link(byTitle["Snacks"])]
             },
             new()
             {
-                Code = "LIGHT", Title = "Light Meals", Description = "Lighter options and sides",
-                ChildFacets = [Link(byTitle["Salads"]), Link(byTitle["Soups"]), Link(byTitle["Snacks"]),
-                          Link(byTitle["Caesar Salad"]), Link(byTitle["Greek Salad"])]
+                Code = "BEVERAGES", Title = "Beverages", Description = "All drinks and beverages",
+                ChildFacets = [Link(byTitle["Hot Drinks"]), Link(byTitle["Cold Drinks"])]
             },
             new()
             {
-                Code = "SWEET", Title = "Sweet & Drinks", Description = "Desserts and beverages",
-                ChildFacets = [Link(byTitle["Desserts"]), Link(byTitle["Beverages"]),
-                          Link(byTitle["Hot Drinks"]), Link(byTitle["Cold Drinks"]),
-                          Link(byTitle["Ice Cream"]), Link(byTitle["Cake"]),
-                          Link(byTitle["Coffee"]), Link(byTitle["Tea"]),
-                          Link(byTitle["Fresh Juice"]), Link(byTitle["Smoothies"])]
-            },
-            new()
-            {
-                Code = "MEAL", Title = "Meal Time", Description = "Time-of-day meal categories",
-                ChildFacets = [Link(byTitle["Breakfast"]), Link(byTitle["Snacks"]),
-                          Link(byTitle["Pancakes"]), Link(byTitle["Croissant"])]
-            },
-            new()
-            {
-                Code = "DIET", Title = "Dietary", Description = "Dietary preference categories",
-                ChildFacets = [Link(byTitle["Dietary"]), Link(byTitle["Vegan"]), Link(byTitle["Vegetarian"]),
-                          Link(byTitle["Gluten-Free"]), Link(byTitle["Keto"]),
-                          Link(byTitle["Veggie Burger"]), Link(byTitle["Caesar Salad"]), Link(byTitle["Greek Salad"])]
+                Code = "DIETARY", Title = "Dietary", Description = "Dietary preference categories",
+                ChildFacets = [Link(byTitle["Vegan"]), Link(byTitle["Vegetarian"]),
+                          Link(byTitle["Gluten-Free"]), Link(byTitle["Keto"])]
             },
             new()
             {

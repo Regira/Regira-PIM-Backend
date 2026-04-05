@@ -1,6 +1,6 @@
-namespace PIM.Models.Taxonomy.FacetGroups;
+namespace PIM.Models.Taxonomy.FacetGroupFacets;
 
-public class FacetGroupLinkInputDto
+public class FacetGroupFacetInputDto
 {
     public int Id { get; set; }
     public int FacetGroupId { get; set; }

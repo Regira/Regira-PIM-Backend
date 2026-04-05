@@ -132,8 +132,8 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     .ToList();
             }
             await productService.Save(ingredient);
-            await productService.SaveChanges();
         }
+        await productService.SaveChanges();
 
         // Lookup helpers
         var byCode = unitTypes.ToDictionary(u => u.Code!, u => u);
@@ -225,7 +225,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 8.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
-                Facets = [Tag("Classic Burger"), Tag("Burgers"), Tag("Food")],
+                Facets = [Tag("Classic Burger"), Tag("Burgers")],
                 Components =
                 [
                     Comp("Bun"), Comp("Beef Patty"),
@@ -242,7 +242,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 9.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
-                Facets = [Tag("Cheeseburger"), Tag("Burgers"), Tag("Food")],
+                Facets = [Tag("Cheeseburger"), Tag("Burgers")],
                 Components =
                 [
                     Comp("Bun"), Comp("Beef Patty"), Comp("Cheese"),
@@ -258,7 +258,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 9.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
-                Facets = [Tag("Veggie Burger"), Tag("Burgers"), Tag("Food"), Tag("Vegan"), Tag("Vegetarian")],
+                Facets = [Tag("Veggie Burger"), Tag("Burgers"), Tag("Vegan"), Tag("Vegetarian")],
                 Components =
                 [
                     Comp("Bun"), Comp("Veggie Patty"),
@@ -275,7 +275,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 11.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("slice"),
-                Facets = [Tag("Margherita"), Tag("Pizza"), Tag("Food"), Tag("Vegetarian")],
+                Facets = [Tag("Margherita"), Tag("Pizza"), Tag("Vegetarian")],
                 Components =
                 [
                     Comp("Pizza Dough"), Comp("Tomato Sauce"), Comp("Mozzarella")
@@ -289,7 +289,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 13.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("slice"),
-                Facets = [Tag("Pepperoni Pizza"), Tag("Pizza"), Tag("Food")],
+                Facets = [Tag("Pepperoni Pizza"), Tag("Pizza")],
                 Components =
                 [
                     Comp("Pizza Dough"), Comp("Tomato Sauce"),
@@ -305,7 +305,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 8.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
-                Facets = [Tag("Caesar Salad"), Tag("Salads"), Tag("Food")],
+                Facets = [Tag("Caesar Salad"), Tag("Salads")],
                 Components =
                 [
                     Comp("Lettuce", qty: 2), Comp("Parmesan"),
@@ -321,7 +321,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 7.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
-                Facets = [Tag("Greek Salad"), Tag("Salads"), Tag("Food"), Tag("Vegetarian")],
+                Facets = [Tag("Greek Salad"), Tag("Salads"), Tag("Vegetarian")],
                 Components =
                 [
                     Comp("Tomato"), Comp("Cucumber"), Comp("Olives"),
@@ -338,7 +338,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 12.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
-                Facets = [Tag("Carbonara"), Tag("Pasta"), Tag("Food")],
+                Facets = [Tag("Carbonara"), Tag("Pasta")],
                 Components =
                 [
                     Comp("Spaghetti"), Comp("Egg", qty: 2),
@@ -353,7 +353,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 11.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("portion"),
-                Facets = [Tag("Bolognese"), Tag("Pasta"), Tag("Food")],
+                Facets = [Tag("Bolognese"), Tag("Pasta")],
                 Components =
                 [
                     Comp("Spaghetti"), Comp("Ground Beef"),
@@ -370,7 +370,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 4.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("pc"),
-                Facets = [Tag("Ice Cream"), Tag("Desserts"), Tag("Food")],
+                Facets = [Tag("Ice Cream"), Tag("Desserts")],
                 Components = [Comp("Whipped Cream", omittable: true)],
                 AllowedComponentAdditions = [Extra("Chocolate Sauce"), Extra("Caramel Syrup")]
             },
@@ -381,7 +381,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 5.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("slice"),
-                Facets = [Tag("Cake"), Tag("Desserts"), Tag("Food")],
+                Facets = [Tag("Cake"), Tag("Desserts")],
                 Components =
                 [
                     Comp("Whipped Cream", omittable: true),
@@ -397,7 +397,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 3.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("cup"),
-                Facets = [Tag("Coffee"), Tag("Hot Drinks"), Tag("Beverages")],
+                Facets = [Tag("Coffee"), Tag("Hot Drinks")],
                 Components = [Comp("Espresso")],
                 AllowedComponentAdditions = [Extra("Extra Shot"), Extra("Oat Milk"), Extra("Soy Milk"), Extra("Whipped Cream"), Extra("Caramel Syrup")]
             },
@@ -408,7 +408,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 2.99m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("cup"),
-                Facets = [Tag("Tea"), Tag("Hot Drinks"), Tag("Beverages")],
+                Facets = [Tag("Tea"), Tag("Hot Drinks")],
                 Components = [Comp("Tea Leaves")],
                 AllowedComponentAdditions = [Extra("Oat Milk"), Extra("Soy Milk")]
             },
@@ -420,7 +420,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 4.49m }],
                 AllowAdditions = false,
                 UnitTypeId = UnitId("ml"),
-                Facets = [Tag("Fresh Juice"), Tag("Cold Drinks"), Tag("Beverages"), Tag("Vegan")],
+                Facets = [Tag("Fresh Juice"), Tag("Cold Drinks"), Tag("Vegan")],
                 Components = [Comp("Mixed Fruit", qty: 3)]
             },
             new()
@@ -430,7 +430,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 5.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("ml"),
-                Facets = [Tag("Smoothies"), Tag("Cold Drinks"), Tag("Beverages"), Tag("Vegetarian")],
+                Facets = [Tag("Smoothies"), Tag("Cold Drinks"), Tag("Vegetarian")],
                 Components = [Comp("Mixed Fruit", qty: 2), Comp("Yogurt")],
                 AllowedComponentAdditions = [Extra("Whipped Cream"), Extra("Chocolate Sauce")]
             },
@@ -442,7 +442,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 7.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("pc"),
-                Facets = [Tag("Pancakes"), Tag("Breakfast"), Tag("Food"), Tag("Vegetarian")],
+                Facets = [Tag("Pancakes"), Tag("Breakfast"), Tag("Vegetarian")],
                 Components =
                 [
                     Comp("Egg", qty: 2), Comp("Butter"), Comp("Maple Syrup")
@@ -456,7 +456,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Prices = [new ProductPricePeriod { Price = 3.49m }],
                 AllowAdditions = true,
                 UnitTypeId = UnitId("pc"),
-                Facets = [Tag("Croissant"), Tag("Breakfast"), Tag("Food"), Tag("Vegetarian")],
+                Facets = [Tag("Croissant"), Tag("Breakfast"), Tag("Vegetarian")],
                 Components = [Comp("Butter")],
                 AllowedComponentAdditions = [Extra("Cheese"), Extra("Ham")]
             },
@@ -494,7 +494,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         var allProducts = new List<Product>(menuItems);
 
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 250; i++)
         {
             var price = Math.Round(f.Random.Decimal(3.50m, 24.99m), 2);
 

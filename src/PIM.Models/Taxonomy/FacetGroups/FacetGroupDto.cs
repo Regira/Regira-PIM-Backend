@@ -1,3 +1,5 @@
+using PIM.Models.Taxonomy.FacetGroupFacets;
+
 namespace PIM.Models.Taxonomy.FacetGroups;
 
 public class FacetGroupCoreDto
@@ -12,6 +14,6 @@ public class FacetGroupCoreDto
 
 public class FacetGroupDto : FacetGroupCoreDto
 {
-    public ICollection<FacetGroupLinkDto>? ParentFacets { get; set; }
-    public ICollection<FacetGroupLinkDto>? ChildFacets { get; set; }
+    public ICollection<FacetGroupFacetDto>? ParentFacets { get; set; }
+    public ICollection<FacetGroupFacetDto>? ChildFacets { get; set; }
 }

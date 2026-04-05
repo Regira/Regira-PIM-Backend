@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using PIM.Core.Constants;
-using PIM.Models.Catalog.Allergens;
 using PIM.Models.Catalog.Products;
 using PIM.Models.Catalog.UnitTypes;
 using PIM.Models.Orders;
 using PIM.Models.Stakeholders.Identity;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Stakeholders.Parties.Relations;
+using PIM.Models.Taxonomy.FacetGroupFacets;
 using PIM.Models.Taxonomy.FacetGroups;
 using PIM.Models.Taxonomy.Facets;
 using Regira.DAL.EFcore.Extensions;
@@ -24,7 +24,6 @@ public class PimDbContext(DbContextOptions<PimDbContext> options) : DbContext(op
     public DbSet<FacetGroup> FacetGroups { get; set; } = null!;
     public DbSet<UnitType> UnitTypes { get; set; } = null!;
     public DbSet<Product> Products { get; set; } = null!;
-    public DbSet<Allergen> Allergens { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

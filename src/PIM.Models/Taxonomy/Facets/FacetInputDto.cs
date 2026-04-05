@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using PIM.Models.Taxonomy.FacetGroups;
+using PIM.Models.Taxonomy.FacetGroupFacets;
 
 namespace PIM.Models.Taxonomy.Facets;
 
@@ -12,5 +12,7 @@ public class FacetInputDto
     [MaxLength(1024)] public string? Description { get; set; }
     public ICollection<RelatedFacetInputDto>? ParentEntities { get; set; }
     public ICollection<RelatedFacetInputDto>? ChildEntities { get; set; }
-    public ICollection<FacetGroupLinkInputDto>? FacetGroups { get; set; }
+
+    public ICollection<FacetGroupFacetInputDto>? FacetParentGroups { get; set; }
+    public ICollection<FacetGroupFacetInputDto>? FacetChildGroups { get; set; }
 }
