@@ -521,7 +521,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         if (IngredientsContainAny(ings, "tuna"))
         { codes.Add("LEAN_FISH"); codes.Add("FISH"); codes.Add("SEAFOOD"); }
         if (IngredientsContainAny(ings, "fish") &&
-            !IngredientsContainAny(ings, "fish sauce", "fish stock"))
+            !IngredientsContainAny(ings, "fish sauce", "fish stock", "fish oil", "fish broth", "fish paste"))
         { codes.Add("FISH"); codes.Add("SEAFOOD"); }
         if (IngredientsContainAny(ings, "shrimp", "prawn", "lobster", "crayfish"))
         { codes.Add("CRUSTACEANS"); codes.Add("SHELLFISH"); codes.Add("SEAFOOD"); }
