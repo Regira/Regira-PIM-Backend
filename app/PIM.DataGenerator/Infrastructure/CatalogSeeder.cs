@@ -12,124 +12,124 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 {
     private const int BatchSize = 100;
 
-    // Canonical ingredient list derived from the most common CSV ingredients.
-    // Title → (Description, UnitCode, Price)
-    private static readonly IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price)> CanonicalIngredients =
-        new Dictionary<string, (string, string, decimal)>(StringComparer.OrdinalIgnoreCase)
+    // Canonical ingredient list.
+    // Key → (Description, UnitCode, Price, CategoryCodes)
+    private static readonly IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes)> CanonicalIngredients =
+        new Dictionary<string, (string, string, decimal, string[])>(StringComparer.OrdinalIgnoreCase)
         {
-            // Basics
-            ["Salt"]           = ("Fine sea salt",              "g",  0.05m),
-            ["Sugar"]          = ("White granulated sugar",     "g",  0.10m),
-            ["Pepper"]         = ("Ground black pepper",        "g",  0.05m),
-            ["Black Pepper"]   = ("Ground black pepper",        "g",  0.05m),
-            ["Water"]          = ("Clean water",                "ml", 0.01m),
+            // Basics / Pantry
+            ["Salt"]           = ("Fine sea salt",                  "g",  0.05m, ["PANTRY", "SPICES"]),
+            ["Sugar"]          = ("White granulated sugar",         "g",  0.10m, ["PANTRY"]),
+            ["Pepper"]         = ("Ground black pepper",            "g",  0.05m, ["PANTRY", "SPICES"]),
+            ["Black Pepper"]   = ("Ground black pepper",            "g",  0.05m, ["PANTRY", "SPICES"]),
+            ["Water"]          = ("Clean water",                    "ml", 0.01m, ["PANTRY"]),
             // Fats & oils
-            ["Oil"]            = ("Cooking oil",                "ml", 0.10m),
-            ["Olive Oil"]      = ("Extra-virgin olive oil",     "ml", 0.25m),
-            ["Vegetable Oil"]  = ("Refined vegetable oil",      "ml", 0.10m),
-            ["Sesame Oil"]     = ("Toasted sesame oil",         "ml", 0.30m),
-            ["Butter"]         = ("Salted butter",              "g",  0.40m),
-            ["Ghee"]           = ("Clarified butter (ghee)",    "g",  0.45m),
+            ["Oil"]            = ("Cooking oil",                    "ml", 0.10m, ["PANTRY", "CONDIMENTS"]),
+            ["Olive Oil"]      = ("Extra-virgin olive oil",         "ml", 0.25m, ["PANTRY", "CONDIMENTS"]),
+            ["Vegetable Oil"]  = ("Refined vegetable oil",          "ml", 0.10m, ["PANTRY", "CONDIMENTS"]),
+            ["Sesame Oil"]     = ("Toasted sesame oil",             "ml", 0.30m, ["PANTRY", "CONDIMENTS"]),
+            ["Butter"]         = ("Salted butter",                  "g",  0.40m, ["DAIRY", "PANTRY"]),
+            ["Ghee"]           = ("Clarified butter (ghee)",        "g",  0.45m, ["DAIRY", "PANTRY"]),
             // Aromatics
-            ["Onion"]          = ("Yellow onion",               "pc", 0.20m),
-            ["Garlic"]         = ("Fresh garlic cloves",        "g",  0.15m),
-            ["Ginger"]         = ("Fresh ginger root",          "g",  0.20m),
-            ["Scallions"]      = ("Spring onions / scallions",  "g",  0.15m),
-            ["Lemongrass"]     = ("Fresh lemongrass stalk",     "pc", 0.30m),
+            ["Onion"]          = ("Yellow onion",                   "pc", 0.20m, ["VEGETABLES"]),
+            ["Garlic"]         = ("Fresh garlic cloves",            "g",  0.15m, ["VEGETABLES"]),
+            ["Ginger"]         = ("Fresh ginger root",              "g",  0.20m, ["VEGETABLES", "SPICES"]),
+            ["Scallions"]      = ("Spring onions / scallions",      "g",  0.15m, ["VEGETABLES", "HERBS"]),
+            ["Lemongrass"]     = ("Fresh lemongrass stalk",         "pc", 0.30m, ["HERBS", "VEGETABLES"]),
             // Spices
-            ["Cumin"]          = ("Ground cumin",               "g",  0.15m),
-            ["Turmeric"]       = ("Ground turmeric",            "g",  0.15m),
-            ["Cinnamon"]       = ("Ground cinnamon",            "g",  0.15m),
-            ["Paprika"]        = ("Sweet paprika",              "g",  0.15m),
-            ["Allspice"]       = ("Ground allspice",            "g",  0.15m),
-            ["Cardamom"]       = ("Ground cardamom",            "g",  0.20m),
-            ["Cloves"]         = ("Whole cloves",               "g",  0.20m),
-            ["Saffron"]        = ("Saffron threads",            "g",  1.50m),
-            ["Oregano"]        = ("Dried oregano",              "g",  0.10m),
-            ["Thyme"]          = ("Fresh thyme",                "g",  0.10m),
-            ["Rosemary"]       = ("Fresh rosemary",             "g",  0.10m),
-            ["Bay Leaf"]       = ("Dried bay leaf",             "pc", 0.05m),
-            ["Nutmeg"]         = ("Ground nutmeg",              "g",  0.20m),
-            ["Fennel"]         = ("Fennel seeds",               "g",  0.15m),
-            ["Garam Masala"]   = ("Garam masala spice blend",   "g",  0.20m),
-            ["Curry Powder"]   = ("Mild curry powder",          "g",  0.15m),
-            ["Coriander Powder"] = ("Ground coriander",         "g",  0.15m),
-            ["Chili Powder"]   = ("Chili powder blend",         "g",  0.15m),
-            ["Chili Flakes"]   = ("Dried red chili flakes",     "g",  0.15m),
+            ["Cumin"]          = ("Ground cumin",                   "g",  0.15m, ["SPICES"]),
+            ["Turmeric"]       = ("Ground turmeric",                "g",  0.15m, ["SPICES"]),
+            ["Cinnamon"]       = ("Ground cinnamon",                "g",  0.15m, ["SPICES"]),
+            ["Paprika"]        = ("Sweet paprika",                  "g",  0.15m, ["SPICES"]),
+            ["Allspice"]       = ("Ground allspice",                "g",  0.15m, ["SPICES"]),
+            ["Cardamom"]       = ("Ground cardamom",                "g",  0.20m, ["SPICES"]),
+            ["Cloves"]         = ("Whole cloves",                   "g",  0.20m, ["SPICES"]),
+            ["Saffron"]        = ("Saffron threads",                "g",  1.50m, ["SPICES"]),
+            ["Oregano"]        = ("Dried oregano",                  "g",  0.10m, ["HERBS", "SPICES"]),
+            ["Thyme"]          = ("Fresh thyme",                    "g",  0.10m, ["HERBS"]),
+            ["Rosemary"]       = ("Fresh rosemary",                 "g",  0.10m, ["HERBS"]),
+            ["Bay Leaf"]       = ("Dried bay leaf",                 "pc", 0.05m, ["HERBS"]),
+            ["Nutmeg"]         = ("Ground nutmeg",                  "g",  0.20m, ["SPICES"]),
+            ["Fennel"]         = ("Fennel seeds",                   "g",  0.15m, ["SPICES", "HERBS"]),
+            ["Garam Masala"]   = ("Garam masala spice blend",       "g",  0.20m, ["SPICES"]),
+            ["Curry Powder"]   = ("Mild curry powder",              "g",  0.15m, ["SPICES"]),
+            ["Coriander Powder"] = ("Ground coriander",             "g",  0.15m, ["SPICES"]),
+            ["Chili Powder"]   = ("Chili powder blend",             "g",  0.15m, ["SPICES"]),
+            ["Chili Flakes"]   = ("Dried red chili flakes",         "g",  0.15m, ["SPICES"]),
             // Herbs
-            ["Parsley"]        = ("Fresh flat-leaf parsley",    "g",  0.10m),
-            ["Cilantro"]       = ("Fresh cilantro (coriander)", "g",  0.10m),
-            ["Basil"]          = ("Fresh sweet basil",          "g",  0.10m),
-            ["Dill"]           = ("Fresh dill",                 "g",  0.10m),
-            ["Mint"]           = ("Fresh mint leaves",          "g",  0.10m),
+            ["Parsley"]        = ("Fresh flat-leaf parsley",        "g",  0.10m, ["HERBS"]),
+            ["Cilantro"]       = ("Fresh cilantro (coriander)",     "g",  0.10m, ["HERBS"]),
+            ["Basil"]          = ("Fresh sweet basil",              "g",  0.10m, ["HERBS"]),
+            ["Dill"]           = ("Fresh dill",                     "g",  0.10m, ["HERBS"]),
+            ["Mint"]           = ("Fresh mint leaves",              "g",  0.10m, ["HERBS"]),
             // Grains & starchy
-            ["Flour"]          = ("All-purpose wheat flour",    "g",  0.05m),
-            ["Rice"]           = ("Long-grain white rice",      "g",  0.08m),
-            ["Basmati Rice"]   = ("Fragrant basmati rice",      "g",  0.12m),
-            ["Cornmeal"]       = ("Yellow cornmeal",            "g",  0.08m),
-            ["Pasta"]          = ("Dried pasta",                "g",  0.10m),
-            ["Breadcrumbs"]    = ("Dry breadcrumbs",            "g",  0.08m),
-            ["Cassava"]        = ("Fresh cassava root",         "g",  0.10m),
-            ["Phyllo Dough"]   = ("Frozen phyllo pastry sheets","g",  0.20m),
+            ["Flour"]          = ("All-purpose wheat flour",        "g",  0.05m, ["GRAINS"]),
+            ["Rice"]           = ("Long-grain white rice",          "g",  0.08m, ["GRAINS"]),
+            ["Basmati Rice"]   = ("Fragrant basmati rice",          "g",  0.12m, ["GRAINS"]),
+            ["Cornmeal"]       = ("Yellow cornmeal",                "g",  0.08m, ["GRAINS"]),
+            ["Pasta"]          = ("Dried pasta",                    "g",  0.10m, ["GRAINS"]),
+            ["Breadcrumbs"]    = ("Dry breadcrumbs",                "g",  0.08m, ["GRAINS"]),
+            ["Cassava"]        = ("Fresh cassava root",             "g",  0.10m, ["GRAINS", "VEGETABLES"]),
+            ["Phyllo Dough"]   = ("Frozen phyllo pastry sheets",    "g",  0.20m, ["GRAINS"]),
             // Vegetables
-            ["Potatoes"]       = ("White potatoes",             "g",  0.08m),
-            ["Sweet Potato"]   = ("Orange sweet potato",        "g",  0.10m),
-            ["Tomatoes"]       = ("Ripe tomatoes",              "pc", 0.30m),
-            ["Tomato"]         = ("Ripe tomato",                "pc", 0.30m),
-            ["Tomato Paste"]   = ("Concentrated tomato paste",  "g",  0.20m),
-            ["Bell Pepper"]    = ("Mixed bell peppers",         "pc", 0.40m),
-            ["Chili Pepper"]   = ("Fresh red chili pepper",     "pc", 0.20m),
-            ["Scotch Bonnet"]  = ("Scotch bonnet pepper",       "pc", 0.25m),
-            ["Carrots"]        = ("Fresh carrots",              "g",  0.08m),
-            ["Cabbage"]        = ("White cabbage",              "g",  0.05m),
-            ["Eggplant"]       = ("Aubergine / eggplant",       "g",  0.15m),
-            ["Zucchini"]       = ("Courgette / zucchini",       "g",  0.12m),
-            ["Mushrooms"]      = ("Button mushrooms",           "g",  0.45m),
-            ["Spinach"]        = ("Fresh spinach leaves",       "g",  0.20m),
-            ["Okra"]           = ("Fresh okra pods",            "g",  0.20m),
-            ["Celery"]         = ("Celery stalk",               "pc", 0.15m),
-            ["Plantain"]       = ("Green plantain",             "pc", 0.30m),
+            ["Potatoes"]       = ("White potatoes",                 "g",  0.08m, ["VEGETABLES"]),
+            ["Sweet Potato"]   = ("Orange sweet potato",           "g",  0.10m, ["VEGETABLES"]),
+            ["Tomatoes"]       = ("Ripe tomatoes",                  "pc", 0.30m, ["VEGETABLES"]),
+            ["Tomato"]         = ("Ripe tomato",                    "pc", 0.30m, ["VEGETABLES"]),
+            ["Tomato Paste"]   = ("Concentrated tomato paste",      "g",  0.20m, ["VEGETABLES", "CONDIMENTS"]),
+            ["Bell Pepper"]    = ("Mixed bell peppers",             "pc", 0.40m, ["VEGETABLES"]),
+            ["Chili Pepper"]   = ("Fresh red chili pepper",         "pc", 0.20m, ["VEGETABLES", "SPICES"]),
+            ["Scotch Bonnet"]  = ("Scotch bonnet pepper",           "pc", 0.25m, ["VEGETABLES", "SPICES"]),
+            ["Carrots"]        = ("Fresh carrots",                  "g",  0.08m, ["VEGETABLES"]),
+            ["Cabbage"]        = ("White cabbage",                  "g",  0.05m, ["VEGETABLES"]),
+            ["Eggplant"]       = ("Aubergine / eggplant",           "g",  0.15m, ["VEGETABLES"]),
+            ["Zucchini"]       = ("Courgette / zucchini",           "g",  0.12m, ["VEGETABLES"]),
+            ["Mushrooms"]      = ("Button mushrooms",               "g",  0.45m, ["VEGETABLES"]),
+            ["Spinach"]        = ("Fresh spinach leaves",           "g",  0.20m, ["VEGETABLES"]),
+            ["Okra"]           = ("Fresh okra pods",                "g",  0.20m, ["VEGETABLES"]),
+            ["Celery"]         = ("Celery stalk",                   "pc", 0.15m, ["VEGETABLES"]),
+            ["Plantain"]       = ("Green plantain",                 "pc", 0.30m, ["VEGETABLES"]),
             // Legumes
-            ["Chickpeas"]      = ("Canned chickpeas",           "g",  0.15m),
-            ["Beans"]          = ("Dried beans",                "g",  0.12m),
-            ["Peas"]           = ("Frozen green peas",          "g",  0.10m),
-            ["Lentils"]        = ("Red lentils",                "g",  0.12m),
-            // Fruits
-            ["Lemon"]          = ("Fresh lemon",                "pc", 0.25m),
-            ["Lemon Juice"]    = ("Freshly squeezed lemon juice","ml",0.20m),
-            ["Lime Juice"]     = ("Freshly squeezed lime juice", "ml",0.20m),
-            ["Raisins"]        = ("Seedless raisins",           "g",  0.20m),
-            ["Mango"]          = ("Ripe mango",                 "pc", 0.60m),
-            ["Banana"]         = ("Ripe banana",                "pc", 0.20m),
-            ["Coconut"]        = ("Desiccated coconut",         "g",  0.25m),
-            ["Tamarind"]       = ("Tamarind paste",             "g",  0.25m),
+            ["Chickpeas"]      = ("Canned chickpeas",               "g",  0.15m, ["LEGUMES"]),
+            ["Beans"]          = ("Dried beans",                    "g",  0.12m, ["LEGUMES"]),
+            ["Peas"]           = ("Frozen green peas",              "g",  0.10m, ["LEGUMES"]),
+            ["Lentils"]        = ("Red lentils",                    "g",  0.12m, ["LEGUMES"]),
+            // Fruits & other produce
+            ["Lemon"]          = ("Fresh lemon",                    "pc", 0.25m, ["VEGETABLES"]),
+            ["Lemon Juice"]    = ("Freshly squeezed lemon juice",   "ml", 0.20m, ["CONDIMENTS"]),
+            ["Lime Juice"]     = ("Freshly squeezed lime juice",    "ml", 0.20m, ["CONDIMENTS"]),
+            ["Raisins"]        = ("Seedless raisins",               "g",  0.20m, ["PANTRY"]),
+            ["Mango"]          = ("Ripe mango",                     "pc", 0.60m, ["VEGETABLES"]),
+            ["Banana"]         = ("Ripe banana",                    "pc", 0.20m, ["VEGETABLES"]),
+            ["Coconut"]        = ("Desiccated coconut",             "g",  0.25m, ["PANTRY"]),
+            ["Tamarind"]       = ("Tamarind paste",                 "g",  0.25m, ["CONDIMENTS", "SPICES"]),
             // Dairy & eggs
-            ["Eggs"]           = ("Free-range eggs",            "pc", 0.35m),
-            ["Egg"]            = ("Free-range egg",             "pc", 0.35m),
-            ["Milk"]           = ("Whole milk",                 "ml", 0.10m),
-            ["Cream"]          = ("Heavy cooking cream",        "ml", 0.40m),
-            ["Sour Cream"]     = ("Full-fat sour cream",        "ml", 0.30m),
-            ["Yogurt"]         = ("Natural yogurt",             "ml", 0.30m),
-            ["Cheese"]         = ("Cheddar cheese",             "g",  0.45m),
-            ["Mozzarella"]     = ("Fresh mozzarella",           "g",  0.55m),
-            ["Feta Cheese"]    = ("Crumbled feta cheese",       "g",  0.55m),
-            ["Coconut Milk"]   = ("Full-fat coconut milk",      "ml", 0.25m),
+            ["Eggs"]           = ("Free-range eggs",                "pc", 0.35m, ["DAIRY"]),
+            ["Egg"]            = ("Free-range egg",                 "pc", 0.35m, ["DAIRY"]),
+            ["Milk"]           = ("Whole milk",                     "ml", 0.10m, ["DAIRY"]),
+            ["Cream"]          = ("Heavy cooking cream",            "ml", 0.40m, ["DAIRY"]),
+            ["Sour Cream"]     = ("Full-fat sour cream",            "ml", 0.30m, ["DAIRY"]),
+            ["Yogurt"]         = ("Natural yogurt",                 "ml", 0.30m, ["DAIRY"]),
+            ["Cheese"]         = ("Cheddar cheese",                 "g",  0.45m, ["DAIRY"]),
+            ["Mozzarella"]     = ("Fresh mozzarella",               "g",  0.55m, ["DAIRY"]),
+            ["Feta Cheese"]    = ("Crumbled feta cheese",           "g",  0.55m, ["DAIRY"]),
+            ["Coconut Milk"]   = ("Full-fat coconut milk",          "ml", 0.25m, ["DAIRY", "PANTRY"]),
             // Proteins
-            ["Chicken"]        = ("Bone-in chicken pieces",     "g",  0.50m),
-            ["Beef"]           = ("Beef chuck",                 "g",  0.60m),
-            ["Ground Beef"]    = ("Lean ground beef",           "g",  0.55m),
-            ["Lamb"]           = ("Diced lamb shoulder",        "g",  0.70m),
-            ["Pork"]           = ("Pork shoulder",              "g",  0.55m),
-            ["Bacon"]          = ("Smoked bacon",               "g",  0.60m),
-            ["Fish"]           = ("White fish fillet",          "g",  0.65m),
-            ["Shrimp"]         = ("Raw peeled shrimp",          "g",  0.80m),
+            ["Chicken"]        = ("Bone-in chicken pieces",         "g",  0.50m, ["POULTRY"]),
+            ["Beef"]           = ("Beef chuck",                     "g",  0.60m, ["BEEF"]),
+            ["Ground Beef"]    = ("Lean ground beef",               "g",  0.55m, ["BEEF"]),
+            ["Lamb"]           = ("Diced lamb shoulder",            "g",  0.70m, ["LAMB"]),
+            ["Pork"]           = ("Pork shoulder",                  "g",  0.55m, ["PORK"]),
+            ["Bacon"]          = ("Smoked bacon",                   "g",  0.60m, ["PORK"]),
+            ["Fish"]           = ("White fish fillet",              "g",  0.65m, ["SEAFOOD"]),
+            ["Shrimp"]         = ("Raw peeled shrimp",              "g",  0.80m, ["SEAFOOD"]),
             // Sauces & condiments
-            ["Soy Sauce"]      = ("Light soy sauce",            "ml", 0.15m),
-            ["Fish Sauce"]     = ("Thai fish sauce",            "ml", 0.20m),
-            ["Vinegar"]        = ("White wine vinegar",         "ml", 0.10m),
-            ["Mustard"]        = ("Dijon mustard",              "g",  0.20m),
-            ["Peanut Butter"]  = ("Smooth peanut butter",       "g",  0.35m),
-            ["Beef Stock"]     = ("Rich beef stock",            "ml", 0.15m),
+            ["Soy Sauce"]      = ("Light soy sauce",                "ml", 0.15m, ["CONDIMENTS"]),
+            ["Fish Sauce"]     = ("Thai fish sauce",                "ml", 0.20m, ["CONDIMENTS"]),
+            ["Vinegar"]        = ("White wine vinegar",             "ml", 0.10m, ["CONDIMENTS", "PANTRY"]),
+            ["Mustard"]        = ("Dijon mustard",                  "g",  0.20m, ["CONDIMENTS"]),
+            ["Peanut Butter"]  = ("Smooth peanut butter",           "g",  0.35m, ["CONDIMENTS", "LEGUMES"]),
+            ["Beef Stock"]     = ("Rich beef stock",                "ml", 0.15m, ["CONDIMENTS"]),
         };
 
     public async Task<IList<Product>> SeedAsync(IList<Facet> facets, IList<Organization> suppliers)
@@ -182,6 +182,9 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         var f = new Faker();
         var facetByTitle = facets.ToDictionary(x => x.Title, x => x, StringComparer.OrdinalIgnoreCase);
+        var facetByCode  = facets
+            .Where(x => !string.IsNullOrEmpty(x.Code))
+            .ToDictionary(x => x.Code!, x => x, StringComparer.OrdinalIgnoreCase);
         var byCode = unitTypes.ToDictionary(u => u.Code!, u => u);
         var recipes = RecipeDataLoader.Load();
 
@@ -210,25 +213,45 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         }
         await productService.SaveChanges();
 
+        // Assign category facets to ingredient products
+        foreach (var ingredient in ingredients)
+        {
+            if (!CanonicalIngredients.TryGetValue(ingredient.Title, out var meta)) continue;
+            var ingredientFacets = meta.CategoryCodes
+                .Where(facetByCode.ContainsKey)
+                .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
+                .ToList();
+            if (ingredientFacets.Count > 0)
+            {
+                ingredient.Facets = ingredientFacets;
+                await productService.Save(ingredient);
+            }
+        }
+        await productService.SaveChanges();
+
         var ingByTitle = ingredients.ToDictionary(i => i.Title, i => i, StringComparer.OrdinalIgnoreCase);
 
         // Helper lambda
         ProductComponent Comp(Product ing, decimal qty = 1, bool omittable = false)
             => new() { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
 
-        // Phase 2: dish products from CSV recipes
+        // Phase 2: dish products from CSV recipes — deduplicated by dish name
         var servingUnitTypes = unitTypes
             .Where(u => u.Code is "pc" or "portion" or "plate" or "bowl")
             .ToList();
 
         var dishProducts = new List<Product>();
-
         var unmappedIngredients = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        foreach (var recipe in recipes)
+        // Group by unique dish name; each unique dish becomes one product
+        foreach (var recipeGroup in recipes.GroupBy(r => r.Dish, StringComparer.OrdinalIgnoreCase))
         {
-            // Map recipe ingredients to canonical ingredient products (best-effort)
-            var components = recipe.Ingredients
+            var dishName = recipeGroup.Key;
+            var primaryRecipe = recipeGroup.First();
+            var allCountries = recipeGroup.Select(r => r.Country).Distinct().ToList();
+
+            // Map CSV ingredients to canonical component products (best-effort, case-insensitive)
+            var components = primaryRecipe.Ingredients
                 .Select(name =>
                 {
                     if (ingByTitle.TryGetValue(name, out var ing))
@@ -241,29 +264,33 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 .DistinctBy(c => c.ComponentId)
                 .ToList();
 
+            // Facets: dish facet + all country facets + category facets
             var tags = new List<ProductFacet>();
-            if (facetByTitle.TryGetValue(recipe.Dish, out var dishFacet))
+            if (facetByTitle.TryGetValue(dishName, out var dishFacet))
                 tags.Add(new ProductFacet { FacetId = dishFacet.Id });
-            if (facetByTitle.TryGetValue(recipe.Country, out var countryFacet))
-                tags.Add(new ProductFacet { FacetId = countryFacet.Id });
+            foreach (var country in allCountries)
+                if (facetByTitle.TryGetValue(country, out var countryFacet))
+                    tags.Add(new ProductFacet { FacetId = countryFacet.Id });
 
-            // Build a short ingredient preview for the description
-            var topIngredients = recipe.Ingredients.Take(3).ToList();
-            var ingredientPreview = topIngredients.Any()
-                ? string.Join(", ", topIngredients)
-                : string.Empty;
-            var description = string.IsNullOrEmpty(ingredientPreview)
-                ? $"A traditional dish from {recipe.Country}"
-                : $"A traditional dish from {recipe.Country} with {ingredientPreview}";
+            // Add category facets based on ingredients and dish name
+            foreach (var code in GetDishCategoryCodes(dishName, primaryRecipe.Ingredients))
+                if (facetByCode.TryGetValue(code, out var catFacet))
+                    tags.Add(new ProductFacet { FacetId = catFacet.Id });
+
+            // Description: mention origin country/countries only, no ingredients
+            var originText = allCountries.Count == 1
+                ? allCountries[0]
+                : $"{string.Join(", ", allCountries[..^1])} and {allCountries[^1]}";
+            var description = $"A traditional dish from {originText}";
 
             var product = new Product
             {
-                Title       = recipe.Dish,
+                Title       = dishName,
                 Description = description,
                 Prices      = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(6.99m, 24.99m), 2) }],
                 UnitTypeId  = f.PickRandom(servingUnitTypes).Id,
                 AllowAdditions = f.Random.Bool(0.7f),
-                Facets      = tags,
+                Facets      = tags.DistinctBy(t => t.FacetId).ToList(),
                 Components  = components,
                 AllowedComponentAdditions = f.Random.Bool(0.4f) && ingByTitle.Count > 0
                     ? f.PickRandom(ingredients, f.Random.Int(1, Math.Min(3, ingredients.Count)))
@@ -283,10 +310,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         }
 
         if (unmappedIngredients.Count > 0)
-            logger.LogDebug("{Count} ingredient name(s) from CSV did not match the canonical list and were skipped: {Names}",
+            logger.LogDebug("{Count} ingredient name(s) from CSV were not in the canonical list: {Names}",
                 unmappedIngredients.Count, string.Join(", ", unmappedIngredients.OrderBy(x => x)));
 
-        logger.LogInformation("Seeding {Count} dish products...", dishProducts.Count);
+        logger.LogInformation("Seeding {Count} unique dish products...", dishProducts.Count);
         foreach (var (product, idx) in dishProducts.Select((p, i) => (p, i)))
         {
             await productService.Save(product);
@@ -317,7 +344,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 .DistinctBy(c => c.Id)
                 .ToList();
 
-            var product = new Product
+            var randomProduct = new Product
             {
                 Title       = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
                 Description = f.Lorem.Sentence(),
@@ -345,8 +372,8 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     : null,
             };
 
-            dishProducts.Add(product);
-            await productService.Save(product);
+            dishProducts.Add(randomProduct);
+            await productService.Save(randomProduct);
             if ((i + 1) % BatchSize == 0)
                 await productService.SaveChanges();
         }
@@ -354,4 +381,88 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         return dishProducts;
     }
+
+    /// <summary>
+    /// Determines relevant facet category codes for a dish based on its name and ingredient list.
+    /// </summary>
+    private static IEnumerable<string> GetDishCategoryCodes(string dishName, IReadOnlyList<string> ingredients)
+    {
+        var dish = dishName.ToLower();
+        var ings = ingredients.Select(i => i.ToLower()).ToHashSet();
+        var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        // ── Course ──────────────────────────────────────────────────────────
+        if (ContainsAny(dish, "cake", "pudding", "ice cream", "halva", "baklava", "duff",
+                "torte", "tart", "sweet", "dessert", "ladoo", "mochi", "gulab", "tiramisu",
+                "mousse", "strudel", "churro", "flan"))
+            codes.Add("DESSERTS");
+        else if (ContainsAny(dish, "juice", "tea", "coffee", "smoothie", "cocktail", "lassi", "ayran"))
+            codes.Add("DRINKS");
+        else if (ContainsAny(dish, "fufu", "ugali", "injera", "bogobe", "sadza", "tô",
+                "bread", "naan", "pita", "flatbread", "rice", "chips", "fries", "polenta"))
+            codes.Add("SIDES");
+        else if (ContainsAny(dish, "salad", "hummus", "guacamole", "bruschetta",
+                "spring roll", "dumpling", "samosa", "fritter", "empanada", "kibbeh"))
+            codes.Add("STARTERS");
+        else
+            codes.Add("MAIN");
+
+        // ── Food type ────────────────────────────────────────────────────────
+        if (ContainsAny(dish, "soup", "broth", "shorba", "chorba", "chowder", "potage",
+                "bisque", "harira", "shchi", "rassolnik"))
+            codes.Add("SOUPS");
+        if (ContainsAny(dish, "stew", "tagine", "wat", "casserole") ||
+            ContainsAny(dish, "carbonade", "calulu", "machanka", "kavarma", "ndole"))
+            codes.Add("SOUPS");
+        if (ContainsAny(dish, "pasta", "spaghetti", "noodle", "kuy teav", "laksa",
+                "pad thai", "lo mein"))
+            codes.Add("PASTA");
+        if (ContainsAny(dish, "rice", "biryani", "paella", "plov", "pilaf", "risotto",
+                "jollof", "riz", "pilau", "mujaddara", "machboos", "muhammar", "nasi"))
+            codes.Add("RICE");
+        if (ContainsAny(dish, "curry", "masala", "korma", "dal", "rendang", "tikka",
+                "vindaloo", "adobo", "ema datshi"))
+            codes.Add("CURRIES");
+        if (ContainsAny(dish, "grilled", "bbq", "roasted", "asado", "kebab", "satay",
+                "khorovats", "souvla", "churrasco", "yakitori", "galbi", "bulgogi"))
+            codes.Add("GRILLED");
+        if (ContainsAny(dish, "bread", "naan", "pita", "injera", "flatbread", "roti",
+                "chapati", "pancake", "crepe", "byrek", "burek", "banitsa", "phyllo",
+                "pastel", "pie", "strudel", "pastry", "börek", "lavash"))
+            codes.Add("BREADS");
+        if (ContainsAny(dish, "salad"))
+            codes.Add("SALADS");
+        if (ContainsAny(dish, "hummus", "dip", "guacamole", "tahini", "tzatziki",
+                "baba", "muhammara", "pesto", "aioli", "chimichurri"))
+            codes.Add("DIPS");
+        if (ContainsAny(dish, "fritter", "spring roll", "samosa", "falafel", "gyoza",
+                "dumpling", "wonton", "kuli", "puff"))
+            codes.Add("SNACKS");
+
+        // ── Protein (from ingredient list) ────────────────────────────────
+        if (IngredientsContainAny(ings, "chicken", "hen", "duck", "turkey", "galinha", "poulet"))
+            codes.Add("POULTRY");
+        if (IngredientsContainAny(ings, "beef", "steak", "brisket", "ground beef", "veal"))
+            codes.Add("BEEF");
+        if (IngredientsContainAny(ings, "pork", "bacon", "ham", "chorizo", "sausage",
+                "lard", "pig", "ribs", "salt pork"))
+            codes.Add("PORK");
+        if (IngredientsContainAny(ings, "lamb", "mutton"))
+            codes.Add("LAMB");
+        if (IngredientsContainAny(ings, "fish", "shrimp", "prawn", "crab", "mussel",
+                "salmon", "tuna", "cod", "lobster", "squid", "anchovy", "seafood", "conch",
+                "barramundi", "hilsa", "dried fish", "smoked fish"))
+            codes.Add("SEAFOOD");
+        if (IngredientsContainAny(ings, "bean", "lentil", "chickpea", "split pea",
+                "kidney bean", "black bean"))
+            codes.Add("LEGUMES");
+
+        return codes;
+    }
+
+    private static bool ContainsAny(string text, params string[] keywords)
+        => keywords.Any(k => text.Contains(k, StringComparison.OrdinalIgnoreCase));
+
+    private static bool IngredientsContainAny(IEnumerable<string> ingredients, params string[] keywords)
+        => ingredients.Any(ing => keywords.Any(k => ing.Contains(k, StringComparison.OrdinalIgnoreCase)));
 }

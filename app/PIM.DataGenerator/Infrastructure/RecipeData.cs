@@ -2,6 +2,8 @@ namespace PIM.DataGenerator.Infrastructure;
 
 public record RecipeEntry(string Country, string Dish, IReadOnlyList<string> Ingredients);
 
+public record FacetCategoryEntry(string Code, string Title, string Description);
+
 public static class RecipeDataLoader
 {
     public static readonly IReadOnlyDictionary<string, string> CountryRegions =
@@ -81,6 +83,28 @@ public static class RecipeDataLoader
                 .ToList();
 
             entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients));
+        }
+
+        return entries;
+    }
+
+    public static IReadOnlyList<FacetCategoryEntry> LoadFacetCategories()
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, "Assets", "facets.csv");
+        var entries = new List<FacetCategoryEntry>();
+
+        using var reader = new StreamReader(path);
+        reader.ReadLine(); // skip header
+
+        string? line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            var fields = ParseCsvLine(line);
+            if (fields.Count < 3) continue;
+
+            entries.Add(new FacetCategoryEntry(fields[0].Trim(), fields[1].Trim(), fields[2].Trim()));
         }
 
         return entries;
