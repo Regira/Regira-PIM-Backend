@@ -1,6 +1,8 @@
 namespace PIM.DataGenerator.Infrastructure;
 
-public record RecipeEntry(string Country, string Dish, IReadOnlyList<string> Ingredients);
+public record IngredientEntry(string Name, decimal Quantity);
+
+public record RecipeEntry(string Country, string Dish, IReadOnlyList<IngredientEntry> Ingredients);
 
 public record FacetCategoryEntry(string Code, string Title, string Description);
 
@@ -78,8 +80,8 @@ public static class RecipeDataLoader
 
             var ingredients = fields[2]
                 .Split(';')
-                .Select(i => ExtractIngredientName(i.Trim()))
-                .Where(i => !string.IsNullOrWhiteSpace(i))
+                .Select(i => ParseIngredientEntry(i.Trim()))
+                .Where(i => !string.IsNullOrWhiteSpace(i.Name))
                 .ToList();
 
             entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients));
@@ -110,10 +112,67 @@ public static class RecipeDataLoader
         return entries;
     }
 
-    private static string ExtractIngredientName(string part)
+    private static IngredientEntry ParseIngredientEntry(string part)
     {
-        var idx = part.IndexOf('(');
-        return idx >= 0 ? part[..idx].Trim() : part.Trim();
+        var start = part.IndexOf('(');
+        var end   = part.IndexOf(')');
+
+        string name;
+        decimal quantity;
+
+        if (start > 0 && end > start)
+        {
+            name     = part[..start].Trim();
+            quantity = ParseQuantity(part[(start + 1)..end].Trim());
+        }
+        else
+        {
+            name     = part.Trim();
+            quantity = 1m;
+        }
+
+        return new IngredientEntry(name, quantity);
+    }
+
+    /// <summary>
+    /// Extracts the leading numeric value (including fractions like 1/2) from a quantity string
+    /// such as "500g", "1/2 tsp", "3 cloves", "2 tbsp", "1".
+    /// </summary>
+    private static decimal ParseQuantity(string s)
+    {
+        if (string.IsNullOrWhiteSpace(s)) return 1m;
+
+        // Match a fraction like "1/2" or "3/4" (may have a whole-number prefix like "1 1/2")
+        var fractionMatch = System.Text.RegularExpressions.Regex.Match(s,
+            @"^(\d+)\s+(\d+)\s*/\s*(\d+)");   // e.g. "1 1/2"
+        if (fractionMatch.Success)
+        {
+            var whole = decimal.Parse(fractionMatch.Groups[1].Value);
+            var num   = decimal.Parse(fractionMatch.Groups[2].Value);
+            var den   = decimal.Parse(fractionMatch.Groups[3].Value);
+            return whole + num / den;
+        }
+
+        var pureFractionMatch = System.Text.RegularExpressions.Regex.Match(s,
+            @"^(\d+)\s*/\s*(\d+)");            // e.g. "1/2"
+        if (pureFractionMatch.Success)
+        {
+            var num = decimal.Parse(pureFractionMatch.Groups[1].Value);
+            var den = decimal.Parse(pureFractionMatch.Groups[2].Value);
+            return den == 0 ? 1m : Math.Round(num / den, 3);
+        }
+
+        var numericMatch = System.Text.RegularExpressions.Regex.Match(s,
+            @"^(\d+(?:\.\d+)?)");              // e.g. "500", "1.5"
+        if (numericMatch.Success &&
+            decimal.TryParse(numericMatch.Groups[1].Value,
+                System.Globalization.NumberStyles.Number,
+                System.Globalization.CultureInfo.InvariantCulture, out var value))
+        {
+            return value;
+        }
+
+        return 1m;
     }
 
     private static List<string> ParseCsvLine(string line)

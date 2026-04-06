@@ -262,7 +262,7 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
             // Merge all ingredient lists from all countries that share this dish
             var ingredients = group
                 .SelectMany(r => r.Ingredients)
-                .Select(i => i.ToLower())
+                .Select(e => e.Name.ToLower())
                 .ToHashSet();
 
             var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);

@@ -235,9 +235,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         // so that every recipe ingredient can become an actual Product component.
         var allCsvIngredients = recipes
             .SelectMany(r => r.Ingredients)
-            .Where(i => !string.IsNullOrWhiteSpace(i))
+            .Select(i => i.Name)
+            .Where(n => !string.IsNullOrWhiteSpace(n))
             .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(i => i)
+            .OrderBy(n => n)
             .ToList();
 
         var extraIngredients = allCsvIngredients
@@ -299,10 +300,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             var primaryRecipe = recipeGroup.First();
             var allCountries = recipeGroup.Select(r => r.Country).Distinct().ToList();
 
-            // Map every CSV ingredient to its Product component — all should match now
+            // Map every CSV ingredient to its Product component using the parsed quantity
             var components = primaryRecipe.Ingredients
-                .Where(ingByTitle.ContainsKey)
-                .Select(name => Comp(ingByTitle[name], qty: 1, omittable: f.Random.Bool(0.3f)))
+                .Where(e => ingByTitle.ContainsKey(e.Name))
+                .Select(e => Comp(ingByTitle[e.Name], qty: e.Quantity, omittable: f.Random.Bool(0.3f)))
                 .DistinctBy(c => c.ComponentId)
                 .ToList();
 
@@ -313,7 +314,8 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     tags.Add(new ProductFacet { FacetId = countryFacet.Id });
 
             // Add category facets based on ingredients and dish name
-            foreach (var code in GetDishCategoryCodes(dishName, primaryRecipe.Ingredients))
+            var ingredientNames = primaryRecipe.Ingredients.Select(e => e.Name).ToList();
+            foreach (var code in GetDishCategoryCodes(dishName, ingredientNames))
                 if (facetByCode.TryGetValue(code, out var catFacet))
                     tags.Add(new ProductFacet { FacetId = catFacet.Id });
 
@@ -323,7 +325,8 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 : $"{string.Join(", ", allCountries[..^1])} and {allCountries[^1]}";
 
             var describedIngredients = primaryRecipe.Ingredients
-                .Where(ingByTitle.ContainsKey)
+                .Where(e => ingByTitle.ContainsKey(e.Name))
+                .Select(e => e.Name)
                 .Take(3)
                 .ToList();
             var description = describedIngredients.Count > 0
