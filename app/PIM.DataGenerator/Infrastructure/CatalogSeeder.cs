@@ -392,63 +392,6 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         }
         await productService.SaveChanges();
 
-        // Phase 3: random product variants for volume
-        string[] adjectives = ["Spicy", "Smoky", "Crispy", "Golden", "Grilled", "Fresh", "Loaded", "Signature", "Double", "BBQ", "Tangy", "Savory", "Hearty", "Zesty", "Rustic"];
-        string[] nouns = ["Stew", "Wrap", "Bowl", "Salad", "Platter", "Bake", "Roast", "Curry", "Broth", "Medley"];
-
-        decimal ComponentQty(Product component) =>
-            CanonicalIngredients.TryGetValue(component.Title, out var meta) ? meta.UnitCode switch
-            {
-                "pc" => f.Random.Int(1, 3),
-                "g"  => f.PickRandom(25m, 50m, 75m, 100m, 150m),
-                "ml" => f.PickRandom(15m, 30m, 50m, 100m, 150m),
-                "kg" => f.PickRandom(0.25m, 0.5m, 1m),
-                "l"  => f.PickRandom(0.25m, 0.5m, 1m),
-                _    => 1m
-            } : 1m;
-
-        logger.LogInformation("Seeding 500 random variant products...");
-        for (int i = 0; i < 500; i++)
-        {
-            var selectedIngredients = f.PickRandom(ingredients, f.Random.Int(2, Math.Min(6, ingredients.Count)))
-                .DistinctBy(c => c.Id)
-                .ToList();
-
-            var randomProduct = new Product
-            {
-                Title       = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
-                Description = f.Lorem.Sentence(),
-                Prices      = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(3.50m, 24.99m), 2) }],
-                UnitTypeId  = f.PickRandom(servingUnitTypes).Id,
-                Facets      = f.PickRandom(facets, f.Random.Int(1, 3))
-                    .DistinctBy(c => c.Id)
-                    .Select(c => new ProductFacet { FacetId = c.Id })
-                    .ToList(),
-                Components  = selectedIngredients
-                    .Select(c => new ProductComponent { ComponentId = c.Id, Quantity = ComponentQty(c), IsOmittable = f.Random.Bool(0.4f) })
-                    .ToList(),
-                AllowAdditions = f.Random.Bool(0.9f),
-                AllowedComponentAdditions = f.Random.Bool(0.5f)
-                    ? f.PickRandom(ingredients, f.Random.Int(1, Math.Min(3, ingredients.Count)))
-                        .DistinctBy(c => c.Id)
-                        .Select(c => new ProductAllowedComponentAddition { ComponentId = c.Id })
-                        .ToList()
-                    : null,
-                Suppliers = f.Random.Bool(0.5f)
-                    ? f.PickRandom(suppliers, f.Random.Int(1, Math.Min(2, suppliers.Count)))
-                        .DistinctBy(s => s.Id)
-                        .Select(s => new ProductSupplier { SupplierId = s.Id })
-                        .ToList()
-                    : null,
-            };
-
-            dishProducts.Add(randomProduct);
-            await productService.Save(randomProduct);
-            if ((i + 1) % BatchSize == 0)
-                await productService.SaveChanges();
-        }
-        await productService.SaveChanges();
-
         return dishProducts;
     }
 
