@@ -85,9 +85,42 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
                     .ToList();
         }
 
+        // Category facet hierarchy — set parent-child links between category facets
+        void SetChildren(string parentCode, params string[] childCodes)
+        {
+            if (!categoryFacets.TryGetValue(parentCode, out var parent)) return;
+            parent.ChildEntities = childCodes
+                .Where(categoryFacets.ContainsKey)
+                .Select(code => Child(categoryFacets[code]))
+                .ToList();
+        }
+
+        // Protein / meat hierarchy
+        SetChildren("MEAT",     "RED_MEAT", "WHITE_MEAT", "POULTRY");
+        SetChildren("RED_MEAT", "BEEF", "LAMB");
+        SetChildren("WHITE_MEAT", "PORK");
+
+        // Seafood hierarchy
+        SetChildren("SEAFOOD",     "FISH", "SHELLFISH");
+        SetChildren("FISH",        "FAT_FISH", "LEAN_FISH");
+        SetChildren("SHELLFISH",   "CRUSTACEANS", "MOLLUSKS");
+        SetChildren("CRUSTACEANS", "CRAB");
+
+        // Dairy hierarchy
+        SetChildren("DAIRY",  "MILK");
+        SetChildren("MILK",   "BUTTER", "YOGHURT", "CHEESE");
+        SetChildren("CHEESE", "HARD_CHEESE", "SOFT_CHEESE", "FRESH_CHEESE", "BLUE_CHEESE");
+
+        // Vegetable hierarchy
+        SetChildren("VEGETABLES", "ROOT_VEG", "LEAFY_VEG", "FLOWER_VEG", "FRUIT_VEG", "STEM_VEG");
+        SetChildren("LEAFY_VEG",  "LETTUCE");
+        SetChildren("FRUIT_VEG",  "TOMATOES");
+        SetChildren("STEM_VEG",   "ONIONS");
+
         logger.LogInformation("Saving facet hierarchy...");
         foreach (var facet in regionFacets.Values
-            .Concat(countryFacets.Values))
+            .Concat(countryFacets.Values)
+            .Concat(categoryFacets.Values.Where(f => f.ChildEntities?.Count > 0)))
             await facetService.Save(facet);
         await facetService.SaveChanges();
 
@@ -151,7 +184,7 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
                 Code = "PROTEINS",
                 Title = "Proteins",
                 Description = "Dishes and ingredients categorized by protein source",
-                ChildFacets = new[] { "POULTRY", "BEEF", "PORK", "LAMB", "SEAFOOD", "LEGUMES" }
+                ChildFacets = new[] { "MEAT", "SEAFOOD", "LEGUMES" }
                     .Select(FC).Where(f => f != null).Select(f => Link(f!))
                     .ToList()
             },
@@ -169,7 +202,7 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
                 Code = "DIETARY",
                 Title = "Dietary",
                 Description = "Dietary preference categories",
-                ChildFacets = new[] { "VEGAN", "VEGETARIAN", "GLUTEN_FREE", "KETO" }
+                ChildFacets = new[] { "VEGAN", "VEGETARIAN", "GLUTEN_FREE", "KETO", "RAW_FOOD" }
                     .Select(FC).Where(f => f != null).Select(f => Link(f!))
                     .ToList()
             },
