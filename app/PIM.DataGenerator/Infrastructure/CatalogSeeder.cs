@@ -74,7 +74,12 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             "pc" => 0.25m,
             "g" => 0.10m,
             "kg" => 5.00m,
-            "l" => 2.00m,
+            "L" => 2.00m,
+            "sprig" => 0.10m,
+            "bunch" => 1.00m,
+            "stalk" => 0.20m,
+            "leaf" => 0.05m,
+            "clove" => 0.05m,
             _ => 0.10m
         };
 
@@ -158,13 +163,18 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             new() { Code = "pc",      Title = "Piece"      },
             new() { Code = "portion", Title = "Portion"    },
             new() { Code = "slice",   Title = "Slice"      },
-            new() { Code = "cup",     Title = "Cup"        },
+            new() { Code = "c",       Title = "Cup"        },
             new() { Code = "bowl",    Title = "Bowl"       },
             new() { Code = "plate",   Title = "Plate"      },
             new() { Code = "g",       Title = "Gram"       },
             new() { Code = "kg",      Title = "Kilogram"   },
             new() { Code = "ml",      Title = "Milliliter" },
-            new() { Code = "l",       Title = "Liter"      },
+            new() { Code = "L",       Title = "Liter"      },
+            new() { Code = "sprig",   Title = "Sprig"      },
+            new() { Code = "bunch",   Title = "Bunch"      },
+            new() { Code = "stalk",   Title = "Stalk"      },
+            new() { Code = "leaf",    Title = "Leaf"       },
+            new() { Code = "clove",   Title = "Clove"      },
         };
 
         logger.LogInformation("Seeding unit types...");
@@ -190,7 +200,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         var facetByCode = facets
             .Where(x => !string.IsNullOrEmpty(x.Code))
             .ToDictionary(x => x.Code!, x => x, StringComparer.OrdinalIgnoreCase);
-        var byCode = unitTypes.ToDictionary(u => u.Code!, u => u);
+        var byCode = unitTypes.ToDictionary(u => u.Code!, u => u, StringComparer.OrdinalIgnoreCase);
         // Reverse lookup: UnitTypeId → unit code (used for sensible quantity defaults)
         var unitCodeById = unitTypes
             .Where(u => u.Code != null)
@@ -345,12 +355,12 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Components = partialComponents,
                 };
 
-                await productService.Save(product);
-                await productService.SaveChanges();
-
                 // Register immediately so subsequent partial dishes and Phase 2 full dishes
                 // can reference this product by name as a component.
                 ingByTitle[product.Title] = product;
+
+                await productService.Save(product);
+                await productService.SaveChanges();
             }
         }
 
