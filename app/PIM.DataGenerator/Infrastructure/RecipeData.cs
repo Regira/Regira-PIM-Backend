@@ -4,6 +4,8 @@ public record IngredientEntry(string Name, decimal Quantity);
 
 public record RecipeEntry(string Country, string Dish, IReadOnlyList<IngredientEntry> Ingredients);
 
+public record PartialDishEntry(string Category, string Name, IReadOnlyList<IngredientEntry> Ingredients);
+
 public record FacetCategoryEntry(string Code, string Title, string Description);
 
 public static class RecipeDataLoader
@@ -85,6 +87,36 @@ public static class RecipeDataLoader
                 .ToList();
 
             entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients));
+        }
+
+        return entries;
+    }
+
+    public static IReadOnlyList<PartialDishEntry> LoadPartialDishes()
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, "Assets", "partial-dishes.csv");
+        var entries = new List<PartialDishEntry>();
+
+        if (!File.Exists(path)) return entries;
+
+        using var reader = new StreamReader(path);
+        reader.ReadLine(); // skip header: Category,Name,Ingredients (Quantity)
+
+        string? line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            var fields = ParseCsvLine(line);
+            if (fields.Count < 3) continue;
+
+            var ingredients = fields[2]
+                .Split(';')
+                .Select(i => ParseIngredientEntry(i.Trim()))
+                .Where(i => !string.IsNullOrWhiteSpace(i.Name))
+                .ToList();
+
+            entries.Add(new PartialDishEntry(fields[0].Trim(), fields[1].Trim(), ingredients));
         }
 
         return entries;

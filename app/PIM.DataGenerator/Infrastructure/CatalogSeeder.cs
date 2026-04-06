@@ -196,6 +196,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             .Where(u => u.Code != null)
             .ToDictionary(u => u.Id, u => u.Code!);
         var recipes = RecipeDataLoader.Load();
+        var partialDishes = RecipeDataLoader.LoadPartialDishes();
 
         // Phase 1: seed canonical ingredient products
         var ingredients = CanonicalIngredients
@@ -241,9 +242,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         var ingByTitle = ingredients.ToDictionary(i => i.Title, i => i, StringComparer.OrdinalIgnoreCase);
 
         // Auto-create ingredient products for any CSV ingredient not yet in the canonical list,
-        // so that every recipe ingredient can become an actual Product component.
+        // so that every recipe and partial dish ingredient can become an actual Product component.
         var allCsvIngredients = recipes
             .SelectMany(r => r.Ingredients)
+            .Concat(partialDishes.SelectMany(p => p.Ingredients))
             .Select(i => i.Name)
             .Where(n => !string.IsNullOrWhiteSpace(n))
             .Distinct(StringComparer.OrdinalIgnoreCase)
@@ -306,6 +308,50 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 };
             }
             return new ProductComponent { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
+        }
+
+        // Phase 1.5: seed partial dish products (stocks, sauces, pastes, bases, spice mixes)
+        // Each partial dish is saved immediately and registered in ingByTitle so subsequent
+        // partial dishes (e.g. Mole Sauce referencing Chicken Stock) can reference it.
+        if (partialDishes.Count > 0)
+        {
+            logger.LogInformation("Seeding {Count} partial dish products...", partialDishes.Count);
+            foreach (var partialDish in partialDishes)
+            {
+                var partialComponents = partialDish.Ingredients
+                    .Where(e => ingByTitle.ContainsKey(e.Name))
+                    .Select(e => Comp(ingByTitle[e.Name], qty: e.Quantity, omittable: false))
+                    .DistinctBy(c => c.ComponentId)
+                    .ToList();
+
+                var unitCode = partialDish.Category switch
+                {
+                    "Stock" or "Sauce" => "ml",
+                    _ => "g"   // Paste, Base, Spice Mix
+                };
+
+                var partialFacets = GetPartialDishFacetCodes(partialDish.Category, partialDish.Ingredients.Select(i => i.Name).ToList())
+                    .Where(facetByCode.ContainsKey)
+                    .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
+                    .ToList();
+
+                var product = new Product
+                {
+                    Title = partialDish.Name,
+                    Description = $"A {partialDish.Category.ToLower()} used as a base component in cooking",
+                    Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(1.50m, 8.99m), 2) }],
+                    UnitTypeId = byCode.TryGetValue(unitCode, out var partialUnit) ? partialUnit.Id : null,
+                    Facets = partialFacets,
+                    Components = partialComponents,
+                };
+
+                await productService.Save(product);
+                await productService.SaveChanges();
+
+                // Register immediately so subsequent partial dishes and Phase 2 full dishes
+                // can reference this product by name as a component.
+                ingByTitle[product.Title] = product;
+            }
         }
 
         // Phase 2: dish products from CSV recipes — deduplicated by dish name
@@ -512,6 +558,32 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
     private static bool IngredientsContainAny(IEnumerable<string> ingredients, params string[] keywords)
         => ingredients.Any(ing => keywords.Any(k => ing.Contains(k, StringComparison.OrdinalIgnoreCase)));
+
+    /// <summary>
+    /// Returns facet codes for a partial dish (stock, sauce, paste, base, or spice mix)
+    /// based on its category and the names of its ingredients.
+    /// </summary>
+    private static IEnumerable<string> GetPartialDishFacetCodes(string category, IReadOnlyList<string> ingredientNames)
+    {
+        var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var ings = ingredientNames.Select(i => i.ToLower()).ToHashSet();
+
+        // All partial dishes are categorised as condiments except spice mixes
+        if (category.Equals("Spice Mix", StringComparison.OrdinalIgnoreCase))
+            codes.Add("SPICES");
+        else
+            codes.Add("CONDIMENTS");
+
+        // Add protein-based facets derived from the ingredient list
+        if (IngredientsContainAny(ings, "chicken", "hen", "duck", "turkey")) codes.Add("POULTRY");
+        if (IngredientsContainAny(ings, "beef", "veal")) codes.Add("BEEF");
+        if (IngredientsContainAny(ings, "pork", "bacon", "ham")) codes.Add("PORK");
+        if (IngredientsContainAny(ings, "lamb", "mutton")) codes.Add("LAMB");
+        if (IngredientsContainAny(ings, "bonito", "kombu", "fish bone")) codes.Add("FISH");
+        if (IngredientsContainAny(ings, "shrimp paste")) codes.Add("CRUSTACEANS");
+
+        return codes;
+    }
 
     /// <summary>
     /// Guesses an appropriate unit type code for an auto-created ingredient product based on its name.
