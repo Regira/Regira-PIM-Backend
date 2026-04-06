@@ -212,12 +212,9 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         var ingByTitle = ingredients.ToDictionary(i => i.Title, i => i, StringComparer.OrdinalIgnoreCase);
 
-        // Helper lambdas
+        // Helper lambda
         ProductComponent Comp(Product ing, decimal qty = 1, bool omittable = false)
             => new() { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
-
-        ProductFacet Tag(string name)
-            => new() { FacetId = facetByTitle[name].Id };
 
         // Phase 2: dish products from CSV recipes
         var servingUnitTypes = unitTypes
