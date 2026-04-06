@@ -226,11 +226,19 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         var dishProducts = new List<Product>();
 
+        var unmappedIngredients = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
         foreach (var recipe in recipes)
         {
             // Map recipe ingredients to canonical ingredient products (best-effort)
             var components = recipe.Ingredients
-                .Select(name => ingByTitle.TryGetValue(name, out var ing) ? Comp(ing, qty: 1, omittable: f.Random.Bool(0.3f)) : null)
+                .Select(name =>
+                {
+                    if (ingByTitle.TryGetValue(name, out var ing))
+                        return Comp(ing, qty: 1, omittable: f.Random.Bool(0.3f));
+                    unmappedIngredients.Add(name);
+                    return (ProductComponent?)null;
+                })
                 .Where(c => c != null)
                 .Cast<ProductComponent>()
                 .DistinctBy(c => c.ComponentId)
@@ -276,6 +284,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
             dishProducts.Add(product);
         }
+
+        if (unmappedIngredients.Count > 0)
+            logger.LogDebug("{Count} ingredient name(s) from CSV did not match the canonical list and were skipped: {Names}",
+                unmappedIngredients.Count, string.Join(", ", unmappedIngredients.OrderBy(x => x)));
 
         logger.LogInformation("Seeding {Count} dish products...", dishProducts.Count);
         foreach (var (product, idx) in dishProducts.Select((p, i) => (p, i)))
