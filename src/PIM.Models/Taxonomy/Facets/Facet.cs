@@ -6,9 +6,10 @@ using PIM.Models.Taxonomy.FacetGroupFacets;
 namespace PIM.Models.Taxonomy.Facets;
 
 /// <summary>
-/// Represents a facet in the taxonomy, which can be used to categorize and organize items.
+/// Represents a facet in the taxonomy, which can be used to categorize and organize Products.
 /// Facets can have parent and child relationships with other facets, allowing for a hierarchical structure. 
 /// They can also be associated with facet groups to further organize them within the taxonomy.
+/// Facets are usually described in plural form, while Products are described in singular form.
 /// </summary>
 public class Facet : IEntityWithSerial, IHasCode, IHasTimestamps, IHasNormalizedTitle, IHasDescription, IHasNormalizedContent, IArchivable
 {

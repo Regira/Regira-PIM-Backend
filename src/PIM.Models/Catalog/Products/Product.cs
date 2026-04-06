@@ -7,6 +7,10 @@ using Regira.Normalizing;
 
 namespace PIM.Models.Catalog.Products;
 
+/// <summary>
+/// A product can be any producible item. 
+/// They can be categorized using Facets. The facets are usually more general than products and in plural form, while a Product usually represents a single item.
+/// </summary>
 public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasPricePeriod, IHasPricePeriod<ProductPricePeriod>, IHasNormalizedTitle, IHasNormalizedContent, IArchivable
 {
     public int Id { get; set; }
