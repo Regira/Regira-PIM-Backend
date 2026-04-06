@@ -14,6 +14,14 @@
 	  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	</Content>
+    <Content Include="Assets\recipes-per-country.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Assets\facets.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
