@@ -330,7 +330,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     _ => "g"   // Paste, Base, Spice Mix
                 };
 
-                var partialFacets = GetPartialDishFacetCodes(partialDish.Category, partialDish.Ingredients.Select(i => i.Name).ToList())
+                var partialFacets = GetPartialDishFacetCodes(partialDish.Category, partialDish.Ingredients.Select(i => i.Name))
                     .Where(facetByCode.ContainsKey)
                     .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
                     .ToList();
@@ -563,7 +563,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
     /// Returns facet codes for a partial dish (stock, sauce, paste, base, or spice mix)
     /// based on its category and the names of its ingredients.
     /// </summary>
-    private static IEnumerable<string> GetPartialDishFacetCodes(string category, IReadOnlyList<string> ingredientNames)
+    private static IEnumerable<string> GetPartialDishFacetCodes(string category, IEnumerable<string> ingredientNames)
     {
         var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var ings = ingredientNames.Select(i => i.ToLower()).ToHashSet();
