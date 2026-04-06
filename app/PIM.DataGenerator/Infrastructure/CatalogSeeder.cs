@@ -643,7 +643,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             codes.Add("FISH");
         if (ContainsAny(name, "crab"))
             codes.Add("CRAB");
-        if (ContainsAny(name, "shrimp", "prawn", "lobster", "crawfish", "crayfish") && !codes.Contains("CRAB"))
+        if (ContainsAny(name, "shrimp", "prawn", "lobster", "crawfish", "crayfish"))
             codes.Add("CRUSTACEANS");
         if (ContainsAny(name, "mussel", "oyster", "clam", "scallop", "squid", "octopus", "conch"))
             codes.Add("MOLLUSKS");
@@ -722,11 +722,11 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         if (ContainsAny(name, "bell pepper", "sweet pepper"))
         { codes.Add("FRUIT_VEG"); codes.Add("RAW_FOOD"); }
         if (ContainsAny(name, "eggplant", "aubergine", "zucchini", "courgette",
-                "cucumber", "squash", "pumpkin", "plantain", "avocado") && !codes.Contains("FRUIT_VEG"))
+                "cucumber", "squash", "pumpkin", "plantain", "avocado"))
             codes.Add("FRUIT_VEG");
         // Fruits (use FRUIT_VEG as no further sub-type)
         if (ContainsAny(name, "mango", "banana", "apple", "orange", "lemon", "lime",
-                "plum", "peach", "pear", "fig", "grape", "berry") && !codes.Contains("FRUIT_VEG"))
+                "plum", "peach", "pear", "fig", "grape", "berry"))
         { codes.Add("FRUIT_VEG"); codes.Add("RAW_FOOD"); }
         // Mushrooms — no hierarchy sub-type, use VEGETABLES directly
         if (ContainsAny(name, "mushroom"))
