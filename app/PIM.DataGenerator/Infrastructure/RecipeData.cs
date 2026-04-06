@@ -128,21 +128,30 @@ public static class RecipeDataLoader
         else
         {
             name     = part.Trim();
-            quantity = 1m;
+            quantity = 0m; // sentinel: no explicit quantity given
         }
 
         return new IngredientEntry(name, quantity);
     }
 
     /// <summary>
-    /// Extracts the leading numeric value (including fractions like 1/2) from a quantity string
-    /// such as "500g", "1/2 tsp", "3 cloves", "2 tbsp", "1".
+    /// Parses a quantity string from the CSV — e.g. "500g", "1/2 tsp", "3 cloves", "2 tbsp", "1" —
+    /// and converts it to the closest SI unit value (grams or millilitres) using standard
+    /// cooking-unit conversion factors. Returns 0 when the string is empty or unrecognisable.
     /// </summary>
     private static decimal ParseQuantity(string s)
     {
-        if (string.IsNullOrWhiteSpace(s)) return 1m;
+        if (string.IsNullOrWhiteSpace(s)) return 0m;
 
-        // Match a fraction like "1/2" or "3/4" (may have a whole-number prefix like "1 1/2")
+        // Special word-only tokens that have no leading digit
+        var lower = s.Trim().ToLower();
+        if (lower is "pinch" or "a pinch") return 0.5m;   // ~0.5 g
+        if (lower is "dash" or "a dash")   return 1m;
+
+        // Extract the leading numeric value (handles mixed fractions, pure fractions, decimals)
+        decimal numericValue;
+        int endIndex;
+
         var fractionMatch = System.Text.RegularExpressions.Regex.Match(s,
             @"^(\d+)\s+(\d+)\s*/\s*(\d+)");   // e.g. "1 1/2"
         if (fractionMatch.Success)
@@ -150,30 +159,74 @@ public static class RecipeDataLoader
             var whole = decimal.Parse(fractionMatch.Groups[1].Value);
             var num   = decimal.Parse(fractionMatch.Groups[2].Value);
             var den   = decimal.Parse(fractionMatch.Groups[3].Value);
-            return whole + num / den;
+            numericValue = whole + num / den;
+            endIndex = fractionMatch.Length;
         }
-
-        var pureFractionMatch = System.Text.RegularExpressions.Regex.Match(s,
-            @"^(\d+)\s*/\s*(\d+)");            // e.g. "1/2"
-        if (pureFractionMatch.Success)
+        else
         {
-            var num = decimal.Parse(pureFractionMatch.Groups[1].Value);
-            var den = decimal.Parse(pureFractionMatch.Groups[2].Value);
-            return den == 0 ? 1m : Math.Round(num / den, 3);
+            var pureFractionMatch = System.Text.RegularExpressions.Regex.Match(s,
+                @"^(\d+)\s*/\s*(\d+)");        // e.g. "1/2"
+            if (pureFractionMatch.Success)
+            {
+                var num = decimal.Parse(pureFractionMatch.Groups[1].Value);
+                var den = decimal.Parse(pureFractionMatch.Groups[2].Value);
+                numericValue = den == 0 ? 1m : Math.Round(num / den, 3);
+                endIndex = pureFractionMatch.Length;
+            }
+            else
+            {
+                var numericMatch = System.Text.RegularExpressions.Regex.Match(s,
+                    @"^(\d+(?:\.\d+)?)");       // e.g. "500", "1.5"
+                if (numericMatch.Success &&
+                    decimal.TryParse(numericMatch.Groups[1].Value,
+                        System.Globalization.NumberStyles.Number,
+                        System.Globalization.CultureInfo.InvariantCulture, out var parsed))
+                {
+                    numericValue = parsed;
+                    endIndex = numericMatch.Length;
+                }
+                else
+                {
+                    return 0m; // unrecognisable
+                }
+            }
         }
 
-        var numericMatch = System.Text.RegularExpressions.Regex.Match(s,
-            @"^(\d+(?:\.\d+)?)");              // e.g. "500", "1.5"
-        if (numericMatch.Success &&
-            decimal.TryParse(numericMatch.Groups[1].Value,
-                System.Globalization.NumberStyles.Number,
-                System.Globalization.CultureInfo.InvariantCulture, out var value))
-        {
-            return value;
-        }
+        // Extract the unit token (everything after the number, trimmed and lowercased)
+        var unit = s[endIndex..].Trim().ToLower();
 
-        return 1m;
+        return numericValue * GetUnitMultiplier(unit);
     }
+
+    /// <summary>
+    /// Returns the factor needed to convert a CSV cooking-unit quantity to grams or millilitres.
+    /// SI units and piece-count strings return 1 (no conversion needed).
+    /// </summary>
+    private static decimal GetUnitMultiplier(string unit) => unit switch
+    {
+        // SI units — no conversion
+        "g" or "gr" or "gram" or "grams"                     => 1m,
+        "ml" or "mls"                                         => 1m,
+        // Scale-up SI units
+        "kg" or "kgs" or "kilogram" or "kilograms"            => 1000m,
+        "l" or "liter" or "liters" or "litre" or "litres"    => 1000m,
+        // Cooking volume measures
+        "tsp" or "teaspoon" or "teaspoons"                    => 5m,
+        "tbsp" or "tablespoon" or "tablespoons"               => 15m,
+        "cup" or "cups"                                       => 240m,
+        // Aromatics
+        "clove" or "cloves"                                   => 3m,    // 1 garlic clove ≈ 3 g
+        // Small amounts
+        "pinch"                                               => 0.5m,
+        "dash"                                                => 1m,
+        // Fresh herb measures
+        "sprig" or "sprigs"                                   => 2m,    // 1 sprig ≈ 2 g
+        "bunch" or "bunches"                                  => 30m,   // 1 bunch ≈ 30 g
+        "stalk" or "stalks"                                   => 30m,   // 1 lemongrass stalk ≈ 30 g
+        "leaf" or "leaves"                                    => 1m,    // bay leaf / kaffir — counted in pc
+        // Everything else (plain numbers, "small", "large", "piece", unknown) — no conversion
+        _                                                     => 1m,
+    };
 
     private static List<string> ParseCsvLine(string line)
     {

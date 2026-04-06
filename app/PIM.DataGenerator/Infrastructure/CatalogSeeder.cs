@@ -286,11 +286,11 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             ingredients = [.. ingredients, .. extraIngredients];
         }
 
-        // Helper lambda — applies a unit-aware default when the CSV provided no explicit quantity (qty==1)
-        // so that 1g / 1ml of a substantial ingredient is replaced by a more realistic amount.
-        ProductComponent Comp(Product ing, decimal qty = 1, bool omittable = false)
+        // Helper lambda — applies a unit-aware default when the CSV provided no explicit quantity (qty==0)
+        // so that ingredients without a parenthetical amount receive a realistic fallback.
+        ProductComponent Comp(Product ing, decimal qty = 0, bool omittable = false)
         {
-            if (qty == 1m && ing.UnitTypeId != null &&
+            if (qty == 0m && ing.UnitTypeId != null &&
                 unitCodeById.TryGetValue(ing.UnitTypeId, out var unitCode))
             {
                 qty = unitCode switch
