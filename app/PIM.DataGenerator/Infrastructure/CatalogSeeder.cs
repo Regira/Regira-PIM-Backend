@@ -231,6 +231,56 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         var ingByTitle = ingredients.ToDictionary(i => i.Title, i => i, StringComparer.OrdinalIgnoreCase);
 
+        // Auto-create ingredient products for any CSV ingredient not yet in the canonical list,
+        // so that every recipe ingredient can become an actual Product component.
+        var allCsvIngredients = recipes
+            .SelectMany(r => r.Ingredients)
+            .Where(i => !string.IsNullOrWhiteSpace(i))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(i => i)
+            .ToList();
+
+        var extraIngredients = allCsvIngredients
+            .Where(name => !ingByTitle.ContainsKey(name))
+            .Select(name => new Product
+            {
+                Title       = name,
+                Description = name,
+                Prices      = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(0.05m, 2.00m), 2) }],
+                UnitTypeId  = byCode.TryGetValue("g", out var gUnit) ? gUnit.Id : null,
+            })
+            .ToList();
+
+        if (extraIngredients.Count > 0)
+        {
+            logger.LogInformation("Seeding {Count} extra ingredient products from CSV...", extraIngredients.Count);
+            foreach (var (extra, idx) in extraIngredients.Select((e, i) => (e, i)))
+            {
+                await productService.Save(extra);
+                if ((idx + 1) % BatchSize == 0)
+                    await productService.SaveChanges();
+            }
+            await productService.SaveChanges();
+
+            // Assign guessed category facets to extra ingredients and add to the lookup
+            foreach (var extra in extraIngredients)
+            {
+                ingByTitle[extra.Title] = extra;
+                var extraFacets = GuessIngredientCategoryCodes(extra.Title)
+                    .Where(facetByCode.ContainsKey)
+                    .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
+                    .ToList();
+                if (extraFacets.Count > 0)
+                {
+                    extra.Facets = extraFacets;
+                    await productService.Save(extra);
+                }
+            }
+            await productService.SaveChanges();
+
+            ingredients = [.. ingredients, .. extraIngredients];
+        }
+
         // Helper lambda
         ProductComponent Comp(Product ing, decimal qty = 1, bool omittable = false)
             => new() { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
@@ -241,7 +291,6 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             .ToList();
 
         var dishProducts = new List<Product>();
-        var unmappedIngredients = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         // Group by unique dish name; each unique dish becomes one product
         foreach (var recipeGroup in recipes.GroupBy(r => r.Dish, StringComparer.OrdinalIgnoreCase))
@@ -250,24 +299,15 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             var primaryRecipe = recipeGroup.First();
             var allCountries = recipeGroup.Select(r => r.Country).Distinct().ToList();
 
-            // Map CSV ingredients to canonical component products (best-effort, case-insensitive)
+            // Map every CSV ingredient to its Product component — all should match now
             var components = primaryRecipe.Ingredients
-                .Select(name =>
-                {
-                    if (ingByTitle.TryGetValue(name, out var ing))
-                        return Comp(ing, qty: 1, omittable: f.Random.Bool(0.3f));
-                    unmappedIngredients.Add(name);
-                    return (ProductComponent?)null;
-                })
-                .Where(c => c != null)
-                .Cast<ProductComponent>()
+                .Where(ingByTitle.ContainsKey)
+                .Select(name => Comp(ingByTitle[name], qty: 1, omittable: f.Random.Bool(0.3f)))
                 .DistinctBy(c => c.ComponentId)
                 .ToList();
 
-            // Facets: dish facet + all country facets + category facets
+            // Facets: all country facets + category facets — NOT the dish-name facet itself
             var tags = new List<ProductFacet>();
-            if (facetByTitle.TryGetValue(dishName, out var dishFacet))
-                tags.Add(new ProductFacet { FacetId = dishFacet.Id });
             foreach (var country in allCountries)
                 if (facetByTitle.TryGetValue(country, out var countryFacet))
                     tags.Add(new ProductFacet { FacetId = countryFacet.Id });
@@ -277,11 +317,18 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 if (facetByCode.TryGetValue(code, out var catFacet))
                     tags.Add(new ProductFacet { FacetId = catFacet.Id });
 
-            // Description: mention origin country/countries only, no ingredients
+            // Description: origin + first up to 3 ingredients that are actual components
             var originText = allCountries.Count == 1
                 ? allCountries[0]
                 : $"{string.Join(", ", allCountries[..^1])} and {allCountries[^1]}";
-            var description = $"A traditional dish from {originText}";
+
+            var describedIngredients = primaryRecipe.Ingredients
+                .Where(ingByTitle.ContainsKey)
+                .Take(3)
+                .ToList();
+            var description = describedIngredients.Count > 0
+                ? $"A traditional dish from {originText} with {string.Join(", ", describedIngredients)}"
+                : $"A traditional dish from {originText}";
 
             var product = new Product
             {
@@ -308,10 +355,6 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
             dishProducts.Add(product);
         }
-
-        if (unmappedIngredients.Count > 0)
-            logger.LogDebug("{Count} ingredient name(s) from CSV were not in the canonical list: {Names}",
-                unmappedIngredients.Count, string.Join(", ", unmappedIngredients.OrderBy(x => x)));
 
         logger.LogInformation("Seeding {Count} unique dish products...", dishProducts.Count);
         foreach (var (product, idx) in dishProducts.Select((p, i) => (p, i)))
@@ -465,4 +508,64 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
     private static bool IngredientsContainAny(IEnumerable<string> ingredients, params string[] keywords)
         => ingredients.Any(ing => keywords.Any(k => ing.Contains(k, StringComparison.OrdinalIgnoreCase)));
+
+    /// <summary>
+    /// Guesses category facet codes for an ingredient product based on its name.
+    /// Used when auto-creating ingredient products from CSV data.
+    /// </summary>
+    private static IEnumerable<string> GuessIngredientCategoryCodes(string ingredientName)
+    {
+        var name = ingredientName.ToLower();
+        var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        if (ContainsAny(name, "chicken", "duck", "turkey", "hen", "poultry", "drumstick", "wing", "thigh", "galinha"))
+            codes.Add("POULTRY");
+        if (ContainsAny(name, "beef", "steak", "brisket", "veal", "ox", "corned beef"))
+            codes.Add("BEEF");
+        if (ContainsAny(name, "pork", "bacon", "ham", "sausage", "chorizo", "lard", "ribs", "pig"))
+            codes.Add("PORK");
+        if (ContainsAny(name, "lamb", "mutton", "sheep"))
+            codes.Add("LAMB");
+        if (ContainsAny(name, "fish", "salmon", "tuna", "cod", "tilapia", "shrimp", "prawn",
+                "crab", "mussel", "lobster", "squid", "anchovy", "sardine", "seafood", "conch",
+                "barramundi", "hilsa", "flying fish"))
+            codes.Add("SEAFOOD");
+        if (ContainsAny(name, "bean", "lentil", "chickpea", "split pea", "legume", "dal", "tofu", "soy"))
+            codes.Add("LEGUMES");
+        if (ContainsAny(name, "pepper", "chili", "cayenne", "paprika", "cumin", "turmeric",
+                "coriander", "cinnamon", "cardamom", "allspice", "nutmeg", "clove", "saffron",
+                "spice", "blend", "masala", "berbere", "harissa", "ras el hanout", "sumac", "za'atar",
+                "achu spice", "kanwa", "fenugreek", "anise", "caraway"))
+            codes.Add("SPICES");
+        if (ContainsAny(name, "thyme", "oregano", "rosemary", "basil", "dill", "mint",
+                "parsley", "cilantro", "chive", "sage", "tarragon", "bay leaf", "lemongrass",
+                "kaffir", "scallion", "leek"))
+            codes.Add("HERBS");
+        if (ContainsAny(name, "onion", "garlic", "ginger", "tomato", "potato", "carrot",
+                "cabbage", "eggplant", "zucchini", "spinach", "okra", "celery",
+                "turnip", "radish", "squash", "pumpkin", "yam", "cocoyam",
+                "plantain", "cassava", "mango", "avocado", "vegetable", "greens", "mushroom",
+                "artichoke", "asparagus", "broccoli", "cauliflower", "beet", "fennel"))
+            codes.Add("VEGETABLES");
+        if (ContainsAny(name, "flour", "rice", "corn", "maize", "wheat", "oat", "barley",
+                "breadcrumb", "grain", "cereal", "starch", "polenta", "semolina", "teff",
+                "sorghum", "millet", "injera", "couscous", "bulgur", "quinoa"))
+            codes.Add("GRAINS");
+        if (ContainsAny(name, "milk", "cream", "butter", "cheese", "yogurt", "egg", "dairy",
+                "ghee", "mozzarella", "feta", "curd", "paneer", "ricotta", "parmesan"))
+            codes.Add("DAIRY");
+        if (ContainsAny(name, "oil", "vinegar", "sauce", "stock", "broth", "soy sauce",
+                "fish sauce", "tahini", "paste", "ketchup", "mustard", "mayo", "dressing",
+                "niter kibbeh", "palm oil", "coconut milk", "peanut butter", "tamarind"))
+            codes.Add("CONDIMENTS");
+        if (ContainsAny(name, "sugar", "honey", "syrup", "vanilla", "cocoa", "baking", "yeast",
+                "water", "salt", "limestone"))
+            codes.Add("PANTRY");
+
+        // Fallback if nothing matched
+        if (codes.Count == 0)
+            codes.Add("PANTRY");
+
+        return codes;
+    }
 }
