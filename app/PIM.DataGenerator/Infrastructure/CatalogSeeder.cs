@@ -18,118 +18,118 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         new Dictionary<string, (string, string, decimal, string[])>(StringComparer.OrdinalIgnoreCase)
         {
             // Basics / Pantry
-            ["Salt"]           = ("Fine sea salt",                  "g",  0.05m, ["PANTRY", "SPICES"]),
-            ["Sugar"]          = ("White granulated sugar",         "g",  0.10m, ["PANTRY"]),
-            ["Pepper"]         = ("Ground black pepper",            "g",  0.05m, ["PANTRY", "SPICES"]),
-            ["Black Pepper"]   = ("Ground black pepper",            "g",  0.05m, ["PANTRY", "SPICES"]),
-            ["Water"]          = ("Clean water",                    "ml", 0.01m, ["PANTRY"]),
+            ["Salt"] = ("Fine sea salt", "g", 0.05m, ["PANTRY", "SPICES"]),
+            ["Sugar"] = ("White granulated sugar", "g", 0.10m, ["PANTRY"]),
+            ["Pepper"] = ("Ground black pepper", "g", 0.05m, ["PANTRY", "SPICES"]),
+            ["Black Pepper"] = ("Ground black pepper", "g", 0.05m, ["PANTRY", "SPICES"]),
+            ["Water"] = ("Clean water", "ml", 0.01m, ["PANTRY"]),
             // Fats & oils
-            ["Oil"]            = ("Cooking oil",                    "ml", 0.10m, ["PANTRY", "CONDIMENTS"]),
-            ["Olive Oil"]      = ("Extra-virgin olive oil",         "ml", 0.25m, ["PANTRY", "CONDIMENTS"]),
-            ["Vegetable Oil"]  = ("Refined vegetable oil",          "ml", 0.10m, ["PANTRY", "CONDIMENTS"]),
-            ["Sesame Oil"]     = ("Toasted sesame oil",             "ml", 0.30m, ["PANTRY", "CONDIMENTS"]),
-            ["Butter"]         = ("Salted butter",                  "g",  0.40m, ["BUTTER", "PANTRY"]),
-            ["Ghee"]           = ("Clarified butter (ghee)",        "g",  0.45m, ["BUTTER", "PANTRY"]),
+            ["Oil"] = ("Cooking oil", "ml", 0.10m, ["PANTRY", "CONDIMENTS"]),
+            ["Olive Oil"] = ("Extra-virgin olive oil", "ml", 0.25m, ["PANTRY", "CONDIMENTS"]),
+            ["Vegetable Oil"] = ("Refined vegetable oil", "ml", 0.10m, ["PANTRY", "CONDIMENTS"]),
+            ["Sesame Oil"] = ("Toasted sesame oil", "ml", 0.30m, ["PANTRY", "CONDIMENTS"]),
+            ["Butter"] = ("Salted butter", "g", 0.40m, ["BUTTER", "PANTRY"]),
+            ["Ghee"] = ("Clarified butter (ghee)", "g", 0.45m, ["BUTTER", "PANTRY"]),
             // Aromatics
-            ["Onion"]          = ("Yellow onion",                   "pc", 0.20m, ["ONIONS", "RAW_FOOD"]),
-            ["Garlic"]         = ("Fresh garlic cloves",            "g",  0.15m, ["ONIONS", "RAW_FOOD"]),
-            ["Ginger"]         = ("Fresh ginger root",              "g",  0.20m, ["STEM_VEG", "SPICES"]),
-            ["Scallions"]      = ("Spring onions / scallions",      "g",  0.15m, ["ONIONS", "HERBS", "RAW_FOOD"]),
-            ["Lemongrass"]     = ("Fresh lemongrass stalk",         "pc", 0.30m, ["STEM_VEG", "HERBS"]),
+            ["Onion"] = ("Yellow onion", "pc", 0.20m, ["ONIONS", "RAW_FOOD"]),
+            ["Garlic"] = ("Fresh garlic cloves", "g", 0.15m, ["ONIONS", "RAW_FOOD"]),
+            ["Ginger"] = ("Fresh ginger root", "g", 0.20m, ["STEM_VEG", "SPICES"]),
+            ["Scallions"] = ("Spring onions / scallions", "g", 0.15m, ["ONIONS", "HERBS", "RAW_FOOD"]),
+            ["Lemongrass"] = ("Fresh lemongrass stalk", "pc", 0.30m, ["STEM_VEG", "HERBS"]),
             // Spices
-            ["Cumin"]          = ("Ground cumin",                   "g",  0.15m, ["SPICES"]),
-            ["Turmeric"]       = ("Ground turmeric",                "g",  0.15m, ["SPICES"]),
-            ["Cinnamon"]       = ("Ground cinnamon",                "g",  0.15m, ["SPICES"]),
-            ["Paprika"]        = ("Sweet paprika",                  "g",  0.15m, ["SPICES"]),
-            ["Allspice"]       = ("Ground allspice",                "g",  0.15m, ["SPICES"]),
-            ["Cardamom"]       = ("Ground cardamom",                "g",  0.20m, ["SPICES"]),
-            ["Cloves"]         = ("Whole cloves",                   "g",  0.20m, ["SPICES"]),
-            ["Saffron"]        = ("Saffron threads",                "g",  1.50m, ["SPICES"]),
-            ["Oregano"]        = ("Dried oregano",                  "g",  0.10m, ["HERBS", "SPICES"]),
-            ["Thyme"]          = ("Fresh thyme",                    "g",  0.10m, ["HERBS"]),
-            ["Rosemary"]       = ("Fresh rosemary",                 "g",  0.10m, ["HERBS"]),
-            ["Bay Leaf"]       = ("Dried bay leaf",                 "pc", 0.05m, ["HERBS"]),
-            ["Nutmeg"]         = ("Ground nutmeg",                  "g",  0.20m, ["SPICES"]),
-            ["Fennel"]         = ("Fennel seeds",                   "g",  0.15m, ["SPICES", "HERBS"]),
-            ["Garam Masala"]   = ("Garam masala spice blend",       "g",  0.20m, ["SPICES"]),
-            ["Curry Powder"]   = ("Mild curry powder",              "g",  0.15m, ["SPICES"]),
-            ["Coriander Powder"] = ("Ground coriander",             "g",  0.15m, ["SPICES"]),
-            ["Chili Powder"]   = ("Chili powder blend",             "g",  0.15m, ["SPICES"]),
-            ["Chili Flakes"]   = ("Dried red chili flakes",         "g",  0.15m, ["SPICES"]),
+            ["Cumin"] = ("Ground cumin", "g", 0.15m, ["SPICES"]),
+            ["Turmeric"] = ("Ground turmeric", "g", 0.15m, ["SPICES"]),
+            ["Cinnamon"] = ("Ground cinnamon", "g", 0.15m, ["SPICES"]),
+            ["Paprika"] = ("Sweet paprika", "g", 0.15m, ["SPICES"]),
+            ["Allspice"] = ("Ground allspice", "g", 0.15m, ["SPICES"]),
+            ["Cardamom"] = ("Ground cardamom", "g", 0.20m, ["SPICES"]),
+            ["Cloves"] = ("Whole cloves", "g", 0.20m, ["SPICES"]),
+            ["Saffron"] = ("Saffron threads", "g", 1.50m, ["SPICES"]),
+            ["Oregano"] = ("Dried oregano", "g", 0.10m, ["HERBS", "SPICES"]),
+            ["Thyme"] = ("Fresh thyme", "g", 0.10m, ["HERBS"]),
+            ["Rosemary"] = ("Fresh rosemary", "g", 0.10m, ["HERBS"]),
+            ["Bay Leaf"] = ("Dried bay leaf", "pc", 0.05m, ["HERBS"]),
+            ["Nutmeg"] = ("Ground nutmeg", "g", 0.20m, ["SPICES"]),
+            ["Fennel"] = ("Fennel seeds", "g", 0.15m, ["SPICES", "HERBS"]),
+            ["Garam Masala"] = ("Garam masala spice blend", "g", 0.20m, ["SPICES"]),
+            ["Curry Powder"] = ("Mild curry powder", "g", 0.15m, ["SPICES"]),
+            ["Coriander Powder"] = ("Ground coriander", "g", 0.15m, ["SPICES"]),
+            ["Chili Powder"] = ("Chili powder blend", "g", 0.15m, ["SPICES"]),
+            ["Chili Flakes"] = ("Dried red chili flakes", "g", 0.15m, ["SPICES"]),
             // Herbs
-            ["Parsley"]        = ("Fresh flat-leaf parsley",        "g",  0.10m, ["HERBS"]),
-            ["Cilantro"]       = ("Fresh cilantro (coriander)",     "g",  0.10m, ["HERBS"]),
-            ["Basil"]          = ("Fresh sweet basil",              "g",  0.10m, ["HERBS"]),
-            ["Dill"]           = ("Fresh dill",                     "g",  0.10m, ["HERBS"]),
-            ["Mint"]           = ("Fresh mint leaves",              "g",  0.10m, ["HERBS"]),
+            ["Parsley"] = ("Fresh flat-leaf parsley", "g", 0.10m, ["HERBS"]),
+            ["Cilantro"] = ("Fresh cilantro (coriander)", "g", 0.10m, ["HERBS"]),
+            ["Basil"] = ("Fresh sweet basil", "g", 0.10m, ["HERBS"]),
+            ["Dill"] = ("Fresh dill", "g", 0.10m, ["HERBS"]),
+            ["Mint"] = ("Fresh mint leaves", "g", 0.10m, ["HERBS"]),
             // Grains & starchy
-            ["Flour"]          = ("All-purpose wheat flour",        "g",  0.05m, ["GRAINS"]),
-            ["Rice"]           = ("Long-grain white rice",          "g",  0.08m, ["GRAINS"]),
-            ["Basmati Rice"]   = ("Fragrant basmati rice",          "g",  0.12m, ["GRAINS"]),
-            ["Cornmeal"]       = ("Yellow cornmeal",                "g",  0.08m, ["GRAINS"]),
-            ["Pasta"]          = ("Dried pasta",                    "g",  0.10m, ["GRAINS"]),
-            ["Breadcrumbs"]    = ("Dry breadcrumbs",                "g",  0.08m, ["GRAINS"]),
-            ["Cassava"]        = ("Fresh cassava root",             "g",  0.10m, ["GRAINS", "VEGETABLES"]),
-            ["Phyllo Dough"]   = ("Frozen phyllo pastry sheets",    "g",  0.20m, ["GRAINS"]),
+            ["Flour"] = ("All-purpose wheat flour", "g", 0.05m, ["GRAINS"]),
+            ["Rice"] = ("Long-grain white rice", "g", 0.08m, ["GRAINS"]),
+            ["Basmati Rice"] = ("Fragrant basmati rice", "g", 0.12m, ["GRAINS"]),
+            ["Cornmeal"] = ("Yellow cornmeal", "g", 0.08m, ["GRAINS"]),
+            ["Pasta"] = ("Dried pasta", "g", 0.10m, ["GRAINS"]),
+            ["Breadcrumbs"] = ("Dry breadcrumbs", "g", 0.08m, ["GRAINS"]),
+            ["Cassava"] = ("Fresh cassava root", "g", 0.10m, ["GRAINS", "VEGETABLES"]),
+            ["Phyllo Dough"] = ("Frozen phyllo pastry sheets", "g", 0.20m, ["GRAINS"]),
             // Vegetables
-            ["Potatoes"]       = ("White potatoes",                 "g",  0.08m, ["ROOT_VEG"]),
-            ["Sweet Potato"]   = ("Orange sweet potato",           "g",  0.10m, ["ROOT_VEG"]),
-            ["Tomatoes"]       = ("Ripe tomatoes",                  "pc", 0.30m, ["TOMATOES", "RAW_FOOD"]),
-            ["Tomato"]         = ("Ripe tomato",                    "pc", 0.30m, ["TOMATOES", "RAW_FOOD"]),
-            ["Tomato Paste"]   = ("Concentrated tomato paste",      "g",  0.20m, ["TOMATOES", "CONDIMENTS"]),
-            ["Bell Pepper"]    = ("Mixed bell peppers",             "pc", 0.40m, ["FRUIT_VEG", "RAW_FOOD"]),
-            ["Chili Pepper"]   = ("Fresh red chili pepper",         "pc", 0.20m, ["FRUIT_VEG", "SPICES"]),
-            ["Scotch Bonnet"]  = ("Scotch bonnet pepper",           "pc", 0.25m, ["FRUIT_VEG", "SPICES"]),
-            ["Carrots"]        = ("Fresh carrots",                  "pc", 0.08m, ["ROOT_VEG", "RAW_FOOD"]),
-            ["Cabbage"]        = ("White cabbage",                  "g",  0.05m, ["FLOWER_VEG", "RAW_FOOD"]),
-            ["Eggplant"]       = ("Aubergine / eggplant",           "g",  0.15m, ["FRUIT_VEG"]),
-            ["Zucchini"]       = ("Courgette / zucchini",           "g",  0.12m, ["FRUIT_VEG"]),
-            ["Mushrooms"]      = ("Button mushrooms",               "g",  0.45m, ["VEGETABLES", "RAW_FOOD"]),
-            ["Spinach"]        = ("Fresh spinach leaves",           "g",  0.20m, ["LEAFY_VEG", "RAW_FOOD"]),
-            ["Okra"]           = ("Fresh okra pods",                "g",  0.20m, ["FLOWER_VEG"]),
-            ["Celery"]         = ("Celery stalk",                   "pc", 0.15m, ["STEM_VEG", "RAW_FOOD"]),
-            ["Plantain"]       = ("Green plantain",                 "pc", 0.30m, ["FRUIT_VEG"]),
+            ["Potatoes"] = ("White potatoes", "g", 0.08m, ["ROOT_VEG"]),
+            ["Sweet Potato"] = ("Orange sweet potato", "g", 0.10m, ["ROOT_VEG"]),
+            ["Tomatoes"] = ("Ripe tomatoes", "pc", 0.30m, ["TOMATOES", "RAW_FOOD"]),
+            ["Tomato"] = ("Ripe tomato", "pc", 0.30m, ["TOMATOES", "RAW_FOOD"]),
+            ["Tomato Paste"] = ("Concentrated tomato paste", "g", 0.20m, ["TOMATOES", "CONDIMENTS"]),
+            ["Bell Pepper"] = ("Mixed bell peppers", "pc", 0.40m, ["FRUIT_VEG", "RAW_FOOD"]),
+            ["Chili Pepper"] = ("Fresh red chili pepper", "pc", 0.20m, ["FRUIT_VEG", "SPICES"]),
+            ["Scotch Bonnet"] = ("Scotch bonnet pepper", "pc", 0.25m, ["FRUIT_VEG", "SPICES"]),
+            ["Carrots"] = ("Fresh carrots", "pc", 0.08m, ["ROOT_VEG", "RAW_FOOD"]),
+            ["Cabbage"] = ("White cabbage", "g", 0.05m, ["FLOWER_VEG", "RAW_FOOD"]),
+            ["Eggplant"] = ("Aubergine / eggplant", "g", 0.15m, ["FRUIT_VEG"]),
+            ["Zucchini"] = ("Courgette / zucchini", "g", 0.12m, ["FRUIT_VEG"]),
+            ["Mushrooms"] = ("Button mushrooms", "g", 0.45m, ["VEGETABLES", "RAW_FOOD"]),
+            ["Spinach"] = ("Fresh spinach leaves", "g", 0.20m, ["LEAFY_VEG", "RAW_FOOD"]),
+            ["Okra"] = ("Fresh okra pods", "g", 0.20m, ["FLOWER_VEG"]),
+            ["Celery"] = ("Celery stalk", "pc", 0.15m, ["STEM_VEG", "RAW_FOOD"]),
+            ["Plantain"] = ("Green plantain", "pc", 0.30m, ["FRUIT_VEG"]),
             // Legumes
-            ["Chickpeas"]      = ("Canned chickpeas",               "g",  0.15m, ["LEGUMES"]),
-            ["Beans"]          = ("Dried beans",                    "g",  0.12m, ["LEGUMES"]),
-            ["Peas"]           = ("Frozen green peas",              "g",  0.10m, ["LEGUMES"]),
-            ["Lentils"]        = ("Red lentils",                    "g",  0.12m, ["LEGUMES"]),
+            ["Chickpeas"] = ("Canned chickpeas", "g", 0.15m, ["LEGUMES"]),
+            ["Beans"] = ("Dried beans", "g", 0.12m, ["LEGUMES"]),
+            ["Peas"] = ("Frozen green peas", "g", 0.10m, ["LEGUMES"]),
+            ["Lentils"] = ("Red lentils", "g", 0.12m, ["LEGUMES"]),
             // Fruits & other produce
-            ["Lemon"]          = ("Fresh lemon",                    "pc", 0.25m, ["FRUIT_VEG", "RAW_FOOD"]),
-            ["Lemon Juice"]    = ("Freshly squeezed lemon juice",   "ml", 0.20m, ["CONDIMENTS"]),
-            ["Lime Juice"]     = ("Freshly squeezed lime juice",    "ml", 0.20m, ["CONDIMENTS"]),
-            ["Raisins"]        = ("Seedless raisins",               "g",  0.20m, ["PANTRY"]),
-            ["Mango"]          = ("Ripe mango",                     "pc", 0.60m, ["FRUIT_VEG", "RAW_FOOD"]),
-            ["Banana"]         = ("Ripe banana",                    "pc", 0.20m, ["FRUIT_VEG", "RAW_FOOD"]),
-            ["Coconut"]        = ("Desiccated coconut",             "g",  0.25m, ["PANTRY"]),
-            ["Tamarind"]       = ("Tamarind paste",                 "g",  0.25m, ["CONDIMENTS", "SPICES"]),
+            ["Lemon"] = ("Fresh lemon", "pc", 0.25m, ["FRUIT_VEG", "RAW_FOOD"]),
+            ["Lemon Juice"] = ("Freshly squeezed lemon juice", "ml", 0.20m, ["CONDIMENTS"]),
+            ["Lime Juice"] = ("Freshly squeezed lime juice", "ml", 0.20m, ["CONDIMENTS"]),
+            ["Raisins"] = ("Seedless raisins", "g", 0.20m, ["PANTRY"]),
+            ["Mango"] = ("Ripe mango", "pc", 0.60m, ["FRUIT_VEG", "RAW_FOOD"]),
+            ["Banana"] = ("Ripe banana", "pc", 0.20m, ["FRUIT_VEG", "RAW_FOOD"]),
+            ["Coconut"] = ("Desiccated coconut", "g", 0.25m, ["PANTRY"]),
+            ["Tamarind"] = ("Tamarind paste", "g", 0.25m, ["CONDIMENTS", "SPICES"]),
             // Dairy & eggs
-            ["Eggs"]           = ("Free-range eggs",                "pc", 0.35m, ["DAIRY"]),
-            ["Egg"]            = ("Free-range egg",                 "pc", 0.35m, ["DAIRY"]),
-            ["Milk"]           = ("Whole milk",                     "ml", 0.10m, ["MILK"]),
-            ["Cream"]          = ("Heavy cooking cream",            "ml", 0.40m, ["MILK"]),
-            ["Sour Cream"]     = ("Full-fat sour cream",            "ml", 0.30m, ["MILK"]),
-            ["Yogurt"]         = ("Natural yogurt",                 "ml", 0.30m, ["YOGHURT"]),
-            ["Cheese"]         = ("Cheddar cheese",                 "g",  0.45m, ["HARD_CHEESE"]),
-            ["Mozzarella"]     = ("Fresh mozzarella",               "g",  0.55m, ["FRESH_CHEESE"]),
-            ["Feta Cheese"]    = ("Crumbled feta cheese",           "g",  0.55m, ["SOFT_CHEESE"]),
-            ["Coconut Milk"]   = ("Full-fat coconut milk",          "ml", 0.25m, ["MILK", "PANTRY"]),
+            ["Eggs"] = ("Free-range eggs", "pc", 0.35m, ["DAIRY"]),
+            ["Egg"] = ("Free-range egg", "pc", 0.35m, ["DAIRY"]),
+            ["Milk"] = ("Whole milk", "ml", 0.10m, ["MILK"]),
+            ["Cream"] = ("Heavy cooking cream", "ml", 0.40m, ["MILK"]),
+            ["Sour Cream"] = ("Full-fat sour cream", "ml", 0.30m, ["MILK"]),
+            ["Yogurt"] = ("Natural yogurt", "ml", 0.30m, ["YOGHURT"]),
+            ["Cheese"] = ("Cheddar cheese", "g", 0.45m, ["HARD_CHEESE"]),
+            ["Mozzarella"] = ("Fresh mozzarella", "g", 0.55m, ["FRESH_CHEESE"]),
+            ["Feta Cheese"] = ("Crumbled feta cheese", "g", 0.55m, ["SOFT_CHEESE"]),
+            ["Coconut Milk"] = ("Full-fat coconut milk", "ml", 0.25m, ["MILK", "PANTRY"]),
             // Proteins
-            ["Chicken"]        = ("Bone-in chicken pieces",         "g",  0.50m, ["POULTRY"]),
-            ["Beef"]           = ("Beef chuck",                     "g",  0.60m, ["BEEF"]),
-            ["Ground Beef"]    = ("Lean ground beef",               "g",  0.55m, ["BEEF"]),
-            ["Lamb"]           = ("Diced lamb shoulder",            "g",  0.70m, ["LAMB"]),
-            ["Pork"]           = ("Pork shoulder",                  "g",  0.55m, ["PORK"]),
-            ["Bacon"]          = ("Smoked bacon",                   "g",  0.60m, ["PORK"]),
-            ["Fish"]           = ("White fish fillet",              "g",  0.65m, ["LEAN_FISH"]),
-            ["Shrimp"]         = ("Raw peeled shrimp",              "g",  0.80m, ["CRUSTACEANS"]),
+            ["Chicken"] = ("Bone-in chicken pieces", "g", 0.50m, ["POULTRY"]),
+            ["Beef"] = ("Beef chuck", "g", 0.60m, ["BEEF"]),
+            ["Ground Beef"] = ("Lean ground beef", "g", 0.55m, ["BEEF"]),
+            ["Lamb"] = ("Diced lamb shoulder", "g", 0.70m, ["LAMB"]),
+            ["Pork"] = ("Pork shoulder", "g", 0.55m, ["PORK"]),
+            ["Bacon"] = ("Smoked bacon", "g", 0.60m, ["PORK"]),
+            ["Fish"] = ("White fish fillet", "g", 0.65m, ["LEAN_FISH"]),
+            ["Shrimp"] = ("Raw peeled shrimp", "g", 0.80m, ["CRUSTACEANS"]),
             // Sauces & condiments
-            ["Soy Sauce"]      = ("Light soy sauce",                "ml", 0.15m, ["CONDIMENTS"]),
-            ["Fish Sauce"]     = ("Thai fish sauce",                "ml", 0.20m, ["CONDIMENTS"]),
-            ["Vinegar"]        = ("White wine vinegar",             "ml", 0.10m, ["CONDIMENTS", "PANTRY"]),
-            ["Mustard"]        = ("Dijon mustard",                  "g",  0.20m, ["CONDIMENTS"]),
-            ["Peanut Butter"]  = ("Smooth peanut butter",           "g",  0.35m, ["CONDIMENTS", "LEGUMES"]),
-            ["Beef Stock"]     = ("Rich beef stock",                "ml", 0.15m, ["CONDIMENTS"]),
+            ["Soy Sauce"] = ("Light soy sauce", "ml", 0.15m, ["CONDIMENTS"]),
+            ["Fish Sauce"] = ("Thai fish sauce", "ml", 0.20m, ["CONDIMENTS"]),
+            ["Vinegar"] = ("White wine vinegar", "ml", 0.10m, ["CONDIMENTS", "PANTRY"]),
+            ["Mustard"] = ("Dijon mustard", "g", 0.20m, ["CONDIMENTS"]),
+            ["Peanut Butter"] = ("Smooth peanut butter", "g", 0.35m, ["CONDIMENTS", "LEGUMES"]),
+            ["Beef Stock"] = ("Rich beef stock", "ml", 0.15m, ["CONDIMENTS"]),
         };
 
     public async Task<IList<Product>> SeedAsync(IList<Facet> facets, IList<Organization> suppliers)
@@ -182,24 +182,24 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         var f = new Faker();
         var facetByTitle = facets.ToDictionary(x => x.Title, x => x, StringComparer.OrdinalIgnoreCase);
-        var facetByCode  = facets
+        var facetByCode = facets
             .Where(x => !string.IsNullOrEmpty(x.Code))
             .ToDictionary(x => x.Code!, x => x, StringComparer.OrdinalIgnoreCase);
         var byCode = unitTypes.ToDictionary(u => u.Code!, u => u);
         // Reverse lookup: UnitTypeId → unit code (used for sensible quantity defaults)
         var unitCodeById = unitTypes
-            .Where(u => u.Id != null && u.Code != null)
-            .ToDictionary(u => u.Id!, u => u.Code!);
+            .Where(u => u.Code != null)
+            .ToDictionary(u => u.Id, u => u.Code!);
         var recipes = RecipeDataLoader.Load();
 
         // Phase 1: seed canonical ingredient products
         var ingredients = CanonicalIngredients
             .Select(kv => new Product
             {
-                Title       = kv.Key,
+                Title = kv.Key,
                 Description = kv.Value.Description,
-                Prices      = [new ProductPricePeriod { Price = kv.Value.Price }],
-                UnitTypeId  = byCode.TryGetValue(kv.Value.UnitCode, out var ut) ? ut.Id : null,
+                Prices = [new ProductPricePeriod { Price = kv.Value.Price }],
+                UnitTypeId = byCode.TryGetValue(kv.Value.UnitCode, out var ut) ? ut.Id : null,
             })
             .ToList();
 
@@ -249,10 +249,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             .Where(name => !ingByTitle.ContainsKey(name))
             .Select(name => new Product
             {
-                Title       = name,
+                Title = name,
                 Description = name,
-                Prices      = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(0.05m, 2.00m), 2) }],
-                UnitTypeId  = byCode.TryGetValue(GuessUnitCode(name), out var guessedUnit) ? guessedUnit.Id : null,
+                Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(0.05m, 2.00m), 2) }],
+                UnitTypeId = byCode.TryGetValue(GuessUnitCode(name), out var guessedUnit) ? guessedUnit.Id : null,
             })
             .ToList();
 
@@ -291,13 +291,13 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         ProductComponent Comp(Product ing, decimal qty = 0, bool omittable = false)
         {
             if (qty == 0m && ing.UnitTypeId != null &&
-                unitCodeById.TryGetValue(ing.UnitTypeId, out var unitCode))
+                unitCodeById.TryGetValue(ing.UnitTypeId ?? 0, out var unitCode))
             {
                 qty = unitCode switch
                 {
-                    "g"  => 100m,
+                    "g" => 100m,
                     "ml" => 100m,
-                    _    => 1m,   // pc, portion, etc. — 1 is already realistic
+                    _ => 1m,   // pc, portion, etc. — 1 is already realistic
                 };
             }
             return new ProductComponent { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
@@ -345,7 +345,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 .Where(e => ingByTitle.ContainsKey(e.Name))
                 .ToList();
             var proteinIngredient = validIngredients.FirstOrDefault(e => IsProteinIngredient(e.Name));
-            var otherIngredients  = validIngredients
+            var otherIngredients = validIngredients
                 .Where(e => !IsProteinIngredient(e.Name))
                 .Take(proteinIngredient != null ? 2 : 3)
                 .Select(e => e.Name);
@@ -359,13 +359,13 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
             var product = new Product
             {
-                Title       = dishName,
+                Title = dishName,
                 Description = description,
-                Prices      = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(6.99m, 24.99m), 2) }],
-                UnitTypeId  = f.PickRandom(servingUnitTypes).Id,
+                Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(6.99m, 24.99m), 2) }],
+                UnitTypeId = f.PickRandom(servingUnitTypes).Id,
                 AllowAdditions = f.Random.Bool(0.7f),
-                Facets      = tags.DistinctBy(t => t.FacetId).ToList(),
-                Components  = components,
+                Facets = tags.DistinctBy(t => t.FacetId).ToList(),
+                Components = components,
                 AllowedComponentAdditions = f.Random.Bool(0.4f) && ingByTitle.Count > 0
                     ? f.PickRandom(ingredients, f.Random.Int(1, Math.Min(3, ingredients.Count)))
                         .DistinctBy(i => i.Id)
@@ -400,11 +400,11 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             CanonicalIngredients.TryGetValue(component.Title, out var meta) ? meta.UnitCode switch
             {
                 "pc" => f.Random.Int(1, 3),
-                "g"  => f.PickRandom(25m, 50m, 75m, 100m, 150m),
+                "g" => f.PickRandom(25m, 50m, 75m, 100m, 150m),
                 "ml" => f.PickRandom(15m, 30m, 50m, 100m, 150m),
                 "kg" => f.PickRandom(0.25m, 0.5m, 1m),
-                "l"  => f.PickRandom(0.25m, 0.5m, 1m),
-                _    => 1m
+                "l" => f.PickRandom(0.25m, 0.5m, 1m),
+                _ => 1m
             } : 1m;
 
         logger.LogInformation("Seeding 500 random variant products...");
@@ -416,15 +416,15 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
             var randomProduct = new Product
             {
-                Title       = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
+                Title = $"{f.PickRandom(adjectives)} {f.PickRandom(nouns)} #{i + 1}",
                 Description = f.Lorem.Sentence(),
-                Prices      = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(3.50m, 24.99m), 2) }],
-                UnitTypeId  = f.PickRandom(servingUnitTypes).Id,
-                Facets      = f.PickRandom(facets, f.Random.Int(1, 3))
+                Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(3.50m, 24.99m), 2) }],
+                UnitTypeId = f.PickRandom(servingUnitTypes).Id,
+                Facets = f.PickRandom(facets, f.Random.Int(1, 3))
                     .DistinctBy(c => c.Id)
                     .Select(c => new ProductFacet { FacetId = c.Id })
                     .ToList(),
-                Components  = selectedIngredients
+                Components = selectedIngredients
                     .Select(c => new ProductComponent { ComponentId = c.Id, Quantity = ComponentQty(c), IsOmittable = f.Random.Bool(0.4f) })
                     .ToList(),
                 AllowAdditions = f.Random.Bool(0.9f),
