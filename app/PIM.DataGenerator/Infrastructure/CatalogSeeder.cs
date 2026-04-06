@@ -80,7 +80,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             ["Bell Pepper"]    = ("Mixed bell peppers",             "pc", 0.40m, ["VEGETABLES"]),
             ["Chili Pepper"]   = ("Fresh red chili pepper",         "pc", 0.20m, ["VEGETABLES", "SPICES"]),
             ["Scotch Bonnet"]  = ("Scotch bonnet pepper",           "pc", 0.25m, ["VEGETABLES", "SPICES"]),
-            ["Carrots"]        = ("Fresh carrots",                  "g",  0.08m, ["VEGETABLES"]),
+            ["Carrots"]        = ("Fresh carrots",                  "pc", 0.08m, ["VEGETABLES"]),
             ["Cabbage"]        = ("White cabbage",                  "g",  0.05m, ["VEGETABLES"]),
             ["Eggplant"]       = ("Aubergine / eggplant",           "g",  0.15m, ["VEGETABLES"]),
             ["Zucchini"]       = ("Courgette / zucchini",           "g",  0.12m, ["VEGETABLES"]),
@@ -248,7 +248,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Title       = name,
                 Description = name,
                 Prices      = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(0.05m, 2.00m), 2) }],
-                UnitTypeId  = byCode.TryGetValue("g", out var gUnit) ? gUnit.Id : null,
+                UnitTypeId  = byCode.TryGetValue(GuessUnitCode(name), out var guessedUnit) ? guessedUnit.Id : null,
             })
             .ToList();
 
@@ -511,6 +511,50 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
     private static bool IngredientsContainAny(IEnumerable<string> ingredients, params string[] keywords)
         => ingredients.Any(ing => keywords.Any(k => ing.Contains(k, StringComparison.OrdinalIgnoreCase)));
+
+    /// <summary>
+    /// Guesses an appropriate unit type code for an auto-created ingredient product based on its name.
+    /// Returns "ml" for liquids, "pc" for countable items, and "g" for everything else.
+    /// </summary>
+    private static string GuessUnitCode(string ingredientName)
+    {
+        var name = ingredientName.ToLower();
+
+        // Ground/powdered/processed ingredients are always measured by weight
+        if (ContainsAny(name, "flakes", "powder", "meal", "starch", "crumb",
+                "ground", "paste", "zest"))
+            return "g";
+
+        // Liquids → ml
+        // Use " oil" (with leading space) to avoid matching "boiled"
+        if (name.Contains(" oil") || name.StartsWith("oil") ||
+            ContainsAny(name, "milk", "cream", "yogurt", "juice", "stock", "broth",
+                "wine", "beer", "vinegar", "sauce", "syrup", "molasses", "kefir",
+                "batter", "gravy", "water", "puree"))
+            return "ml";
+
+        // Countable items → pc
+        // Use specific phrases for "pepper" to avoid matching ground/spice pepper varieties
+        if (ContainsAny(name,
+                "egg", "yolk",
+                "bell pepper", "chili pepper", "hot pepper", "sweet pepper",
+                "chili", "jalapeño", "chile",
+                "tomato", "onion", "shallot",
+                "carrot", "potato", "eggplant", "zucchini", "courgette",
+                "avocado", "mango", "banana", "apple", "orange", "lemon", "lime",
+                "plum", "peach", "pear", "fig",
+                "leaf", "leaves", "sprig", "stalk", "bunch",
+                "fillet", "steak", "schnitzel", "cutlet", "breast", "leg", "drumstick", "thigh", "wing",
+                "sausage", "bratwurst", "chorizo",
+                "tortilla", "flatbread", "dumpling", "wonton", "pastry", "arepa",
+                "cucumber", "cob", "plantain",
+                "artichoke", "cauliflower", "broccoli", "beet", "beetroot",
+                "piece", "pieces"))
+            return "pc";
+
+        // Default → weight
+        return "g";
+    }
 
     /// <summary>
     /// Guesses category facet codes for an ingredient product based on its name.
