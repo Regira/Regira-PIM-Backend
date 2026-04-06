@@ -28,14 +28,14 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             ["Olive Oil"]      = ("Extra-virgin olive oil",         "ml", 0.25m, ["PANTRY", "CONDIMENTS"]),
             ["Vegetable Oil"]  = ("Refined vegetable oil",          "ml", 0.10m, ["PANTRY", "CONDIMENTS"]),
             ["Sesame Oil"]     = ("Toasted sesame oil",             "ml", 0.30m, ["PANTRY", "CONDIMENTS"]),
-            ["Butter"]         = ("Salted butter",                  "g",  0.40m, ["BUTTER", "MILK", "DAIRY", "PANTRY"]),
-            ["Ghee"]           = ("Clarified butter (ghee)",        "g",  0.45m, ["BUTTER", "MILK", "DAIRY", "PANTRY"]),
+            ["Butter"]         = ("Salted butter",                  "g",  0.40m, ["BUTTER", "PANTRY"]),
+            ["Ghee"]           = ("Clarified butter (ghee)",        "g",  0.45m, ["BUTTER", "PANTRY"]),
             // Aromatics
-            ["Onion"]          = ("Yellow onion",                   "pc", 0.20m, ["ONIONS", "STEM_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Garlic"]         = ("Fresh garlic cloves",            "g",  0.15m, ["ONIONS", "STEM_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Ginger"]         = ("Fresh ginger root",              "g",  0.20m, ["STEM_VEG", "VEGETABLES", "SPICES"]),
-            ["Scallions"]      = ("Spring onions / scallions",      "g",  0.15m, ["ONIONS", "STEM_VEG", "VEGETABLES", "HERBS", "RAW_FOOD"]),
-            ["Lemongrass"]     = ("Fresh lemongrass stalk",         "pc", 0.30m, ["STEM_VEG", "HERBS", "VEGETABLES"]),
+            ["Onion"]          = ("Yellow onion",                   "pc", 0.20m, ["ONIONS", "RAW_FOOD"]),
+            ["Garlic"]         = ("Fresh garlic cloves",            "g",  0.15m, ["ONIONS", "RAW_FOOD"]),
+            ["Ginger"]         = ("Fresh ginger root",              "g",  0.20m, ["STEM_VEG", "SPICES"]),
+            ["Scallions"]      = ("Spring onions / scallions",      "g",  0.15m, ["ONIONS", "HERBS", "RAW_FOOD"]),
+            ["Lemongrass"]     = ("Fresh lemongrass stalk",         "pc", 0.30m, ["STEM_VEG", "HERBS"]),
             // Spices
             ["Cumin"]          = ("Ground cumin",                   "g",  0.15m, ["SPICES"]),
             ["Turmeric"]       = ("Ground turmeric",                "g",  0.15m, ["SPICES"]),
@@ -72,57 +72,57 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             ["Cassava"]        = ("Fresh cassava root",             "g",  0.10m, ["GRAINS", "VEGETABLES"]),
             ["Phyllo Dough"]   = ("Frozen phyllo pastry sheets",    "g",  0.20m, ["GRAINS"]),
             // Vegetables
-            ["Potatoes"]       = ("White potatoes",                 "g",  0.08m, ["ROOT_VEG", "VEGETABLES"]),
-            ["Sweet Potato"]   = ("Orange sweet potato",           "g",  0.10m, ["ROOT_VEG", "VEGETABLES"]),
-            ["Tomatoes"]       = ("Ripe tomatoes",                  "pc", 0.30m, ["TOMATOES", "FRUIT_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Tomato"]         = ("Ripe tomato",                    "pc", 0.30m, ["TOMATOES", "FRUIT_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Tomato Paste"]   = ("Concentrated tomato paste",      "g",  0.20m, ["TOMATOES", "FRUIT_VEG", "VEGETABLES", "CONDIMENTS"]),
-            ["Bell Pepper"]    = ("Mixed bell peppers",             "pc", 0.40m, ["FRUIT_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Chili Pepper"]   = ("Fresh red chili pepper",         "pc", 0.20m, ["FRUIT_VEG", "VEGETABLES", "SPICES"]),
-            ["Scotch Bonnet"]  = ("Scotch bonnet pepper",           "pc", 0.25m, ["FRUIT_VEG", "VEGETABLES", "SPICES"]),
-            ["Carrots"]        = ("Fresh carrots",                  "pc", 0.08m, ["ROOT_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Cabbage"]        = ("White cabbage",                  "g",  0.05m, ["FLOWER_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Eggplant"]       = ("Aubergine / eggplant",           "g",  0.15m, ["FRUIT_VEG", "VEGETABLES"]),
-            ["Zucchini"]       = ("Courgette / zucchini",           "g",  0.12m, ["FRUIT_VEG", "VEGETABLES"]),
+            ["Potatoes"]       = ("White potatoes",                 "g",  0.08m, ["ROOT_VEG"]),
+            ["Sweet Potato"]   = ("Orange sweet potato",           "g",  0.10m, ["ROOT_VEG"]),
+            ["Tomatoes"]       = ("Ripe tomatoes",                  "pc", 0.30m, ["TOMATOES", "RAW_FOOD"]),
+            ["Tomato"]         = ("Ripe tomato",                    "pc", 0.30m, ["TOMATOES", "RAW_FOOD"]),
+            ["Tomato Paste"]   = ("Concentrated tomato paste",      "g",  0.20m, ["TOMATOES", "CONDIMENTS"]),
+            ["Bell Pepper"]    = ("Mixed bell peppers",             "pc", 0.40m, ["FRUIT_VEG", "RAW_FOOD"]),
+            ["Chili Pepper"]   = ("Fresh red chili pepper",         "pc", 0.20m, ["FRUIT_VEG", "SPICES"]),
+            ["Scotch Bonnet"]  = ("Scotch bonnet pepper",           "pc", 0.25m, ["FRUIT_VEG", "SPICES"]),
+            ["Carrots"]        = ("Fresh carrots",                  "pc", 0.08m, ["ROOT_VEG", "RAW_FOOD"]),
+            ["Cabbage"]        = ("White cabbage",                  "g",  0.05m, ["FLOWER_VEG", "RAW_FOOD"]),
+            ["Eggplant"]       = ("Aubergine / eggplant",           "g",  0.15m, ["FRUIT_VEG"]),
+            ["Zucchini"]       = ("Courgette / zucchini",           "g",  0.12m, ["FRUIT_VEG"]),
             ["Mushrooms"]      = ("Button mushrooms",               "g",  0.45m, ["VEGETABLES", "RAW_FOOD"]),
-            ["Spinach"]        = ("Fresh spinach leaves",           "g",  0.20m, ["LEAFY_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Okra"]           = ("Fresh okra pods",                "g",  0.20m, ["FLOWER_VEG", "VEGETABLES"]),
-            ["Celery"]         = ("Celery stalk",                   "pc", 0.15m, ["STEM_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Plantain"]       = ("Green plantain",                 "pc", 0.30m, ["FRUIT_VEG", "VEGETABLES"]),
+            ["Spinach"]        = ("Fresh spinach leaves",           "g",  0.20m, ["LEAFY_VEG", "RAW_FOOD"]),
+            ["Okra"]           = ("Fresh okra pods",                "g",  0.20m, ["FLOWER_VEG"]),
+            ["Celery"]         = ("Celery stalk",                   "pc", 0.15m, ["STEM_VEG", "RAW_FOOD"]),
+            ["Plantain"]       = ("Green plantain",                 "pc", 0.30m, ["FRUIT_VEG"]),
             // Legumes
             ["Chickpeas"]      = ("Canned chickpeas",               "g",  0.15m, ["LEGUMES"]),
             ["Beans"]          = ("Dried beans",                    "g",  0.12m, ["LEGUMES"]),
             ["Peas"]           = ("Frozen green peas",              "g",  0.10m, ["LEGUMES"]),
             ["Lentils"]        = ("Red lentils",                    "g",  0.12m, ["LEGUMES"]),
             // Fruits & other produce
-            ["Lemon"]          = ("Fresh lemon",                    "pc", 0.25m, ["FRUIT_VEG", "VEGETABLES", "RAW_FOOD"]),
+            ["Lemon"]          = ("Fresh lemon",                    "pc", 0.25m, ["FRUIT_VEG", "RAW_FOOD"]),
             ["Lemon Juice"]    = ("Freshly squeezed lemon juice",   "ml", 0.20m, ["CONDIMENTS"]),
             ["Lime Juice"]     = ("Freshly squeezed lime juice",    "ml", 0.20m, ["CONDIMENTS"]),
             ["Raisins"]        = ("Seedless raisins",               "g",  0.20m, ["PANTRY"]),
-            ["Mango"]          = ("Ripe mango",                     "pc", 0.60m, ["FRUIT_VEG", "VEGETABLES", "RAW_FOOD"]),
-            ["Banana"]         = ("Ripe banana",                    "pc", 0.20m, ["FRUIT_VEG", "VEGETABLES", "RAW_FOOD"]),
+            ["Mango"]          = ("Ripe mango",                     "pc", 0.60m, ["FRUIT_VEG", "RAW_FOOD"]),
+            ["Banana"]         = ("Ripe banana",                    "pc", 0.20m, ["FRUIT_VEG", "RAW_FOOD"]),
             ["Coconut"]        = ("Desiccated coconut",             "g",  0.25m, ["PANTRY"]),
             ["Tamarind"]       = ("Tamarind paste",                 "g",  0.25m, ["CONDIMENTS", "SPICES"]),
             // Dairy & eggs
             ["Eggs"]           = ("Free-range eggs",                "pc", 0.35m, ["DAIRY"]),
             ["Egg"]            = ("Free-range egg",                 "pc", 0.35m, ["DAIRY"]),
-            ["Milk"]           = ("Whole milk",                     "ml", 0.10m, ["MILK", "DAIRY"]),
-            ["Cream"]          = ("Heavy cooking cream",            "ml", 0.40m, ["MILK", "DAIRY"]),
-            ["Sour Cream"]     = ("Full-fat sour cream",            "ml", 0.30m, ["MILK", "DAIRY"]),
-            ["Yogurt"]         = ("Natural yogurt",                 "ml", 0.30m, ["YOGHURT", "MILK", "DAIRY"]),
-            ["Cheese"]         = ("Cheddar cheese",                 "g",  0.45m, ["HARD_CHEESE", "CHEESE", "DAIRY"]),
-            ["Mozzarella"]     = ("Fresh mozzarella",               "g",  0.55m, ["FRESH_CHEESE", "CHEESE", "DAIRY"]),
-            ["Feta Cheese"]    = ("Crumbled feta cheese",           "g",  0.55m, ["SOFT_CHEESE", "CHEESE", "DAIRY"]),
-            ["Coconut Milk"]   = ("Full-fat coconut milk",          "ml", 0.25m, ["MILK", "DAIRY", "PANTRY"]),
+            ["Milk"]           = ("Whole milk",                     "ml", 0.10m, ["MILK"]),
+            ["Cream"]          = ("Heavy cooking cream",            "ml", 0.40m, ["MILK"]),
+            ["Sour Cream"]     = ("Full-fat sour cream",            "ml", 0.30m, ["MILK"]),
+            ["Yogurt"]         = ("Natural yogurt",                 "ml", 0.30m, ["YOGHURT"]),
+            ["Cheese"]         = ("Cheddar cheese",                 "g",  0.45m, ["HARD_CHEESE"]),
+            ["Mozzarella"]     = ("Fresh mozzarella",               "g",  0.55m, ["FRESH_CHEESE"]),
+            ["Feta Cheese"]    = ("Crumbled feta cheese",           "g",  0.55m, ["SOFT_CHEESE"]),
+            ["Coconut Milk"]   = ("Full-fat coconut milk",          "ml", 0.25m, ["MILK", "PANTRY"]),
             // Proteins
-            ["Chicken"]        = ("Bone-in chicken pieces",         "g",  0.50m, ["POULTRY", "MEAT"]),
-            ["Beef"]           = ("Beef chuck",                     "g",  0.60m, ["BEEF", "RED_MEAT", "MEAT"]),
-            ["Ground Beef"]    = ("Lean ground beef",               "g",  0.55m, ["BEEF", "RED_MEAT", "MEAT"]),
-            ["Lamb"]           = ("Diced lamb shoulder",            "g",  0.70m, ["LAMB", "RED_MEAT", "MEAT"]),
-            ["Pork"]           = ("Pork shoulder",                  "g",  0.55m, ["PORK", "WHITE_MEAT", "MEAT"]),
-            ["Bacon"]          = ("Smoked bacon",                   "g",  0.60m, ["PORK", "WHITE_MEAT", "MEAT"]),
-            ["Fish"]           = ("White fish fillet",              "g",  0.65m, ["FISH", "LEAN_FISH", "SEAFOOD"]),
-            ["Shrimp"]         = ("Raw peeled shrimp",              "g",  0.80m, ["SHELLFISH", "CRUSTACEANS", "SEAFOOD"]),
+            ["Chicken"]        = ("Bone-in chicken pieces",         "g",  0.50m, ["POULTRY"]),
+            ["Beef"]           = ("Beef chuck",                     "g",  0.60m, ["BEEF"]),
+            ["Ground Beef"]    = ("Lean ground beef",               "g",  0.55m, ["BEEF"]),
+            ["Lamb"]           = ("Diced lamb shoulder",            "g",  0.70m, ["LAMB"]),
+            ["Pork"]           = ("Pork shoulder",                  "g",  0.55m, ["PORK"]),
+            ["Bacon"]          = ("Smoked bacon",                   "g",  0.60m, ["PORK"]),
+            ["Fish"]           = ("White fish fillet",              "g",  0.65m, ["LEAN_FISH"]),
+            ["Shrimp"]         = ("Raw peeled shrimp",              "g",  0.80m, ["CRUSTACEANS"]),
             // Sauces & condiments
             ["Soy Sauce"]      = ("Light soy sauce",                "ml", 0.15m, ["CONDIMENTS"]),
             ["Fish Sauce"]     = ("Thai fish sauce",                "ml", 0.20m, ["CONDIMENTS"]),
@@ -186,6 +186,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             .Where(x => !string.IsNullOrEmpty(x.Code))
             .ToDictionary(x => x.Code!, x => x, StringComparer.OrdinalIgnoreCase);
         var byCode = unitTypes.ToDictionary(u => u.Code!, u => u);
+        // Reverse lookup: UnitTypeId → unit code (used for sensible quantity defaults)
+        var unitCodeById = unitTypes
+            .Where(u => u.Id != null && u.Code != null)
+            .ToDictionary(u => u.Id!, u => u.Code!);
         var recipes = RecipeDataLoader.Load();
 
         // Phase 1: seed canonical ingredient products
@@ -282,9 +286,22 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             ingredients = [.. ingredients, .. extraIngredients];
         }
 
-        // Helper lambda
+        // Helper lambda — applies a unit-aware default when the CSV provided no explicit quantity (qty==1)
+        // so that 1g / 1ml of a substantial ingredient is replaced by a more realistic amount.
         ProductComponent Comp(Product ing, decimal qty = 1, bool omittable = false)
-            => new() { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
+        {
+            if (qty == 1m && ing.UnitTypeId != null &&
+                unitCodeById.TryGetValue(ing.UnitTypeId, out var unitCode))
+            {
+                qty = unitCode switch
+                {
+                    "g"  => 100m,
+                    "ml" => 100m,
+                    _    => 1m,   // pc, portion, etc. — 1 is already realistic
+                };
+            }
+            return new ProductComponent { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
+        }
 
         // Phase 2: dish products from CSV recipes — deduplicated by dish name
         var servingUnitTypes = unitTypes
@@ -504,32 +521,36 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             codes.Add("SNACKS");
 
         // ── Protein (from ingredient list) ────────────────────────────────
+        // Only assign the most-specific (leaf) facet; parent codes are reachable via the hierarchy.
         if (IngredientsContainAny(ings, "chicken", "hen", "duck", "turkey", "galinha", "poulet"))
-        { codes.Add("POULTRY"); codes.Add("MEAT"); }
+            codes.Add("POULTRY");
         if (IngredientsContainAny(ings, "beef", "steak", "brisket", "ground beef", "veal"))
-        { codes.Add("BEEF"); codes.Add("RED_MEAT"); codes.Add("MEAT"); }
+            codes.Add("BEEF");
         if (IngredientsContainAny(ings, "pork", "bacon", "ham", "chorizo", "sausage",
                 "lard", "pig", "ribs", "salt pork"))
-        { codes.Add("PORK"); codes.Add("WHITE_MEAT"); codes.Add("MEAT"); }
+            codes.Add("PORK");
         if (IngredientsContainAny(ings, "lamb", "mutton"))
-        { codes.Add("LAMB"); codes.Add("RED_MEAT"); codes.Add("MEAT"); }
+            codes.Add("LAMB");
         if (IngredientsContainAny(ings, "salmon", "trout", "mackerel", "herring", "anchovy"))
-        { codes.Add("FAT_FISH"); codes.Add("FISH"); codes.Add("SEAFOOD"); }
+            codes.Add("FAT_FISH");
         if (IngredientsContainAny(ings, "cod", "tilapia", "haddock", "barramundi", "hilsa",
                 "dried fish", "smoked fish", "flying fish"))
-        { codes.Add("LEAN_FISH"); codes.Add("FISH"); codes.Add("SEAFOOD"); }
+            codes.Add("LEAN_FISH");
         if (IngredientsContainAny(ings, "tuna"))
-        { codes.Add("LEAN_FISH"); codes.Add("FISH"); codes.Add("SEAFOOD"); }
+            codes.Add("LEAN_FISH");
         if (IngredientsContainAny(ings, "fish") &&
-            !IngredientsContainAny(ings, "fish sauce", "fish stock", "fish oil", "fish broth", "fish paste"))
-        { codes.Add("FISH"); codes.Add("SEAFOOD"); }
-        if (IngredientsContainAny(ings, "shrimp", "prawn", "lobster", "crayfish"))
-        { codes.Add("CRUSTACEANS"); codes.Add("SHELLFISH"); codes.Add("SEAFOOD"); }
+            !IngredientsContainAny(ings, "fish sauce", "fish stock", "fish oil", "fish broth", "fish paste") &&
+            !codes.Contains("FAT_FISH") && !codes.Contains("LEAN_FISH"))
+            codes.Add("FISH");
         if (IngredientsContainAny(ings, "crab"))
-        { codes.Add("CRAB"); codes.Add("CRUSTACEANS"); codes.Add("SHELLFISH"); codes.Add("SEAFOOD"); }
+            codes.Add("CRAB");
+        if (IngredientsContainAny(ings, "shrimp", "prawn", "lobster", "crayfish"))
+            codes.Add("CRUSTACEANS");
         if (IngredientsContainAny(ings, "mussel", "oyster", "clam", "scallop", "squid", "octopus", "conch"))
-        { codes.Add("MOLLUSKS"); codes.Add("SHELLFISH"); codes.Add("SEAFOOD"); }
-        if (IngredientsContainAny(ings, "seafood") && !codes.Contains("SEAFOOD"))
+            codes.Add("MOLLUSKS");
+        if (IngredientsContainAny(ings, "seafood") &&
+            !codes.Contains("FISH") && !codes.Contains("FAT_FISH") && !codes.Contains("LEAN_FISH") &&
+            !codes.Contains("CRUSTACEANS") && !codes.Contains("CRAB") && !codes.Contains("MOLLUSKS"))
             codes.Add("SEAFOOD");
         if (IngredientsContainAny(ings, "bean", "lentil", "chickpea", "split pea",
                 "kidney bean", "black bean"))
@@ -590,6 +611,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
     /// <summary>
     /// Guesses category facet codes for an ingredient product based on its name.
+    /// Only assigns the most-specific (leaf) facet codes; parent codes are reachable via the hierarchy.
     /// Used when auto-creating ingredient products from CSV data.
     /// </summary>
     private static IEnumerable<string> GuessIngredientCategoryCodes(string ingredientName)
@@ -597,40 +619,37 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         var name = ingredientName.ToLower();
         var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        // ── Proteins (meat hierarchy) ────────────────────────────────────────
+        // ── Proteins — leaf codes only ────────────────────────────────────────
         if (ContainsAny(name, "chicken", "duck", "turkey", "hen", "poultry",
                 "drumstick", "wing", "thigh", "galinha"))
-        { codes.Add("POULTRY"); codes.Add("MEAT"); }
+            codes.Add("POULTRY");
         if (ContainsAny(name, "beef", "steak", "brisket", "veal", "ox", "corned beef"))
-        { codes.Add("BEEF"); codes.Add("RED_MEAT"); codes.Add("MEAT"); }
+            codes.Add("BEEF");
         if (ContainsAny(name, "pork", "bacon", "ham", "sausage", "chorizo", "lard", "ribs", "pig"))
-        { codes.Add("PORK"); codes.Add("WHITE_MEAT"); codes.Add("MEAT"); }
+            codes.Add("PORK");
         if (ContainsAny(name, "lamb", "mutton", "sheep"))
-        { codes.Add("LAMB"); codes.Add("RED_MEAT"); codes.Add("MEAT"); }
+            codes.Add("LAMB");
 
-        // ── Seafood hierarchy ────────────────────────────────────────────────
+        // ── Seafood — leaf codes only ─────────────────────────────────────────
         if (ContainsAny(name, "salmon", "trout", "mackerel", "herring", "sardine", "anchovy"))
-        { codes.Add("FAT_FISH"); codes.Add("FISH"); codes.Add("SEAFOOD"); }
+            codes.Add("FAT_FISH");
         if (ContainsAny(name, "cod", "tilapia", "haddock", "sole", "plaice", "snapper",
-                "barramundi", "hilsa", "flying fish", "whiting"))
-        { codes.Add("LEAN_FISH"); codes.Add("FISH"); codes.Add("SEAFOOD"); }
-        if (ContainsAny(name, "tuna"))
-        { codes.Add("LEAN_FISH"); codes.Add("FISH"); codes.Add("SEAFOOD"); }
-        // Generic "fish" — only match when not part of "fish sauce / oil / stock / paste"
+                "barramundi", "hilsa", "flying fish", "whiting", "tuna"))
+            codes.Add("LEAN_FISH");
+        // Generic "fish" when no specific variety matched
         if (ContainsAny(name, "smoked fish", "dried fish") ||
-            (name.Contains("fish") && !ContainsAny(name, "sauce", "oil", "stock", "broth", "paste")))
-        {
-            if (!codes.Contains("FISH")) { codes.Add("FISH"); codes.Add("SEAFOOD"); }
-        }
+            (name.Contains("fish") && !ContainsAny(name, "sauce", "oil", "stock", "broth", "paste") &&
+             !codes.Contains("FAT_FISH") && !codes.Contains("LEAN_FISH")))
+            codes.Add("FISH");
         if (ContainsAny(name, "crab"))
-        { codes.Add("CRAB"); codes.Add("CRUSTACEANS"); codes.Add("SHELLFISH"); codes.Add("SEAFOOD"); }
-        if (ContainsAny(name, "shrimp", "prawn", "lobster", "crawfish", "crayfish"))
-        { codes.Add("CRUSTACEANS"); codes.Add("SHELLFISH"); codes.Add("SEAFOOD"); }
-        if (ContainsAny(name, "mussel", "oyster", "clam", "scallop"))
-        { codes.Add("MOLLUSKS"); codes.Add("SHELLFISH"); codes.Add("SEAFOOD"); }
-        if (ContainsAny(name, "squid", "octopus", "conch"))
-        { codes.Add("MOLLUSKS"); codes.Add("SHELLFISH"); codes.Add("SEAFOOD"); }
-        if (ContainsAny(name, "seafood") && !codes.Contains("SEAFOOD"))
+            codes.Add("CRAB");
+        if (ContainsAny(name, "shrimp", "prawn", "lobster", "crawfish", "crayfish") && !codes.Contains("CRAB"))
+            codes.Add("CRUSTACEANS");
+        if (ContainsAny(name, "mussel", "oyster", "clam", "scallop", "squid", "octopus", "conch"))
+            codes.Add("MOLLUSKS");
+        if (ContainsAny(name, "seafood") &&
+            !codes.Contains("FISH") && !codes.Contains("FAT_FISH") && !codes.Contains("LEAN_FISH") &&
+            !codes.Contains("CRAB") && !codes.Contains("CRUSTACEANS") && !codes.Contains("MOLLUSKS"))
             codes.Add("SEAFOOD");
 
         // ── Legumes ──────────────────────────────────────────────────────────
@@ -648,72 +667,76 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 "kaffir", "scallion", "leek"))
             codes.Add("HERBS");
 
-        // ── Dairy hierarchy ──────────────────────────────────────────────────
+        // ── Dairy — leaf codes only ───────────────────────────────────────────
         if (ContainsAny(name, "butter", "ghee"))
-        { codes.Add("BUTTER"); codes.Add("MILK"); codes.Add("DAIRY"); }
+            codes.Add("BUTTER");
         if (ContainsAny(name, "yogurt", "yoghurt", "kefir"))
-        { codes.Add("YOGHURT"); codes.Add("MILK"); codes.Add("DAIRY"); }
-        if (ContainsAny(name, "milk", "cream", "sour cream", "creme fraiche"))
-        { if (!codes.Contains("MILK")) codes.Add("MILK"); codes.Add("DAIRY"); }
+            codes.Add("YOGHURT");
+        if (ContainsAny(name, "milk", "cream", "sour cream", "creme fraiche") && !codes.Contains("BUTTER") && !codes.Contains("YOGHURT"))
+            codes.Add("MILK");
         if (ContainsAny(name, "cheddar", "parmesan", "parmigiano", "gouda", "gruyere",
                 "pecorino", "manchego", "emmental", "comté"))
-        { codes.Add("HARD_CHEESE"); codes.Add("CHEESE"); codes.Add("DAIRY"); }
+            codes.Add("HARD_CHEESE");
         if (ContainsAny(name, "brie", "camembert"))
-        { codes.Add("SOFT_CHEESE"); codes.Add("CHEESE"); codes.Add("DAIRY"); }
+            codes.Add("SOFT_CHEESE");
         if (ContainsAny(name, "ricotta", "mozzarella", "cream cheese", "cottage cheese",
                 "mascarpone", "quark"))
-        { codes.Add("FRESH_CHEESE"); codes.Add("CHEESE"); codes.Add("DAIRY"); }
+            codes.Add("FRESH_CHEESE");
         if (ContainsAny(name, "gorgonzola", "stilton", "roquefort", "blue cheese"))
-        { codes.Add("BLUE_CHEESE"); codes.Add("CHEESE"); codes.Add("DAIRY"); }
-        // Generic cheese/dairy fallback
-        if (ContainsAny(name, "feta", "halloumi", "paneer", "curd", "cheese") && !codes.Contains("CHEESE"))
-        { codes.Add("CHEESE"); codes.Add("DAIRY"); }
-        if (ContainsAny(name, "egg", "dairy") && !codes.Contains("DAIRY"))
+            codes.Add("BLUE_CHEESE");
+        // Generic cheese/dairy when no specific sub-type matched
+        if (ContainsAny(name, "feta", "halloumi", "paneer", "curd", "cheese") &&
+            !codes.Contains("HARD_CHEESE") && !codes.Contains("SOFT_CHEESE") &&
+            !codes.Contains("FRESH_CHEESE") && !codes.Contains("BLUE_CHEESE"))
+            codes.Add("CHEESE");
+        if (ContainsAny(name, "egg", "dairy") && !codes.Contains("DAIRY") &&
+            !codes.Contains("BUTTER") && !codes.Contains("YOGHURT") && !codes.Contains("MILK") &&
+            !codes.Contains("CHEESE") && !codes.Contains("HARD_CHEESE") && !codes.Contains("SOFT_CHEESE") &&
+            !codes.Contains("FRESH_CHEESE") && !codes.Contains("BLUE_CHEESE"))
             codes.Add("DAIRY");
 
-        // ── Vegetables hierarchy ─────────────────────────────────────────────
+        // ── Vegetables — leaf codes only ──────────────────────────────────────
         // Root vegetables
         if (ContainsAny(name, "carrot", "potato", "beet", "beetroot", "parsnip", "turnip",
                 "radish", "yam", "cassava", "cocoyam", "celeriac"))
-        { codes.Add("ROOT_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
-        // Onions / alliums
-        if (ContainsAny(name, "onion", "shallot", "spring onion", "scallion", "leek", "chive"))
-        { codes.Add("ONIONS"); codes.Add("STEM_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
-        if (ContainsAny(name, "garlic"))
-        { codes.Add("ONIONS"); codes.Add("STEM_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
-        // Other stem vegetables
-        if (ContainsAny(name, "celery", "asparagus", "fennel stalk") && !codes.Contains("STEM_VEG"))
-        { codes.Add("STEM_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
-        if (ContainsAny(name, "lemongrass") && !codes.Contains("STEM_VEG"))
-        { codes.Add("STEM_VEG"); codes.Add("VEGETABLES"); }
+        { codes.Add("ROOT_VEG"); codes.Add("RAW_FOOD"); }
+        // Onions / alliums (child of STEM_VEG)
+        if (ContainsAny(name, "onion", "shallot", "spring onion", "scallion", "leek", "chive", "garlic"))
+        { codes.Add("ONIONS"); codes.Add("RAW_FOOD"); }
+        // Other stem vegetables when not already an onion
+        if (ContainsAny(name, "celery", "asparagus", "fennel stalk", "lemongrass") && !codes.Contains("ONIONS"))
+            codes.Add("STEM_VEG");
         // Leafy vegetables
         if (ContainsAny(name, "spinach", "kale", "chard", "arugula", "watercress",
                 "collard", "bok choy", "pak choi", "mustard green", "pea shoot"))
-        { codes.Add("LEAFY_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
+        { codes.Add("LEAFY_VEG"); codes.Add("RAW_FOOD"); }
         if (ContainsAny(name, "lettuce", "romaine", "iceberg", "endive", "radicchio"))
-        { codes.Add("LETTUCE"); codes.Add("LEAFY_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
+        { codes.Add("LETTUCE"); codes.Add("RAW_FOOD"); }  // LETTUCE is child of LEAFY_VEG
         // Flower vegetables
-        if (ContainsAny(name, "broccoli", "cauliflower", "cabbage", "brussels sprout", "kohlrabi"))
-        { codes.Add("FLOWER_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
-        // Tomatoes
+        if (ContainsAny(name, "broccoli", "cauliflower", "cabbage", "brussels sprout", "kohlrabi", "okra"))
+        { codes.Add("FLOWER_VEG"); codes.Add("RAW_FOOD"); }
+        // Tomatoes (leaf, child of FRUIT_VEG)
         if (ContainsAny(name, "tomato"))
-        { codes.Add("TOMATOES"); codes.Add("FRUIT_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
-        // Bell/sweet peppers (fruit-veg, raw-edible)
-        if (ContainsAny(name, "bell pepper", "sweet pepper"))
-        { codes.Add("FRUIT_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
+        { codes.Add("TOMATOES"); codes.Add("RAW_FOOD"); }
         // Other fruit-vegetables
+        if (ContainsAny(name, "bell pepper", "sweet pepper"))
+        { codes.Add("FRUIT_VEG"); codes.Add("RAW_FOOD"); }
         if (ContainsAny(name, "eggplant", "aubergine", "zucchini", "courgette",
-                "cucumber", "squash", "pumpkin", "plantain", "avocado"))
-        { codes.Add("FRUIT_VEG"); codes.Add("VEGETABLES"); }
-        if (ContainsAny(name, "okra") && !codes.Contains("FLOWER_VEG"))
-        { codes.Add("FLOWER_VEG"); codes.Add("VEGETABLES"); }
-        // Generic vegetables / fruits
+                "cucumber", "squash", "pumpkin", "plantain", "avocado") && !codes.Contains("FRUIT_VEG"))
+            codes.Add("FRUIT_VEG");
+        // Fruits (use FRUIT_VEG as no further sub-type)
         if (ContainsAny(name, "mango", "banana", "apple", "orange", "lemon", "lime",
-                "plum", "peach", "pear", "fig", "grape", "berry") && !codes.Contains("VEGETABLES"))
-        { codes.Add("FRUIT_VEG"); codes.Add("VEGETABLES"); codes.Add("RAW_FOOD"); }
-        if (ContainsAny(name, "mushroom", "artichoke", "ginger") && !codes.Contains("VEGETABLES"))
+                "plum", "peach", "pear", "fig", "grape", "berry") && !codes.Contains("FRUIT_VEG"))
+        { codes.Add("FRUIT_VEG"); codes.Add("RAW_FOOD"); }
+        // Mushrooms — no hierarchy sub-type, use VEGETABLES directly
+        if (ContainsAny(name, "mushroom"))
             codes.Add("VEGETABLES");
-        if (ContainsAny(name, "vegetable", "greens", "bean sprout") && !codes.Contains("VEGETABLES"))
+        if (ContainsAny(name, "artichoke", "ginger") && !codes.Contains("STEM_VEG") && !codes.Contains("ONIONS"))
+            codes.Add("VEGETABLES");
+        if (ContainsAny(name, "vegetable", "greens", "bean sprout") &&
+            !codes.Contains("ROOT_VEG") && !codes.Contains("LEAFY_VEG") && !codes.Contains("LETTUCE") &&
+            !codes.Contains("FLOWER_VEG") && !codes.Contains("FRUIT_VEG") && !codes.Contains("TOMATOES") &&
+            !codes.Contains("STEM_VEG") && !codes.Contains("ONIONS"))
             codes.Add("VEGETABLES");
 
         // ── Grains ───────────────────────────────────────────────────────────
