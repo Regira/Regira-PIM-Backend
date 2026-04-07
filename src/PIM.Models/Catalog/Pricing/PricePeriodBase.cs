@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using PIM.Models.Catalog.Pricing.Abstractions;
+﻿using PIM.Models.Catalog.Pricing.Abstractions;
 using Regira.Entities.Models.Abstractions;
+using System.ComponentModel.DataAnnotations;
 
 namespace PIM.Models.Catalog.Pricing;
 
@@ -12,7 +12,7 @@ public abstract class PricePeriodBase : IPricePeriod, IHasDescription, IHasTimes
     [MaxLength(512)]
     public string? Description { get; set; }
     public DateTime? StartDate { get; set; }
-    public DateTime? EndDate { get; set; }
+    //public DateTime? EndDate { get; set; }
     public DateTime Created { get; set; }
     public DateTime? LastModified { get; set; }
 }

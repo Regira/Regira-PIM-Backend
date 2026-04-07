@@ -18,11 +18,11 @@ public class ProductIncludingQueryBuilder : IIncludableQueryBuilder<Product, int
         if (includes.Value.HasFlag(ProductIncludes.Components))
             query = query.Include(x => x.Components!.OrderBy(c => c.Component!.Title)).ThenInclude(ac => ac.Component!).ThenInclude(x => x.UnitType);
         if (includes.Value.HasFlag(ProductIncludes.AllowedComponentAdditions))
-            query = query.Include(x => x.AllowedComponentAdditions!).ThenInclude(ac => ac.Component!).ThenInclude(a => a.Prices!.OrderByDescending(ph => ph.EndDate ?? ph.StartDate));
+            query = query.Include(x => x.AllowedComponentAdditions!).ThenInclude(ac => ac.Component!).ThenInclude(a => a.Prices!.OrderByDescending(ph => ph.StartDate));
         if (includes.Value.HasFlag(ProductIncludes.Suppliers))
             query = query.Include(x => x.Suppliers!.OrderBy(s => s.Supplier!.Id)).ThenInclude(s => s.Supplier);
         if (includes.Value.HasFlag(ProductIncludes.PricePeriod))
-            query = query.Include(x => x.Prices!.OrderByDescending(ph => ph.EndDate ?? ph.StartDate));
+            query = query.Include(x => x.Prices!.OrderByDescending(ph => ph.StartDate));
 
         return query;
     }

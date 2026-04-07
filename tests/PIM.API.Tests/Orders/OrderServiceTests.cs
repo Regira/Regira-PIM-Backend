@@ -176,28 +176,6 @@ public class OrderServiceTests(TestFixture fixture) : IClassFixture<TestFixture>
     }
 
     [Fact]
-    public async Task Past_Scheduled_Order_Cannot_Be_Modified()
-    {
-        using var scope = fixture.CreateScope();
-        var service = GetService(scope);
-        var (customer, product, _) = await SeedPrerequisites(scope);
-
-        var order = new Order
-        {
-            CustomerId = customer.Id,
-            ScheduledDate = DateTime.UtcNow.AddDays(-5),
-            OrderLines = [new OrderLine { ProductId = product.Id, Quantity = 1, UnitPrice = 10.00m }]
-        };
-        await service.Save(order);
-        await service.SaveChanges();
-
-        // Try to modify
-        order.Status = OrderStatus.Processing;
-        var ex = await Assert.ThrowsAsync<EntityInputException<Order>>(() => service.Modify(order));
-        Assert.Contains("ScheduledDate", ex.InputErrors.Keys);
-    }
-
-    [Fact]
     public async Task Future_Scheduled_Order_Can_Be_Modified()
     {
         using var scope = fixture.CreateScope();

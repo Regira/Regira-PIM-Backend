@@ -67,7 +67,7 @@ public class ProductProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
     }
 
     [Fact]
-    public async Task Price_Include_AdjacentBoundary_Selects_Entry_With_Later_EndDate()
+    public async Task Price_Include_AdjacentBoundary_Selects_Entry_With_Later_StartDate()
     {
         using var scope = fixture.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<PimDbContext>();
@@ -79,8 +79,8 @@ public class ProductProcessorTests(TestFixture fixture) : IClassFixture<TestFixt
             Title = "Adjacent Boundary Product",
             Prices =
             [
-                new ProductPricePeriod { Price = 8.00m,  StartDate = RefDate.AddDays(-5), EndDate = RefDate              },
-                new ProductPricePeriod { Price = 12.00m, StartDate = RefDate,             EndDate = RefDate.AddDays(5)   },
+                new ProductPricePeriod { Price = 8.00m,  StartDate = RefDate.AddDays(-5) },
+                new ProductPricePeriod { Price = 12.00m, StartDate = RefDate             },
             ]
         };
         db.Products.Add(product);

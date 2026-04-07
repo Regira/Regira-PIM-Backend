@@ -19,12 +19,12 @@ public class ProductSortingQueryBuilder(IOrderContext orderContext) : ISortedQue
                 ProductSortBy.Title => sorted.ThenBy(x => x.Title),
                 ProductSortBy.TitleDesc => sorted.ThenByDescending(x => x.Title),
                 ProductSortBy.Price => sorted.ThenBy(x => x.Prices!
-                    .Where(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate))
+                    .Where(ph => ph.StartDate == null || ph.StartDate <= priceDate)
                     .OrderByDescending(ph => ph.StartDate)
                     .Select(ph => ph.Price)
                     .FirstOrDefault()),
                 ProductSortBy.PriceDesc => sorted.ThenByDescending(x => x.Prices!
-                    .Where(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate))
+                    .Where(ph => ph.StartDate == null || ph.StartDate <= priceDate)
                     .OrderByDescending(ph => ph.StartDate)
                     .Select(ph => ph.Price)
                     .FirstOrDefault()),
@@ -39,12 +39,12 @@ public class ProductSortingQueryBuilder(IOrderContext orderContext) : ISortedQue
             ProductSortBy.Title => query.OrderBy(x => x.Title),
             ProductSortBy.TitleDesc => query.OrderByDescending(x => x.Title),
             ProductSortBy.Price => query.OrderBy(x => x.Prices!
-                .Where(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate))
+                .Where(ph => ph.StartDate == null || ph.StartDate <= priceDate)
                 .OrderByDescending(ph => ph.StartDate)
                 .Select(ph => ph.Price)
                 .FirstOrDefault()),
             ProductSortBy.PriceDesc => query.OrderByDescending(x => x.Prices!
-                .Where(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate))
+                .Where(ph => ph.StartDate == null || ph.StartDate <= priceDate)
                 .OrderByDescending(ph => ph.StartDate)
                 .Select(ph => ph.Price)
                 .FirstOrDefault()),

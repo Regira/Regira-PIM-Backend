@@ -1,5 +1,5 @@
-using PIM.Models.Catalog.Products;
 using PIM.Models.Catalog.Pricing.Utilities;
+using PIM.Models.Catalog.Products;
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
 
 namespace PIM.Services.Entities.Catalog.Products;
@@ -32,9 +32,17 @@ public class ProductQueryFilter : FilteredQueryBuilderBase<Product, int, Product
 
         var priceDate = so.PriceDate ?? DateTime.UtcNow;
         if (so.MinPrice.HasValue)
-            query = query.Where(a => a.Prices!.Any(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate) && ph.Price >= so.MinPrice));
+            query = query.Where(x =>
+                x.Prices!.Any(p => p.StartDate == null || p.StartDate <= priceDate)
+                && x.Prices!.Where(p => p.StartDate == null || p.StartDate <= priceDate)
+                    .OrderByDescending(p => p.StartDate)
+                    .First().Price >= so.MinPrice);
         if (so.MaxPrice.HasValue)
-            query = query.Where(a => a.Prices!.Any(ph => (ph.StartDate == null || ph.StartDate <= priceDate) && (ph.EndDate == null || ph.EndDate >= priceDate) && ph.Price <= so.MaxPrice));
+            query = query.Where(x =>
+                x.Prices!.Any(p => p.StartDate == null || p.StartDate <= priceDate)
+                && x.Prices!.Where(p => p.StartDate == null || p.StartDate <= priceDate)
+                    .OrderByDescending(p => p.StartDate)
+                    .First().Price <= so.MaxPrice);
         if (so.HasPrice.HasValue)
             query = query.Where(a => so.HasPrice.Value == a.Prices!.AsQueryable().Any(PricePeriodUtility.IsActiveOn<ProductPricePeriod>(priceDate)));
 

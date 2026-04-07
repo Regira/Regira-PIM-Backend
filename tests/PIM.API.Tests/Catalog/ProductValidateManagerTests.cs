@@ -43,7 +43,7 @@ public class ProductValidateManagerTests
     }
 
     [Fact]
-    public void Validate_TwoNonOverlappingBoundedPrices_DoesNotThrow()
+    public void Validate_TwoPricesWithDifferentStartDates_DoesNotThrow()
     {
         var sut = CreateSut();
         sut.Validate(new Product
@@ -51,14 +51,14 @@ public class ProductValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ProductPricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 1, 31) },
-                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 2, 28) }
+                new ProductPricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1) },
+                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1) }
             ]
         });
     }
 
     [Fact]
-    public void Validate_OpenStartFollowedByOpenEnd_DoesNotThrow()
+    public void Validate_NullStartFollowedByBoundedStart_DoesNotThrow()
     {
         var sut = CreateSut();
         sut.Validate(new Product
@@ -66,14 +66,14 @@ public class ProductValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ProductPricePeriod { Price = 9m,  StartDate = null,                    EndDate = new DateTime(2025, 1, 31) },
-                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = null }
+                new ProductPricePeriod { Price = 9m,  StartDate = null                     },
+                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1) }
             ]
         });
     }
 
     [Fact]
-    public void Validate_PricesTouchingAtBoundary_DoesNotThrow()
+    public void Validate_TwoPricesWithUniqueStartDates_DoesNotThrow()
     {
         var sut = CreateSut();
         sut.Validate(new Product
@@ -81,8 +81,8 @@ public class ProductValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ProductPricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1),  EndDate = new DateTime(2025, 1, 31) },
-                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 1, 31), EndDate = new DateTime(2025, 2, 28) }
+                new ProductPricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1)  },
+                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 1, 31) }
             ]
         });
     }
@@ -100,8 +100,8 @@ public class ProductValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ProductPricePeriod { Price = 9m,  StartDate = null, EndDate = new DateTime(2025, 1, 31) },
-                new ProductPricePeriod { Price = 10m, StartDate = null, EndDate = new DateTime(2025, 3, 31) }
+                new ProductPricePeriod { Price = 9m,  StartDate = null },
+                new ProductPricePeriod { Price = 10m, StartDate = null }
             ]
         };
 
@@ -111,7 +111,7 @@ public class ProductValidateManagerTests
     }
 
     [Fact]
-    public void Validate_TwoPricesWithoutEndDate_Throws()
+    public void Validate_TwoPricesWithSameStartDate_Throws()
     {
         var sut = CreateSut();
         var product = new Product
@@ -119,65 +119,8 @@ public class ProductValidateManagerTests
             Title = "Test",
             Prices =
             [
-                new ProductPricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = null },
-                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = null }
-            ]
-        };
-
-        var ex = Assert.Throws<EntityInputException<Product>>(() => sut.Validate(product));
-        Assert.True(ex.InputErrors.ContainsKey("Prices"));
-        Assert.Contains("end date", ex.InputErrors["Prices"], StringComparison.OrdinalIgnoreCase);
-    }
-
-    [Fact]
-    public void Validate_PartiallyOverlappingDateRanges_Throws()
-    {
-        var sut = CreateSut();
-        var product = new Product
-        {
-            Title = "Test",
-            Prices =
-            [
-                new ProductPricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 2, 28) },
-                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 3, 31) }
-            ]
-        };
-
-        var ex = Assert.Throws<EntityInputException<Product>>(() => sut.Validate(product));
-        Assert.True(ex.InputErrors.ContainsKey("Prices"));
-        Assert.Contains("overlapping", ex.InputErrors["Prices"], StringComparison.OrdinalIgnoreCase);
-    }
-
-    [Fact]
-    public void Validate_FullyContainedDateRange_Throws()
-    {
-        var sut = CreateSut();
-        var product = new Product
-        {
-            Title = "Test",
-            Prices =
-            [
-                new ProductPricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1), EndDate = new DateTime(2025, 3, 31) },
-                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 2, 28) }
-            ]
-        };
-
-        var ex = Assert.Throws<EntityInputException<Product>>(() => sut.Validate(product));
-        Assert.True(ex.InputErrors.ContainsKey("Prices"));
-        Assert.Contains("overlapping", ex.InputErrors["Prices"], StringComparison.OrdinalIgnoreCase);
-    }
-
-    [Fact]
-    public void Validate_OpenStartOverlapsAnotherRange_Throws()
-    {
-        var sut = CreateSut();
-        var product = new Product
-        {
-            Title = "Test",
-            Prices =
-            [
-                new ProductPricePeriod { Price = 9m,  StartDate = null,                    EndDate = new DateTime(2025, 2, 28) },
-                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 2, 1), EndDate = new DateTime(2025, 3, 31) }
+                new ProductPricePeriod { Price = 9m,  StartDate = new DateTime(2025, 1, 1) },
+                new ProductPricePeriod { Price = 10m, StartDate = new DateTime(2025, 1, 1) }
             ]
         };
 

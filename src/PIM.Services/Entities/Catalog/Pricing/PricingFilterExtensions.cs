@@ -7,7 +7,7 @@ namespace PIM.Services.Entities.Catalog.Pricing;
 public static class PricingFilterExtensions
 {
     /// <summary>
-    /// When multiple active prices exist, the one with the latest EndDate (or StartDate if EndDate is null) should be selected.
+    /// When multiple active prices exist, the one with the latest StartDate should be selected.
     /// </summary>
     /// <typeparam name="TPrice"></typeparam>
     /// <param name="prices"></param>
@@ -15,8 +15,8 @@ public static class PricingFilterExtensions
     static IQueryable<TPrice> OrderActivePrices<TPrice>(this IQueryable<TPrice> prices)
         where TPrice : IPricePeriod
         => prices
-            .OrderByDescending(ph => (ph.EndDate ?? ph.StartDate) == null) // nulls first
-            .ThenByDescending(ph => ph.EndDate ?? ph.StartDate);
+            .OrderByDescending(ph => ph.StartDate == null) // nulls first
+            .ThenByDescending(ph => ph.StartDate);
     /// <inheritdoc cref="OrderActivePrices{TPrice}(IQueryable{TPrice})"/>
     static IEnumerable<TPrice> OrderActivePrices<TPrice>(this IEnumerable<TPrice> prices)
         where TPrice : IPricePeriod
@@ -25,7 +25,7 @@ public static class PricingFilterExtensions
             .OrderActivePrices();
 
     /// <summary>
-    /// Finds the active price for the given priceDate. If multiple active prices exist, the one with the latest EndDate (or StartDate if EndDate is null) will be returned.
+    /// Finds the active price for the given priceDate. If multiple active prices exist, the one with the latest StartDate will be returned.
     /// </summary>
     /// <param name="item"></param>
     /// <param name="priceDate"></param>
@@ -36,7 +36,7 @@ public static class PricingFilterExtensions
             .OrderActivePrices()
             .FirstOrDefault();
     /// <summary>
-    /// Filters the prices of all items in the query to only include active prices for the given priceDate, and orders them by recency (latest EndDate or StartDate). The resulting query will be a flat list of active prices across all items.
+    /// Filters the prices of all items in the query to only include active prices for the given priceDate, and orders them by recency (latest StartDate). The resulting query will be a flat list of active prices across all items.
     /// </summary>
     /// <typeparam name="THasPrices"></typeparam>
     /// <typeparam name="TPrice"></typeparam>
@@ -51,7 +51,7 @@ public static class PricingFilterExtensions
             .FilterActivePrices(priceDate)
             .OrderActivePrices();
     /// <summary>
-    /// Finds the active price for each item in the query for the given priceDate, and returns a dictionary of item ID to active price. If multiple active prices exist for an item, the one with the latest EndDate (or StartDate if EndDate is null) will be selected.
+    /// Finds the active price for each item in the query for the given priceDate, and returns a dictionary of item ID to active price. If multiple active prices exist for an item, the one with the latest StartDate will be selected.
     /// </summary>
     /// <typeparam name="THasPrices"></typeparam>
     /// <typeparam name="TPrice"></typeparam>

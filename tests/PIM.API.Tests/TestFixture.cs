@@ -1,19 +1,24 @@
-using System.Globalization;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PIM.Core.Abstractions;
+using PIM.Core.Constants;
 using PIM.Data;
 using PIM.DependencyInjection;
 using PIM.Services.Entities.Catalog.Products;
 using Regira.DAL.EFcore.Services;
 using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
+using System.Globalization;
 
 namespace PIM.API.Tests;
 
 public class TestFixture
 {
+    class FakeAppContext : IAppContext
+    {
+        public PimAppTypes AppType { get; set; } = PimAppTypes.System;
+    }
     class FakeCultureContext : ICultureContext
     {
         public CultureInfo Culture => CultureInfo.InvariantCulture;
@@ -44,6 +49,7 @@ public class TestFixture
             .AddLogging()
             .AddHttpContextAccessor()
             // PIM App Contexts
+            .AddScoped<IAppContext, FakeAppContext>()
             .AddScoped<ICultureContext, FakeCultureContext>()
             .AddScoped<IOrderContext, FakeOrderContext>()
             .AddScoped<IUserContext, FakeUserContext>()

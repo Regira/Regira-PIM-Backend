@@ -12,8 +12,8 @@ public class ProductQueryBuilderTests
     private IEnumerable<Product> Build(ProductSearchObject? so, params Product[] products)
         => _builder.Build(products.AsQueryable(), so);
 
-    private static ProductPricePeriod Price(decimal amount, DateTime? start = null, DateTime? end = null)
-        => new() { Price = amount, StartDate = start, EndDate = end };
+    private static ProductPricePeriod Price(decimal amount, DateTime? start = null)
+        => new() { Price = amount, StartDate = start };
 
     // ── Null SearchObject ──────────────────────────────────────────────────────
 
@@ -153,12 +153,12 @@ public class ProductQueryBuilderTests
     }
 
     [Fact]
-    public void MinPrice_ExcludesProductWhosePriceIsExpired()
+    public void MinPrice_ExcludesProductWithNoActivePrice()
     {
         var product = new Product
         {
             Title = "A",
-            Prices = [Price(10m, start: RefDate.AddDays(-10), end: RefDate.AddDays(-1))]
+            Prices = [Price(10m, start: RefDate.AddDays(1))] // future, not yet active
         };
 
         var result = Build(new ProductSearchObject { MinPrice = 5m, PriceDate = RefDate }, product);
@@ -212,14 +212,14 @@ public class ProductQueryBuilderTests
     [Fact]
     public void HasPrice_False_IncludesProductWithNoActivePrice()
     {
-        var expired = new Product
+        var future = new Product
         {
             Title = "A",
-            Prices = [Price(5m, start: RefDate.AddDays(-10), end: RefDate.AddDays(-1))]
+            Prices = [Price(5m, start: RefDate.AddDays(1))] // future, not yet active
         };
         var active = new Product { Title = "B", Prices = [Price(5m)] };
 
-        var result = Build(new ProductSearchObject { HasPrice = false, PriceDate = RefDate }, expired, active).ToList();
+        var result = Build(new ProductSearchObject { HasPrice = false, PriceDate = RefDate }, future, active).ToList();
 
         Assert.Single(result);
         Assert.Equal("A", result[0].Title);

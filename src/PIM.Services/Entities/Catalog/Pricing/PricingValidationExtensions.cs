@@ -18,17 +18,9 @@ public static class PricingValidationExtensions
         {
             errors.Add("Prices must not have more than one entry without a start date.");
         }
-        if (priceList.Count(p => !p.EndDate.HasValue) > 1)
-        {
-            errors.Add("Prices must not have more than one entry without an end date.");
-        }
 
         if (priceList.Any(p1 => priceList.Any(p2 =>
-                p1 != p2
-                && (
-                    (p1.StartDate >= p2.StartDate || !p2.StartDate.HasValue) && (p1.StartDate < p2.EndDate || !p2.EndDate.HasValue)
-                    || (p1.EndDate > p2.StartDate || !p2.StartDate.HasValue) && (p1.EndDate <= p2.EndDate || !p2.EndDate.HasValue)
-                )
+                p1 != p2 && p1.StartDate == p2.StartDate
             )))
         {
             errors.Add("Prices must not have overlapping date ranges.");
