@@ -6,7 +6,8 @@ using PIM.Models.Taxonomy.FacetGroupFacets;
 namespace PIM.Models.Taxonomy.FacetGroups;
 
 /// <summary>
-/// Represents a group of facets that can be used to categorize and filter products in a taxonomy. A facet group can have multiple child facets and can also be a child of another facet group, allowing for a hierarchical structure of facets.
+/// Represents a group of facets that can be used to categorize and filter products in a taxonomy. 
+/// A facet group can have multiple child facets and can also be a child of another facet group, allowing for a hierarchical structure of facets.
 /// Facets can be linked to a Product, and the facet groups can be used to organize these facets.
 /// e.g. a "Color" facet group can have child facets like "Red", "Blue", "Green", etc.
 /// </summary>

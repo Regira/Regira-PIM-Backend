@@ -30,6 +30,7 @@ try
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            options.JsonSerializerOptions.AllowOutOfOrderMetadataProperties = true;
         });
 
     // OpenAPI
@@ -68,9 +69,13 @@ try
     });
 
     // Entity services
+    // NOTE: AddAdminServices must be called BEFORE AddPimServices.
+    // Both call UseMapsterMapping() which registers a TypeAdapterConfig singleton.
+    // .NET DI resolves the LAST registered instance, so PIM's config (which contains
+    // the custom MapWith rules for abstract types like Party->PartyDto) must win.
     builder.Services
-        .AddPimServices(builder.Configuration, PimAppTypes.Manager)
-        .AddAdminServices(builder.Configuration);
+        .AddAdminServices(builder.Configuration)
+        .AddPimServices(builder.Configuration, PimAppTypes.Manager);
 
     // APP configuration
     var app = builder.Build();
