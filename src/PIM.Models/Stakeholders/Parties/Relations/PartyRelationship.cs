@@ -3,7 +3,7 @@ using Regira.Entities.Models.Abstractions;
 
 namespace PIM.Models.Stakeholders.Parties.Relations;
 
-public class PartyRelationship : IEntityWithSerial, IHasStartEndDate, IHasContactData, IHasContactData<PartyRelationshipContactDetails>
+public class PartyRelationship : IEntityWithSerial, IHasStartEndDate, ISortable, IHasContactData, IHasContactData<PartyRelationshipContactDetails>
 {
     public int Id { get; set; }
 
@@ -20,6 +20,7 @@ public class PartyRelationship : IEntityWithSerial, IHasStartEndDate, IHasContac
     public RelationshipType? RelationshipType { get; set; }
 
     public ICollection<PartyRelationshipContactDetails>? ContactData { get; set; }
+    public int SortOrder { get; set; }
     ICollection<IContactDetails>? IHasContactData.ContactData
     {
         get => ContactData?.Cast<IContactDetails>().ToList();
