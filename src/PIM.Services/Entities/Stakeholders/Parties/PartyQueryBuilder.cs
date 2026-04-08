@@ -1,9 +1,11 @@
+using PIM.Data;
+using PIM.Models.Catalog.Products;
 using PIM.Models.Stakeholders.Parties;
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
 
 namespace PIM.Services.Entities.Stakeholders.Parties;
 
-public class PartyQueryBuilder : FilteredQueryBuilderBase<Party, int, PartySearchObject>
+public class PartyQueryBuilder(PimDbContext dbContext) : FilteredQueryBuilderBase<Party, int, PartySearchObject>
 {
     public override IQueryable<Party> Build(IQueryable<Party> query, PartySearchObject? so)
     {
@@ -23,6 +25,10 @@ public class PartyQueryBuilder : FilteredQueryBuilderBase<Party, int, PartySearc
             query = query.Where(x =>
                 x.ChildRelationships!.Any(r => so.RelationshipId.Contains(r.RelationshipTypeId)) ||
                 x.ParentRelationships!.Any(r => so.RelationshipId.Contains(r.RelationshipTypeId)));
+
+        if (so.ProductIdSupplied?.Any() == true)
+            query = query.Where(x => dbContext.Set<ProductSupplier>().Any(ps => ps.SupplierId == x.Id && so.ProductIdSupplied.Contains(ps.ProductId)));
+
 
         return query;
     }
