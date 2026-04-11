@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -47,6 +48,20 @@ try
 
     var pimDb = scope.ServiceProvider.GetRequiredService<PimDbContext>();
     await pimDb.Database.EnsureCreatedAsync();
+
+    var entityDbFunctions = new[]
+    {
+        PartyDbFunctions.CREATE_ALL,
+        ProductDbFunctions.CREATE_ALL
+    };
+    foreach (var dbFunctions in entityDbFunctions)
+    {
+        foreach (var sql in dbFunctions)
+        {
+            await pimDb.Database.ExecuteSqlRawAsync(sql);
+        }
+    }
+
     if (!pimDb.Orders.Any())
     {
         var seeder = scope.ServiceProvider.GetRequiredService<PimDataSeeder>();

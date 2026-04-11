@@ -26,6 +26,15 @@ public class PartyQueryBuilder(PimDbContext dbContext) : FilteredQueryBuilderBas
                 x.ChildRelationships!.Any(r => so.RelationshipId.Contains(r.RelationshipTypeId)) ||
                 x.ParentRelationships!.Any(r => so.RelationshipId.Contains(r.RelationshipTypeId)));
 
+        if (so.IsRoot.HasValue)
+            query = query.Where(x => so.IsRoot.Value == !x.ParentRelationships!.Any());
+        if (so.AncestorId?.Any() == true)
+            query = query.Where(x => dbContext.GetPartyOffspring(so.AncestorId, 9).Any(o => o.ChildId == x.Id));
+        if (so.OffspringId?.Any() == true)
+            query = query.Where(x => dbContext.GetPartyAncestors(so.OffspringId, 9).Any(o => o.ParentId == x.Id));
+        if (so.RootId?.Any() == true)
+            query = query.Where(x => dbContext.GetPartyOffspring(so.RootId, 9).Any(o => o.RootId == x.Id));
+
         if (so.ProductIdSupplied?.Any() == true)
             query = query.Where(x => dbContext.Set<ProductSupplier>().Any(ps => ps.SupplierId == x.Id && so.ProductIdSupplied.Contains(ps.ProductId)));
 

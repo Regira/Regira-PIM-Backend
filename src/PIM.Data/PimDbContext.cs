@@ -13,7 +13,7 @@ using Regira.DAL.EFcore.Extensions;
 
 namespace PIM.Data;
 
-public class PimDbContext(DbContextOptions<PimDbContext> options) : DbContext(options)
+public partial class PimDbContext(DbContextOptions<PimDbContext> options) : DbContext(options)
 {
     public DbSet<Party> Parties { get; set; }
     public DbSet<PartyUser> PartyUsers { get; set; }
@@ -151,5 +151,9 @@ public class PimDbContext(DbContextOptions<PimDbContext> options) : DbContext(op
             entity.HasOne(olp => olp.Product).WithMany().OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(olp => olp.OrderLine).WithMany(ol => ol.ComponentOmissions).HasForeignKey(olp => olp.OrderLineId).OnDelete(DeleteBehavior.Cascade);
         });
+
+        ConfigureFunctions(modelBuilder);
     }
+
+    partial void ConfigureFunctions(ModelBuilder modelBuilder);
 }
