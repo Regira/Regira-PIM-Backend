@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
-using PIM.Core.Constants;
+﻿using PIM.Core.Constants;
 using PIM.Models.Stakeholders.Addresses;
 using PIM.Models.Stakeholders.ContactData;
+using PIM.Models.Stakeholders.Parties.Relations;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace PIM.Models.Stakeholders.Parties;
 
@@ -24,4 +25,6 @@ public class PartyInputDto
 
     public ICollection<ContactDetailsInputDto>? ContactData { get; set; }
     public ICollection<AddressInputDto>? Addresses { get; set; }
+    public ICollection<PartyRelationshipInputDto>? ParentRelationships { get; set; }
+    public ICollection<PartyRelationshipInputDto>? ChildRelationships { get; set; }
 }

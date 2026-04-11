@@ -11,6 +11,9 @@ public class PartySearchObject : SearchObject
     public ICollection<int>? ProductIdSupplied { get; set; }
 
     public bool? IsRoot { get; set; }
+    public bool? IsParent { get; set; }
+    public bool? IsChild { get; set; }
+
     public ICollection<int>? AncestorId { get; set; }
     public ICollection<int>? OffspringId { get; set; }
     public ICollection<int>? RootId { get; set; }

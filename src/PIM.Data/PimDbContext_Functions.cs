@@ -89,29 +89,29 @@ public partial class PimDbContext
                 .WithMany();
         });
         var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        var schema = "dbo";
 
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetPartyOffspring), flags, [typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
+            .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetPartyAncestors), flags, [typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
+            .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetPartyFamily), flags, [typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
+            .HasSchema(schema);
 
         modelBuilder.Entity<ProductRelationResult>().HasNoKey();
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductOffspring), flags, [typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
+            .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductAncestors), flags, [typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
+            .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductFamily), flags, [typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
-
+            .HasSchema(schema);
         modelBuilder.Entity<FacetRelationResult>().HasNoKey();
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetFacetOffspring), flags, [typeof(string), typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
+            .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetFacetAncestors), flags, [typeof(string), typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
+            .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetFacetFamily), flags, [typeof(string), typeof(string), typeof(int)])!)
-            .HasSchema("dbo");
+            .HasSchema(schema);
     }
 
     private static string? ToJsonArray(IEnumerable<int>? ids)

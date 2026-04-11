@@ -28,6 +28,11 @@ public class PartyQueryBuilder(PimDbContext dbContext) : FilteredQueryBuilderBas
 
         if (so.IsRoot.HasValue)
             query = query.Where(x => so.IsRoot.Value == !x.ParentRelationships!.Any());
+        if (so.IsParent.HasValue)
+            query = query.Where(x => so.IsParent.Value == x.ChildRelationships!.Any());
+        if (so.IsChild.HasValue)
+            query = query.Where(x => so.IsChild.Value == x.ParentRelationships!.Any());
+
         if (so.AncestorId?.Any() == true)
             query = query.Where(x => dbContext.GetPartyOffspring(so.AncestorId, 9).Any(o => o.ChildId == x.Id));
         if (so.OffspringId?.Any() == true)

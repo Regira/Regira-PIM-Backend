@@ -17,10 +17,15 @@ public class PartyIncludingQueryBuilder : IIncludableQueryBuilder<Party, int, Pa
         if (includes.Value.HasFlag(PartyIncludes.Addresses))
             query = query.Include(x => x.Addresses);
 
-        if (includes.Value.HasFlag(PartyIncludes.Relationships))
+        if (includes.Value.HasFlag(PartyIncludes.Parents))
             query = query
-                .Include(x => x.ChildRelationships!).ThenInclude(r => r.RelationshipType)
+                .Include(x => x.ParentRelationships!).ThenInclude(r => r.Parent!).ThenInclude(p => p.ContactData)
                 .Include(x => x.ParentRelationships!).ThenInclude(r => r.RelationshipType);
+
+        if (includes.Value.HasFlag(PartyIncludes.Children))
+            query = query
+                .Include(x => x.ChildRelationships!).ThenInclude(r => r.Child!).ThenInclude(p => p.ContactData)
+                .Include(x => x.ChildRelationships!).ThenInclude(r => r.RelationshipType);
 
         return query;
     }
