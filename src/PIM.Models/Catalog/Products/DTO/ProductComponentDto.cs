@@ -7,5 +7,6 @@ public class ProductComponentDto
     public int ComponentId { get; set; }
     public decimal Quantity { get; set; }
     public bool IsOmittable { get; set; }
+    public int SortOrder { get; set; }
     public ProductCoreDto? Component { get; set; }
 }

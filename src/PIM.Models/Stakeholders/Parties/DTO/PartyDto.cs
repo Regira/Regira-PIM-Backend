@@ -1,21 +1,15 @@
 ﻿using PIM.Core.Constants;
 using PIM.Models.Stakeholders.Addresses;
 using PIM.Models.Stakeholders.ContactData;
-using PIM.Models.Stakeholders.Parties.Relations;
+using PIM.Models.Stakeholders.Parties.Abstractions;
 using System.Text.Json.Serialization;
 
-namespace PIM.Models.Stakeholders.Parties;
+namespace PIM.Models.Stakeholders.Parties.DTO;
 
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "partyType")]
 [JsonDerivedType(typeof(PersonDto), PartyTypes.Person)]
 [JsonDerivedType(typeof(OrganizationDto), PartyTypes.Organization)]
-public abstract class PartyDto : PartyCoreDto
-{
-    public ICollection<PartyParentDto>? ParentRelationships { get; set; }
-    public ICollection<PartyChildDto>? ChildRelationships { get; set; }
-}
-
-public class PartyCoreDto
+public abstract class PartyDto : IPartyCore
 {
     public int Id { get; set; }
     public string? Code { get; set; }
@@ -31,4 +25,6 @@ public class PartyCoreDto
 
     public ICollection<ContactDetailsDto>? ContactData { get; set; }
     public ICollection<AddressDto>? Addresses { get; set; }
+    public ICollection<PartyParentDto>? ParentRelationships { get; set; }
+    public ICollection<PartyChildDto>? ChildRelationships { get; set; }
 }

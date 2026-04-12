@@ -8,5 +8,6 @@ public class ProductCoreDto
     public string Title { get; set; } = null!;
     public string? Description { get; set; }
     public int? UnitTypeId { get; set; }
+    public decimal? DefaultQuantity { get; set; }
     public UnitTypeDto? UnitType { get; set; }
 }

@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using PIM.Data;
 using PIM.Models.Stakeholders.Parties;
-using PIM.Models.Stakeholders.Parties.Relations;
 using PIM.Services.Entities.Stakeholders.Abstractions;
 using PIM.Services.Entities.Stakeholders.Addresses;
 using PIM.Services.Entities.Stakeholders.ContactData;

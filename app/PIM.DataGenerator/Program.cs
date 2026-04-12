@@ -49,16 +49,19 @@ try
     var pimDb = scope.ServiceProvider.GetRequiredService<PimDbContext>();
     await pimDb.Database.EnsureCreatedAsync();
 
-    var entityDbFunctions = new[]
+    if (pimDb.Database.ProviderName == "Microsoft.EntityFrameworkCore.SqlServer")
     {
-        PartyDbFunctions.CREATE_ALL,
-        ProductDbFunctions.CREATE_ALL
-    };
-    foreach (var dbFunctions in entityDbFunctions)
-    {
-        foreach (var sql in dbFunctions)
+        var entityDbFunctions = new[]
         {
-            await pimDb.Database.ExecuteSqlRawAsync(sql);
+            PartyDbFunctions.CREATE_ALL,
+            ProductDbFunctions.CREATE_ALL
+        };
+        foreach (var dbFunctions in entityDbFunctions)
+        {
+            foreach (var sql in dbFunctions)
+            {
+                await pimDb.Database.ExecuteSqlRawAsync(sql);
+            }
         }
     }
 

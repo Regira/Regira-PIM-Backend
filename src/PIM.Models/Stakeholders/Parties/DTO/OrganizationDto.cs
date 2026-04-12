@@ -1,4 +1,4 @@
-﻿namespace PIM.Models.Stakeholders.Parties;
+﻿namespace PIM.Models.Stakeholders.Parties.DTO;
 
 public class OrganizationDto : PartyDto
 {

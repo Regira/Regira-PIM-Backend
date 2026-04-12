@@ -1,5 +1,5 @@
 using PIM.Models.Catalog.Products.DTO;
-using PIM.Models.Stakeholders.Parties;
+using PIM.Models.Stakeholders.Parties.DTO;
 
 namespace PIM.Models.Orders;
 

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PIM.Models.Stakeholders.Parties;
+namespace PIM.Models.Stakeholders.Parties.DTO;
 
 public class OrganizationInputDto : PartyInputDto
 {

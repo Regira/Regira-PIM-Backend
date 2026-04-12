@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using PIM.Data;
 using PIM.Models.Stakeholders.ContactData;
 using PIM.Models.Stakeholders.Parties;
-using PIM.Models.Stakeholders.Parties.Relations;
 using Regira.Entities.Services.Abstractions;
 using Person = PIM.Models.Stakeholders.Parties.Person;
 
@@ -12,7 +11,7 @@ namespace PIM.DataGenerator.Infrastructure;
 
 public class StakeholderSeeder(PimDbContext dbContext, IEntityService<Party> partyService, IEntityService<RelationshipType> relationshipTypeService, ILogger<StakeholderSeeder> logger)
 {
-    private const int BatchSize = 100;
+    private const int BatchSize = 1000;
 
     public async Task<IList<Party>> SeedAsync()
     {
@@ -98,7 +97,10 @@ public class StakeholderSeeder(PimDbContext dbContext, IEntityService<Party> par
             await partyService.Save(party);
 
             if (i % BatchSize == 0)
+            {
+                logger.LogInformation($"Saving Parties batch {i + 1}...");
                 await partyService.SaveChanges();
+            }
         }
         await partyService.SaveChanges();
 
@@ -118,9 +120,8 @@ public class StakeholderSeeder(PimDbContext dbContext, IEntityService<Party> par
         types = new List<RelationshipType>
         {
             new() { Code = "EMP",  Title = "Employee",       Description = "Person is employed by an organization" },
-            new() { Code = "CUST", Title = "Customer",       Description = "Person is a customer of the organization" },
-            new() { Code = "SUP",  Title = "Supplier",       Description = "Organization is a supplier" },
             new() { Code = "MBR",  Title = "Member",         Description = "Person is a member of the organization" },
+            new() { Code = "UNIT",  Title = "Unit",          Description = "Organization is a unit of another organization" },
             new() { Code = "REP",  Title = "Representative", Description = "Person represents the organization" },
             new() { Code = "CON",  Title = "Contact",        Description = "Person is a contact for the organization" },
         };
@@ -135,7 +136,7 @@ public class StakeholderSeeder(PimDbContext dbContext, IEntityService<Party> par
 
     public async Task SeedRelationships(IList<Party> parties, IList<RelationshipType> relationshipTypes)
     {
-        if(await dbContext.Set<PartyRelationship>().AnyAsync())
+        if (await dbContext.Set<PartyRelationship>().AnyAsync())
         {
             logger.LogInformation("Relationships already exist, skipping seeding relationships.");
             return;
@@ -177,7 +178,10 @@ public class StakeholderSeeder(PimDbContext dbContext, IEntityService<Party> par
             await partyService.Save(loaded);
             count++;
             if (count % BatchSize == 0)
+            {
+                logger.LogInformation($"Saving Relations batch {count + 1}...");
                 await partyService.SaveChanges();
+            }
         }
         await partyService.SaveChanges();
     }

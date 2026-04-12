@@ -1,6 +1,6 @@
 using PIM.Models.Stakeholders.ContactData;
 
-namespace PIM.Models.Stakeholders.Parties.Relations;
+namespace PIM.Models.Stakeholders.Parties.DTO;
 
 public class PartyRelationshipDto
 {
@@ -18,9 +18,9 @@ public class PartyRelationshipDto
 
 public class PartyParentDto : PartyRelationshipDto
 {
-    public PartyCoreDto? Parent { get; set; }
+    public PartySimpleDto? Parent { get; set; }
 }
 public class PartyChildDto : PartyRelationshipDto
 {
-    public PartyCoreDto? Child { get; set; }
+    public PartySimpleDto? Child { get; set; }
 }

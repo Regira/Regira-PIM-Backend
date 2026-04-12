@@ -2,7 +2,7 @@
 using Regira.Entities.Models.Abstractions;
 using Regira.Normalizing;
 
-namespace PIM.Models.Stakeholders.Parties.Relations;
+namespace PIM.Models.Stakeholders.Parties;
 
 public class RelationshipType : IEntityWithSerial, IHasCode, IHasTitle, IHasDescription, IHasNormalizedContent
 {

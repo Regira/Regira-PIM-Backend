@@ -202,7 +202,7 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
                 Code = "DIETARY",
                 Title = "Dietary",
                 Description = "Dietary preference categories",
-                ChildFacets = new[] { "VEGAN", "VEGETARIAN", "GLUTEN_FREE", "KETO", "RAW_FOOD" }
+                ChildFacets = new[] { "VEGAN", "VEGETARIAN", "GLUTEN_FREE", "KETO", "RAW" }
                     .Select(FC).Where(f => f != null).Select(f => Link(f!))
                     .ToList()
             },

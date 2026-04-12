@@ -13,20 +13,20 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
     private const int BatchSize = 100;
 
     // Canonical ingredient list loaded from CSV.
-    // Key → (Description, UnitCode, Price, CategoryCodes)
-    private static readonly Lazy<IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes)>> LazyCanonicalIngredients =
+    // Key → (Description, UnitCode, Price, CategoryCodes, IsAssembled)
+    private static readonly Lazy<IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes, bool IsAssembled)>> LazyCanonicalIngredients =
         new(LoadCanonicalIngredientsFromCsv);
 
-    private static IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes)> CanonicalIngredients =>
+    private static IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes, bool IsAssembled)> CanonicalIngredients =>
         LazyCanonicalIngredients.Value;
 
     /// <summary>
     /// Loads canonical ingredients from the ingredients.csv file.
     /// </summary>
-    private static IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes)> LoadCanonicalIngredientsFromCsv()
+    private static IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes, bool IsAssembled)> LoadCanonicalIngredientsFromCsv()
     {
         var path = Path.Combine(AppContext.BaseDirectory, "Assets", "ingredients.csv");
-        var ingredients = new Dictionary<string, (string, string, decimal, string[])>(StringComparer.OrdinalIgnoreCase);
+        var ingredients = new Dictionary<string, (string, string, decimal, string[], bool)>(StringComparer.OrdinalIgnoreCase);
 
         if (!File.Exists(path))
         {
@@ -35,7 +35,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         }
 
         using var reader = new StreamReader(path);
-        reader.ReadLine(); // skip header: Code,Title,UnitType,Facets
+        reader.ReadLine(); // skip header: Code,Title,UnitType,Facets,DerivedFrom
 
         while (reader.ReadLine() is { } line)
         {
@@ -51,11 +51,12 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 .Select(f => f.Trim())
                 .Where(f => !string.IsNullOrWhiteSpace(f))
                 .ToArray();
+            var isAssembled = fields.Count >= 5 && !string.IsNullOrWhiteSpace(fields[4]);
 
             // Generate a reasonable price based on category
             var price = GeneratePrice(unitCode, facets);
 
-            ingredients[title] = (title, unitCode, price, facets);
+            ingredients[title] = (title, unitCode, price, facets, isAssembled);
         }
 
         Console.WriteLine($"Loaded {ingredients.Count} canonical ingredients from {path}");
@@ -216,6 +217,9 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Description = kv.Value.Description,
                 Prices = [new ProductPricePeriod { Price = kv.Value.Price }],
                 UnitTypeId = byCode.TryGetValue(kv.Value.UnitCode, out var ut) ? ut.Id : null,
+                DefaultQuantity = kv.Value.IsAssembled
+                    ? GetDefaultQuantityForIngredient(kv.Value.UnitCode, kv.Value.CategoryCodes)
+                    : null,
             })
             .ToList();
 
@@ -303,19 +307,18 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             ingredients = [.. ingredients, .. extraIngredients];
         }
 
-        // Helper lambda — applies a unit-aware default when the CSV provided no explicit quantity (qty==0)
-        // so that ingredients without a parenthetical amount receive a realistic fallback.
+        // Helper lambda — resolves the component quantity:
+        // 1. Uses the explicit CSV quantity when provided (qty > 0).
+        // 2. Falls back to the product's DefaultQuantity if set (covers assembled ingredients and partial dishes).
+        // 3. Finally falls back to a unit-aware heuristic (100 g/ml, 1 for everything else).
         ProductComponent Comp(Product ing, decimal qty = 0, bool omittable = false)
         {
-            if (qty == 0m && ing.UnitTypeId != null &&
-                unitCodeById.TryGetValue(ing.UnitTypeId ?? 0, out var unitCode))
+            if (qty == 0m)
             {
-                qty = unitCode switch
-                {
-                    "g" => 100m,
-                    "ml" => 100m,
-                    _ => 1m,   // pc, portion, etc. — 1 is already realistic
-                };
+                qty = ing.DefaultQuantity
+                    ?? (ing.UnitTypeId != null && unitCodeById.TryGetValue(ing.UnitTypeId ?? 0, out var unitCode)
+                        ? unitCode switch { "g" => 100m, "ml" => 100m, _ => 1m }
+                        : 1m);
             }
             return new ProductComponent { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
         }
@@ -337,7 +340,8 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 var unitCode = partialDish.Category switch
                 {
                     "Stock" or "Sauce" => "ml",
-                    _ => "g"   // Paste, Base, Spice Mix
+                    "Base" => "portion",
+                    _ => "g"   // Paste, Spice Mix, Blend
                 };
 
                 var partialFacets = GetPartialDishFacetCodes(partialDish.Category, partialDish.Ingredients.Select(i => i.Name))
@@ -351,6 +355,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Description = $"A {partialDish.Category.ToLower()} used as a base component in cooking",
                     Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(1.50m, 8.99m), 2) }],
                     UnitTypeId = byCode.TryGetValue(unitCode, out var partialUnit) ? partialUnit.Id : null,
+                    DefaultQuantity = GetDefaultQuantityForPartialDish(partialDish.Category),
                     Facets = partialFacets,
                     Components = partialComponents,
                 };
@@ -424,6 +429,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 Description = description,
                 Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(6.99m, 24.99m), 2) }],
                 UnitTypeId = f.PickRandom(servingUnitTypes).Id,
+                DefaultQuantity = 1m,
                 AllowAdditions = f.Random.Bool(0.7f),
                 Facets = tags.DistinctBy(t => t.FacetId).ToList(),
                 Components = components,
@@ -596,6 +602,63 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
     }
 
     /// <summary>
+    /// Returns a realistic DefaultQuantity for an assembled ingredient (one with a DerivedFrom)
+    /// based on its unit type and primary facet categories.
+    /// </summary>
+    private static decimal GetDefaultQuantityForIngredient(string unitCode, string[] facets)
+    {
+        return unitCode switch
+        {
+            "pc" => 1m,
+            "bunch" => 1m,
+            "clove" => 2m,
+            "sprig" => 1m,
+            "leaf" => 3m,
+            "stalk" => 1m,
+            "ml" => 50m,
+            "g" => GetDefaultGramsForIngredient(facets),
+            _ => 1m
+        };
+    }
+
+    private static decimal GetDefaultGramsForIngredient(string[] facets)
+    {
+        // Main proteins — 150 g per person is a standard serving
+        if (facets.Any(f => f is "BEEF" or "POULTRY" or "LAMB" or "PORK" or "LEAN_FISH" or "FAT_FISH" or "FISH"))
+            return 150m;
+        if (facets.Any(f => f is "CRUSTACEANS" or "MOLLUSKS" or "CRAB"))
+            return 100m;
+        // Spices and dried herbs — used in small pinches/teaspoons
+        if (facets.Any(f => f is "SPICES" or "HERBS"))
+            return 5m;
+        // Condiments and sauces
+        if (facets.Any(f => f is "CONDIMENTS"))
+            return 30m;
+        // Legumes (e.g. refried beans)
+        if (facets.Any(f => f is "LEGUMES"))
+            return 80m;
+        // Starchy sides (e.g. French fries, mashed potatoes)
+        if (facets.Any(f => f is "GRAINS" or "ROOT_VEG"))
+            return 100m;
+        return 40m;
+    }
+
+    /// <summary>
+    /// Returns a realistic DefaultQuantity per serving for a partial dish based on its category.
+    /// </summary>
+    private static decimal GetDefaultQuantityForPartialDish(string category) =>
+        category switch
+        {
+            "Stock" => 250m,        // 250 ml stock per serving
+            "Sauce" => 150m,        // 150 ml sauce per serving
+            "Paste" => 30m,         // ~2 tbsp paste per serving
+            "Spice Mix" => 5m,      // ~1 tsp spice mix per serving
+            "Base" => 1m,           // 1 portion (unit is already "portion")
+            "Blend" => 200m,        // 200 g blended protein per serving
+            _ => 100m
+        };
+
+    /// <summary>
     /// Guesses an appropriate unit type code for an auto-created ingredient product based on its name.
     /// Returns "ml" for liquids, "pc" for countable items, and "g" for everything else.
     /// </summary>
@@ -729,35 +792,35 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         // Root vegetables
         if (ContainsAny(name, "carrot", "potato", "beet", "beetroot", "parsnip", "turnip",
                 "radish", "yam", "cassava", "cocoyam", "celeriac"))
-        { codes.Add("ROOT_VEG"); codes.Add("RAW_FOOD"); }
+        { codes.Add("ROOT_VEG"); codes.Add("RAW"); }
         // Onions / alliums (child of STEM_VEG)
         if (ContainsAny(name, "onion", "shallot", "spring onion", "scallion", "leek", "chive", "garlic"))
-        { codes.Add("ONIONS"); codes.Add("RAW_FOOD"); }
+        { codes.Add("ONIONS"); codes.Add("RAW"); }
         // Other stem vegetables when not already an onion
         if (ContainsAny(name, "celery", "asparagus", "fennel stalk", "lemongrass") && !codes.Contains("ONIONS"))
             codes.Add("STEM_VEG");
         // Leafy vegetables
         if (ContainsAny(name, "spinach", "kale", "chard", "arugula", "watercress",
                 "collard", "bok choy", "pak choi", "mustard green", "pea shoot"))
-        { codes.Add("LEAFY_VEG"); codes.Add("RAW_FOOD"); }
+        { codes.Add("LEAFY_VEG"); codes.Add("RAW"); }
         if (ContainsAny(name, "lettuce", "romaine", "iceberg", "endive", "radicchio"))
-        { codes.Add("LETTUCE"); codes.Add("RAW_FOOD"); }  // LETTUCE is child of LEAFY_VEG
+        { codes.Add("LETTUCE"); codes.Add("RAW"); }  // LETTUCE is child of LEAFY_VEG
         // Flower vegetables
         if (ContainsAny(name, "broccoli", "cauliflower", "cabbage", "brussels sprout", "kohlrabi", "okra"))
-        { codes.Add("FLOWER_VEG"); codes.Add("RAW_FOOD"); }
+        { codes.Add("FLOWER_VEG"); codes.Add("RAW"); }
         // Tomatoes (leaf, child of FRUIT_VEG)
         if (ContainsAny(name, "tomato"))
-        { codes.Add("TOMATOES"); codes.Add("RAW_FOOD"); }
+        { codes.Add("TOMATOES"); codes.Add("RAW"); }
         // Other fruit-vegetables
         if (ContainsAny(name, "bell pepper", "sweet pepper"))
-        { codes.Add("FRUIT_VEG"); codes.Add("RAW_FOOD"); }
+        { codes.Add("FRUIT_VEG"); codes.Add("RAW"); }
         if (ContainsAny(name, "eggplant", "aubergine", "zucchini", "courgette",
                 "cucumber", "squash", "pumpkin", "plantain", "avocado"))
             codes.Add("FRUIT_VEG");
         // Fruits (use FRUIT_VEG as no further sub-type)
         if (ContainsAny(name, "mango", "banana", "apple", "orange", "lemon", "lime",
                 "plum", "peach", "pear", "fig", "grape", "berry"))
-        { codes.Add("FRUIT_VEG"); codes.Add("RAW_FOOD"); }
+        { codes.Add("FRUIT_VEG"); codes.Add("RAW"); }
         // Mushrooms — no hierarchy sub-type, use VEGETABLES directly
         if (ContainsAny(name, "mushroom"))
             codes.Add("VEGETABLES");

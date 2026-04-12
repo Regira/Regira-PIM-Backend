@@ -30,7 +30,8 @@ VEGAN,Vegan,Plant-based options
 VEGETARIAN,Vegetarian,Meat-free options
 GLUTEN_FREE,Gluten-Free,Gluten-free options
 KETO,Keto,Low-carb high-fat options
-RAW_FOOD,Raw Food,Foods suitable for eating raw
+RAW,Raw Food,Foods suitable for eating raw
+FRIED,Fried Food,Food that has been cooked in hot oil, fat, or butter
 MEAT,Meat,Meat including red meat white meat and poultry
 RED_MEAT,Red Meat,Beef lamb and other red meats
 WHITE_MEAT,White Meat,Pork rabbit and other white meats

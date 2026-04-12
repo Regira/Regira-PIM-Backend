@@ -1,6 +1,4 @@
-﻿using PIM.Models.Stakeholders.Parties.Relations;
-
-namespace PIM.Models.Stakeholders.Parties;
+﻿namespace PIM.Models.Stakeholders.Parties;
 
 public class PartyTreeItem
 {
@@ -10,8 +8,8 @@ public class PartyTreeItem
     public int Level { get; set; }
     public int RootId { get; set; }
 
-    public Party? Parent { get; set; }
-    public Party? Child { get; set; }
-    public Party? Root { get; set; }
-    public RelationshipType? RelationshipType { get; set; } 
+    //public Party? Parent { get; set; }
+    //public Party? Child { get; set; }
+    //public Party? Root { get; set; }
+    //public RelationshipType? RelationshipType { get; set; } 
 }

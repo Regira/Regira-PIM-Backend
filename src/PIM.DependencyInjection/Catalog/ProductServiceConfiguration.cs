@@ -3,6 +3,7 @@ using PIM.Models.Catalog.Products;
 using PIM.Services.Entities.Catalog.Abstractions;
 using PIM.Services.Entities.Catalog.Products;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
+using Regira.Entities.Extensions;
 
 namespace PIM.DependencyInjection.Catalog;
 
@@ -15,11 +16,11 @@ public static class ProductServiceConfiguration
             e.AddFilter<ProductQueryFilter>();
             e.AddSortBy<ProductSortingQueryBuilder>();
             e.AddIncludes<ProductIncludingQueryBuilder>();
-            e.Related(x => x.Facets);
-            e.Related(x => x.Components);
-            e.Related(x => x.AllowedComponentAdditions);
-            e.Related(x => x.Suppliers);
-            e.Related(x => x.Prices);
+            e.Related(item => item.Facets);
+            e.Related(item => item.Components, item => item.Components?.SetSortOrder());
+            e.Related(item => item.AllowedComponentAdditions);
+            e.Related(item => item.Suppliers);
+            e.Related(item => item.Prices);
             e.AddProcessor<ProductProcessor>();
             e.AddNormalizer<ProductNormalizer>();
             e.HasRepository<ProductRepository>();

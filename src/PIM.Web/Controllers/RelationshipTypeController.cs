@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using PIM.Models.Stakeholders.Parties.Relations;
+using PIM.Models.Stakeholders.Parties;
+using PIM.Models.Stakeholders.Parties.DTO;
 using Regira.Entities.Web.Controllers.Abstractions;
 
 namespace PIM.Web.Controllers;

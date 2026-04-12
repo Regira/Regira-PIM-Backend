@@ -1,7 +1,7 @@
 ﻿using PIM.Models.Stakeholders.ContactData;
 using Regira.Entities.Models.Abstractions;
 
-namespace PIM.Models.Stakeholders.Parties.Relations;
+namespace PIM.Models.Stakeholders.Parties;
 
 public class PartyRelationship : IEntityWithSerial, IHasStartEndDate, ISortable, IHasContactData, IHasContactData<PartyRelationshipContactDetails>
 {
@@ -14,13 +14,16 @@ public class PartyRelationship : IEntityWithSerial, IHasStartEndDate, ISortable,
     // when did this relationship start/end?
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
+    /// <summary>
+    /// The sort order of the child relationship.
+    /// </summary>
+    public int SortOrder { get; set; }
 
     public Party? Parent { get; set; }
     public Party? Child { get; set; }
     public RelationshipType? RelationshipType { get; set; }
 
     public ICollection<PartyRelationshipContactDetails>? ContactData { get; set; }
-    public int SortOrder { get; set; }
     ICollection<IContactDetails>? IHasContactData.ContactData
     {
         get => ContactData?.Cast<IContactDetails>().ToList();

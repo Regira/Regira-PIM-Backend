@@ -11,6 +11,7 @@ using PIM.DependencyInjection.Countries;
 using PIM.DependencyInjection.Orders;
 using PIM.DependencyInjection.Stakeholders;
 using PIM.Models.Stakeholders.Parties;
+using PIM.Models.Stakeholders.Parties.DTO;
 using PIM.Web.Models;
 using Regira.DAL.EFcore.Services;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Extensions;

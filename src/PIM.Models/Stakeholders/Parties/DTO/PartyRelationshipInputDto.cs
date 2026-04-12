@@ -1,6 +1,6 @@
 using PIM.Models.Stakeholders.ContactData;
 
-namespace PIM.Models.Stakeholders.Parties.Relations;
+namespace PIM.Models.Stakeholders.Parties.DTO;
 
 public class PartyRelationshipInputDto
 {

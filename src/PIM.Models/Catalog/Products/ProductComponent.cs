@@ -2,7 +2,7 @@
 
 namespace PIM.Models.Catalog.Products;
 
-public class ProductComponent : IEntityWithSerial
+public class ProductComponent : IEntityWithSerial, ISortable
 {
     public int Id { get; set; }
     public int AssemblyId { get; set; }
@@ -12,6 +12,7 @@ public class ProductComponent : IEntityWithSerial
     /// Indicates whether this component can be omitted from the product without affecting its core functionality.
     /// </summary>
     public bool IsOmittable { get; set; }
+    public int SortOrder { get; set; }
 
     public Product? Assembly { get; set; }
     public Product? Component { get; set; }

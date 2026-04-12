@@ -16,9 +16,14 @@ public class ProductIncludingQueryBuilder : IIncludableQueryBuilder<Product, int
         if (includes.Value.HasFlag(ProductIncludes.Facets))
             query = query.Include(x => x.Facets!).ThenInclude(ac => ac.Facet);
         if (includes.Value.HasFlag(ProductIncludes.Components))
-            query = query.Include(x => x.Components!.OrderBy(c => c.Component!.Title)).ThenInclude(ac => ac.Component!).ThenInclude(x => x.UnitType);
+            query = query
+                .Include(x => x.Components!.OrderBy(c => c.SortOrder).ThenBy(c => c.Component!.Title))
+                    .ThenInclude(ac => ac.Component!).ThenInclude(x => x.UnitType)
+                .Include(x => x.Components!.OrderBy(c => c.SortOrder).ThenBy(c => c.Component!.Title))
+                    .ThenInclude(ac => ac.Component!).ThenInclude(x => x.Prices);
         if (includes.Value.HasFlag(ProductIncludes.AllowedComponentAdditions))
-            query = query.Include(x => x.AllowedComponentAdditions!).ThenInclude(ac => ac.Component!).ThenInclude(a => a.Prices!.OrderByDescending(ph => ph.StartDate));
+            query = query.Include(x => x.AllowedComponentAdditions!)
+                .ThenInclude(ac => ac.Component!).ThenInclude(a => a.Prices!.OrderByDescending(ph => ph.StartDate));
         if (includes.Value.HasFlag(ProductIncludes.Suppliers))
             query = query.Include(x => x.Suppliers!.OrderBy(s => s.Supplier!.Id)).ThenInclude(s => s.Supplier);
         if (includes.Value.HasFlag(ProductIncludes.PricePeriod))

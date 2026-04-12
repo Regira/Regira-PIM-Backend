@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PIM.Models.Stakeholders.Parties.Relations;
+namespace PIM.Models.Stakeholders.Parties.DTO;
 
 public class RelationshipTypeInputDto
 {

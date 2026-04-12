@@ -5,7 +5,6 @@ using PIM.Models.Catalog.UnitTypes;
 using PIM.Models.Orders;
 using PIM.Models.Stakeholders.Identity;
 using PIM.Models.Stakeholders.Parties;
-using PIM.Models.Stakeholders.Parties.Relations;
 using PIM.Models.Taxonomy.FacetGroupFacets;
 using PIM.Models.Taxonomy.FacetGroups;
 using PIM.Models.Taxonomy.Facets;

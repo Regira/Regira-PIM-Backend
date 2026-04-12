@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using PIM.Models.Catalog.Pricing.Abstractions;
+﻿using PIM.Models.Catalog.Pricing.Abstractions;
 using PIM.Models.Catalog.UnitTypes;
 using Regira.Entities.Models.Abstractions;
 using Regira.Normalizing;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PIM.Models.Catalog.Products;
 
@@ -26,12 +26,13 @@ public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasP
 
     public bool AllowAdditions { get; set; } = true;
     public int? UnitTypeId { get; set; }
-    public UnitType? UnitType { get; set; }
+    public decimal? DefaultQuantity { get; set; }
 
     public DateTime Created { get; set; }
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
 
+    public UnitType? UnitType { get; set; }
     public ICollection<ProductFacet>? Facets { get; set; }
     /// <summary>
     /// The collection of assemblies associated with this product.

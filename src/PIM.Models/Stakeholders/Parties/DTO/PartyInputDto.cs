@@ -1,11 +1,10 @@
 ﻿using PIM.Core.Constants;
 using PIM.Models.Stakeholders.Addresses;
 using PIM.Models.Stakeholders.ContactData;
-using PIM.Models.Stakeholders.Parties.Relations;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace PIM.Models.Stakeholders.Parties;
+namespace PIM.Models.Stakeholders.Parties.DTO;
 
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "partyType")]
 [JsonDerivedType(typeof(PersonInputDto), PartyTypes.Person)]

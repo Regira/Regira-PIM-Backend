@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using PIM.Models.Stakeholders.ContactData;
-using PIM.Models.Stakeholders.Parties.Relations;
 using Regira.Entities.Models.Abstractions;
 
 namespace PIM.Models.Stakeholders.Parties;
