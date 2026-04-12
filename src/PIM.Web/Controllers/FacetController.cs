@@ -13,7 +13,7 @@ public class FacetController(IFacetService service)
     : EntityControllerBase<Facet, FacetSearchObject, EntitySortBy, FacetIncludes, FacetDto, FacetInputDto>
 {
     [HttpGet("ancestors")]
-    public async Task<IActionResult> GetAncestors(IList<int> facetIds, IList<int>? groupIds = null, int level = 9)
+    public async Task<IActionResult> GetAncestors([FromQuery] IList<int> facetIds, [FromQuery] IList<int>? groupIds = null, int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -23,7 +23,7 @@ public class FacetController(IFacetService service)
     }
 
     [HttpGet("offspring")]
-    public async Task<IActionResult> GetOffspring(IList<int> facetIds, IList<int>? groupIds = null, int level = 9)
+    public async Task<IActionResult> GetOffspring([FromQuery] IList<int> facetIds, [FromQuery] IList<int>? groupIds = null, int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -33,7 +33,7 @@ public class FacetController(IFacetService service)
     }
 
     [HttpGet("family")]
-    public async Task<IActionResult> GetFamily(IList<int> facetIds, IList<int>? groupIds = null, int level = 9)
+    public async Task<IActionResult> GetFamily([FromQuery] IList<int> facetIds, [FromQuery] IList<int>? groupIds = null, int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();

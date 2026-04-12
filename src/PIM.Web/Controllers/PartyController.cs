@@ -12,7 +12,7 @@ public class PartyController(IPartyService service)
     : EntityControllerBase<Party, PartySearchObject, PartySortBy, PartyIncludes, PartyDto, PartyInputDto>
 {
     [HttpGet("ancestors")]
-    public async Task<IActionResult> GetAncestors(IList<int> ids, int level = 9)
+    public async Task<IActionResult> GetAncestors([FromQuery] IList<int> ids, [FromQuery] int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -22,7 +22,7 @@ public class PartyController(IPartyService service)
     }
 
     [HttpGet("offspring")]
-    public async Task<IActionResult> GetOffspring(IList<int> ids, int level = 9)
+    public async Task<IActionResult> GetOffspring([FromQuery] IList<int> ids, [FromQuery] int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -32,7 +32,7 @@ public class PartyController(IPartyService service)
     }
 
     [HttpGet("family")]
-    public async Task<IActionResult> GetFamily(IList<int> ids, int level = 9)
+    public async Task<IActionResult> GetFamily([FromQuery] IList<int> ids, [FromQuery] int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();

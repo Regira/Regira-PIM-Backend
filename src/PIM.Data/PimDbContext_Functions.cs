@@ -2,29 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using PIM.Models.Catalog.Products;
 using PIM.Models.Stakeholders.Parties;
+using PIM.Models.Taxonomy.Facets;
 
 namespace PIM.Data;
-
-public class FacetRelationResult
-{
-    public int ParentId { get; set; }
-    public string ParentType { get; set; } = null!;
-    public int ChildId { get; set; }
-    public string ChildType { get; set; } = null!;
-    public int Level { get; set; }
-    public int RootId { get; set; }
-    public string RootType { get; set; } = null!;
-}
 
 public partial class PimDbContext
 {
     #region Mapped DbFunctions
     // Facets + Groups
-    protected IQueryable<FacetRelationResult> GetFacetOffspring(string? facetIds, string? groupIds, int maxLevel)
+    protected IQueryable<FacetTreeItem> GetFacetOffspring(string? facetIds, string? groupIds, int maxLevel)
         => FromExpression(() => GetFacetOffspring(facetIds, groupIds, maxLevel));
-    protected IQueryable<FacetRelationResult> GetFacetAncestors(string? facetIds, string? groupIds, int maxLevel)
+    protected IQueryable<FacetTreeItem> GetFacetAncestors(string? facetIds, string? groupIds, int maxLevel)
         => FromExpression(() => GetFacetAncestors(facetIds, groupIds, maxLevel));
-    protected IQueryable<FacetRelationResult> GetFacetFamily(string? facetIds, string? groupIds, int maxLevel)
+    protected IQueryable<FacetTreeItem> GetFacetFamily(string? facetIds, string? groupIds, int maxLevel)
         => FromExpression(() => GetFacetFamily(facetIds, groupIds, maxLevel));
 
     // Parties
@@ -59,11 +49,11 @@ public partial class PimDbContext
     public IQueryable<ProductTreeItem> GetProductFamily(IEnumerable<int>? ids, int maxLevel = 9)
         => GetProductFamily(ToJsonArray(ids), maxLevel);
 
-    public IQueryable<FacetRelationResult> GetFacetOffspring(IEnumerable<int>? facetIds, IEnumerable<int>? groupIds = null, int maxLevel = 9)
+    public IQueryable<FacetTreeItem> GetFacetOffspring(IEnumerable<int>? facetIds, IEnumerable<int>? groupIds = null, int maxLevel = 9)
         => GetFacetOffspring(ToJsonArray(facetIds), ToJsonArray(groupIds), maxLevel);
-    public IQueryable<FacetRelationResult> GetFacetAncestors(IEnumerable<int>? facetIds, IEnumerable<int>? groupIds = null, int maxLevel = 9)
+    public IQueryable<FacetTreeItem> GetFacetAncestors(IEnumerable<int>? facetIds, IEnumerable<int>? groupIds = null, int maxLevel = 9)
         => GetFacetAncestors(ToJsonArray(facetIds), ToJsonArray(groupIds), maxLevel);
-    public IQueryable<FacetRelationResult> GetFacetFamily(IEnumerable<int>? facetIds, IEnumerable<int>? groupIds = null, int maxLevel = 9)
+    public IQueryable<FacetTreeItem> GetFacetFamily(IEnumerable<int>? facetIds, IEnumerable<int>? groupIds = null, int maxLevel = 9)
         => GetFacetFamily(ToJsonArray(facetIds), ToJsonArray(groupIds), maxLevel);
     #endregion
 
@@ -97,7 +87,7 @@ public partial class PimDbContext
             .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductFamily), flags, [typeof(string), typeof(int)])!)
             .HasSchema(schema);
-        modelBuilder.Entity<FacetRelationResult>().HasNoKey();
+        modelBuilder.Entity<FacetTreeItem>().HasNoKey();
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetFacetOffspring), flags, [typeof(string), typeof(string), typeof(int)])!)
             .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetFacetAncestors), flags, [typeof(string), typeof(string), typeof(int)])!)
