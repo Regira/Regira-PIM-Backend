@@ -1,5 +1,6 @@
 using PIM.Data;
 using PIM.Models.Catalog.Products;
+using PIM.Services.Entities.Catalog.Abstractions;
 using PIM.Services.Entities.Catalog.Products;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 
@@ -21,6 +22,9 @@ public static class ProductServiceConfiguration
             e.Related(x => x.Prices);
             e.AddProcessor<ProductProcessor>();
             e.AddNormalizer<ProductNormalizer>();
+            e.HasRepository<ProductRepository>();
+            e.AddTransient<IProductRepository, ProductRepository>();
+            e.AddTransient<IProductService, ProductValidateManager>();
             e.UseEntityService<ProductValidateManager>();
         });
         return services;

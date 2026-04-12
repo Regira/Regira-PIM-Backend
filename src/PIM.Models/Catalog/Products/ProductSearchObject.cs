@@ -4,6 +4,8 @@ namespace PIM.Models.Catalog.Products;
 
 public class ProductSearchObject : SearchObject
 {
+    public string? Title { get; set; }
+
     /// <summary>
     /// Filters products that belong to ANY of the specified facet IDs.
     /// </summary>
@@ -17,7 +19,6 @@ public class ProductSearchObject : SearchObject
     /// Filters products that belong to ANY of the specified assembly IDs.
     /// </summary>
     public ICollection<int>? AssemblyId { get; set; }
-
     /// <summary>
     /// Filters products that contain ANY of the specified component IDs.
     /// </summary>    
@@ -26,6 +27,10 @@ public class ProductSearchObject : SearchObject
     /// Filters products that contain ALL of the specified component IDs.
     /// </summary>
     public ICollection<int>? AllComponentId { get; set; }
+
+    public ICollection<int>? AncestorId { get; set; }
+    public ICollection<int>? OffspringId { get; set; }
+
     /// <summary>
     /// Filters products by supplier IDs.
     /// </summary>

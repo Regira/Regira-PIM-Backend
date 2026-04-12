@@ -1,17 +1,9 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using PIM.Models.Catalog.Products;
 using PIM.Models.Stakeholders.Parties;
 
 namespace PIM.Data;
-
-
-public class ProductRelationResult
-{
-    public int ParentId { get; set; }
-    public int ChildId { get; set; }
-    public int Level { get; set; }
-    public int RootId { get; set; }
-}
 
 public class FacetRelationResult
 {
@@ -44,11 +36,11 @@ public partial class PimDbContext
         => FromExpression(() => GetPartyFamily(ids, maxLevel));
 
     // Products
-    protected IQueryable<ProductRelationResult> GetProductOffspring(string? ids, int maxLevel)
+    protected IQueryable<ProductTreeItem> GetProductOffspring(string? ids, int maxLevel)
         => FromExpression(() => GetProductOffspring(ids, maxLevel));
-    protected IQueryable<ProductRelationResult> GetProductAncestors(string? ids, int maxLevel)
+    protected IQueryable<ProductTreeItem> GetProductAncestors(string? ids, int maxLevel)
         => FromExpression(() => GetProductAncestors(ids, maxLevel));
-    protected IQueryable<ProductRelationResult> GetProductFamily(string? ids, int maxLevel)
+    protected IQueryable<ProductTreeItem> GetProductFamily(string? ids, int maxLevel)
         => FromExpression(() => GetProductFamily(ids, maxLevel));
     #endregion
 
@@ -60,11 +52,11 @@ public partial class PimDbContext
     public IQueryable<PartyTreeItem> GetPartyFamily(IEnumerable<int>? ids, int maxLevel = 9)
         => GetPartyFamily(ToJsonArray(ids), maxLevel);
 
-    public IQueryable<ProductRelationResult> GetProductOffspring(IEnumerable<int>? ids, int maxLevel = 9)
+    public IQueryable<ProductTreeItem> GetProductOffspring(IEnumerable<int>? ids = null, int maxLevel = 9)
         => GetProductOffspring(ToJsonArray(ids), maxLevel);
-    public IQueryable<ProductRelationResult> GetProductAncestors(IEnumerable<int>? ids, int maxLevel = 9)
+    public IQueryable<ProductTreeItem> GetProductAncestors(IEnumerable<int>? ids, int maxLevel = 9)
         => GetProductAncestors(ToJsonArray(ids), maxLevel);
-    public IQueryable<ProductRelationResult> GetProductFamily(IEnumerable<int>? ids, int maxLevel = 9)
+    public IQueryable<ProductTreeItem> GetProductFamily(IEnumerable<int>? ids, int maxLevel = 9)
         => GetProductFamily(ToJsonArray(ids), maxLevel);
 
     public IQueryable<FacetRelationResult> GetFacetOffspring(IEnumerable<int>? facetIds, IEnumerable<int>? groupIds = null, int maxLevel = 9)
@@ -98,7 +90,7 @@ public partial class PimDbContext
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetPartyFamily), flags, [typeof(string), typeof(int)])!)
             .HasSchema(schema);
 
-        modelBuilder.Entity<ProductRelationResult>().HasNoKey();
+        modelBuilder.Entity<ProductTreeItem>().HasNoKey();
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductOffspring), flags, [typeof(string), typeof(int)])!)
             .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductAncestors), flags, [typeof(string), typeof(int)])!)
