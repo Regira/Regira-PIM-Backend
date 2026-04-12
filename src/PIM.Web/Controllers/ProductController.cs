@@ -13,7 +13,7 @@ public class ProductController(IProductService service)
     : EntityControllerBase<Product, ProductSearchObject, ProductSortBy, ProductIncludes, ProductDto, ProductInputDto>
 {
     [HttpGet("ancestors")]
-    public async Task<IActionResult> GetAncestors(IList<int> ids, int level = 9)
+    public async Task<IActionResult> GetAncestors([FromQuery] IList<int> ids, [FromQuery] int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -23,7 +23,7 @@ public class ProductController(IProductService service)
     }
 
     [HttpGet("offspring")]
-    public async Task<IActionResult> GetOffspring(IList<int> ids, int level = 9)
+    public async Task<IActionResult> GetOffspring([FromQuery] IList<int> ids, [FromQuery] int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -33,7 +33,7 @@ public class ProductController(IProductService service)
     }
 
     [HttpGet("family")]
-    public async Task<IActionResult> GetFamily(IList<int> ids, int level = 9)
+    public async Task<IActionResult> GetFamily([FromQuery] IList<int> ids, [FromQuery] int level = 9)
     {
         var sw = new Stopwatch();
         sw.Start();

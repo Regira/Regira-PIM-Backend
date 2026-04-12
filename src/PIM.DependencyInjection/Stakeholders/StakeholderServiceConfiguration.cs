@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PIM.Data;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Stakeholders.Parties.Relations;
+using PIM.Services.Entities.Stakeholders.Abstractions;
 using PIM.Services.Entities.Stakeholders.Addresses;
 using PIM.Services.Entities.Stakeholders.ContactData;
 using PIM.Services.Entities.Stakeholders.Parties;
@@ -31,6 +32,9 @@ public static class StakeholderServiceConfiguration
             e.Related(x => x.ParentRelationships, x => x.ParentRelationships?.SetSortOrder());
 
             e.AddNormalizer<PartyNormalizer>();
+            e.HasRepository<PartyRepository>();
+            e.AddTransient<IPartyRepository, PartyRepository>();
+            e.AddTransient<IPartyService, PartyRepository>();
         });
 
         services.For<RelationshipType>(e =>
