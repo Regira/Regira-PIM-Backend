@@ -1,6 +1,7 @@
 using PIM.Data;
 using PIM.Models.Taxonomy.Facets;
 using PIM.Services.Entities.Taxonomy;
+using PIM.Services.Entities.Taxonomy.Abstractions;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Regira.Entities.Models;
 
@@ -18,6 +19,9 @@ public static class FacetServiceConfiguration
             e.Related(x => x.ParentEntities);
             e.Related(x => x.ChildEntities);
             e.Related(x => x.FacetParentGroups);
+            e.HasRepository<FacetRepository>();
+            e.AddTransient<IFacetRepository, FacetRepository>();
+            e.AddTransient<IFacetService, FacetRepository>();
         });
         return services;
     }
