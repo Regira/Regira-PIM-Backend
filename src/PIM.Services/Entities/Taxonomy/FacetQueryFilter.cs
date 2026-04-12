@@ -1,9 +1,10 @@
+using PIM.Data;
 using PIM.Models.Taxonomy.Facets;
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
 
 namespace PIM.Services.Entities.Taxonomy;
 
-public class FacetQueryFilter : FilteredQueryBuilderBase<Facet, int, FacetSearchObject>
+public class FacetQueryFilter(PimDbContext dbContext) : FilteredQueryBuilderBase<Facet, int, FacetSearchObject>
 {
     public override IQueryable<Facet> Build(IQueryable<Facet> query, FacetSearchObject? so)
     {
@@ -18,6 +19,41 @@ public class FacetQueryFilter : FilteredQueryBuilderBase<Facet, int, FacetSearch
             query = query.Where(x => x.FacetParentGroups!.Any(fg => so.FacetGroupId.Contains(fg.FacetGroupId)));
         if (so.IsRoot != null)
             query = query.Where(x => so.IsRoot == !x.ParentEntities!.Any());
+        if (so.IsParent != null)
+            query = query.Where(x => so.IsParent == x.ChildEntities!.Any());
+        if (so.IsChild != null)
+            query = query.Where(x => so.IsChild == x.ParentEntities!.Any());
+
+        if (so.AncestorId?.Any() == true)
+        {
+            var offspring = dbContext.GetFacetOffspring(so.AncestorId);
+            query = query.Where(x => offspring.Any(r => r.ChildId == x.Id && r.ChildType == "Facet"));
+        }
+        if (so.OffspringId?.Any() == true)
+        {
+            var ancestors = dbContext.GetFacetAncestors(so.OffspringId);
+            query = query.Where(x => ancestors.Any(r => r.ParentId == x.Id && r.ParentType == "Facet"));
+        }
+        if (so.RootId?.Any() == true)
+        {
+            var offspring = dbContext.GetFacetOffspring(so.RootId);
+            query = query.Where(x => so.RootId.Contains(x.Id) || offspring.Any(r => r.ChildId == x.Id && r.ChildType == "Facet"));
+        }
+        if (so.AncestorGroupId?.Any() == true)
+        {
+            var offspring = dbContext.GetFacetOffspring(null, so.AncestorGroupId);
+            query = query.Where(x => offspring.Any(r => r.ChildId == x.Id && r.ChildType == "Facet"));
+        }
+        if (so.OffspringGroupId?.Any() == true)
+        {
+            var ancestors = dbContext.GetFacetAncestors(null, so.OffspringGroupId);
+            query = query.Where(x => ancestors.Any(r => r.ParentId == x.Id && r.ParentType == "Facet"));
+        }
+        if (so.RootGroupId?.Any() == true)
+        {
+            var offspring = dbContext.GetFacetOffspring(null, so.RootGroupId);
+            query = query.Where(x => offspring.Any(r => r.ChildId == x.Id && r.ChildType == "Facet"));
+        }
 
         return query;
     }
