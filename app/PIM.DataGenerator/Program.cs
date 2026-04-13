@@ -53,8 +53,9 @@ try
     {
         var entityDbFunctions = new[]
         {
-            PartyDbFunctions.CREATE_ALL,
-            ProductDbFunctions.CREATE_ALL
+            //PartyDbFunctions.CREATE_ALL,
+            //ProductDbFunctions.CREATE_ALL,
+            FacetDbFunctions.CREATE_ALL,
         };
         foreach (var dbFunctions in entityDbFunctions)
         {

@@ -10,6 +10,10 @@ public class ProductSearchObject : SearchObject
     /// Filters products that belong to ANY of the specified facet IDs.
     /// </summary>
     public ICollection<int>? FacetId { get; set; }
+    /// <summary>
+    /// Filters products that belong to ALL of the specified facet IDs.
+    /// </summary>
+    public ICollection<int>? AllFacetId { get; set; }
 
     public bool? IsRoot { get; set; }
     public bool? IsComponent { get; set; }
@@ -27,6 +31,7 @@ public class ProductSearchObject : SearchObject
     /// Filters products that contain ALL of the specified component IDs.
     /// </summary>
     public ICollection<int>? AllComponentId { get; set; }
+
 
     public ICollection<int>? AncestorId { get; set; }
     public ICollection<int>? OffspringId { get; set; }
