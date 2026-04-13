@@ -1,190 +1,190 @@
 Country,Dish,Ingredients,Quantities,Facets
-Afghanistan,Kabuli Palaw,Basmati rice; Lamb; Carrots; Raisins; Cumin; Cardamom; Cloves; Onion; Oil; Sugar,500g; 500g; 2; 100g; 1 tsp; 1 tsp; 1/2 tsp; 1; 100ml; 2 tbsp,LAMB; MAIN; RICE
-Afghanistan,Mantu,Pasta wrappers; Ground beef; Onion; Yogurt; Garlic; Dried mint; Turmeric; Black pepper; Split peas; Coriander,30; 500g; 3; 200g; 3 cloves; 1 tbsp; 1/2 tsp; 1 tsp; 50g; 1 tsp,BEEF; LEGUMES; MAIN
-Afghanistan,Bolani,Flour; Potatoes; Leeks; Cilantro; Green chili; Black pepper; Salt; Oil; Water; Garlic,500g; 300g; 200g; 1/2 cup; 1; 1/2 tsp; 1 tsp; 50ml; 200ml; 2 cloves,BREADS; MAIN; VEGAN; VEGETARIAN
-Albania,Tavë Kosi,Lamb; Yogurt; Rice; Eggs; Butter; Flour; Garlic; Oregano; Black pepper; Salt,600g; 500g; 100g; 3; 50g; 2 tbsp; 2 cloves; 1 tsp; 1/2 tsp; 1 tsp,LAMB; MAIN
-Albania,Byrek,Phyllo dough; Spinach; Feta cheese; Eggs; Onion; Olive oil; Black pepper; Salt; Butter; Milk,500g; 400g; 200g; 2; 1; 100ml; 1/2 tsp; 1/2 tsp; 50g; 50ml,BREADS; MAIN; VEGETARIAN
-Albania,Speca me Gjizë,Bell peppers; Curd cheese; Tomatoes; Garlic; Olive oil; Black pepper; Chili flakes; Parsley; Salt; Onion,6; 300g; 2; 3 cloves; 50ml; 1/2 tsp; 1/2 tsp; 1 tbsp; 1 tsp; 1,MAIN; VEGETARIAN
-Algeria,Couscous,Couscous; Lamb; Chickpeas; Carrots; Zucchini; Ras el Hanout; Cinnamon; Tomato paste; Onion; Saffron,500g; 500g; 200g; 2; 2; 1 tbsp; 1/2 tsp; 2 tbsp; 1; pinch,LAMB; LEGUMES; MAIN
-Algeria,Chakhchoukha,Flatbread; Lamb; Chickpeas; Tomato puree; Ras el Hanout; Garlic; Onion; Harissa; Paprika; Oil,300g; 500g; 100g; 200ml; 1 tbsp; 4 cloves; 2; 1 tsp; 1 tsp; 50ml,LAMB; LEGUMES; MAIN
-Algeria,Rechta,Noodles; Chicken; Turnips; Chickpeas; Cinnamon; Black pepper; Onion; Butter; Oil; Salt,500g; 1kg; 300g; 100g; 1 tsp; 1/2 tsp; 1; 50g; 2 tbsp; 1 tsp,LEGUMES; MAIN; PASTA; POULTRY
-Andorra,Escudella,White beans; Beef; Pork; Chicken; Cabbage; Potatoes; Pasta shells; Garlic; Parsley; Saffron,200g; 200g; 200g; 200g; 1/2; 2; 100g; 2 cloves; 1 tbsp; pinch,BEEF; LEGUMES; MAIN; PORK; POULTRY
+Afghanistan,Kabuli Palaw,Basmati rice; Lamb; Carrots; Raisins; Cumin; Cardamom; Cloves; Onion; Oil; Sugar,500g; 500g; 2; 100g; 1 tsp; 1 tsp; 1/2 tsp; 1; 100ml; 2 tbsp,LAMB; MAIN; RICE; SULPHITES
+Afghanistan,Mantu,Pasta wrappers; Ground beef; Onion; Yogurt; Garlic; Dried mint; Turmeric; Black pepper; Split peas; Coriander,30; 500g; 3; 200g; 3 cloves; 1 tbsp; 1/2 tsp; 1 tsp; 50g; 1 tsp,BEEF; DAIRY; GLUTEN; LEGUMES; MAIN
+Afghanistan,Bolani,Flour; Potatoes; Leeks; Cilantro; Green chili; Black pepper; Salt; Oil; Water; Garlic,500g; 300g; 200g; 1/2 cup; 1; 1/2 tsp; 1 tsp; 50ml; 200ml; 2 cloves,BREADS; GLUTEN; MAIN; VEGAN; VEGETARIAN
+Albania,Tavë Kosi,Lamb; Yogurt; Rice; Eggs; Butter; Flour; Garlic; Oregano; Black pepper; Salt,600g; 500g; 100g; 3; 50g; 2 tbsp; 2 cloves; 1 tsp; 1/2 tsp; 1 tsp,DAIRY; EGGS; GLUTEN; LAMB; MAIN
+Albania,Byrek,Phyllo dough; Spinach; Feta cheese; Eggs; Onion; Olive oil; Black pepper; Salt; Butter; Milk,500g; 400g; 200g; 2; 1; 100ml; 1/2 tsp; 1/2 tsp; 50g; 50ml,BREADS; DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
+Albania,Speca me Gjizë,Bell peppers; Curd cheese; Tomatoes; Garlic; Olive oil; Black pepper; Chili flakes; Parsley; Salt; Onion,6; 300g; 2; 3 cloves; 50ml; 1/2 tsp; 1/2 tsp; 1 tbsp; 1 tsp; 1,DAIRY; MAIN; VEGETARIAN
+Algeria,Couscous,Couscous; Lamb; Chickpeas; Carrots; Zucchini; Ras el Hanout; Cinnamon; Tomato paste; Onion; Saffron,500g; 500g; 200g; 2; 2; 1 tbsp; 1/2 tsp; 2 tbsp; 1; pinch,GLUTEN; LAMB; LEGUMES; MAIN
+Algeria,Chakhchoukha,Flatbread; Lamb; Chickpeas; Tomato puree; Ras el Hanout; Garlic; Onion; Harissa; Paprika; Oil,300g; 500g; 100g; 200ml; 1 tbsp; 4 cloves; 2; 1 tsp; 1 tsp; 50ml,GLUTEN; LAMB; LEGUMES; MAIN
+Algeria,Rechta,Noodles; Chicken; Turnips; Chickpeas; Cinnamon; Black pepper; Onion; Butter; Oil; Salt,500g; 1kg; 300g; 100g; 1 tsp; 1/2 tsp; 1; 50g; 2 tbsp; 1 tsp,DAIRY; GLUTEN; LEGUMES; MAIN; PASTA; POULTRY
+Andorra,Escudella,White beans; Beef; Pork; Chicken; Cabbage; Potatoes; Pasta shells; Garlic; Parsley; Saffron,200g; 200g; 200g; 200g; 1/2; 2; 100g; 2 cloves; 1 tbsp; pinch,BEEF; GLUTEN; LEGUMES; MAIN; PORK; POULTRY
 Andorra,Trinxat,Cabbage; Potatoes; Bacon; Garlic; Olive oil; Black pepper; Salt,1 small; 500g; 150g; 3 cloves; 3 tbsp; 1/2 tsp; 1 tsp,MAIN; PORK
-Andorra,Cunillo,Rabbit; Garlic; White wine; Thyme; Rosemary; Olive oil; Black pepper; Salt,1kg; 5 cloves; 200ml; 2 sprigs; 1 sprig; 50ml; 1/2 tsp; 1 tsp,MAIN; WHITE_MEAT
-Angola,Moamba de Galinha,Chicken; Palm butter; Garlic; Onion; Chili pepper; Okra; Squash; Lemon juice; Salt; Water,1kg; 200g; 4 cloves; 1; 1; 10; 200g; 1 tbsp; 1 tsp; 500ml,MAIN; POULTRY
+Andorra,Cunillo,Rabbit; Garlic; White wine; Thyme; Rosemary; Olive oil; Black pepper; Salt,1kg; 5 cloves; 200ml; 2 sprigs; 1 sprig; 50ml; 1/2 tsp; 1 tsp,MAIN; SULPHITES; WHITE_MEAT
+Angola,Moamba de Galinha,Chicken; Palm butter; Garlic; Onion; Chili pepper; Okra; Squash; Lemon juice; Salt; Water,1kg; 200g; 4 cloves; 1; 1; 10; 200g; 1 tbsp; 1 tsp; 500ml,DAIRY; MAIN; POULTRY
 Angola,Calulu,Dried fish; Fresh fish; Sweet potato leaves; Okra; Tomatoes; Onion; Palm oil; Garlic; Salt,300g; 300g; 200g; 10; 3; 1; 50ml; 2 cloves; 1 tsp,LEAN_FISH; MAIN; SOUPS
 Angola,Funge,Cassava flour; Water; Salt,500g; 1L; 1 tsp,MAIN; VEGAN; VEGETARIAN
-Antigua and Barbuda,Fungee,Cornmeal; Okra; Water; Salt; Butter,250g; 6; 500ml; 1 tsp; 1 tbsp,MAIN; VEGETARIAN
+Antigua and Barbuda,Fungee,Cornmeal; Okra; Water; Salt; Butter,250g; 6; 500ml; 1 tsp; 1 tbsp,DAIRY; MAIN; VEGETARIAN
 Antigua and Barbuda,Pepperpot,Beef; Salt pork; Spinach; Eggplant; Squash; Thyme; Chives; Garlic; Scotch bonnet; Cinnamon,500g; 200g; 200g; 1; 200g; 3 sprigs; 2 tbsp; 2 cloves; 1; 1/2 tsp,BEEF; MAIN; PORK; SOUPS
-Antigua and Barbuda,Ducana,Sweet potato; Coconut; Sugar; Flour; Raisins; Cinnamon; Nutmeg; Vanilla; Salt,500g; 200g; 100g; 100g; 50g; 1 tsp; 1/2 tsp; 1 tsp; 1/2 tsp,DESSERTS; VEGAN; VEGETARIAN
+Antigua and Barbuda,Ducana,Sweet potato; Coconut; Sugar; Flour; Raisins; Cinnamon; Nutmeg; Vanilla; Salt,500g; 200g; 100g; 100g; 50g; 1 tsp; 1/2 tsp; 1 tsp; 1/2 tsp,DESSERTS; GLUTEN; SULPHITES; VEGAN; VEGETARIAN
 Argentina,Asado,Beef ribs; Chorizo; Coarse salt; Chimichurri; Garlic; Dried oregano; Chili flakes; Parsley; Olive oil; Vinegar,2kg; 4; 3 tbsp; 100ml; 4 cloves; 1 tbsp; 1 tsp; 1/2 cup; 50ml; 2 tbsp,BEEF; GRILLED; MAIN; PORK
-Argentina,Empanadas,Pastry discs; Ground beef; Onion; Cumin; Paprika; Hard-boiled eggs; Green olives; Green onion; Fat/Lard; Salt,12; 500g; 2; 1 tsp; 1 tbsp; 2; 50g; 2; 50g; 1 tsp,BEEF; PORK; STARTERS
-Argentina,Milanesa,Beef steak; Breadcrumbs; Eggs; Garlic; Parsley; Salt; Black pepper; Flour; Lemon; Oil,4; 200g; 2; 2 cloves; 2 tbsp; 1 tsp; 1/2 tsp; 50g; 1; 200ml,BEEF; FRIED; MAIN
+Argentina,Empanadas,Pastry discs; Ground beef; Onion; Cumin; Paprika; Hard-boiled eggs; Green olives; Green onion; Fat/Lard; Salt,12; 500g; 2; 1 tsp; 1 tbsp; 2; 50g; 2; 50g; 1 tsp,BEEF; EGGS; GLUTEN; PORK; STARTERS
+Argentina,Milanesa,Beef steak; Breadcrumbs; Eggs; Garlic; Parsley; Salt; Black pepper; Flour; Lemon; Oil,4; 200g; 2; 2 cloves; 2 tbsp; 1 tsp; 1/2 tsp; 50g; 1; 200ml,BEEF; EGGS; FRIED; GLUTEN; MAIN
 Armenia,Khorovats,Pork loin; Onion; Basil; Parsley; Black pepper; Salt; Paprika; Oil,1kg; 2; 1 tbsp; 1 tbsp; 1 tsp; 1 tsp; 1 tsp; 2 tbsp,GRILLED; MAIN; PORK
 Armenia,Dolma,Grape leaves; Ground beef; Rice; Onion; Tomato paste; Dried mint; Cilantro; Cumin; Black pepper; Salt,30; 500g; 100g; 1; 2 tbsp; 1 tsp; 2 tbsp; 1/2 tsp; 1/2 tsp; 1 tsp,BEEF; MAIN
-Armenia,Ghapama,Pumpkin; Rice; Honey; Cinnamon; Dried apricots; Raisins; Almonds; Butter; Cloves; Salt,1 large; 200g; 3 tbsp; 1 tsp; 50g; 50g; 30g; 50g; 1/4 tsp; pinch,MAIN; VEGETARIAN
-Australia,Meat Pie,Shortcrust pastry; Puff pastry; Ground beef; Beef gravy; Onion; Worcestershire sauce; Garlic; Thyme; Egg; Salt,250g; 250g; 500g; 250ml; 1; 1 tbsp; 1 clove; 1/2 tsp; 1; 1 tsp,BEEF; BREADS; MAIN
+Armenia,Ghapama,Pumpkin; Rice; Honey; Cinnamon; Dried apricots; Raisins; Almonds; Butter; Cloves; Salt,1 large; 200g; 3 tbsp; 1 tsp; 50g; 50g; 30g; 50g; 1/4 tsp; pinch,DAIRY; MAIN; SULPHITES; TREE_NUTS; VEGETARIAN
+Australia,Meat Pie,Shortcrust pastry; Puff pastry; Ground beef; Beef gravy; Onion; Worcestershire sauce; Garlic; Thyme; Egg; Salt,250g; 250g; 500g; 250ml; 1; 1 tbsp; 1 clove; 1/2 tsp; 1; 1 tsp,BEEF; BREADS; EGGS; GLUTEN; MAIN
 Australia,Roast Lamb,Leg of lamb; Garlic; Rosemary; Olive oil; Salt; Black pepper; Lemon juice,2kg; 5 cloves; 4 sprigs; 3 tbsp; 2 tsp; 1 tsp; 2 tbsp,LAMB; MAIN
-Australia,Barramundi,Barramundi fillet; Lemon; Garlic; Parsley; Butter; Salt; Black pepper; Olive oil,2; 1; 2 cloves; 1 tbsp; 30g; 1/2 tsp; 1/2 tsp; 1 tbsp,LEAN_FISH; MAIN
-Austria,Wiener Schnitzel,Veal cutlets; Flour; Eggs; Breadcrumbs; Butter; Salt; Lemon; Parsley,4; 100g; 2; 150g; 100g; 1 tsp; 1; 1 sprig,BEEF; FRIED; MAIN
-Austria,Tafelspitz,Beef brisket; Carrots; Leek; Celery root; Peppercorns; Bay leaf; Chives; Salt; Horseradish,1.5kg; 2; 1; 100g; 5; 1; 1 bunch; 2 tsp; 50g,BEEF; MAIN
-Austria,Apfelstrudel,Phyllo dough; Apples; Breadcrumbs; Cinnamon; Sugar; Raisins; Lemon juice; Butter; Rum; Vanilla,4 sheets; 1kg; 100g; 1 tsp; 100g; 50g; 1 tbsp; 100g; 1 tbsp; 1 tsp,BREADS; DESSERTS; VEGETARIAN
-Azerbaijan,Plov,Basmati rice; Lamb; Saffron; Apricots; Chestnuts; Raisins; Butter; Onion; Turmeric; Salt,500g; 500g; pinch; 100g; 100g; 100g; 150g; 2; 1/2 tsp; 1 tsp,LAMB; MAIN; RICE
+Australia,Barramundi,Barramundi fillet; Lemon; Garlic; Parsley; Butter; Salt; Black pepper; Olive oil,2; 1; 2 cloves; 1 tbsp; 30g; 1/2 tsp; 1/2 tsp; 1 tbsp,DAIRY; LEAN_FISH; MAIN
+Austria,Wiener Schnitzel,Veal cutlets; Flour; Eggs; Breadcrumbs; Butter; Salt; Lemon; Parsley,4; 100g; 2; 150g; 100g; 1 tsp; 1; 1 sprig,BEEF; DAIRY; EGGS; FRIED; GLUTEN; MAIN
+Austria,Tafelspitz,Beef brisket; Carrots; Leek; Celery root; Peppercorns; Bay leaf; Chives; Salt; Horseradish,1.5kg; 2; 1; 100g; 5; 1; 1 bunch; 2 tsp; 50g,BEEF; CELERY; MAIN
+Austria,Apfelstrudel,Phyllo dough; Apples; Breadcrumbs; Cinnamon; Sugar; Raisins; Lemon juice; Butter; Rum; Vanilla,4 sheets; 1kg; 100g; 1 tsp; 100g; 50g; 1 tbsp; 100g; 1 tbsp; 1 tsp,BREADS; DAIRY; DESSERTS; GLUTEN; SULPHITES; VEGETARIAN
+Azerbaijan,Plov,Basmati rice; Lamb; Saffron; Apricots; Chestnuts; Raisins; Butter; Onion; Turmeric; Salt,500g; 500g; pinch; 100g; 100g; 100g; 150g; 2; 1/2 tsp; 1 tsp,DAIRY; LAMB; MAIN; RICE; SULPHITES; TREE_NUTS
 Azerbaijan,Dolma,Lamb mince; Grape leaves; Rice; Onion; Cilantro; Dill; Mint; Turmeric; Black pepper; Salt,500g; 40; 50g; 1; 2 tbsp; 2 tbsp; 1 tbsp; 1/2 tsp; 1/2 tsp; 1 tsp,LAMB; MAIN
 Azerbaijan,Lyulya Kebab,Lamb mince; Lamb fat; Onion; Salt; Black pepper; Sumac; Cilantro,1kg; 200g; 2; 2 tsp; 1 tsp; 1 tbsp; 2 tbsp,GRILLED; LAMB; MAIN
-Bahamas,Conch Fritters,Conch meat; Flour; Bell pepper; Onion; Celery; Thyme; Cayenne pepper; Garlic powder; Milk; Lime,250g; 200g; 1; 1; 1; 1 tsp; 1/2 tsp; 1 tsp; 100ml; 1,CRUSTACEANS; SNACKS; STARTERS
-Bahamas,Peas n' Rice,Pigeon peas; Rice; Salt pork; Tomato paste; Thyme; Onion; Celery; Garlic; Scotch bonnet; Salt,200g; 400g; 100g; 2 tbsp; 2 sprigs; 1; 1; 2 cloves; 1; 1 tsp,LEGUMES; PORK; RICE; SIDES
-Bahamas,Guava Duff,Guava; Flour; Butter; Sugar; Eggs; Baking powder; Nutmeg; Cinnamon; Vanilla; Rum,500g; 400g; 150g; 200g; 2; 2 tsp; 1 tsp; 1 tsp; 1 tsp; 2 tbsp,DESSERTS; VEGETARIAN
+Bahamas,Conch Fritters,Conch meat; Flour; Bell pepper; Onion; Celery; Thyme; Cayenne pepper; Garlic powder; Milk; Lime,250g; 200g; 1; 1; 1; 1 tsp; 1/2 tsp; 1 tsp; 100ml; 1,CELERY; CRUSTACEANS; DAIRY; GLUTEN; SNACKS; STARTERS
+Bahamas,Peas n' Rice,Pigeon peas; Rice; Salt pork; Tomato paste; Thyme; Onion; Celery; Garlic; Scotch bonnet; Salt,200g; 400g; 100g; 2 tbsp; 2 sprigs; 1; 1; 2 cloves; 1; 1 tsp,CELERY; LEGUMES; PORK; RICE; SIDES
+Bahamas,Guava Duff,Guava; Flour; Butter; Sugar; Eggs; Baking powder; Nutmeg; Cinnamon; Vanilla; Rum,500g; 400g; 150g; 200g; 2; 2 tsp; 1 tsp; 1 tsp; 1 tsp; 2 tbsp,DAIRY; DESSERTS; EGGS; GLUTEN; VEGETARIAN
 Bahrain,Machboos,Chicken; Basmati rice; Baharat spice; Dried lime; Turmeric; Cinnamon; Cardamom; Cloves; Ginger; Garlic,1kg; 500g; 1 tbsp; 2; 1 tsp; 1 stick; 5; 3; 1 tbsp; 3 cloves,MAIN; POULTRY; RICE
-Bahrain,Muhammar,Basmati rice; Sugar; Cardamom; Saffron; Rose water; Ghee; Cloves,500g; 200g; 1 tsp; pinch; 2 tbsp; 50g; 3,DESSERTS; RICE; VEGETARIAN
-Bahrain,Gabout,Flour; Ground meat; Onion; Baharat; Tomato paste; Turmeric; Dried lime; Cilantro; Garlic; Black pepper,300g; 200g; 2; 1 tbsp; 2 tbsp; 1/2 tsp; 1; 2 tbsp; 2 cloves; 1/2 tsp,MAIN; MEAT
-Bangladesh,Ilish Macher Jhol,Hilsa fish; Mustard oil; Turmeric; Nigella seeds; Green chilies; Mustard paste; Salt,500g; 50ml; 1 tsp; 1/2 tsp; 4; 2 tbsp; 1 tsp,LEAN_FISH; MAIN
-Bangladesh,Biryani,Basmati rice; Mutton; Yogurt; Ginger-garlic paste; Biryani spice mix; Onion; Ghee; Saffron; Kewra water; Salt,500g; 500g; 150g; 2 tbsp; 2 tbsp; 3; 100g; pinch; 1 tsp; 1 tsp,LAMB; MAIN; RICE
-Bangladesh,Bhuna Khichuri,Rice; Moong dal; Ghee; Turmeric; Ginger paste; Cinnamon; Cardamom; Cloves; Bay leaf; Salt,250g; 250g; 50g; 1 tsp; 1 tbsp; 1 stick; 3; 3; 1; 1 tsp,LEGUMES; MAIN; RICE; VEGETARIAN
-Barbados,Cou-cou,Cornmeal; Okra; Water; Butter; Salt; Black pepper,250g; 10; 500ml; 1 tbsp; 1 tsp; 1/2 tsp,MAIN; VEGETARIAN
-Barbados,Flying Fish,Flying fish fillets; Lime juice; Bajan seasoning; Flour; Breadcrumbs; Egg; Thyme; Marjoram; Salt; Oil,4; 2 tbsp; 2 tbsp; 100g; 100g; 1; 1 tsp; 1/2 tsp; 1 tsp; 200ml,LEAN_FISH; MAIN
+Bahrain,Muhammar,Basmati rice; Sugar; Cardamom; Saffron; Rose water; Ghee; Cloves,500g; 200g; 1 tsp; pinch; 2 tbsp; 50g; 3,DAIRY; DESSERTS; RICE; VEGETARIAN
+Bahrain,Gabout,Flour; Ground meat; Onion; Baharat; Tomato paste; Turmeric; Dried lime; Cilantro; Garlic; Black pepper,300g; 200g; 2; 1 tbsp; 2 tbsp; 1/2 tsp; 1; 2 tbsp; 2 cloves; 1/2 tsp,GLUTEN; MAIN; MEAT
+Bangladesh,Ilish Macher Jhol,Hilsa fish; Mustard oil; Turmeric; Nigella seeds; Green chilies; Mustard paste; Salt,500g; 50ml; 1 tsp; 1/2 tsp; 4; 2 tbsp; 1 tsp,LEAN_FISH; MAIN; MUSTARD
+Bangladesh,Biryani,Basmati rice; Mutton; Yogurt; Ginger-garlic paste; Biryani spice mix; Onion; Ghee; Saffron; Kewra water; Salt,500g; 500g; 150g; 2 tbsp; 2 tbsp; 3; 100g; pinch; 1 tsp; 1 tsp,DAIRY; LAMB; MAIN; RICE
+Bangladesh,Bhuna Khichuri,Rice; Moong dal; Ghee; Turmeric; Ginger paste; Cinnamon; Cardamom; Cloves; Bay leaf; Salt,250g; 250g; 50g; 1 tsp; 1 tbsp; 1 stick; 3; 3; 1; 1 tsp,DAIRY; LEGUMES; MAIN; RICE; VEGETARIAN
+Barbados,Cou-cou,Cornmeal; Okra; Water; Butter; Salt; Black pepper,250g; 10; 500ml; 1 tbsp; 1 tsp; 1/2 tsp,DAIRY; MAIN; VEGETARIAN
+Barbados,Flying Fish,Flying fish fillets; Lime juice; Bajan seasoning; Flour; Breadcrumbs; Egg; Thyme; Marjoram; Salt; Oil,4; 2 tbsp; 2 tbsp; 100g; 100g; 1; 1 tsp; 1/2 tsp; 1 tsp; 200ml,EGGS; GLUTEN; LEAN_FISH; MAIN
 Barbados,Pudding and Souse,Sweet potato; Pig trotters; Lime juice; Cucumber; Scotch bonnet; Parsley; Thyme; Onion; Cloves; Salt,500g; 500g; 100ml; 1; 1; 2 tbsp; 1 tbsp; 1; 1/2 tsp; 2 tsp,DESSERTS
-Belarus,Draniki,Potatoes; Onion; Egg; Flour; Salt; Sour cream; Sunflower oil; Black pepper,1kg; 1; 1; 2 tbsp; 1 tsp; 100g; 100ml; 1/4 tsp,MAIN; VEGETARIAN
-Belarus,Machanka,Pork ribs; Pork sausage; Sour cream; Flour; Onion; Bay leaf; Marjoram; Lard; Salt; Black pepper,500g; 200g; 200ml; 2 tbsp; 1; 1; 1 tsp; 30g; 1 tsp; 1/2 tsp,MAIN; PORK; SOUPS
-Belarus,Kolduny,Potatoes; Ground pork; Onion; Egg; Garlic; Marjoram; Salt; Black pepper; Sour cream; Oil,1kg; 300g; 1; 1; 2 cloves; 1/2 tsp; 1 tsp; 1/2 tsp; 100g; 50ml,MAIN; PORK
-Belgium,Moules-Frites,Mussels; Potatoes; White wine; Butter; Shallots; Celery; Parsley; Thyme; Garlic; Black pepper,2kg; 1kg; 200ml; 50g; 2; 1 stalk; 2 tbsp; 1 sprig; 2 cloves; 1/2 tsp,MAIN; MOLLUSKS
-Belgium,Carbonade Flamande,Beef chuck; Abbey beer; Onions; Beef stock; Brown bread; Mustard; Thyme; Bay leaf; Butter; Brown sugar,1kg; 500ml; 3; 250ml; 1 slice; 2 tbsp; 2 sprigs; 1; 50g; 1 tbsp,BEEF; MAIN; SOUPS
-Belgium,Waterzooi,Chicken; Leeks; Carrots; Celery; Heavy cream; Egg yolks; Chicken stock; Parsley; Thyme; Butter,1kg; 2; 2; 1 stalk; 200ml; 2; 500ml; 1 tbsp; 1 sprig; 30g,MAIN; POULTRY; SOUPS
-Belize,Rice and Beans,Red kidney beans; Rice; Coconut milk; Thyme; Garlic; Onion; Salt; Black pepper; Recado rojo,200g; 400g; 400ml; 2 sprigs; 2 cloves; 1; 1 tsp; 1/2 tsp; 1 tsp,LEGUMES; RICE; SIDES; VEGETARIAN
-Belize,Boil Up,Cassava; Yam; Plantain; Sweet potato; Fish; Pig tail; Egg; Flour dumplings; Tomato sauce; Onion,200g; 200g; 1; 200g; 500g; 200g; 2; 4; 100ml; 1,FISH; MAIN
-Belize,Fry Jacks,Flour; Baking powder; Salt; Shortening; Water; Oil for frying,250g; 1 tsp; 1/2 tsp; 1 tbsp; 150ml; 500ml,BREADS; FRIED; MAIN; VEGAN; VEGETARIAN
-Benin,Kuli-kuli,Peanuts; Ginger powder; Chili powder; Salt; Peanut oil,500g; 1 tsp; 1/2 tsp; 1 tsp; 500ml,MAIN; SNACKS; VEGAN; VEGETARIAN
+Belarus,Draniki,Potatoes; Onion; Egg; Flour; Salt; Sour cream; Sunflower oil; Black pepper,1kg; 1; 1; 2 tbsp; 1 tsp; 100g; 100ml; 1/4 tsp,DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
+Belarus,Machanka,Pork ribs; Pork sausage; Sour cream; Flour; Onion; Bay leaf; Marjoram; Lard; Salt; Black pepper,500g; 200g; 200ml; 2 tbsp; 1; 1; 1 tsp; 30g; 1 tsp; 1/2 tsp,DAIRY; GLUTEN; MAIN; PORK; SOUPS
+Belarus,Kolduny,Potatoes; Ground pork; Onion; Egg; Garlic; Marjoram; Salt; Black pepper; Sour cream; Oil,1kg; 300g; 1; 1; 2 cloves; 1/2 tsp; 1 tsp; 1/2 tsp; 100g; 50ml,DAIRY; EGGS; MAIN; PORK
+Belgium,Moules-Frites,Mussels; Potatoes; White wine; Butter; Shallots; Celery; Parsley; Thyme; Garlic; Black pepper,2kg; 1kg; 200ml; 50g; 2; 1 stalk; 2 tbsp; 1 sprig; 2 cloves; 1/2 tsp,CELERY; DAIRY; MAIN; MOLLUSKS; SULPHITES
+Belgium,Carbonade Flamande,Beef chuck; Abbey beer; Onions; Beef stock; Brown bread; Mustard; Thyme; Bay leaf; Butter; Brown sugar,1kg; 500ml; 3; 250ml; 1 slice; 2 tbsp; 2 sprigs; 1; 50g; 1 tbsp,BEEF; DAIRY; GLUTEN; MAIN; MUSTARD; SOUPS
+Belgium,Waterzooi,Chicken; Leeks; Carrots; Celery; Heavy cream; Egg yolks; Chicken stock; Parsley; Thyme; Butter,1kg; 2; 2; 1 stalk; 200ml; 2; 500ml; 1 tbsp; 1 sprig; 30g,CELERY; DAIRY; EGGS; MAIN; POULTRY; SOUPS
+Belize,Rice and Beans,Red kidney beans; Rice; Coconut milk; Thyme; Garlic; Onion; Salt; Black pepper; Recado rojo,200g; 400g; 400ml; 2 sprigs; 2 cloves; 1; 1 tsp; 1/2 tsp; 1 tsp,DAIRY; LEGUMES; RICE; SIDES; VEGETARIAN
+Belize,Boil Up,Cassava; Yam; Plantain; Sweet potato; Fish; Pig tail; Egg; Flour dumplings; Tomato sauce; Onion,200g; 200g; 1; 200g; 500g; 200g; 2; 4; 100ml; 1,EGGS; FISH; GLUTEN; MAIN
+Belize,Fry Jacks,Flour; Baking powder; Salt; Shortening; Water; Oil for frying,250g; 1 tsp; 1/2 tsp; 1 tbsp; 150ml; 500ml,BREADS; FRIED; GLUTEN; MAIN; VEGAN; VEGETARIAN
+Benin,Kuli-kuli,Peanuts; Ginger powder; Chili powder; Salt; Peanut oil,500g; 1 tsp; 1/2 tsp; 1 tsp; 500ml,MAIN; PEANUTS; SNACKS; VEGAN; VEGETARIAN
 Benin,Amiwo,Corn flour; Tomato paste; Onion; Garlic; Chicken stock; Shrimp powder; Chili powder; Oil; Salt,300g; 2 tbsp; 1; 2 cloves; 500ml; 1 tbsp; 1/2 tsp; 2 tbsp; 1 tsp,CRUSTACEANS; MAIN; POULTRY
-Benin,Wagasi,Wagasi cheese; Tomatoes; Onion; Chili pepper; Garlic; Ginger; Oil; Salt,500g; 3; 1; 1; 2 cloves; 1 tsp; 100ml; 1 tsp,MAIN; VEGETARIAN
-Bhutan,Ema Datshi,Green chilies; Yak cheese; Garlic; Onion; Tomato; Butter; Salt; Water,250g; 200g; 3 cloves; 1; 1; 2 tbsp; 1 tsp; 200ml,CURRIES; MAIN; VEGETARIAN
+Benin,Wagasi,Wagasi cheese; Tomatoes; Onion; Chili pepper; Garlic; Ginger; Oil; Salt,500g; 3; 1; 1; 2 cloves; 1 tsp; 100ml; 1 tsp,DAIRY; MAIN; VEGETARIAN
+Bhutan,Ema Datshi,Green chilies; Yak cheese; Garlic; Onion; Tomato; Butter; Salt; Water,250g; 200g; 3 cloves; 1; 1; 2 tbsp; 1 tsp; 200ml,CURRIES; DAIRY; MAIN; VEGETARIAN
 Bhutan,Phaksha Paa,Pork belly; Dried red chilies; Radish; Ginger; Garlic; Bok choy; Chili powder; Salt,500g; 10; 200g; 1 tbsp; 3 cloves; 100g; 1 tsp; 1 tsp,MAIN; PORK
 Bhutan,Jasha Maru,Chicken; Ginger; Garlic; Onion; Green chili; Tomato; Cilantro; Oil; Salt,500g; 2 tbsp; 1 tbsp; 1; 3; 1; 1/2 cup; 2 tbsp; 1 tsp,MAIN; POULTRY
-Bolivia,Salteñas,Beef; Flour; Potatoes; Peas; Gelatin; Aji panca; Cumin; Oregano; Onion; Olives,500g; 500g; 200g; 50g; 1 tbsp; 2 tbsp; 1 tsp; 1 tsp; 1; 12,BEEF; MAIN
-Bolivia,Pique Macho,Beef steak; French fries; Sausage; Onion; Tomato; Locoto pepper; Cumin; Black pepper; Soy sauce; Egg,500g; 500g; 200g; 1; 2; 1; 1/2 tsp; 1/2 tsp; 1 tbsp; 2,BEEF; MAIN; PORK
-Bolivia,Silpancho,Beef schnitzel; Rice; Potatoes; Onion; Tomato; Beetroot; Egg; Breadcrumbs; Cumin; Salt,4; 200g; 3; 1; 1; 1; 4; 100g; 1/2 tsp; 1 tsp,BEEF; MAIN
-Bosnia and Herzegovina,Ćevapi,Ground beef; Ground lamb; Garlic; Baking soda; Black pepper; Salt; Somun bread; Raw onion; Kajmak,700g; 300g; 4 cloves; 1 tsp; 1 tsp; 2 tsp; 4; 2; 100g,BEEF; LAMB; MAIN
-Bosnia and Herzegovina,Burek,Phyllo pastry; Ground beef; Onion; Black pepper; Salt; Butter; Water; Oil,500g; 500g; 2; 1 tsp; 1 tsp; 100g; 100ml; 2 tbsp,BEEF; BREADS; MAIN
-Bosnia and Herzegovina,Klepe,Flour; Egg; Ground beef; Onion; Garlic; Sour cream; Butter; Paprika; Salt; Black pepper,300g; 1; 200g; 1; 2 cloves; 200ml; 30g; 1 tsp; 1 tsp; 1/2 tsp,BEEF; MAIN
+Bolivia,Salteñas,Beef; Flour; Potatoes; Peas; Gelatin; Aji panca; Cumin; Oregano; Onion; Olives,500g; 500g; 200g; 50g; 1 tbsp; 2 tbsp; 1 tsp; 1 tsp; 1; 12,BEEF; GLUTEN; MAIN
+Bolivia,Pique Macho,Beef steak; French fries; Sausage; Onion; Tomato; Locoto pepper; Cumin; Black pepper; Soy sauce; Egg,500g; 500g; 200g; 1; 2; 1; 1/2 tsp; 1/2 tsp; 1 tbsp; 2,BEEF; EGGS; GLUTEN; MAIN; PORK; SOY
+Bolivia,Silpancho,Beef schnitzel; Rice; Potatoes; Onion; Tomato; Beetroot; Egg; Breadcrumbs; Cumin; Salt,4; 200g; 3; 1; 1; 1; 4; 100g; 1/2 tsp; 1 tsp,BEEF; EGGS; GLUTEN; MAIN
+Bosnia and Herzegovina,Ćevapi,Ground beef; Ground lamb; Garlic; Baking soda; Black pepper; Salt; Somun bread; Raw onion; Kajmak,700g; 300g; 4 cloves; 1 tsp; 1 tsp; 2 tsp; 4; 2; 100g,BEEF; DAIRY; GLUTEN; LAMB; MAIN
+Bosnia and Herzegovina,Burek,Phyllo pastry; Ground beef; Onion; Black pepper; Salt; Butter; Water; Oil,500g; 500g; 2; 1 tsp; 1 tsp; 100g; 100ml; 2 tbsp,BEEF; BREADS; DAIRY; GLUTEN; MAIN
+Bosnia and Herzegovina,Klepe,Flour; Egg; Ground beef; Onion; Garlic; Sour cream; Butter; Paprika; Salt; Black pepper,300g; 1; 200g; 1; 2 cloves; 200ml; 30g; 1 tsp; 1 tsp; 1/2 tsp,BEEF; DAIRY; EGGS; GLUTEN; MAIN
 Botswana,Seswaa,Beef; Water; Salt; Black pepper,1kg; 1L; 1 tbsp; 1 tsp,BEEF; MAIN
-Botswana,Bogobe,Sorghum flour; Water; Salt,500g; 1.5L; 1 tsp,SIDES; VEGAN; VEGETARIAN
-Botswana,Matmekwane,Flour; Yeast; Water; Salt; Sugar; Oil,500g; 1 tsp; 300ml; 1 tsp; 1 tsp; for frying,MAIN; VEGAN; VEGETARIAN
+Botswana,Bogobe,Sorghum flour; Water; Salt,500g; 1.5L; 1 tsp,GLUTEN; SIDES; VEGAN; VEGETARIAN
+Botswana,Matmekwane,Flour; Yeast; Water; Salt; Sugar; Oil,500g; 1 tsp; 300ml; 1 tsp; 1 tsp; for frying,GLUTEN; MAIN; VEGAN; VEGETARIAN
 Brazil,Feijoada,Black beans; Pork ribs; Paio sausage; Beef jerky; Bacon; Garlic; Bay leaf; Onion; Orange; Salt,500g; 300g; 200g; 200g; 100g; 4 cloves; 3; 1; 1; 1 tsp,BEEF; LEGUMES; MAIN; PORK
 Brazil,Picanha,Top sirloin cap; Coarse sea salt,1.5kg; 3 tbsp,MAIN; BEEF; GRILLED
-Brazil,Moqueca,White fish; Shrimp; Coconut milk; Dendê oil; Bell peppers; Onion; Tomatoes; Cilantro; Garlic; Lime,800g; 200g; 400ml; 2 tbsp; 2; 1; 2; 1/2 cup; 3 cloves; 1,CRUSTACEANS; LEAN_FISH; MAIN
+Brazil,Moqueca,White fish; Shrimp; Coconut milk; Dendê oil; Bell peppers; Onion; Tomatoes; Cilantro; Garlic; Lime,800g; 200g; 400ml; 2 tbsp; 2; 1; 2; 1/2 cup; 3 cloves; 1,CRUSTACEANS; DAIRY; LEAN_FISH; MAIN
 Brunei,Ambuyat,Sago starch; Hot water,500g; 1L,MAIN; VEGAN; VEGETARIAN
-Brunei,Kelupis,Glutinous rice; Coconut milk; Pandan leaves; Salt; Nyirik leaves,500g; 300ml; 2; 1 tsp; for wrapping,MAIN; VEGETARIAN
-Brunei,Nasi Katok,Fried chicken; White rice; Chili paste; Garlic; Onion; Ginger; Shrimp paste; Sugar; Tamarind; Salt,4 pieces; 4 servings; 4 tbsp; 3 cloves; 1; 1 tsp; 1 tsp; 1 tbsp; 1 tbsp; 1 tsp,CRUSTACEANS; MAIN; POULTRY; RICE
-Bulgaria,Banitsa,Phyllo pastry; Sirene cheese; Yogurt; Eggs; Baking soda; Butter; Salt,500g; 400g; 400g; 4; 1 tsp; 100g; 1/2 tsp,BREADS; MAIN; VEGETARIAN
-Bulgaria,Shkembe Chorba,Tripe; Milk; Garlic; Vinegar; Chili flakes; Paprika; Butter; Salt; Peppercorns,500g; 500ml; 5 cloves; 50ml; 1 tbsp; 1 tsp; 30g; 1 tsp; 5,MAIN; SOUPS; VEGETARIAN
-Bulgaria,Kavarma,Pork; Leeks; Onion; Mushrooms; Tomato paste; Savory herb; Paprika; Red wine; Black pepper; Salt,800g; 2; 1; 200g; 1 tbsp; 1 tsp; 1 tsp; 100ml; 1/2 tsp; 1 tsp,MAIN; PORK; SOUPS
+Brunei,Kelupis,Glutinous rice; Coconut milk; Pandan leaves; Salt; Nyirik leaves,500g; 300ml; 2; 1 tsp; for wrapping,DAIRY; MAIN; VEGETARIAN
+Brunei,Nasi Katok,Fried chicken; White rice; Chili paste; Garlic; Onion; Ginger; Shrimp paste; Sugar; Tamarind; Salt,4 pieces; 4 servings; 4 tbsp; 3 cloves; 1; 1 tsp; 1 tsp; 1 tbsp; 1 tbsp; 1 tsp,CRUSTACEANS; MAIN; POULTRY; RICE; SOY
+Bulgaria,Banitsa,Phyllo pastry; Sirene cheese; Yogurt; Eggs; Baking soda; Butter; Salt,500g; 400g; 400g; 4; 1 tsp; 100g; 1/2 tsp,BREADS; DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
+Bulgaria,Shkembe Chorba,Tripe; Milk; Garlic; Vinegar; Chili flakes; Paprika; Butter; Salt; Peppercorns,500g; 500ml; 5 cloves; 50ml; 1 tbsp; 1 tsp; 30g; 1 tsp; 5,DAIRY; MAIN; SOUPS; VEGETARIAN
+Bulgaria,Kavarma,Pork; Leeks; Onion; Mushrooms; Tomato paste; Savory herb; Paprika; Red wine; Black pepper; Salt,800g; 2; 1; 200g; 1 tbsp; 1 tsp; 1 tsp; 100ml; 1/2 tsp; 1 tsp,MAIN; PORK; SOUPS; SULPHITES
 Burkina Faso,Riz Gras,Rice; Chicken; Tomato paste; Onion; Garlic; Ginger; Chili pepper; Oil; Thyme; Maggi cube,500g; 500g; 3 tbsp; 2; 3 cloves; 1 tsp; 1; 100ml; 1/2 tsp; 1,MAIN; POULTRY; RICE
 Burkina Faso,Poulet Bicyclette,Tough chicken; Ginger; Garlic; Onion; Chili powder; Oil; Salt; Thyme,1; 2 tbsp; 3 cloves; 1; 1 tsp; 50ml; 1 tsp; 1 tsp,MAIN; POULTRY
-Burkina Faso,Babenda,Spinach; Soumbala; Fermented locust beans; Rice; Smoked fish; Peanut paste; Chili pepper; Salt,300g; 2 tbsp; 1 tbsp; 100g; 100g; 2 tbsp; 1; 1 tsp,LEAN_FISH; LEGUMES; MAIN
-Burundi,Boko Boko Harees,Cracked wheat; Chicken; Onion; Turmeric; Cinnamon; Ghee; Salt; Sugar,500g; 500g; 2; 1 tsp; 1/2 tsp; 50g; 1 tsp; 1 tbsp,MAIN; POULTRY
+Burkina Faso,Babenda,Spinach; Soumbala; Fermented locust beans; Rice; Smoked fish; Peanut paste; Chili pepper; Salt,300g; 2 tbsp; 1 tbsp; 100g; 100g; 2 tbsp; 1; 1 tsp,LEAN_FISH; LEGUMES; MAIN; PEANUTS; TREE_NUTS
+Burundi,Boko Boko Harees,Cracked wheat; Chicken; Onion; Turmeric; Cinnamon; Ghee; Salt; Sugar,500g; 500g; 2; 1 tsp; 1/2 tsp; 50g; 1 tsp; 1 tbsp,DAIRY; GLUTEN; MAIN; POULTRY
 Burundi,Ndagala,Small dried fish; Tomatoes; Onion; Garlic; Chili pepper; Oil; Salt; Lemon juice,300g; 2; 1; 2 cloves; 1; 3 tbsp; 1 tsp; 1 tbsp,LEAN_FISH; MAIN
 Burundi,Mukeke,Mukeke fish; Garlic; Ginger; Lemon juice; Onion; Parsley; Oil; Salt,2; 3 cloves; 1 tsp; 2 tbsp; 1; 1 tbsp; 50ml; 1 tsp,LEAN_FISH; MAIN
-Cambodia,Amok Trei,White fish; Coconut milk; Kroeung paste; Egg; Fish sauce; Palm sugar; Noni leaves; Kaffir lime leaves; Chili; Galangal,500g; 400ml; 3 tbsp; 1; 2 tbsp; 1 tbsp; 5; 3; 1; 1 tsp,LEAN_FISH; MAIN
+Cambodia,Amok Trei,White fish; Coconut milk; Kroeung paste; Egg; Fish sauce; Palm sugar; Noni leaves; Kaffir lime leaves; Chili; Galangal,500g; 400ml; 3 tbsp; 1; 2 tbsp; 1 tbsp; 5; 3; 1; 1 tsp,DAIRY; EGGS; LEAN_FISH; MAIN
 Cambodia,Kuy Teav,Rice noodles; Pork bones; Shrimp; Garlic oil; Bean sprouts; Scallions; Star anise; Cinnamon; Fish sauce; Cilantro,400g; 500g; 100g; 2 tbsp; 100g; 2; 2; 1 stick; 2 tbsp; 1/4 cup,MAIN; PORK; SOUPS; PASTA
-Cambodia,Lok Lak,Beef sirloin; Soy sauce; Oyster sauce; Lime juice; Black pepper; Garlic; Sugar; Lettuce; Tomato; Onion,500g; 2 tbsp; 1 tbsp; 3 tbsp; 1 tsp; 3 cloves; 1 tbsp; 1 head; 1; 1,BEEF; MAIN; MOLLUSKS
-Cameroon,Ndolé,Ndolé leaves; Peanut paste; Beef; Shrimp; Onion; Garlic; Ginger; Palm oil; Chili pepper; Salt,400g; 300g; 300g; 200g; 2; 4 cloves; 1 tbsp; 100ml; 1; 1 tsp,BEEF; CRUSTACEANS; MAIN; SOUPS
+Cambodia,Lok Lak,Beef sirloin; Soy sauce; Oyster sauce; Lime juice; Black pepper; Garlic; Sugar; Lettuce; Tomato; Onion,500g; 2 tbsp; 1 tbsp; 3 tbsp; 1 tsp; 3 cloves; 1 tbsp; 1 head; 1; 1,BEEF; GLUTEN; MAIN; MOLLUSKS; SOY
+Cameroon,Ndolé,Ndolé leaves; Peanut paste; Beef; Shrimp; Onion; Garlic; Ginger; Palm oil; Chili pepper; Salt,400g; 300g; 300g; 200g; 2; 4 cloves; 1 tbsp; 100ml; 1; 1 tsp,BEEF; CRUSTACEANS; MAIN; PEANUTS; SOUPS; TREE_NUTS
 Cameroon,Achu Soup,Cocoyam; Palm oil; Limestone/Kanwa; Beef/Skin; Achu spice mix; Chili; Salt,1kg; 100ml; 1 tsp; 300g; 2 tbsp; 1; 1 tsp,BEEF; MAIN; SOUPS
-Cameroon,Poulet DG,Chicken; Plantains; Bell peppers; Carrots; Onion; Celery; Garlic; Ginger; Tomato paste; Oil,1kg; 3; 2; 2; 1; 1; 3 cloves; 1 tbsp; 1 tbsp; 100ml,MAIN; POULTRY
-Canada,Poutine,Potatoes; Cheese curds; Beef stock; Flour; Butter; Black pepper; Salt; Oil for frying,1kg; 200g; 500ml; 2 tbsp; 2 tbsp; 1/2 tsp; 1 tsp; 1L,BEEF; MAIN
+Cameroon,Poulet DG,Chicken; Plantains; Bell peppers; Carrots; Onion; Celery; Garlic; Ginger; Tomato paste; Oil,1kg; 3; 2; 2; 1; 1; 3 cloves; 1 tbsp; 1 tbsp; 100ml,CELERY; MAIN; POULTRY
+Canada,Poutine,Potatoes; Cheese curds; Beef stock; Flour; Butter; Black pepper; Salt; Oil for frying,1kg; 200g; 500ml; 2 tbsp; 2 tbsp; 1/2 tsp; 1 tsp; 1L,BEEF; DAIRY; GLUTEN; MAIN
 Canada,Tourtière,Ground pork; Ground beef; Pie crust; Potato; Onion; Cinnamon; Cloves; Allspice; Garlic; Salt,500g; 250g; 2; 1; 1; 1/2 tsp; 1/4 tsp; 1/4 tsp; 2 cloves; 1 tsp,BEEF; MAIN; PORK
-Canada,Split Pea Soup,Yellow split peas; Ham hock; Onion; Carrots; Celery; Thyme; Bay leaf; Savory; Black pepper; Water,500g; 1; 1; 2; 1; 1 tsp; 1; 1/2 tsp; 1/2 tsp; 2L,LEGUMES; MAIN; PORK; SOUPS
+Canada,Split Pea Soup,Yellow split peas; Ham hock; Onion; Carrots; Celery; Thyme; Bay leaf; Savory; Black pepper; Water,500g; 1; 1; 2; 1; 1 tsp; 1; 1/2 tsp; 1/2 tsp; 2L,CELERY; LEGUMES; MAIN; PORK; SOUPS
 Cape Verde,Cachupa,Dry corn; Beans; Pork ribs; Chorizo; Cassava; Sweet potato; Cabbage; Onion; Garlic; Bay leaf,500g; 200g; 200g; 1; 200g; 200g; 200g; 1; 3 cloves; 1,LEGUMES; MAIN; PORK
-Cape Verde,Pastel com diabo dentro,Tuna; Flour; Boiled potato; Onion; Chili pepper; Garlic; Parsley; Salt; Oil,200g; 250g; 100g; 1; 1; 2 cloves; 1 tbsp; 1 tsp; for frying,BREADS; LEAN_FISH; MAIN
+Cape Verde,Pastel com diabo dentro,Tuna; Flour; Boiled potato; Onion; Chili pepper; Garlic; Parsley; Salt; Oil,200g; 250g; 100g; 1; 1; 2 cloves; 1 tbsp; 1 tsp; for frying,BREADS; GLUTEN; LEAN_FISH; MAIN
 Cape Verde,Modje de Sao Nicolau,Goat meat; Potatoes; Yam; Onion; Garlic; Tomato paste; Bay leaf; Vinegar; Salt; Black pepper,1kg; 500g; 200g; 1; 3 cloves; 1 tbsp; 1; 1 tbsp; 1 tsp; 1/2 tsp,MAIN; MEAT; SOUPS
 Central African Republic,Kanda,Ground beef; Pumpkin seeds; Onion; Garlic; Parsley; Chili powder; Salt; Oil,500g; 200g; 1; 2 cloves; 1 tbsp; 1/2 tsp; 1 tsp; 2 tbsp,BEEF; MAIN
-Central African Republic,Cassava leaves,Cassava leaves; Peanut butter; Smoked fish; Onion; Garlic; Palm oil; Chili pepper; Salt,500g; 200g; 200g; 1; 2 cloves; 50ml; 1; 1 tsp,LEAN_FISH; MAIN
+Central African Republic,Cassava leaves,Cassava leaves; Peanut butter; Smoked fish; Onion; Garlic; Palm oil; Chili pepper; Salt,500g; 200g; 200g; 1; 2 cloves; 50ml; 1; 1 tsp,LEAN_FISH; MAIN; PEANUTS
 Central African Republic,Muamba de Galinha,Chicken; Palm oil; Garlic; Onion; Chili pepper; Okra; Squash; Lemon juice; Salt; Water,1kg; 100ml; 4 cloves; 1; 1; 10; 200g; 1 tbsp; 1 tsp; 500ml,MAIN; POULTRY
-Chad,Daraba,Okra; Sweet potato leaves; Peanut butter; Tomato; Onion; Eggplant; Chili pepper; Oil; Salt,300g; 200g; 100g; 2; 1; 1; 1; 2 tbsp; 1 tsp,MAIN; VEGETARIAN
+Chad,Daraba,Okra; Sweet potato leaves; Peanut butter; Tomato; Onion; Eggplant; Chili pepper; Oil; Salt,300g; 200g; 100g; 2; 1; 1; 1; 2 tbsp; 1 tsp,MAIN; PEANUTS; VEGETARIAN
 Chad,Mararkis,Meat; Dried okra powder; Onion; Garlic; Tomato paste; Cinnamon; Ginger; Oil; Salt,500g; 2 tbsp; 2; 3 cloves; 2 tbsp; 1/2 tsp; 1 tsp; 50ml; 1 tsp,MAIN; MEAT; SOUPS
-Chad,Esh,Millet flour; Water; Salt,500g; 1L; 1 tsp,SIDES; VEGAN; VEGETARIAN
-Chile,Empanada de Pino,Flour; Ground beef; Onion; Cumin; Paprika; Raisins; Black olives; Hard-boiled egg; Salt; Lard,500g; 500g; 3; 1 tsp; 1 tbsp; 12; 12; 2; 1 tsp; 100g,BEEF; PORK; STARTERS
-Chile,Pastel de Choclo,Corn; Ground beef; Onion; Basil; Chicken breast; Sugar; Cumin; Olives; Raisins; Salt,1kg; 500g; 2; 1/2 cup; 200g; 1 tbsp; 1 tsp; 10; 10; 1 tsp,BEEF; BREADS; MAIN; POULTRY
+Chad,Esh,Millet flour; Water; Salt,500g; 1L; 1 tsp,GLUTEN; SIDES; VEGAN; VEGETARIAN
+Chile,Empanada de Pino,Flour; Ground beef; Onion; Cumin; Paprika; Raisins; Black olives; Hard-boiled egg; Salt; Lard,500g; 500g; 3; 1 tsp; 1 tbsp; 12; 12; 2; 1 tsp; 100g,BEEF; EGGS; GLUTEN; PORK; STARTERS; SULPHITES
+Chile,Pastel de Choclo,Corn; Ground beef; Onion; Basil; Chicken breast; Sugar; Cumin; Olives; Raisins; Salt,1kg; 500g; 2; 1/2 cup; 200g; 1 tbsp; 1 tsp; 10; 10; 1 tsp,BEEF; BREADS; MAIN; POULTRY; SULPHITES
 Chile,Cazuela,Chicken pieces; Pumpkin; Potatoes; Corn on cob; Rice; Onion; Bell pepper; Oregano; Cumin; Cilantro,4; 200g; 4; 2; 100g; 1; 1; 1 tsp; 1/2 tsp; 2 tbsp,MAIN; POULTRY
-China,Peking Duck,Whole duck; Maltose syrup; Five-spice powder; Ginger; Scallions; Hoisin sauce; Soy sauce; Shaoxing wine; Pancakes; Cucumber,2kg; 3 tbsp; 1 tsp; 20g; 4; 100ml; 2 tbsp; 1 tbsp; 12; 1,MAIN; POULTRY
-China,Mapo Tofu,Soft tofu; Ground pork; Doubanjiang; Sichuan peppercorns; Chili oil; Garlic; Ginger; Soy sauce; Green onion; Cornstarch,500g; 100g; 2 tbsp; 1 tsp; 2 tbsp; 3 cloves; 1 tsp; 1 tbsp; 2; 1 tsp,MAIN; PORK
-China,Dim Sum (Siu Mai),Ground pork; Shrimp; Wonton wrappers; Shiitake mushrooms; Soy sauce; Sesame oil; Ginger; White pepper; Sugar; Cornstarch,300g; 150g; 20; 4; 1 tbsp; 1 tsp; 1 tsp; 1/4 tsp; 1/2 tsp; 1 tsp,CRUSTACEANS; MAIN; PORK
-Colombia,Bandeja Paisa,Red beans; White rice; Ground beef; Chorizo; Fried egg; Chicharrón; Avocado; Arepa; Plantain; Hogao sauce,200g; 200g; 200g; 1; 1; 100g; 1/2; 1; 1; 2 tbsp,BEEF; LEGUMES; MAIN; PORK
-Colombia,Ajiaco,Chicken; Potatoes; Corn; Guasca leaves; Capers; Heavy cream; Avocado; Onion; Garlic; Cilantro,"500g; 3 types, 1kg; 2; 2 tbsp; 2 tbsp; 100ml; 1; 1; 3 cloves; 1 tbsp",MAIN; POULTRY
+China,Peking Duck,Whole duck; Maltose syrup; Five-spice powder; Ginger; Scallions; Hoisin sauce; Soy sauce; Shaoxing wine; Pancakes; Cucumber,2kg; 3 tbsp; 1 tsp; 20g; 4; 100ml; 2 tbsp; 1 tbsp; 12; 1,GLUTEN; MAIN; POULTRY; SOY; SULPHITES
+China,Mapo Tofu,Soft tofu; Ground pork; Doubanjiang; Sichuan peppercorns; Chili oil; Garlic; Ginger; Soy sauce; Green onion; Cornstarch,500g; 100g; 2 tbsp; 1 tsp; 2 tbsp; 3 cloves; 1 tsp; 1 tbsp; 2; 1 tsp,GLUTEN; MAIN; PORK; SOY
+China,Dim Sum (Siu Mai),Ground pork; Shrimp; Wonton wrappers; Shiitake mushrooms; Soy sauce; Sesame oil; Ginger; White pepper; Sugar; Cornstarch,300g; 150g; 20; 4; 1 tbsp; 1 tsp; 1 tsp; 1/4 tsp; 1/2 tsp; 1 tsp,CRUSTACEANS; GLUTEN; MAIN; PORK; SESAME; SOY
+Colombia,Bandeja Paisa,Red beans; White rice; Ground beef; Chorizo; Fried egg; Chicharrón; Avocado; Arepa; Plantain; Hogao sauce,200g; 200g; 200g; 1; 1; 100g; 1/2; 1; 1; 2 tbsp,BEEF; EGGS; LEGUMES; MAIN; PORK
+Colombia,Ajiaco,Chicken; Potatoes; Corn; Guasca leaves; Capers; Heavy cream; Avocado; Onion; Garlic; Cilantro,"500g; 3 types, 1kg; 2; 2 tbsp; 2 tbsp; 100ml; 1; 1; 3 cloves; 1 tbsp",DAIRY; MAIN; POULTRY
 Colombia,Sancocho (Chicken),Chicken; Sancocho (base),150g; 1 serving,MAIN; POULTRY
 Colombia,Sancocho (Beef),Beef; Sancocho (base),150g; 1 serving,BEEF; MAIN
-Comoros,Langouste à la Vanille,Lobster; Vanilla beans; Butter; Shallots; White wine; Heavy cream; Salt; White pepper,1kg; 2; 50g; 2; 100ml; 100ml; 1 tsp; 1/2 tsp,CRUSTACEANS; LEGUMES; MAIN
-Comoros,M'tsolola,Fish; Green plantains; Coconut milk; Onion; Tomato; Spinach; Cloves; Salt,500g; 3; 400ml; 1; 2; 100g; 1/2 tsp; 1 tsp,FISH; MAIN
+Comoros,Langouste à la Vanille,Lobster; Vanilla beans; Butter; Shallots; White wine; Heavy cream; Salt; White pepper,1kg; 2; 50g; 2; 100ml; 100ml; 1 tsp; 1/2 tsp,CRUSTACEANS; DAIRY; LEGUMES; MAIN; SULPHITES
+Comoros,M'tsolola,Fish; Green plantains; Coconut milk; Onion; Tomato; Spinach; Cloves; Salt,500g; 3; 400ml; 1; 2; 100g; 1/2 tsp; 1 tsp,DAIRY; FISH; MAIN
 Comoros,Pilaou,Basmati rice; Meat; Cardamom; Cloves; Cinnamon; Black peppercorns; Cumin; Ginger; Garlic; Onion,500g; 500g; 5; 5; 1 stick; 10; 1 tsp; 1 tbsp; 3 cloves; 2,MAIN; MEAT; RICE
-Congo (DRC),Poulet à la Moambe,Chicken; Palm butter; Onion; Garlic; Chili pepper; Salt; Water,1kg; 200g; 1; 3 cloves; 1; 1 tsp; 500ml,MAIN; POULTRY
-Congo (DRC),Fufu,Cassava flour; Green plantain flour; Water,500g; 200g; 1L,SIDES; VEGAN; VEGETARIAN
+Congo (DRC),Poulet à la Moambe,Chicken; Palm butter; Onion; Garlic; Chili pepper; Salt; Water,1kg; 200g; 1; 3 cloves; 1; 1 tsp; 500ml,DAIRY; MAIN; POULTRY
+Congo (DRC),Fufu,Cassava flour; Green plantain flour; Water,500g; 200g; 1L,GLUTEN; SIDES; VEGAN; VEGETARIAN
 Congo (DRC),Chikwangue,Cassava; Water; Banana leaves,1kg; for soaking; for wrapping,MAIN; VEGAN; VEGETARIAN
 Costa Rica,Gallo Pinto,Rice; Black beans; Salsa Lizano; Onion; Bell pepper; Garlic; Cilantro; Cumin; Salt; Oil,400g; 300g; 3 tbsp; 1; 1; 2 cloves; 2 tbsp; 1/2 tsp; 1 tsp; 2 tbsp,LEGUMES; MAIN; RICE; VEGAN; VEGETARIAN
 Costa Rica,Casado (Beef),Beef; Casado (base),200g; 1 serving,BEEF; GRILLED; MAIN
 Costa Rica,Casado (Chicken),Chicken; Casado (base),200g; 1 serving,GRILLED; MAIN; POULTRY
-Costa Rica,Chifrijo,Chicharrón; Rice; Red beans; Pico de gallo; Avocado; Lime juice; Cilantro; Cumin; Salt; Tortilla chips,200g; 200g; 200g; 100g; 1/2; 2 tbsp; 1 tbsp; 1/2 tsp; 1 tsp; 50g,MAIN; PORK
+Costa Rica,Chifrijo,Chicharrón; Rice; Red beans; Pico de gallo; Avocado; Lime juice; Cilantro; Cumin; Salt; Tortilla chips,200g; 200g; 200g; 100g; 1/2; 2 tbsp; 1 tbsp; 1/2 tsp; 1 tsp; 50g,GLUTEN; MAIN; PORK
 Croatia,Peka (Lamb),Lamb; Peka (base),250g; 1 serving,GRILLED; LAMB; MAIN
 Croatia,Peka (Veal),Veal cutlets; Peka (base),250g; 1 serving,BEEF; GRILLED; MAIN
-Croatia,Crni Rižot,Cuttlefish; Squid ink; Arborio rice; Garlic; Onion; White wine; Fish stock; Parsley; Olive oil; Salt,500g; 1 tsp; 300g; 3 cloves; 1; 150ml; 1L; 1/4 cup; 50ml; 1 tsp,MAIN; MOLLUSKS
-Croatia,Brudet,Mixed sea fish; Onion; Garlic; Tomato puree; White wine; Vinegar; Parsley; Bay leaf; Olive oil; Salt,1kg; 2; 4 cloves; 200ml; 100ml; 1 tbsp; 2 tbsp; 1; 50ml; 1 tsp,FISH; MAIN
+Croatia,Crni Rižot,Cuttlefish; Squid ink; Arborio rice; Garlic; Onion; White wine; Fish stock; Parsley; Olive oil; Salt,500g; 1 tsp; 300g; 3 cloves; 1; 150ml; 1L; 1/4 cup; 50ml; 1 tsp,MAIN; MOLLUSKS; SULPHITES
+Croatia,Brudet,Mixed sea fish; Onion; Garlic; Tomato puree; White wine; Vinegar; Parsley; Bay leaf; Olive oil; Salt,1kg; 2; 4 cloves; 200ml; 100ml; 1 tbsp; 2 tbsp; 1; 50ml; 1 tsp,FISH; MAIN; SULPHITES
 Cuba,Ropa Vieja,Flank steak; Bell pepper; Onion; Garlic; Tomato paste; Cumin; Oregano; Bay leaf; Beef stock; Olive oil,1kg; 1; 1; 4 cloves; 3 tbsp; 1 tsp; 1 tsp; 1; 250ml; 2 tbsp,BEEF; MAIN
 Cuba,Moros y Cristianos,Black beans; White rice; Bacon; Bell pepper; Onion; Garlic; Cumin; Oregano; Bay leaf; Salt,200g; 400g; 50g; 1; 1; 3 cloves; 1 tsp; 1 tsp; 1; 1 tsp,LEGUMES; MAIN; PORK; RICE
 Cuba,Lechon Asado,Pork shoulder; Sour orange juice; Garlic; Oregano; Cumin; Onion; Salt; Black pepper; Olive oil; Bay leaf,2kg; 500ml; 10 cloves; 2 tbsp; 1 tbsp; 1; 2 tsp; 1 tsp; 50ml; 2,GRILLED; MAIN; PORK
-Cyprus,Halloumi,Halloumi cheese; Dried mint; Lemon; Olive oil,250g; 1 tsp; 1; 1 tbsp,MAIN; VEGETARIAN
+Cyprus,Halloumi,Halloumi cheese; Dried mint; Lemon; Olive oil,250g; 1 tsp; 1; 1 tbsp,DAIRY; MAIN; VEGETARIAN
 Cyprus,Souvla (Pork),Pork; Souvla (base),200g; 1 serving,GRILLED; MAIN; PORK
 Cyprus,Souvla (Lamb),Lamb; Souvla (base),200g; 1 serving,GRILLED; LAMB; MAIN
 Cyprus,Kleftiko,Lamb shanks; Potatoes; Garlic; Bay leaf; Oregano; Cinnamon; Lemon juice; Olive oil; Salt; Black pepper,4; 1kg; 4 cloves; 4; 1 tbsp; 1/2 tsp; 3 tbsp; 50ml; 2 tsp; 1 tsp,LAMB; MAIN
-Czech Republic,Vepřo Knedlo Zelo,Pork roast; Cabbage; Flour; Milk; Egg; Onion; Caraway seeds; Garlic; Vinegar; Salt,1kg; 500g; 300g; 200ml; 1; 2; 1 tsp; 3 cloves; 2 tbsp; 2 tsp,MAIN; PORK
-Czech Republic,Svíčková,Beef sirloin; Carrots; Parsnip; Celery root; Onion; Heavy cream; Lemon; Allspice; Thyme; Bay leaf,1kg; 2; 1; 100g; 1; 250ml; 1; 5; 1 tsp; 2,BEEF; MAIN
+Czech Republic,Vepřo Knedlo Zelo,Pork roast; Cabbage; Flour; Milk; Egg; Onion; Caraway seeds; Garlic; Vinegar; Salt,1kg; 500g; 300g; 200ml; 1; 2; 1 tsp; 3 cloves; 2 tbsp; 2 tsp,DAIRY; EGGS; GLUTEN; MAIN; PORK
+Czech Republic,Svíčková,Beef sirloin; Carrots; Parsnip; Celery root; Onion; Heavy cream; Lemon; Allspice; Thyme; Bay leaf,1kg; 2; 1; 100g; 1; 250ml; 1; 5; 1 tsp; 2,BEEF; CELERY; DAIRY; MAIN
 Czech Republic,Guláš,Beef; Onion; Paprika; Marjoram; Garlic; Caraway seeds; Tomato paste; Beef stock; Lard; Salt,800g; 800g; 3 tbsp; 1 tsp; 3 cloves; 1/2 tsp; 1 tbsp; 500ml; 50g; 1 tsp,BEEF; MAIN; PORK
-Denmark,Smørrebrød,Rye bread; Butter; Pickled herring; Remoulade; Red onion; Dill; Hard-boiled egg; Capers; Salt; Pepper,4 slices; 30g; 4; 2 tbsp; 1; 2 tbsp; 1; 1 tbsp; 1/2 tsp; 1/4 tsp,FAT_FISH; MAIN
-Denmark,Stegt Flæsk,Pork belly slices; Potatoes; Flour; Milk; Butter; Parsley; Salt; Black pepper,500g; 1kg; 2 tbsp; 300ml; 30g; 1 bunch; 1 tsp; 1/2 tsp,FRIED; MAIN; PORK
-Denmark,Frikadeller,Ground pork; Onion; Egg; Milk; Flour; Breadcrumbs; Salt; Black pepper; Butter; Allspice,500g; 1; 1; 50ml; 50g; 50g; 1 tsp; 1/2 tsp; 50g; 1/4 tsp,FRIED; MAIN; PORK
+Denmark,Smørrebrød,Rye bread; Butter; Pickled herring; Remoulade; Red onion; Dill; Hard-boiled egg; Capers; Salt; Pepper,4 slices; 30g; 4; 2 tbsp; 1; 2 tbsp; 1; 1 tbsp; 1/2 tsp; 1/4 tsp,DAIRY; EGGS; FAT_FISH; GLUTEN; MAIN
+Denmark,Stegt Flæsk,Pork belly slices; Potatoes; Flour; Milk; Butter; Parsley; Salt; Black pepper,500g; 1kg; 2 tbsp; 300ml; 30g; 1 bunch; 1 tsp; 1/2 tsp,DAIRY; FRIED; GLUTEN; MAIN; PORK
+Denmark,Frikadeller,Ground pork; Onion; Egg; Milk; Flour; Breadcrumbs; Salt; Black pepper; Butter; Allspice,500g; 1; 1; 50ml; 50g; 50g; 1 tsp; 1/2 tsp; 50g; 1/4 tsp,DAIRY; EGGS; FRIED; GLUTEN; MAIN; PORK
 Djibouti,Skoudehkaris,Basmati rice; Lamb; Tomato puree; Cardamom; Cinnamon; Cloves; Cumin; Onion; Garlic; Cilantro,500g; 500g; 200ml; 5; 1 stick; 3; 1 tsp; 2; 3 cloves; 1/4 cup,LAMB; MAIN
 Djibouti,Fah-fah (Beef),Beef; Fah-fah (base),200g; 1 serving,BEEF; MAIN
 Djibouti,Fah-fah (Goat),Goat meat; Fah-fah (base),200g; 1 serving,MAIN; MEAT; SOUPS
-Djibouti,Laxoox,Sorghum flour; Wheat flour; Yeast; Water; Salt; Ghee,300g; 200g; 1 tsp; 700ml; 1/2 tsp; for serving,BREADS; SIDES; VEGETARIAN
+Djibouti,Laxoox,Sorghum flour; Wheat flour; Yeast; Water; Salt; Ghee,300g; 200g; 1 tsp; 700ml; 1/2 tsp; for serving,BREADS; DAIRY; GLUTEN; SIDES; VEGETARIAN
 Dominica,Callaloo Soup (Crab),Crab; Callaloo Soup (base),200g; 1 serving,CRAB; MAIN; SOUPS
 Dominica,Callaloo Soup (Shrimp),Shrimp; Callaloo Soup (base),200g; 1 serving,CRUSTACEANS; MAIN; SOUPS
-Dominica,Mountain Chicken,Frog legs; Lime juice; Flour; Garlic; Thyme; Black pepper; Salt; Oil,8; 3 tbsp; 100g; 3 cloves; 1 tsp; 1/2 tsp; 1 tsp; for frying,MAIN; WHITE_MEAT
-Dominica,Sancoche,Fish; Coconut milk; Yam; Pumpkin; Plantain; Turmeric; Onion; Garlic; Thyme; Chives,500g; 400ml; 200g; 200g; 1; 1 tsp; 1; 3 cloves; 1 tsp; 2 tbsp,FISH; MAIN
+Dominica,Mountain Chicken,Frog legs; Lime juice; Flour; Garlic; Thyme; Black pepper; Salt; Oil,8; 3 tbsp; 100g; 3 cloves; 1 tsp; 1/2 tsp; 1 tsp; for frying,GLUTEN; MAIN; WHITE_MEAT
+Dominica,Sancoche,Fish; Coconut milk; Yam; Pumpkin; Plantain; Turmeric; Onion; Garlic; Thyme; Chives,500g; 400ml; 200g; 200g; 1; 1 tsp; 1; 3 cloves; 1 tsp; 2 tbsp,DAIRY; FISH; MAIN
 Dominican Republic,La Bandera (Beef),Beef; La Bandera (base),150g; 1 serving,BEEF; MAIN
 Dominican Republic,La Bandera (Chicken),Chicken; La Bandera (base),150g; 1 serving,MAIN; POULTRY
-Dominican Republic,Mangú,Green plantains; Red onion; Vinegar; Butter; Salt; Water,4; 1; 2 tbsp; 30g; 1 tsp; for boiling,MAIN; VEGETARIAN
+Dominican Republic,Mangú,Green plantains; Red onion; Vinegar; Butter; Salt; Water,4; 1; 2 tbsp; 30g; 1 tsp; for boiling,DAIRY; MAIN; VEGETARIAN
 Dominican Republic,Sancocho,Beef; Pork; Chicken; Pumpkin; Plantain; Cassava; Corn; Garlic; Cilantro; Oregano,200g; 200g; 200g; 200g; 2; 200g; 2; 4 cloves; 1/4 cup; 1 tsp,BEEF; MAIN; PORK; POULTRY
-Ecuador,Cuy Chactado,Guinea pig; Garlic; Cumin; Salt; Flour; Oil; Aji pepper; Lemon,1; 4 cloves; 1 tsp; 1 tsp; 50g; 500ml; 1; 1,MAIN
-Ecuador,Ceviche de Camaron,Shrimp; Lime juice; Orange juice; Tomato sauce; Red onion; Cilantro; Salt; Mustard; Oil; Popcorn/Chulpi,500g; 200ml; 100ml; 100ml; 1; 1/2 cup; 1 tsp; 1 tsp; 1 tbsp; for serving,CRUSTACEANS; MAIN
+Ecuador,Cuy Chactado,Guinea pig; Garlic; Cumin; Salt; Flour; Oil; Aji pepper; Lemon,1; 4 cloves; 1 tsp; 1 tsp; 50g; 500ml; 1; 1,GLUTEN; MAIN
+Ecuador,Ceviche de Camaron,Shrimp; Lime juice; Orange juice; Tomato sauce; Red onion; Cilantro; Salt; Mustard; Oil; Popcorn/Chulpi,500g; 200ml; 100ml; 100ml; 1; 1/2 cup; 1 tsp; 1 tsp; 1 tbsp; for serving,CRUSTACEANS; MAIN; MUSTARD
 Ecuador,Encebollado,Albacore tuna; Cassava; Red onion; Tomatoes; Cilantro; Cumin; Chili powder; Salt; Lime; Water,500g; 500g; 2; 2; 1/2 cup; 1 tsp; 1 tsp; 1 tsp; 2; 2L,LEAN_FISH; MAIN
-Egypt,Kushari,Rice; Lentils; Macaroni; Chickpeas; Tomato sauce; Vinegar; Garlic; Cumin; Fried onions; Chili flakes,200g; 200g; 200g; 100g; 200ml; 2 tbsp; 4 cloves; 1 tsp; 100g; 1/2 tsp,LEGUMES; MAIN; VEGAN; VEGETARIAN
-Egypt,Ful Medames,Fava beans; Olive oil; Lemon juice; Garlic; Cumin; Parsley; Salt; Tahini,500g; 50ml; 3 tbsp; 3 cloves; 1 tsp; 2 tbsp; 1 tsp; 2 tbsp,LEGUMES; MAIN; VEGAN; VEGETARIAN
-Egypt,Molokhia,Molokhia leaves; Chicken broth; Garlic; Dried coriander; Butter; Salt; Black pepper,500g; 1L; 6 cloves; 1 tbsp; 30g; 1 tsp; 1/4 tsp,MAIN; POULTRY; SOUPS
-El Salvador,Pupusas,Masa harina; Water; Refried beans; Mozzarella cheese; Chicharrón; Salt,500g; 400ml; 200g; 200g; 100g; 1 tsp,BREADS; LEGUMES; MAIN; MEAT
+Egypt,Kushari,Rice; Lentils; Macaroni; Chickpeas; Tomato sauce; Vinegar; Garlic; Cumin; Fried onions; Chili flakes,200g; 200g; 200g; 100g; 200ml; 2 tbsp; 4 cloves; 1 tsp; 100g; 1/2 tsp,GLUTEN; LEGUMES; MAIN; VEGAN; VEGETARIAN
+Egypt,Ful Medames,Fava beans; Olive oil; Lemon juice; Garlic; Cumin; Parsley; Salt; Tahini,500g; 50ml; 3 tbsp; 3 cloves; 1 tsp; 2 tbsp; 1 tsp; 2 tbsp,LEGUMES; MAIN; SESAME; VEGAN; VEGETARIAN
+Egypt,Molokhia,Molokhia leaves; Chicken broth; Garlic; Dried coriander; Butter; Salt; Black pepper,500g; 1L; 6 cloves; 1 tbsp; 30g; 1 tsp; 1/4 tsp,DAIRY; MAIN; POULTRY; SOUPS
+El Salvador,Pupusas,Masa harina; Water; Refried beans; Mozzarella cheese; Chicharrón; Salt,500g; 400ml; 200g; 200g; 100g; 1 tsp,BREADS; DAIRY; LEGUMES; MAIN; MEAT
 El Salvador,Yuca con Chicharrón,Cassava/Yuca; Pork belly; Cabbage; Vinegar; Oregano; Salt; Tomato sauce; Garlic,1kg; 500g; 200g; 50ml; 1 tsp; 1 tsp; 100ml; 2 cloves,MAIN; PORK
-El Salvador,Pane con Pavo,Turkey; French bread; Tomato; Cucumber; Radish; Watercress; Onion; Garlic; Cumin; Chili powder,1kg; 4; 4; 1; 4; 1 bunch; 1; 3 cloves; 1/2 tsp; 1/2 tsp,MAIN; POULTRY
+El Salvador,Pane con Pavo,Turkey; French bread; Tomato; Cucumber; Radish; Watercress; Onion; Garlic; Cumin; Chili powder,1kg; 4; 4; 1; 4; 1 bunch; 1; 3 cloves; 1/2 tsp; 1/2 tsp,GLUTEN; MAIN; POULTRY
 Equatorial Guinea,Pepe Soup (Fish),Fish; Pepe Soup (base),200g; 1 serving,FISH; MAIN; SOUPS
 Equatorial Guinea,Pepe Soup (Meat),Meat; Pepe Soup (base),200g; 1 serving,MAIN; MEAT; SOUPS
-Equatorial Guinea,Succotash,Corn; Lima beans; Butter; Heavy cream; Salt; Black pepper,250g; 250g; 30g; 50ml; 1 tsp; 1/2 tsp,LEGUMES; MAIN; VEGETARIAN
-Equatorial Guinea,Chicken with Peanut Sauce,Chicken; Peanut butter; Tomato paste; Onion; Garlic; Chili pepper; Oil; Salt,1kg; 200g; 2 tbsp; 1; 3 cloves; 1; 3 tbsp; 1 tsp,MAIN; POULTRY
+Equatorial Guinea,Succotash,Corn; Lima beans; Butter; Heavy cream; Salt; Black pepper,250g; 250g; 30g; 50ml; 1 tsp; 1/2 tsp,DAIRY; LEGUMES; MAIN; VEGETARIAN
+Equatorial Guinea,Chicken with Peanut Sauce,Chicken; Peanut butter; Tomato paste; Onion; Garlic; Chili pepper; Oil; Salt,1kg; 200g; 2 tbsp; 1; 3 cloves; 1; 3 tbsp; 1 tsp,MAIN; PEANUTS; POULTRY
 Eritrea,Zigni (Beef),Beef; Zigni (base),200g; 1 serving,BEEF; MAIN
 Eritrea,Zigni (Lamb),Lamb; Zigni (base),200g; 1 serving,LAMB; MAIN
-Eritrea,Injera,Teff flour; Water; Salt,500g; 700ml; 1/2 tsp,BREADS; SIDES; VEGAN; VEGETARIAN
-Eritrea,Kitcha Fit-fit,Kitcha flatbread; Niter Kibbeh/Butter; Berbere spice; Plain yogurt,2; 50g; 2 tbsp; 100g,BREADS; MAIN; VEGETARIAN
-Estonia,Mulgipuder,Potatoes; Barley groats; Bacon; Onion; Butter; Milk; Salt,1kg; 150g; 200g; 2; 50g; 100ml; 1 tsp,MAIN; PORK
-Estonia,Verivorst,Barley; Pork blood; Pork belly; Onion; Marjoram; Allspice; Salt; Sausage casing,200g; 500ml; 200g; 1; 1 tsp; 1/2 tsp; 1 tsp;,MAIN; PORK
-Estonia,Rosolje,Herring; Beetroot; Potatoes; Pickles; Apple; Sour cream; Mustard; Dill; Salt; Hard-boiled egg,200g; 300g; 300g; 2; 1; 150g; 1 tsp; 1 tbsp; 1/2 tsp; 2,FAT_FISH; MAIN
+Eritrea,Injera,Teff flour; Water; Salt,500g; 700ml; 1/2 tsp,BREADS; GLUTEN; SIDES; VEGAN; VEGETARIAN
+Eritrea,Kitcha Fit-fit,Kitcha flatbread; Niter Kibbeh/Butter; Berbere spice; Plain yogurt,2; 50g; 2 tbsp; 100g,BREADS; DAIRY; GLUTEN; MAIN; VEGETARIAN
+Estonia,Mulgipuder,Potatoes; Barley groats; Bacon; Onion; Butter; Milk; Salt,1kg; 150g; 200g; 2; 50g; 100ml; 1 tsp,DAIRY; GLUTEN; MAIN; PORK
+Estonia,Verivorst,Barley; Pork blood; Pork belly; Onion; Marjoram; Allspice; Salt; Sausage casing,200g; 500ml; 200g; 1; 1 tsp; 1/2 tsp; 1 tsp;,GLUTEN; MAIN; PORK
+Estonia,Rosolje,Herring; Beetroot; Potatoes; Pickles; Apple; Sour cream; Mustard; Dill; Salt; Hard-boiled egg,200g; 300g; 300g; 2; 1; 150g; 1 tsp; 1 tbsp; 1/2 tsp; 2,DAIRY; EGGS; FAT_FISH; MAIN; MUSTARD
 Eswatini,Sishwala,Maize meal; Dried beans; Salt; Water,500g; 200g; 1 tsp; 1L,LEGUMES; SIDES; VEGAN; VEGETARIAN
 Eswatini,Incwancwa,Sorghum meal; Water; Salt,500g; 1L; 1 tsp,DESSERTS; VEGAN; VEGETARIAN
 Eswatini,Umcombotsi,Sorghum; Maize meal; Sugar; Yeast; Water,1kg; 1kg; 200g; 10g; 5L,DESSERTS; VEGAN; VEGETARIAN
-Ethiopia,Doro Wat,Chicken drumsticks; Berbere spice; Niter Kibbeh; Onion; Hard-boiled eggs; Garlic; Ginger; Lemon juice; Salt,1kg; 5 tbsp; 100g; 1kg; 6; 4 cloves; 1 tbsp; 2 tbsp; 1 tsp,MAIN; POULTRY; SOUPS
+Ethiopia,Doro Wat,Chicken drumsticks; Berbere spice; Niter Kibbeh; Onion; Hard-boiled eggs; Garlic; Ginger; Lemon juice; Salt,1kg; 5 tbsp; 100g; 1kg; 6; 4 cloves; 1 tbsp; 2 tbsp; 1 tsp,EGGS; MAIN; POULTRY; SOUPS
 Ethiopia,Kitfo,Lean ground beef; Mitmita spice; Niter Kibbeh; Salt,500g; 2 tbsp; 100g; 1/2 tsp,BEEF; MAIN
-Ethiopia,Beyaynetu,Injera; Red lentil stew; Yellow pea stew; Shiro/Chickpea stew; Collard greens; Cabbage; Beetroot salad; Garlic; Ginger; Berbere,4; 200g; 200g; 200g; 200g; 200g; 100g; 4 cloves; 1 tbsp; 2 tbsp,MAIN; VEGETARIAN; VEGAN; LEGUMES
-Fiji,Kokoda,White fish; Lime juice; Coconut cream; Red onion; Chili pepper; Tomato; Cucumber; Cilantro; Salt,500g; 200ml; 250ml; 1; 2; 1; 1; 2 tbsp; 1 tsp,LEAN_FISH; STARTERS
+Ethiopia,Beyaynetu,Injera; Red lentil stew; Yellow pea stew; Shiro/Chickpea stew; Collard greens; Cabbage; Beetroot salad; Garlic; Ginger; Berbere,4; 200g; 200g; 200g; 200g; 200g; 100g; 4 cloves; 1 tbsp; 2 tbsp,GLUTEN; LEGUMES; MAIN; VEGAN; VEGETARIAN
+Fiji,Kokoda,White fish; Lime juice; Coconut cream; Red onion; Chili pepper; Tomato; Cucumber; Cilantro; Salt,500g; 200ml; 250ml; 1; 2; 1; 1; 2 tbsp; 1 tsp,DAIRY; LEAN_FISH; STARTERS
 Fiji,Lovo (Pork),Pork; Lovo (base),200g; 1 serving,GRILLED; MAIN; PORK
 Fiji,Lovo (Chicken),Chicken; Lovo (base),200g; 1 serving,GRILLED; MAIN; POULTRY
 Fiji,Cassava chips,Cassava; Salt; Oil for frying,1kg; 1 tsp; 1L,SIDES; VEGAN; VEGETARIAN
-Finland,Karjalanpiirakka,Rye flour; Wheat flour; Rice; Milk; Butter; Eggs; Salt,250g; 50g; 200g; 1L; 100g; 4; 1.5 tsp,BREADS; MAIN; VEGETARIAN
-Finland,Poronkäristys,Reindeer meat; Butter; Beer; Onion; Salt; Black pepper; Lingonberry jam; Mashed potatoes,1kg; 100g; 200ml; 1; 1 tsp; 1/2 tsp; 100g; 500g,MAIN; MEAT
-Finland,Kalakukko,Rye flour; Small fish/Vendace; Pork fat; Butter; Salt; Water,500g; 1kg; 200g; 100g; 2 tsp; 300ml,FISH; MAIN; PORK
-France,Coq au Vin,Chicken; Red wine; Bacon lardons; Mushrooms; Pearl onions; Garlic; Thyme; Bay leaf; Butter; Flour,1.5kg; 750ml; 150g; 200g; 10; 3 cloves; 2 sprigs; 1; 50g; 2 tbsp,MAIN; PORK; POULTRY
-France,Boeuf Bourguignon,Beef chuck; Red wine; Carrots; Onion; Garlic; Thyme; Bay leaf; Butter; Mushrooms; Bacon,1kg; 750ml; 2; 1; 3 cloves; 2 sprigs; 1; 50g; 200g; 100g,BEEF; MAIN; PORK
+Finland,Karjalanpiirakka,Rye flour; Wheat flour; Rice; Milk; Butter; Eggs; Salt,250g; 50g; 200g; 1L; 100g; 4; 1.5 tsp,BREADS; DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
+Finland,Poronkäristys,Reindeer meat; Butter; Beer; Onion; Salt; Black pepper; Lingonberry jam; Mashed potatoes,1kg; 100g; 200ml; 1; 1 tsp; 1/2 tsp; 100g; 500g,DAIRY; GLUTEN; MAIN; MEAT
+Finland,Kalakukko,Rye flour; Small fish/Vendace; Pork fat; Butter; Salt; Water,500g; 1kg; 200g; 100g; 2 tsp; 300ml,DAIRY; FISH; GLUTEN; MAIN; PORK
+France,Coq au Vin,Chicken; Red wine; Bacon lardons; Mushrooms; Pearl onions; Garlic; Thyme; Bay leaf; Butter; Flour,1.5kg; 750ml; 150g; 200g; 10; 3 cloves; 2 sprigs; 1; 50g; 2 tbsp,DAIRY; GLUTEN; MAIN; PORK; POULTRY; SULPHITES
+France,Boeuf Bourguignon,Beef chuck; Red wine; Carrots; Onion; Garlic; Thyme; Bay leaf; Butter; Mushrooms; Bacon,1kg; 750ml; 2; 1; 3 cloves; 2 sprigs; 1; 50g; 200g; 100g,BEEF; DAIRY; MAIN; PORK; SULPHITES
 France,Ratatouille,Eggplant; Zucchini; Bell peppers; Tomatoes; Onion; Garlic; Herbes de Provence; Olive oil; Salt; Black pepper,1; 2; 2; 3; 1; 4 cloves; 1 tbsp; 50ml; 1 tsp; 1/2 tsp,MAIN; VEGAN; VEGETARIAN
 Gabon,Nyembwe Chicken,Chicken; Palm nut butter; Garlic; Onion; Chili pepper; Salt; Water,1kg; 200g; 3 cloves; 1; 1; 1 tsp; 500ml,MAIN; POULTRY
 Gabon,Manioc,Cassava roots; Water,1kg; for soaking,MAIN; VEGAN; VEGETARIAN
@@ -193,380 +193,380 @@ Gambia,Domoda (Beef),Beef; Domoda (base),150g; 1 serving,BEEF; MAIN
 Gambia,Domoda (Chicken),Chicken; Domoda (base),150g; 1 serving,MAIN; POULTRY
 Gambia,Benachin (Chicken),Chicken; Benachin (base),150g; 1 serving,MAIN; POULTRY
 Gambia,Benachin (Fish),Fish; Benachin (base),150g; 1 serving,FISH; MAIN
-Gambia,Yassa,Chicken; Onion; Lemon juice; Mustard; Garlic; Chili pepper; Oil; Black pepper; Salt,1kg; 4; 150ml; 2 tbsp; 4 cloves; 1; 50ml; 1 tsp; 1 tsp,MAIN; POULTRY
-Georgia,Khachapuri,Flour; Sulguni cheese; Imeretian cheese; Yeast; Egg; Yogurt/Matsoni; Butter; Salt,500g; 500g; 200g; 1 tsp; 2; 200ml; 50g; 1 tsp,BREADS; MAIN; VEGETARIAN
-Georgia,Khinkali,Flour; Ground beef/pork; Cumin; Black pepper; Cilantro; Onion; Salt; Water,500g; 500g; 1 tsp; 1 tsp; 2 tbsp; 1; 2 tsp; 300ml,BEEF; MAIN; PORK
-Georgia,Pkhali,Spinach; Walnuts; Garlic; Cilantro; Fenugreek; Marigold; Pomegranate seeds; Vinegar; Salt,500g; 200g; 3 cloves; 1/2 cup; 1 tsp; 1 tsp; 50g; 2 tbsp; 1 tsp,DIPS; STARTERS; VEGAN; VEGETARIAN
-Germany,Sauerbraten,Beef roast; Red wine vinegar; Red wine; Onion; Cloves; Juniper berries; Peppercorns; Bay leaf; Gingersnaps; Salt,1.5kg; 250ml; 250ml; 2; 5; 5; 5; 2; 4; 2 tsp,BEEF; MAIN
-Germany,Currywurst,Bratwurst; Ketchup; Curry powder; Paprika; Onion powder; Worcestershire sauce,4; 200ml; 2 tbsp; 1 tsp; 1/2 tsp; 1 tsp,MAIN; PORK; FRIED
-Germany,Rouladen,Beef top round; Mustard; Bacon; Pickles; Onion; Beef stock; Red wine; Thyme; Salt; Pepper,4 slices; 4 tbsp; 4 strips; 4; 1; 500ml; 100ml; 1/2 tsp; 1 tsp; 1/2 tsp,BEEF; MAIN; PORK
+Gambia,Yassa,Chicken; Onion; Lemon juice; Mustard; Garlic; Chili pepper; Oil; Black pepper; Salt,1kg; 4; 150ml; 2 tbsp; 4 cloves; 1; 50ml; 1 tsp; 1 tsp,MAIN; MUSTARD; POULTRY
+Georgia,Khachapuri,Flour; Sulguni cheese; Imeretian cheese; Yeast; Egg; Yogurt/Matsoni; Butter; Salt,500g; 500g; 200g; 1 tsp; 2; 200ml; 50g; 1 tsp,BREADS; DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
+Georgia,Khinkali,Flour; Ground beef/pork; Cumin; Black pepper; Cilantro; Onion; Salt; Water,500g; 500g; 1 tsp; 1 tsp; 2 tbsp; 1; 2 tsp; 300ml,BEEF; GLUTEN; MAIN; PORK
+Georgia,Pkhali,Spinach; Walnuts; Garlic; Cilantro; Fenugreek; Marigold; Pomegranate seeds; Vinegar; Salt,500g; 200g; 3 cloves; 1/2 cup; 1 tsp; 1 tsp; 50g; 2 tbsp; 1 tsp,DIPS; STARTERS; TREE_NUTS; VEGAN; VEGETARIAN
+Germany,Sauerbraten,Beef roast; Red wine vinegar; Red wine; Onion; Cloves; Juniper berries; Peppercorns; Bay leaf; Gingersnaps; Salt,1.5kg; 250ml; 250ml; 2; 5; 5; 5; 2; 4; 2 tsp,BEEF; MAIN; SULPHITES
+Germany,Currywurst,Bratwurst; Ketchup; Curry powder; Paprika; Onion powder; Worcestershire sauce,4; 200ml; 2 tbsp; 1 tsp; 1/2 tsp; 1 tsp,FRIED; GLUTEN; MAIN; PORK
+Germany,Rouladen,Beef top round; Mustard; Bacon; Pickles; Onion; Beef stock; Red wine; Thyme; Salt; Pepper,4 slices; 4 tbsp; 4 strips; 4; 1; 500ml; 100ml; 1/2 tsp; 1 tsp; 1/2 tsp,BEEF; MAIN; MUSTARD; PORK; SULPHITES
 Ghana,Jollof Rice,Basmati rice; Chicken; Tomato paste; Onion; Ginger; Garlic; Scotch bonnet; Thyme; Curry powder; Oil,500g; 500g; 3 tbsp; 2; 1 tbsp; 3 cloves; 1; 1 tsp; 1 tsp; 100ml,POULTRY; RICE; SIDES; SOUPS
 Ghana,Fufu with Light Soup (Chicken),Chicken; Fufu with Light Soup (base),150g; 1 serving,POULTRY; SIDES; SOUPS
 Ghana,Fufu with Light Soup (Goat),Goat meat; Fufu with Light Soup (base),150g; 1 serving,MAIN; MEAT; SOUPS
 Ghana,Waakye,Rice; Black-eyed peas; Waakye leaves; Salt; Shito sauce,400g; 200g; 4; 1 tsp; 2 tbsp,LEGUMES; MAIN; RICE; VEGAN; VEGETARIAN
-Greece,Moussaka,Eggplant; Ground lamb; Potatoes; Onion; Garlic; Cinnamon; Tomato puree; Milk; Butter; Flour,2; 500g; 2; 1; 3 cloves; 1/2 tsp; 200ml; 500ml; 50g; 50g,LAMB; MAIN
+Greece,Moussaka,Eggplant; Ground lamb; Potatoes; Onion; Garlic; Cinnamon; Tomato puree; Milk; Butter; Flour,2; 500g; 2; 1; 3 cloves; 1/2 tsp; 200ml; 500ml; 50g; 50g,DAIRY; GLUTEN; LAMB; MAIN
 Greece,Souvla,Pork shoulder; Oregano; Salt; Black pepper; Olive oil; Lemon,1.5kg; 2 tbsp; 2 tsp; 1 tsp; 50ml; 2,GRILLED; MAIN; PORK
-Greece,Pastitsio,Macaroni; Ground beef; Onion; Tomato paste; Cinnamon; Milk; Butter; Flour; Egg yolks; Nutmeg,500g; 500g; 1; 2 tbsp; 1/2 tsp; 750ml; 75g; 75g; 2; 1/4 tsp,BEEF; MAIN
-Grenada,Oil Down,Breadfruit; Salted meat; Chicken; Coconut milk; Turmeric; Onion; Garlic; Chives; Thyme; Flour dumplings,1; 500g; 500g; 1L; 2 tbsp; 1; 3 cloves; 2 tbsp; 1 tbsp; 8,MAIN; POULTRY
-Grenada,Pelau,Chicken; Rice; Pigeon peas; Brown sugar; Coconut milk; Onion; Garlic; Thyme; Carrots; Salt,500g; 400g; 200g; 2 tbsp; 400ml; 1; 3 cloves; 1 tsp; 1; 1 tsp,LEGUMES; MAIN; POULTRY
-Grenada,Roti,Flour; Split peas; Cumin; Turmeric; Chicken curry; Potatoes; Garlic; Onion; Oil; Salt,500g; 100g; 1 tsp; 1 tsp; 500g; 200g; 3 cloves; 1; 50ml; 1 tsp,BREADS; LEGUMES; MAIN; POULTRY
-Guatemala,Pepián,Chicken; Sesame seeds; Pumpkin seeds; Guajillo chili; Tomatoes; Onion; Cinnamon; Cilantro; Potatoes; Salt,1kg; 3 tbsp; 3 tbsp; 2; 3; 1; 1/2 stick; 1/4 cup; 2; 1 tsp,MAIN; POULTRY
+Greece,Pastitsio,Macaroni; Ground beef; Onion; Tomato paste; Cinnamon; Milk; Butter; Flour; Egg yolks; Nutmeg,500g; 500g; 1; 2 tbsp; 1/2 tsp; 750ml; 75g; 75g; 2; 1/4 tsp,BEEF; DAIRY; EGGS; GLUTEN; MAIN
+Grenada,Oil Down,Breadfruit; Salted meat; Chicken; Coconut milk; Turmeric; Onion; Garlic; Chives; Thyme; Flour dumplings,1; 500g; 500g; 1L; 2 tbsp; 1; 3 cloves; 2 tbsp; 1 tbsp; 8,DAIRY; GLUTEN; MAIN; POULTRY
+Grenada,Pelau,Chicken; Rice; Pigeon peas; Brown sugar; Coconut milk; Onion; Garlic; Thyme; Carrots; Salt,500g; 400g; 200g; 2 tbsp; 400ml; 1; 3 cloves; 1 tsp; 1; 1 tsp,DAIRY; LEGUMES; MAIN; POULTRY
+Grenada,Roti,Flour; Split peas; Cumin; Turmeric; Chicken curry; Potatoes; Garlic; Onion; Oil; Salt,500g; 100g; 1 tsp; 1 tsp; 500g; 200g; 3 cloves; 1; 50ml; 1 tsp,BREADS; GLUTEN; LEGUMES; MAIN; POULTRY
+Guatemala,Pepián,Chicken; Sesame seeds; Pumpkin seeds; Guajillo chili; Tomatoes; Onion; Cinnamon; Cilantro; Potatoes; Salt,1kg; 3 tbsp; 3 tbsp; 2; 3; 1; 1/2 stick; 1/4 cup; 2; 1 tsp,MAIN; POULTRY; SESAME
 Guatemala,Kak'ik,Turkey; Coban chili; Garlic; Onion; Tomatoes; Cilantro; Mint; Cloves; Allspice; Salt,1kg; 2; 5 cloves; 1; 4; 1/2 cup; 1/4 cup; 2; 2; 2 tsp,MAIN; POULTRY
-Guatemala,Chiles Rellenos,Poblano chilies; Ground beef; Onion; Garlic; Carrots; Green beans; Eggs; Flour; Tomato sauce; Oregano,6; 300g; 1; 2 cloves; 2; 100g; 4; 50g; 200ml; 1/2 tsp,BEEF; LEGUMES; MAIN
-Guinea,Poulet Yassa,Chicken; Onion; Lemon juice; Mustard; Garlic; Chili pepper; Oil; Black pepper; Salt; Thyme,1kg; 5; 200ml; 2 tbsp; 4 cloves; 1; 50ml; 1 tsp; 1 tsp; 1 tsp,MAIN; POULTRY
+Guatemala,Chiles Rellenos,Poblano chilies; Ground beef; Onion; Garlic; Carrots; Green beans; Eggs; Flour; Tomato sauce; Oregano,6; 300g; 1; 2 cloves; 2; 100g; 4; 50g; 200ml; 1/2 tsp,BEEF; EGGS; GLUTEN; LEGUMES; MAIN
+Guinea,Poulet Yassa,Chicken; Onion; Lemon juice; Mustard; Garlic; Chili pepper; Oil; Black pepper; Salt; Thyme,1kg; 5; 200ml; 2 tbsp; 4 cloves; 1; 50ml; 1 tsp; 1 tsp; 1 tsp,MAIN; MUSTARD; POULTRY
 Guinea,Fufu,Cassava; Water,1kg; for boiling,SIDES; VEGAN; VEGETARIAN
 Guinea,Riz Gras,Rice; Meat; Tomato paste; Onion; Garlic; Chili pepper; Oil; Salt; Maggi cube,500g; 500g; 3 tbsp; 2; 3 cloves; 1; 100ml; 1 tsp; 1,MAIN; MEAT; RICE
 Guyana,Pepperpot,Beef; Cassareep; Cinnamon; Cloves; Brown sugar; Onion; Garlic; Scotch bonnet; Thyme; Salt,1kg; 100ml; 2 sticks; 4; 2 tbsp; 1; 4 cloves; 2; 3 sprigs; 2 tsp,BEEF; MAIN; SOUPS
 Guyana,Cook-up Rice (Chicken),Chicken; Cook-up Rice (base),150g; 1 serving,POULTRY; RICE; SIDES
 Guyana,Cook-up Rice (Salt meat),Salt meat; Cook-up Rice (base),100g; 1 serving,MAIN; PORK; RICE
-Guyana,Metemgee,Cassava; Plantain; Yam; Sweet potato; Salt fish; Coconut milk; Onion; Garlic; Thyme; Flour dumplings,200g; 1; 200g; 200g; 200g; 500ml; 1; 3 cloves; 1 tsp; 6,FISH; MAIN
+Guyana,Metemgee,Cassava; Plantain; Yam; Sweet potato; Salt fish; Coconut milk; Onion; Garlic; Thyme; Flour dumplings,200g; 1; 200g; 200g; 200g; 500ml; 1; 3 cloves; 1 tsp; 6,DAIRY; FISH; GLUTEN; MAIN
 Haiti,Griot,Pork shoulder; Sour orange juice; Lime juice; Thyme; Parsley; Garlic; Scotch bonnet; Onion; Cloves; Salt,1kg; 250ml; 50ml; 2 sprigs; 1/4 cup; 5 cloves; 1; 1; 3; 2 tsp,MAIN; PORK
 Haiti,Diriz ak Djon Djon,Rice; Djon Djon mushrooms; Lima beans; Garlic; Thyme; Onion; Cloves; Salt; Oil; Scotch bonnet,500g; 50g; 200g; 3 cloves; 1 tsp; 1; 2; 1 tsp; 3 tbsp; 1,LEGUMES; MAIN; RICE; VEGAN; VEGETARIAN
-Haiti,Soup Joumou,Pumpkin/Squash; Beef; Cabbage; Potatoes; Carrots; Celery; Onion; Garlic; Thyme; Lime juice,1kg; 500g; 200g; 2; 2; 1; 1; 3 cloves; 1 tsp; 2 tbsp,BEEF; MAIN; SOUPS
-Honduras,Baleadas,Flour tortillas; Refried beans; Mantequilla/Sour cream; Queso duro; Avocado; Eggs; Salt,4; 200g; 100g; 50g; 1; 2; 1/2 tsp,BREADS; LEGUMES; MAIN; VEGETARIAN
-Honduras,Sopa de Caracol,Conch meat; Coconut milk; Cassava; Plantain; Bell pepper; Onion; Garlic; Cilantro; Cumin; Saffron,500g; 400ml; 200g; 1; 1; 1; 3 cloves; 1/2 cup; 1/2 tsp; 1/4 tsp,CRUSTACEANS; MAIN
+Haiti,Soup Joumou,Pumpkin/Squash; Beef; Cabbage; Potatoes; Carrots; Celery; Onion; Garlic; Thyme; Lime juice,1kg; 500g; 200g; 2; 2; 1; 1; 3 cloves; 1 tsp; 2 tbsp,BEEF; CELERY; MAIN; SOUPS
+Honduras,Baleadas,Flour tortillas; Refried beans; Mantequilla/Sour cream; Queso duro; Avocado; Eggs; Salt,4; 200g; 100g; 50g; 1; 2; 1/2 tsp,BREADS; DAIRY; EGGS; GLUTEN; LEGUMES; MAIN; VEGETARIAN
+Honduras,Sopa de Caracol,Conch meat; Coconut milk; Cassava; Plantain; Bell pepper; Onion; Garlic; Cilantro; Cumin; Saffron,500g; 400ml; 200g; 1; 1; 1; 3 cloves; 1/2 cup; 1/2 tsp; 1/4 tsp,CRUSTACEANS; DAIRY; MAIN
 Honduras,Carne Asada,Beef steak; Lime juice; Garlic; Cumin; Oregano; Salt; Pepper; Onion; Bell pepper; Oil,500g; 50ml; 3 cloves; 1 tsp; 1 tsp; 1 tsp; 1/2 tsp; 1; 1; 2 tbsp,BEEF; MAIN
 Hungary,Goulash,Beef chuck; Onions; Paprika; Caraway seeds; Garlic; Potatoes; Carrots; Bell pepper; Tomato; Beef stock,1kg; 3; 4 tbsp; 1 tsp; 3 cloves; 4; 2; 1; 1; 1L,BEEF; MAIN
-Hungary,Chicken Paprikash,Chicken drumsticks; Onion; Paprika; Sour cream; Flour; Garlic; Bell pepper; Tomato; Chicken stock; Lard,1kg; 2; 3 tbsp; 200ml; 1 tbsp; 2 cloves; 1; 1; 250ml; 30g,MAIN; PORK; POULTRY
-Hungary,Lángos,Flour; Yeast; Milk; Salt; Sugar; Oil for frying; Garlic; Sour cream; Grated cheese,500g; 1 tsp; 300ml; 1 tsp; 1 tsp; 1L; 2 cloves; 100g; 100g,BREADS; MAIN; VEGETARIAN
+Hungary,Chicken Paprikash,Chicken drumsticks; Onion; Paprika; Sour cream; Flour; Garlic; Bell pepper; Tomato; Chicken stock; Lard,1kg; 2; 3 tbsp; 200ml; 1 tbsp; 2 cloves; 1; 1; 250ml; 30g,DAIRY; GLUTEN; MAIN; PORK; POULTRY
+Hungary,Lángos,Flour; Yeast; Milk; Salt; Sugar; Oil for frying; Garlic; Sour cream; Grated cheese,500g; 1 tsp; 300ml; 1 tsp; 1 tsp; 1L; 2 cloves; 100g; 100g,BREADS; DAIRY; GLUTEN; MAIN; VEGETARIAN
 Iceland,Hákarl,Fermented shark,200g,MAIN; LEAN_FISH
-Iceland,Plokkfiskur,Cod fillets; Potatoes; Milk; Flour; Butter; Onion; Chives; Salt; White pepper; Cheese,500g; 500g; 400ml; 3 tbsp; 50g; 1; 1 tbsp; 1 tsp; 1/2 tsp; 50g,LEAN_FISH; MAIN
-Iceland,Hangikjöt,Smoked lamb; Potatoes; Milk; Flour; Butter; Peas; Sugar; Salt; Nutmeg,1kg; 1kg; 500ml; 2 tbsp; 2 tbsp; 200g; 1 tsp; 1 tsp; 1/4 tsp,LAMB; MAIN
-India,Butter Chicken,Chicken; Tomato puree; Heavy cream; Butter; Ginger-garlic paste; Garam masala; Turmeric; Chili powder; Kasuri methi; Honey,800g; 400ml; 150ml; 50g; 2 tbsp; 1 tbsp; 1 tsp; 1 tsp; 1 tsp; 1 tbsp,MAIN; POULTRY
-India,Chicken Biryani,Basmati rice; Chicken; Yogurt; Onions; Ghee; Mint; Saffron; Biryani spice mix; Ginger-garlic paste; Salt,500g; 500g; 200g; 3; 100g; 1/2 cup; pinch; 3 tbsp; 2 tbsp; 2 tsp,MAIN; POULTRY; RICE
-India,Masala Dosa,Rice/Lentil batter; Potatoes; Onion; Mustard seeds; Turmeric; Curry leaves; Ginger; Green chili; Cilantro; Salt,1L; 500g; 2; 1 tsp; 1/2 tsp; 10; 1 tsp; 2; 2 tbsp; 1 tsp,CURRIES; LEGUMES; MAIN; VEGAN; VEGETARIAN
-Indonesia,Nasi Goreng,Cooked rice; Kecap manis; Shrimp paste; Garlic; Shallots; Chili; Chicken; Egg; Salt; Oil,400g; 3 tbsp; 1 tsp; 3 cloves; 4; 2; 100g; 2; 1 tsp; 2 tbsp,CRUSTACEANS; MAIN; POULTRY; RICE
-Indonesia,Rendang,Beef; Coconut milk; Lemongrass; Galangal; Turmeric leaf; Chilies; Shallots; Garlic; Ginger; Salt,1kg; 1L; 2; 50g; 1; 10; 6; 4 cloves; 30g; 1 tsp,BEEF; CURRIES; MAIN
-Indonesia,Satay Ayam,Chicken thigh; Peanut butter; Kecap manis; Coconut milk; Turmeric; Coriander; Cumin; Garlic; Shallots; Lime,500g; 200g; 4 tbsp; 100ml; 1 tsp; 1 tsp; 1/2 tsp; 3 cloves; 4; 1,GRILLED; MAIN; POULTRY
-Iran,Chelow Kebab,Ground beef/lamb; Basmati rice; Saffron; Onion; Butter; Sumac; Turmeric; Salt; Black pepper; Tomato,1kg; 500g; pinch; 2; 50g; 1 tbsp; 1/2 tsp; 2 tsp; 1 tsp; 4,BEEF; GRILLED; LAMB; MAIN
+Iceland,Plokkfiskur,Cod fillets; Potatoes; Milk; Flour; Butter; Onion; Chives; Salt; White pepper; Cheese,500g; 500g; 400ml; 3 tbsp; 50g; 1; 1 tbsp; 1 tsp; 1/2 tsp; 50g,DAIRY; GLUTEN; LEAN_FISH; MAIN
+Iceland,Hangikjöt,Smoked lamb; Potatoes; Milk; Flour; Butter; Peas; Sugar; Salt; Nutmeg,1kg; 1kg; 500ml; 2 tbsp; 2 tbsp; 200g; 1 tsp; 1 tsp; 1/4 tsp,DAIRY; GLUTEN; LAMB; MAIN
+India,Butter Chicken,Chicken; Tomato puree; Heavy cream; Butter; Ginger-garlic paste; Garam masala; Turmeric; Chili powder; Kasuri methi; Honey,800g; 400ml; 150ml; 50g; 2 tbsp; 1 tbsp; 1 tsp; 1 tsp; 1 tsp; 1 tbsp,DAIRY; MAIN; POULTRY
+India,Chicken Biryani,Basmati rice; Chicken; Yogurt; Onions; Ghee; Mint; Saffron; Biryani spice mix; Ginger-garlic paste; Salt,500g; 500g; 200g; 3; 100g; 1/2 cup; pinch; 3 tbsp; 2 tbsp; 2 tsp,DAIRY; MAIN; POULTRY; RICE
+India,Masala Dosa,Rice/Lentil batter; Potatoes; Onion; Mustard seeds; Turmeric; Curry leaves; Ginger; Green chili; Cilantro; Salt,1L; 500g; 2; 1 tsp; 1/2 tsp; 10; 1 tsp; 2; 2 tbsp; 1 tsp,CURRIES; GLUTEN; LEGUMES; MAIN; MUSTARD; VEGAN; VEGETARIAN
+Indonesia,Nasi Goreng,Cooked rice; Kecap manis; Shrimp paste; Garlic; Shallots; Chili; Chicken; Egg; Salt; Oil,400g; 3 tbsp; 1 tsp; 3 cloves; 4; 2; 100g; 2; 1 tsp; 2 tbsp,CRUSTACEANS; EGGS; MAIN; POULTRY; RICE; SOY
+Indonesia,Rendang,Beef; Coconut milk; Lemongrass; Galangal; Turmeric leaf; Chilies; Shallots; Garlic; Ginger; Salt,1kg; 1L; 2; 50g; 1; 10; 6; 4 cloves; 30g; 1 tsp,BEEF; CURRIES; DAIRY; MAIN
+Indonesia,Satay Ayam,Chicken thigh; Peanut butter; Kecap manis; Coconut milk; Turmeric; Coriander; Cumin; Garlic; Shallots; Lime,500g; 200g; 4 tbsp; 100ml; 1 tsp; 1 tsp; 1/2 tsp; 3 cloves; 4; 1,DAIRY; GRILLED; MAIN; PEANUTS; POULTRY; SOY
+Iran,Chelow Kebab,Ground beef/lamb; Basmati rice; Saffron; Onion; Butter; Sumac; Turmeric; Salt; Black pepper; Tomato,1kg; 500g; pinch; 2; 50g; 1 tbsp; 1/2 tsp; 2 tsp; 1 tsp; 4,BEEF; DAIRY; GRILLED; LAMB; MAIN
 Iran,Ghormeh Sabzi,Lamb; Kidneys beans; Dried limes; Parsley; Cilantro; Fenugreek; Leeks; Onion; Turmeric; Salt,500g; 200g; 4; 200g; 200g; 50g; 100g; 1; 1 tsp; 1 tsp,LAMB; LEGUMES; MAIN
-Iran,Fesenjan,Chicken; Walnuts; Pomegranate molasses; Onion; Cinnamon; Sugar; Turmeric; Salt; Saffron; Oil,1kg; 300g; 200ml; 2; 1/2 tsp; 2 tbsp; 1 tsp; 1 tsp; pinch; 2 tbsp,MAIN; POULTRY
-Iraq,Masgouf,Whole Carp; Olive oil; Tamarind paste; Turmeric; Garlic; Onion; Tomatoes; Curry powder; Salt; Lemon,2kg; 50ml; 2 tbsp; 1 tsp; 4 cloves; 1; 2; 1/2 tsp; 1 tsp; 1,LEAN_FISH; MAIN
+Iran,Fesenjan,Chicken; Walnuts; Pomegranate molasses; Onion; Cinnamon; Sugar; Turmeric; Salt; Saffron; Oil,1kg; 300g; 200ml; 2; 1/2 tsp; 2 tbsp; 1 tsp; 1 tsp; pinch; 2 tbsp,MAIN; POULTRY; TREE_NUTS
+Iraq,Masgouf,Whole Carp; Olive oil; Tamarind paste; Turmeric; Garlic; Onion; Tomatoes; Curry powder; Salt; Lemon,2kg; 50ml; 2 tbsp; 1 tsp; 4 cloves; 1; 2; 1/2 tsp; 1 tsp; 1,LEAN_FISH; MAIN; SOY
 Iraq,Dolma,Grape leaves; Ground meat; Rice; Onion; Tomato paste; Pomegranate molasses; Allspice; Cumin; Garlic; Salt,40; 500g; 200g; 3; 3 tbsp; 3 tbsp; 1 tsp; 1/2 tsp; 4 cloves; 1 tsp,MAIN; MEAT; LEGUMES
-Iraq,Quzi,Whole lamb (small) or leg; Rice; Raisins; Almonds; Cinnamon; Cardamom; Cloves; Allspice; Onion; Salt,2kg; 1kg; 100g; 100g; 1 tbsp; 1 tsp; 1/2 tsp; 1 tsp; 2; 2 tsp,LAMB; MAIN
-Ireland,Irish Stew,Lamb shoulder; Potatoes; Carrots; Onions; Thyme; Parsley; Beef stock; Salt; Black pepper; Barley,1kg; 1kg; 3; 3; 2 sprigs; 1/4 cup; 1L; 1.5 tsp; 1 tsp; 50g,BEEF; LAMB; MAIN; SOUPS
-Ireland,Boxty,Potatoes; Flour; Baking soda; Buttermilk; Egg; Salt; Black pepper; Butter,500g; 200g; 1 tsp; 250ml; 1; 1 tsp; 1/2 tsp; 50g,BREADS; MAIN; VEGETARIAN
+Iraq,Quzi,Whole lamb (small) or leg; Rice; Raisins; Almonds; Cinnamon; Cardamom; Cloves; Allspice; Onion; Salt,2kg; 1kg; 100g; 100g; 1 tbsp; 1 tsp; 1/2 tsp; 1 tsp; 2; 2 tsp,LAMB; MAIN; SULPHITES; TREE_NUTS
+Ireland,Irish Stew,Lamb shoulder; Potatoes; Carrots; Onions; Thyme; Parsley; Beef stock; Salt; Black pepper; Barley,1kg; 1kg; 3; 3; 2 sprigs; 1/4 cup; 1L; 1.5 tsp; 1 tsp; 50g,BEEF; GLUTEN; LAMB; MAIN; SOUPS
+Ireland,Boxty,Potatoes; Flour; Baking soda; Buttermilk; Egg; Salt; Black pepper; Butter,500g; 200g; 1 tsp; 250ml; 1; 1 tsp; 1/2 tsp; 50g,BREADS; DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
 Ireland,Coddle,Pork sausages; Bacon rashers; Potatoes; Onions; Parsley; Beef stock; Salt; Black pepper,8; 4; 4; 2; 1/4 cup; 500ml; 1/2 tsp; 1 tsp,BEEF; MAIN; PORK
 Israel,Falafel,Dried chickpeas; Parsley; Cilantro; Garlic; Cumin; Coriander; Onion; Baking soda; Salt; Oil for frying,500g; 1 cup; 1 cup; 4 cloves; 1 tbsp; 1 tbsp; 1; 1 tsp; 1.5 tsp; 1L,LEGUMES; SNACKS; STARTERS; VEGAN; VEGETARIAN
-Israel,Shakshuka,Eggs; Tomatoes; Bell pepper; Onion; Garlic; Paprika; Cumin; Chili flakes; Olive oil; Parsley,6; 800g; 1; 1; 3 cloves; 1 tbsp; 1 tsp; 1/2 tsp; 3 tbsp; 2 tbsp,MAIN; VEGETARIAN
-Israel,Hummus,Chickpeas; Tahini; Lemon juice; Garlic; Cumin; Olive oil; Salt; Water; Paprika; Parsley,400g; 150g; 50ml; 2 cloves; 1/2 tsp; 30ml; 1 tsp; 50ml; pinch; 1 tbsp,DIPS; LEGUMES; STARTERS; VEGAN; VEGETARIAN
-Italy,Pizza Margherita,Pizza dough; San Marzano tomatoes; Mozzarella; Fresh basil; Extra virgin olive oil; Salt,250g; 100g; 100g; 5 leaves; 1 tbsp; pinch,MAIN; VEGETARIAN
-Italy,Lasagna alla Bolognese,Lasagna sheets; Ground beef; Ground pork; Tomato puree; Milk; Butter; Flour; Parmigiano; Onion; Nutmeg,250g; 300g; 150g; 500ml; 500ml; 50g; 50g; 100g; 1; pinch,BEEF; MAIN; PORK
-Italy,Pasta Carbonara,Spaghetti; Guanciale; Pecorino Romano; Egg yolks; Black pepper,200g; 100g; 50g; 3; 1 tsp,MAIN; PASTA; PORK
-Jamaica,Jerk Chicken,Chicken; Allspice; Thyme; Scotch bonnet; Scallions; Ginger; Garlic; Cinnamon; Nutmeg; Soy sauce,1kg; 2 tbsp; 3 sprigs; 2; 4; 20g; 4 cloves; 1/2 tsp; 1/2 tsp; 50ml,MAIN; POULTRY
+Israel,Shakshuka,Eggs; Tomatoes; Bell pepper; Onion; Garlic; Paprika; Cumin; Chili flakes; Olive oil; Parsley,6; 800g; 1; 1; 3 cloves; 1 tbsp; 1 tsp; 1/2 tsp; 3 tbsp; 2 tbsp,EGGS; MAIN; VEGETARIAN
+Israel,Hummus,Chickpeas; Tahini; Lemon juice; Garlic; Cumin; Olive oil; Salt; Water; Paprika; Parsley,400g; 150g; 50ml; 2 cloves; 1/2 tsp; 30ml; 1 tsp; 50ml; pinch; 1 tbsp,DIPS; LEGUMES; SESAME; STARTERS; VEGAN; VEGETARIAN
+Italy,Pizza Margherita,Pizza dough; San Marzano tomatoes; Mozzarella; Fresh basil; Extra virgin olive oil; Salt,250g; 100g; 100g; 5 leaves; 1 tbsp; pinch,DAIRY; GLUTEN; MAIN; VEGETARIAN
+Italy,Lasagna alla Bolognese,Lasagna sheets; Ground beef; Ground pork; Tomato puree; Milk; Butter; Flour; Parmigiano; Onion; Nutmeg,250g; 300g; 150g; 500ml; 500ml; 50g; 50g; 100g; 1; pinch,BEEF; DAIRY; GLUTEN; MAIN; PORK
+Italy,Pasta Carbonara,Spaghetti; Guanciale; Pecorino Romano; Egg yolks; Black pepper,200g; 100g; 50g; 3; 1 tsp,DAIRY; EGGS; GLUTEN; MAIN; PASTA; PORK
+Jamaica,Jerk Chicken,Chicken; Allspice; Thyme; Scotch bonnet; Scallions; Ginger; Garlic; Cinnamon; Nutmeg; Soy sauce,1kg; 2 tbsp; 3 sprigs; 2; 4; 20g; 4 cloves; 1/2 tsp; 1/2 tsp; 50ml,GLUTEN; MAIN; POULTRY; SOY
 Jamaica,Ackee and Saltfish,Salted cod; Ackee; Onion; Scotch bonnet; Bell pepper; Thyme; Black pepper; Tomato; Scallions; Garlic,250g; 500g; 1; 1; 1; 1 tsp; 1 tsp; 1; 2; 2 cloves,LEAN_FISH; MAIN
-Jamaica,Curry Goat,Goat meat; Curry powder; Potatoes; Ginger; Garlic; Thyme; Scotch bonnet; Onion; Coconut milk; Salt,1kg; 4 tbsp; 300g; 20g; 4 cloves; 1 tbsp; 1; 1; 200ml; 1 tsp,MAIN; MEAT; CURRIES
-Japan,Sushi (Nigiri),Sushi rice; Rice vinegar; Sugar; Raw fish; Wasabi; Soy sauce; Ginger; Salt; Nori,300g; 2 tbsp; 1 tbsp; 200g; 1 tsp; 30ml; 20g; 1 tsp; 1 sheet,FISH; MAIN
-Japan,Ramen,Ramen noodles; Pork broth; Soy sauce; Chashu pork; Soft-boiled egg; Nori; Green onion; Menma; Garlic; Ginger,2 servings; 1L; 2 tbsp; 4 slices; 2; 2 sheets; 2; 30g; 1 tsp; 1 tsp,MAIN; PORK
-Japan,Tempura,Shrimp; Sweet potato; Ice water; Cake flour; Egg; Frying oil; Dashi stock; Soy sauce; Mirin; Ginger,8; 1; 200ml; 150g; 1; 500ml; 100ml; 1 tbsp; 1 tbsp; 1 tsp,CRUSTACEANS; FRIED; MAIN
-Jordan,Mansaf,Lamb; Jameed/Dry yogurt; Basmati rice; Shrak flatbread; Turmeric; Allspice; Cinnamon; Pine nuts; Almonds; Ghee,1kg; 250g; 500g; 2; 1 tsp; 1/2 tsp; 1/2 tsp; 30g; 30g; 50g,LAMB; MAIN; RICE
+Jamaica,Curry Goat,Goat meat; Curry powder; Potatoes; Ginger; Garlic; Thyme; Scotch bonnet; Onion; Coconut milk; Salt,1kg; 4 tbsp; 300g; 20g; 4 cloves; 1 tbsp; 1; 1; 200ml; 1 tsp,CURRIES; DAIRY; MAIN; MEAT
+Japan,Sushi (Nigiri),Sushi rice; Rice vinegar; Sugar; Raw fish; Wasabi; Soy sauce; Ginger; Salt; Nori,300g; 2 tbsp; 1 tbsp; 200g; 1 tsp; 30ml; 20g; 1 tsp; 1 sheet,FISH; GLUTEN; MAIN; SOY
+Japan,Ramen,Ramen noodles; Pork broth; Soy sauce; Chashu pork; Soft-boiled egg; Nori; Green onion; Menma; Garlic; Ginger,2 servings; 1L; 2 tbsp; 4 slices; 2; 2 sheets; 2; 30g; 1 tsp; 1 tsp,EGGS; GLUTEN; MAIN; PORK; SOY
+Japan,Tempura,Shrimp; Sweet potato; Ice water; Cake flour; Egg; Frying oil; Dashi stock; Soy sauce; Mirin; Ginger,8; 1; 200ml; 150g; 1; 500ml; 100ml; 1 tbsp; 1 tbsp; 1 tsp,CRUSTACEANS; EGGS; FRIED; GLUTEN; MAIN; SOY
+Jordan,Mansaf,Lamb; Jameed/Dry yogurt; Basmati rice; Shrak flatbread; Turmeric; Allspice; Cinnamon; Pine nuts; Almonds; Ghee,1kg; 250g; 500g; 2; 1 tsp; 1/2 tsp; 1/2 tsp; 30g; 30g; 50g,DAIRY; GLUTEN; LAMB; MAIN; RICE; TREE_NUTS
 Jordan,Maqluba,Chicken; Basmati rice; Eggplant; Cauliflower; Potatoes; Turmeric; Allspice; Cinnamon; Garlic; Onion,1kg; 500g; 1; 1/2; 2; 1 tsp; 1 tsp; 1/2 tsp; 4 cloves; 1,MAIN; POULTRY
-Jordan,Musakhan,Chicken; Sumac; Red onion; Taboon bread; Pine nuts; Olive oil; Allspice; Cinnamon; Black pepper; Salt,1kg; 4 tbsp; 1kg; 4; 50g; 200ml; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tsp,MAIN; POULTRY
+Jordan,Musakhan,Chicken; Sumac; Red onion; Taboon bread; Pine nuts; Olive oil; Allspice; Cinnamon; Black pepper; Salt,1kg; 4 tbsp; 1kg; 4; 50g; 200ml; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tsp,GLUTEN; MAIN; POULTRY; TREE_NUTS
 Kazakhstan,Beshbarmak (Lamb),Lamb; Beshbarmak (base),200g; 1 serving,LAMB; SIDES
 Kazakhstan,Beshbarmak (Beef),Beef; Beshbarmak (base),200g; 1 serving,BEEF; SIDES
-Kazakhstan,Baursak,Flour; Milk; Yeast; Butter; Sugar; Salt; Egg; Oil for frying,500g; 250ml; 1 tsp; 50g; 1 tbsp; 1 tsp; 1; 1L,BREADS; MAIN; VEGETARIAN
+Kazakhstan,Baursak,Flour; Milk; Yeast; Butter; Sugar; Salt; Egg; Oil for frying,500g; 250ml; 1 tsp; 50g; 1 tbsp; 1 tsp; 1; 1L,BREADS; DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
 Kazakhstan,Kuyrdak,Lamb heart/liver/kidney; Potatoes; Onion; Garlic; Black pepper; Salt; Oil,1kg; 500g; 3; 3 cloves; 1 tsp; 1 tsp; 50ml,LAMB; MAIN
 Kenya,Nyama Choma (Goat),Goat meat; Nyama Choma (base),200g; 1 serving,MAIN; MEAT; GRILLED
 Kenya,Nyama Choma (Beef),Beef; Nyama Choma (base),200g; 1 serving,BEEF; GRILLED; MAIN
 Kenya,Ugali,Maize flour; Water; Salt,500g; 1L; 1/2 tsp,SIDES; VEGAN; VEGETARIAN
 Kenya,Sukuma Wiki,Collard greens; Tomatoes; Onion; Garlic; Cumin; Turmeric; Oil; Salt,500g; 2; 1; 2 cloves; 1/2 tsp; 1/4 tsp; 2 tbsp; 1 tsp,MAIN; VEGAN; VEGETARIAN
-Korea (South),Bibimbap,Rice; Beef; Spinach; Bean sprouts; Carrots; Shiitake; Egg; Gochujang; Sesame oil; Garlic,200g; 100g; 100g; 100g; 1; 4; 1; 2 tbsp; 1 tbsp; 1 tsp,BEEF; LEGUMES; MAIN
-Korea (South),Kimchi Jjigae,Kimchi; Pork belly; Tofu; Gochugaru; Garlic; Green onion; Ginger; Soy sauce; Sesame oil; Water,300g; 150g; 200g; 1 tbsp; 1 tsp; 2; 1/2 tsp; 1 tbsp; 1 tsp; 500ml,MAIN; PORK
-Korea (South),Bulgogi,Beef ribeye; Soy sauce; Sugar; Pear juice; Sesame oil; Garlic; Ginger; Green onion; Black pepper; Sesame seeds,500g; 4 tbsp; 2 tbsp; 3 tbsp; 1 tbsp; 3 cloves; 1 tsp; 2; 1/2 tsp; 1 tsp,BEEF; GRILLED; MAIN
+Korea (South),Bibimbap,Rice; Beef; Spinach; Bean sprouts; Carrots; Shiitake; Egg; Gochujang; Sesame oil; Garlic,200g; 100g; 100g; 100g; 1; 4; 1; 2 tbsp; 1 tbsp; 1 tsp,BEEF; EGGS; LEGUMES; MAIN; SESAME
+Korea (South),Kimchi Jjigae,Kimchi; Pork belly; Tofu; Gochugaru; Garlic; Green onion; Ginger; Soy sauce; Sesame oil; Water,300g; 150g; 200g; 1 tbsp; 1 tsp; 2; 1/2 tsp; 1 tbsp; 1 tsp; 500ml,GLUTEN; MAIN; PORK; SESAME; SOY
+Korea (South),Bulgogi,Beef ribeye; Soy sauce; Sugar; Pear juice; Sesame oil; Garlic; Ginger; Green onion; Black pepper; Sesame seeds,500g; 4 tbsp; 2 tbsp; 3 tbsp; 1 tbsp; 3 cloves; 1 tsp; 2; 1/2 tsp; 1 tsp,BEEF; GLUTEN; GRILLED; MAIN; SESAME; SOY
 Kuwait,Machboos,Chicken; Basmati rice; Baharat; Dried lime; Turmeric; Cardamom; Cloves; Cinnamon; Onion; Garlic,1kg; 500g; 1 tbsp; 2; 1 tsp; 5; 3; 1 stick; 2; 3 cloves,MAIN; POULTRY; RICE
 Kuwait,Mutabbaq Samak,White fish; Rice; Baharat; Turmeric; Garlic; Onion; Cilantro; Dried lime; Black pepper; Salt,1kg; 500g; 1 tbsp; 1 tsp; 4 cloves; 2; 1/2 cup; 1; 1/2 tsp; 1 tsp,LEAN_FISH; MAIN
-Kuwait,Jareesh,Crushed wheat; Chicken; Yogurt; Onion; Cumin; Cinnamon; Ghee; Salt,500g; 500g; 400ml; 2; 1 tsp; 1/2 tsp; 50g; 1 tsp,POULTRY; SIDES
-Kyrgyzstan,Beshbarmak,Lamb; Pasta sheets; Onion; Black pepper; Salt; Parsley,1kg; 300g; 2; 1 tsp; 1 tsp; 1 tbsp,LAMB; SIDES
-Kyrgyzstan,Lagman,Beef; Hand-pulled noodles; Bell pepper; Radish; Garlic; Ginger; Tomato paste; Cumin; Star anise; Cilantro,500g; 500g; 2; 1; 4 cloves; 1 tsp; 2 tbsp; 1 tsp; 1; 2 tbsp,BEEF; MAIN; PASTA
+Kuwait,Jareesh,Crushed wheat; Chicken; Yogurt; Onion; Cumin; Cinnamon; Ghee; Salt,500g; 500g; 400ml; 2; 1 tsp; 1/2 tsp; 50g; 1 tsp,DAIRY; GLUTEN; POULTRY; SIDES
+Kyrgyzstan,Beshbarmak,Lamb; Pasta sheets; Onion; Black pepper; Salt; Parsley,1kg; 300g; 2; 1 tsp; 1 tsp; 1 tbsp,GLUTEN; LAMB; SIDES
+Kyrgyzstan,Lagman,Beef; Hand-pulled noodles; Bell pepper; Radish; Garlic; Ginger; Tomato paste; Cumin; Star anise; Cilantro,500g; 500g; 2; 1; 4 cloves; 1 tsp; 2 tbsp; 1 tsp; 1; 2 tbsp,BEEF; GLUTEN; MAIN; PASTA
 Kyrgyzstan,Shorpo,Lamb; Potatoes; Carrots; Onion; Bell pepper; Garlic; Dill; Parsley; Salt; Peppercorns,1kg; 3; 2; 1; 1; 2 cloves; 1 tbsp; 1 tbsp; 2 tsp; 5,LAMB; MAIN; SOUPS
 Laos,Larb,Ground chicken/beef; Toasted rice powder; Fish sauce; Lime juice; Mint; Cilantro; Scallions; Chili flakes; Garlic; Galangal,500g; 2 tbsp; 3 tbsp; 3 tbsp; 1/2 cup; 1/2 cup; 2; 1 tbsp; 2 cloves; 1 tsp,BEEF; MAIN; POULTRY
-Laos,Tam Mak Hoong,Green papaya; Bird's eye chili; Garlic; Fish sauce; Lime juice; Palm sugar; Tomatoes; Shrimp paste; Peanuts; Salt,500g; 4; 3 cloves; 2 tbsp; 2 tbsp; 1 tbsp; 3; 1 tsp; 2 tbsp; 1/2 tsp,CRUSTACEANS; MAIN
+Laos,Tam Mak Hoong,Green papaya; Bird's eye chili; Garlic; Fish sauce; Lime juice; Palm sugar; Tomatoes; Shrimp paste; Peanuts; Salt,500g; 4; 3 cloves; 2 tbsp; 2 tbsp; 1 tbsp; 3; 1 tsp; 2 tbsp; 1/2 tsp,CRUSTACEANS; MAIN; PEANUTS
 Laos,Khao Piak Sen,Rice noodles; Chicken; Galangal; Lemongrass; Kaffir lime leaves; Fish sauce; Fried garlic; Scallions; Cilantro; Ginger,400g; 500g; 1 tsp; 1; 2; 2 tbsp; 1 tbsp; 2; 1/4 cup; 1 tsp,MAIN; POULTRY
-Latvia,Grey Peas with Bacon,Grey peas; Smoked bacon; Onion; Salt; Black pepper; Kefir,500g; 200g; 2; 1 tsp; 1/2 tsp; for serving,MAIN; PORK
-Latvia,Kartupeļu pankūkas,Potatoes; Onion; Egg; Flour; Salt; Black pepper; Sour cream; Oil for frying,1kg; 1; 1; 2 tbsp; 1 tsp; 1/4 tsp; 100g; 50ml,MAIN; VEGETARIAN
-Latvia,Aukstā zupa,Beets; Kefir; Cucumber; Hard-boiled eggs; Bologna sausage; Dill; Scallions; Mustard; Vinegar; Salt,300g; 1L; 2; 3; 200g; 1/2 cup; 1/2 cup; 1 tsp; 1 tsp; 1 tsp,MAIN; PORK
-Lebanon,Kibbeh,Ground lamb; Bulgur; Onion; Pine nuts; Allspice; Cinnamon; Cumin; Mint; Olive oil; Salt,500g; 300g; 2; 50g; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tbsp; 2 tbsp; 1 tsp,LAMB; STARTERS
-Lebanon,Tabbouleh,Parsley; Mint; Bulgur; Tomatoes; Scallions; Lemon juice; Olive oil; Allspice; Salt; Black pepper,3 bunches; 1/2 cup; 50g; 3; 4; 100ml; 100ml; 1/4 tsp; 1 tsp; 1/2 tsp,SALADS; STARTERS; VEGAN; VEGETARIAN
-Lebanon,Hummus,Chickpeas; Tahini; Lemon juice; Garlic; Olive oil; Cumin; Salt; Paprika; Parsley,400g; 150g; 50ml; 2 cloves; 30ml; 1/2 tsp; 1 tsp; pinch; 1 tbsp,DIPS; LEGUMES; STARTERS; VEGAN; VEGETARIAN
+Latvia,Grey Peas with Bacon,Grey peas; Smoked bacon; Onion; Salt; Black pepper; Kefir,500g; 200g; 2; 1 tsp; 1/2 tsp; for serving,DAIRY; MAIN; PORK
+Latvia,Kartupeļu pankūkas,Potatoes; Onion; Egg; Flour; Salt; Black pepper; Sour cream; Oil for frying,1kg; 1; 1; 2 tbsp; 1 tsp; 1/4 tsp; 100g; 50ml,DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
+Latvia,Aukstā zupa,Beets; Kefir; Cucumber; Hard-boiled eggs; Bologna sausage; Dill; Scallions; Mustard; Vinegar; Salt,300g; 1L; 2; 3; 200g; 1/2 cup; 1/2 cup; 1 tsp; 1 tsp; 1 tsp,DAIRY; EGGS; MAIN; MUSTARD; PORK
+Lebanon,Kibbeh,Ground lamb; Bulgur; Onion; Pine nuts; Allspice; Cinnamon; Cumin; Mint; Olive oil; Salt,500g; 300g; 2; 50g; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tbsp; 2 tbsp; 1 tsp,GLUTEN; LAMB; STARTERS; TREE_NUTS
+Lebanon,Tabbouleh,Parsley; Mint; Bulgur; Tomatoes; Scallions; Lemon juice; Olive oil; Allspice; Salt; Black pepper,3 bunches; 1/2 cup; 50g; 3; 4; 100ml; 100ml; 1/4 tsp; 1 tsp; 1/2 tsp,GLUTEN; SALADS; STARTERS; VEGAN; VEGETARIAN
+Lebanon,Hummus,Chickpeas; Tahini; Lemon juice; Garlic; Olive oil; Cumin; Salt; Paprika; Parsley,400g; 150g; 50ml; 2 cloves; 30ml; 1/2 tsp; 1 tsp; pinch; 1 tbsp,DIPS; LEGUMES; SESAME; STARTERS; VEGAN; VEGETARIAN
 Lesotho,Pap-pap,Maize meal; Water; Salt,500g; 1L; 1 tsp,SIDES; VEGAN; VEGETARIAN
-Lesotho,Motoho,Sorghum flour; Water; Sugar,500g; 2L; 100g,DESSERTS; VEGAN; VEGETARIAN
-Lesotho,Oxtail Stew,Oxtail; Onion; Carrots; Celery; Garlic; Tomato paste; Beef stock; Thyme; Rosemary; Salt,1kg; 2; 2; 1; 3 cloves; 2 tbsp; 1L; 1 tsp; 1 tsp; 1 tsp,BEEF; MAIN; SOUPS
+Lesotho,Motoho,Sorghum flour; Water; Sugar,500g; 2L; 100g,DESSERTS; GLUTEN; VEGAN; VEGETARIAN
+Lesotho,Oxtail Stew,Oxtail; Onion; Carrots; Celery; Garlic; Tomato paste; Beef stock; Thyme; Rosemary; Salt,1kg; 2; 2; 1; 3 cloves; 2 tbsp; 1L; 1 tsp; 1 tsp; 1 tsp,BEEF; CELERY; MAIN; SOUPS
 Liberia,Jollof Rice,Rice; Chicken; Tomato paste; Onion; Bell pepper; Scotch bonnet; Thyme; Garlic; Ginger; Oil,500g; 500g; 3 tbsp; 2; 1; 1; 1 tsp; 2 cloves; 1 tsp; 100ml,POULTRY; RICE; SIDES; SOUPS
-Liberia,Cassava Leaf Soup,Cassava leaves; Palm oil; Smoked fish; Beef; Peanut butter; Onion; Garlic; Chili pepper; Salt,500g; 100ml; 200g; 200g; 2 tbsp; 1; 2 cloves; 1; 1 tsp,BEEF; LEAN_FISH; MAIN; SOUPS
-Liberia,Palm Butter (Fish),Fish; Palm Butter (base),150g; 1 serving,FISH; MAIN
-Liberia,Palm Butter (Chicken),Chicken; Palm Butter (base),150g; 1 serving,MAIN; POULTRY
-Libya,Couscous,Couscous; Lamb; Chickpeas; Ras el Hanout; Tomato paste; Onion; Cinnamon; Ginger; Turmeric; Salt,500g; 500g; 200g; 1 tbsp; 2 tbsp; 1; 1/2 tsp; 1 tsp; 1/2 tsp; 1 tsp,LAMB; LEGUMES; MAIN
-Libya,Bazeen,Barley flour; Lamb stew; Tomato paste; Turmeric; Chili powder; Garlic; Hard-boiled eggs; Oil; Salt,1kg; 500g; 3 tbsp; 1 tsp; 1 tsp; 3 cloves; 4; 50ml; 1 tsp,BREADS; LAMB; MAIN
-Libya,Asida,Wheat flour; Butter; Honey or Date syrup; Salt; Water,500g; 100g; 200ml; 1/2 tsp; 1L,BREADS; DESSERTS; VEGETARIAN
-Lithuania,Cepelinai,Potatoes; Ground pork; Onion; Sour cream; Bacon; Dried marjoram; Salt; Black pepper; Cornstarch,2kg; 500g; 2; 200ml; 100g; 1 tsp; 2 tsp; 1 tsp; 1 tbsp,MAIN; PORK
-Lithuania,Šaltibarščiai,Pickled beets; Kefir; Cucumber; Hard-boiled eggs; Scallions; Dill; Salt; Boiled potatoes,500g; 1L; 2; 2; 1/2 cup; 1/2 cup; 1 tsp; 4,MAIN; VEGETARIAN
-Lithuania,Kugelis,Potatoes; Bacon; Onion; Eggs; Milk; Salt; Black pepper; Marjoram,2kg; 200g; 2; 3; 200ml; 1.5 tsp; 1/2 tsp; 1/2 tsp,MAIN; PORK
-Luxembourg,Judd mat Gaardebounen,Smoked pork collar; Broad beans; Onion; Flour; Butter; Heavy cream; Savory herb; Parsley; Black pepper; Salt,1.5kg; 500g; 1; 2 tbsp; 30g; 100ml; 1 tsp; 1 tbsp; 1/2 tsp; 1/2 tsp,LEGUMES; MAIN; PORK
-Luxembourg,Bouneschlupp,Green beans; Potatoes; Bacon; Onion; Sour cream; Flour; Savory herb; Parsley; Salt; Black pepper,500g; 3; 100g; 1; 100ml; 1 tbsp; 1/2 tsp; 1 tbsp; 1 tsp; 1/2 tsp,BREADS; LEGUMES; MAIN; PORK
-Luxembourg,Gromperekichelcher,Potatoes; Onion; Parsley; Eggs; Flour; Nutmeg; Salt; Black pepper; Oil for frying,1kg; 1; 1/2 cup; 2; 2 tbsp; 1/4 tsp; 1 tsp; 1/2 tsp; 200ml,MAIN; VEGETARIAN
-Madagascar,Romazava,Beef; Pork; Chicken; Ginger; Garlic; Onion; Tomatoes; Spilanthes/Mafane greens; Mustard greens; Salt,500g; 200g; 300g; 2 tbsp; 3 cloves; 1; 2; 200g; 200g; 1 tsp,BEEF; MAIN; PORK; POULTRY
-Madagascar,Ravitoto,Cassava leaves; Pork belly; Garlic; Ginger; Onion; Salt; Oil; Coconut milk,500g; 500g; 4 cloves; 1 tbsp; 1; 1 tsp; 2 tbsp; 200ml,MAIN; PORK
-Madagascar,Lasary,Green beans; Carrots; Cabbage; Vinegar; Curry powder; Mustard; Oil; Onion; Salt,200g; 200g; 200g; 3 tbsp; 1 tsp; 1 tsp; 2 tbsp; 1; 1 tsp,LEGUMES; STARTERS; VEGAN; VEGETARIAN
+Liberia,Cassava Leaf Soup,Cassava leaves; Palm oil; Smoked fish; Beef; Peanut butter; Onion; Garlic; Chili pepper; Salt,500g; 100ml; 200g; 200g; 2 tbsp; 1; 2 cloves; 1; 1 tsp,BEEF; LEAN_FISH; MAIN; PEANUTS; SOUPS
+Liberia,Palm Butter (Fish),Fish; Palm Butter (base),150g; 1 serving,DAIRY; FISH; MAIN
+Liberia,Palm Butter (Chicken),Chicken; Palm Butter (base),150g; 1 serving,DAIRY; MAIN; POULTRY
+Libya,Couscous,Couscous; Lamb; Chickpeas; Ras el Hanout; Tomato paste; Onion; Cinnamon; Ginger; Turmeric; Salt,500g; 500g; 200g; 1 tbsp; 2 tbsp; 1; 1/2 tsp; 1 tsp; 1/2 tsp; 1 tsp,GLUTEN; LAMB; LEGUMES; MAIN
+Libya,Bazeen,Barley flour; Lamb stew; Tomato paste; Turmeric; Chili powder; Garlic; Hard-boiled eggs; Oil; Salt,1kg; 500g; 3 tbsp; 1 tsp; 1 tsp; 3 cloves; 4; 50ml; 1 tsp,BREADS; EGGS; GLUTEN; LAMB; MAIN
+Libya,Asida,Wheat flour; Butter; Honey or Date syrup; Salt; Water,500g; 100g; 200ml; 1/2 tsp; 1L,BREADS; DAIRY; DESSERTS; GLUTEN; VEGETARIAN
+Lithuania,Cepelinai,Potatoes; Ground pork; Onion; Sour cream; Bacon; Dried marjoram; Salt; Black pepper; Cornstarch,2kg; 500g; 2; 200ml; 100g; 1 tsp; 2 tsp; 1 tsp; 1 tbsp,DAIRY; MAIN; PORK
+Lithuania,Šaltibarščiai,Pickled beets; Kefir; Cucumber; Hard-boiled eggs; Scallions; Dill; Salt; Boiled potatoes,500g; 1L; 2; 2; 1/2 cup; 1/2 cup; 1 tsp; 4,DAIRY; EGGS; MAIN; VEGETARIAN
+Lithuania,Kugelis,Potatoes; Bacon; Onion; Eggs; Milk; Salt; Black pepper; Marjoram,2kg; 200g; 2; 3; 200ml; 1.5 tsp; 1/2 tsp; 1/2 tsp,DAIRY; EGGS; MAIN; PORK
+Luxembourg,Judd mat Gaardebounen,Smoked pork collar; Broad beans; Onion; Flour; Butter; Heavy cream; Savory herb; Parsley; Black pepper; Salt,1.5kg; 500g; 1; 2 tbsp; 30g; 100ml; 1 tsp; 1 tbsp; 1/2 tsp; 1/2 tsp,DAIRY; GLUTEN; LEGUMES; MAIN; PORK
+Luxembourg,Bouneschlupp,Green beans; Potatoes; Bacon; Onion; Sour cream; Flour; Savory herb; Parsley; Salt; Black pepper,500g; 3; 100g; 1; 100ml; 1 tbsp; 1/2 tsp; 1 tbsp; 1 tsp; 1/2 tsp,BREADS; DAIRY; GLUTEN; LEGUMES; MAIN; PORK
+Luxembourg,Gromperekichelcher,Potatoes; Onion; Parsley; Eggs; Flour; Nutmeg; Salt; Black pepper; Oil for frying,1kg; 1; 1/2 cup; 2; 2 tbsp; 1/4 tsp; 1 tsp; 1/2 tsp; 200ml,EGGS; GLUTEN; MAIN; VEGETARIAN
+Madagascar,Romazava,Beef; Pork; Chicken; Ginger; Garlic; Onion; Tomatoes; Spilanthes/Mafane greens; Mustard greens; Salt,500g; 200g; 300g; 2 tbsp; 3 cloves; 1; 2; 200g; 200g; 1 tsp,BEEF; MAIN; MUSTARD; PORK; POULTRY
+Madagascar,Ravitoto,Cassava leaves; Pork belly; Garlic; Ginger; Onion; Salt; Oil; Coconut milk,500g; 500g; 4 cloves; 1 tbsp; 1; 1 tsp; 2 tbsp; 200ml,DAIRY; MAIN; PORK
+Madagascar,Lasary,Green beans; Carrots; Cabbage; Vinegar; Curry powder; Mustard; Oil; Onion; Salt,200g; 200g; 200g; 3 tbsp; 1 tsp; 1 tsp; 2 tbsp; 1; 1 tsp,LEGUMES; MUSTARD; STARTERS; VEGAN; VEGETARIAN
 Malawi,Nsima,Maize flour; Water; Salt,500g; 1L; 1/2 tsp,SIDES; VEGAN; VEGETARIAN
 Malawi,Chambo,Chambo fish; Lemon juice; Onion; Tomato; Curry powder; Garlic; Ginger; Oil; Salt,2; 2 tbsp; 1; 2; 1 tsp; 2 cloves; 1 tsp; 50ml; 1 tsp,MAIN; LEAN_FISH
 Malawi,Kachumbari,Tomatoes; Red onion; Chili pepper; Cilantro; Lime juice; Salt; Black pepper,3; 1; 1; 2 tbsp; 2 tbsp; 1/2 tsp; 1/4 tsp,SALADS; STARTERS; VEGAN; VEGETARIAN
-Malaysia,Nasi Lemak,Jasmine rice; Coconut milk; Pandan leaves; Ginger; Salt; Anchovies; Peanuts; Cucumber; Hard-boiled egg; Sambal paste,500g; 400ml; 2; 20g; 1 tsp; 50g; 50g; 1; 2; 4 tbsp,MAIN; RICE; VEGETARIAN
-Malaysia,Laksa,Rice noodles; Coconut milk; Shrimp; Fish balls; Laksa paste; Bean sprouts; Tofu puffs; Laksa leaf/Vietnamese mint; Lemongrass; Chili,400g; 500ml; 200g; 10; 4 tbsp; 100g; 6; 1/4 cup; 1; 2,CRUSTACEANS; FISH; LEGUMES; MAIN; PASTA
+Malaysia,Nasi Lemak,Jasmine rice; Coconut milk; Pandan leaves; Ginger; Salt; Anchovies; Peanuts; Cucumber; Hard-boiled egg; Sambal paste,500g; 400ml; 2; 20g; 1 tsp; 50g; 50g; 1; 2; 4 tbsp,DAIRY; EGGS; MAIN; PEANUTS; RICE; VEGETARIAN
+Malaysia,Laksa,Rice noodles; Coconut milk; Shrimp; Fish balls; Laksa paste; Bean sprouts; Tofu puffs; Laksa leaf/Vietnamese mint; Lemongrass; Chili,400g; 500ml; 200g; 10; 4 tbsp; 100g; 6; 1/4 cup; 1; 2,CRUSTACEANS; DAIRY; FISH; LEGUMES; MAIN; PASTA; SOY
 Malaysia,Satay (Chicken),Chicken; Satay (base),150g; 1 serving,GRILLED; MAIN; POULTRY
 Malaysia,Satay (Beef),Beef; Satay (base),150g; 1 serving,BEEF; GRILLED; MAIN
-Maldives,Mas Huni,Smoked tuna; Grated coconut; Onion; Lime; Chili; Salt; Roshi flatbread,200g; 200g; 1; 2; 2; 1/2 tsp; 4,LEAN_FISH; STARTERS
+Maldives,Mas Huni,Smoked tuna; Grated coconut; Onion; Lime; Chili; Salt; Roshi flatbread,200g; 200g; 1; 2; 2; 1/2 tsp; 4,GLUTEN; LEAN_FISH; STARTERS
 Maldives,Garudhiya,Tuna chunks; Water; Salt; Chili; Curry leaves; Onion; Lime,500g; 1.5L; 2 tsp; 2; 10; 1; 2,LEAN_FISH; MAIN
-Maldives,Kulhimas,Tuna; Onion; Garlic; Ginger; Chili; Curry leaves; Turmeric; Chili powder; Coconut milk; Salt,500g; 2; 3 cloves; 1 tsp; 3; 10; 1/2 tsp; 1 tsp; 100ml; 1 tsp,CURRIES; LEAN_FISH; MAIN
-Mali,Tigadeguena,Chicken; Peanut butter; Tomato paste; Onion; Garlic; Ginger; Chili pepper; Oil; Salt,1kg; 200g; 2 tbsp; 1; 3 cloves; 1 tsp; 1; 3 tbsp; 1 tsp,MAIN; POULTRY; SOUPS
-Mali,Tô,Millet flour; Water; Salt,500g; 1L; 1 tsp,SIDES; VEGAN; VEGETARIAN
+Maldives,Kulhimas,Tuna; Onion; Garlic; Ginger; Chili; Curry leaves; Turmeric; Chili powder; Coconut milk; Salt,500g; 2; 3 cloves; 1 tsp; 3; 10; 1/2 tsp; 1 tsp; 100ml; 1 tsp,CURRIES; DAIRY; LEAN_FISH; MAIN
+Mali,Tigadeguena,Chicken; Peanut butter; Tomato paste; Onion; Garlic; Ginger; Chili pepper; Oil; Salt,1kg; 200g; 2 tbsp; 1; 3 cloves; 1 tsp; 1; 3 tbsp; 1 tsp,MAIN; PEANUTS; POULTRY; SOUPS
+Mali,Tô,Millet flour; Water; Salt,500g; 1L; 1 tsp,GLUTEN; SIDES; VEGAN; VEGETARIAN
 Mali,Riz au Gras,Rice; Lamb; Tomato paste; Onion; Garlic; Chili; Oil; Salt; Thyme,500g; 500g; 3 tbsp; 2; 3 cloves; 1; 100ml; 1 tsp; 1/2 tsp,LAMB; MAIN; RICE
-Malta,Pastizzi,Phyllo pastry; Ricotta; Eggs; Parsley; Onion; Salt; Black pepper,500g; 400g; 2; 1 tbsp; 1; 1 tsp; 1/2 tsp,BREADS; STARTERS; VEGETARIAN
-Malta,Bragioli,Beef; Bacon; Hard-boiled eggs; Breadcrumbs; Garlic; Parsley; Red wine; Tomato paste; Bay leaf; Olive oil,4 slices; 4 strips; 2; 50g; 2 cloves; 1 tbsp; 200ml; 1 tbsp; 1; 2 tbsp,BEEF; MAIN; PORK
-Malta,Stuffat tal-Fenek,Rabbit; Red wine; Garlic; Onion; Carrots; Tomato paste; Bay leaf; Peppercorns; Olive oil; Salt,1kg; 250ml; 4 cloves; 1; 2; 2 tbsp; 2; 5; 50ml; 1 tsp,MAIN; SOUPS; WHITE_MEAT
+Malta,Pastizzi,Phyllo pastry; Ricotta; Eggs; Parsley; Onion; Salt; Black pepper,500g; 400g; 2; 1 tbsp; 1; 1 tsp; 1/2 tsp,BREADS; DAIRY; EGGS; GLUTEN; STARTERS; VEGETARIAN
+Malta,Bragioli,Beef; Bacon; Hard-boiled eggs; Breadcrumbs; Garlic; Parsley; Red wine; Tomato paste; Bay leaf; Olive oil,4 slices; 4 strips; 2; 50g; 2 cloves; 1 tbsp; 200ml; 1 tbsp; 1; 2 tbsp,BEEF; EGGS; GLUTEN; MAIN; PORK; SULPHITES
+Malta,Stuffat tal-Fenek,Rabbit; Red wine; Garlic; Onion; Carrots; Tomato paste; Bay leaf; Peppercorns; Olive oil; Salt,1kg; 250ml; 4 cloves; 1; 2; 2 tbsp; 2; 5; 50ml; 1 tsp,MAIN; SOUPS; SULPHITES; WHITE_MEAT
 Mauritania,Thiéboudienne,Rice; Whole fish; Tomato paste; Onion; Garlic; Parsley; Chili; Oil; Salt; Lime,500g; 1kg; 3 tbsp; 2; 3 cloves; 1/2 cup; 1; 100ml; 1 tsp; 1,LEAN_FISH; MAIN; RICE
-Mauritania,Mechoui,Whole lamb; Garlic; Cumin; Coriander; Butter; Salt; Lemon,2kg; 6 cloves; 2 tsp; 2 tsp; 100g; 2 tsp; 2,GRILLED; LAMB; MAIN
+Mauritania,Mechoui,Whole lamb; Garlic; Cumin; Coriander; Butter; Salt; Lemon,2kg; 6 cloves; 2 tsp; 2 tsp; 100g; 2 tsp; 2,DAIRY; GRILLED; LAMB; MAIN
 Mauritania,Haraïssa,Red lentils; Tomatoes; Onion; Garlic; Cumin; Chili powder; Oil; Salt; Lemon,500g; 2; 1; 2 cloves; 1 tsp; 1 tsp; 3 tbsp; 1 tsp; 1,LEGUMES; MAIN; SOUPS; VEGETARIAN
-Mauritius,Dholl Puri,Yellow split peas; Flour; Turmeric; Oil; Salt; Butter; Water,300g; 500g; 1 tsp; 3 tbsp; 1 tsp; 2 tbsp; 300ml,BREADS; LEGUMES; MAIN; VEGETARIAN
-Mauritius,Biryani,Basmati rice; Chicken; Yogurt; Onion; Ghee; Saffron; Biryani spice mix; Ginger-garlic paste; Tomatoes; Mint,500g; 500g; 200g; 3; 100g; pinch; 3 tbsp; 2 tbsp; 2; 1/2 cup,MAIN; POULTRY; RICE
-Mauritius,Daube de Poulet,Chicken; Garlic; Ginger; Thyme; Tomatoes; Onion; Soy sauce; Oil; Salt; Black pepper,1kg; 3 cloves; 1 tbsp; 1 tsp; 3; 1; 2 tbsp; 3 tbsp; 1 tsp; 1/2 tsp,MAIN; POULTRY
-Mexico,Tacos al Pastor,Pork shoulder; Achiote paste; Pineapple; Onion; Cilantro; Lime; Corn tortillas; Chili sauce; Garlic; Cumin,1kg; 3 tbsp; 200g; 1; 1/2 cup; 2; 12; 100ml; 3 cloves; 1 tsp,GRILLED; MAIN; PORK
-Mexico,Mole Poblano,Chicken; Dried chilies; Dark chocolate; Pumpkin seeds; Sesame seeds; Tomatoes; Onion; Garlic; Cinnamon; Cumin,1kg; 5; 50g; 50g; 3 tbsp; 3; 1; 4 cloves; 1/2 tsp; 1 tsp,CURRIES; MAIN; POULTRY
-Mexico,Chiles en Nogada,Poblano chilies; Ground pork; Apple; Pear; Raisins; Almonds; Walnut cream; Pomegranate; Parsley; Cinnamon,6; 300g; 1; 1; 50g; 50g; 200ml; 100g; 1/4 cup; 1/2 tsp,MAIN; PORK
+Mauritius,Dholl Puri,Yellow split peas; Flour; Turmeric; Oil; Salt; Butter; Water,300g; 500g; 1 tsp; 3 tbsp; 1 tsp; 2 tbsp; 300ml,BREADS; DAIRY; GLUTEN; LEGUMES; MAIN; VEGETARIAN
+Mauritius,Biryani,Basmati rice; Chicken; Yogurt; Onion; Ghee; Saffron; Biryani spice mix; Ginger-garlic paste; Tomatoes; Mint,500g; 500g; 200g; 3; 100g; pinch; 3 tbsp; 2 tbsp; 2; 1/2 cup,DAIRY; MAIN; POULTRY; RICE
+Mauritius,Daube de Poulet,Chicken; Garlic; Ginger; Thyme; Tomatoes; Onion; Soy sauce; Oil; Salt; Black pepper,1kg; 3 cloves; 1 tbsp; 1 tsp; 3; 1; 2 tbsp; 3 tbsp; 1 tsp; 1/2 tsp,GLUTEN; MAIN; POULTRY; SOY
+Mexico,Tacos al Pastor,Pork shoulder; Achiote paste; Pineapple; Onion; Cilantro; Lime; Corn tortillas; Chili sauce; Garlic; Cumin,1kg; 3 tbsp; 200g; 1; 1/2 cup; 2; 12; 100ml; 3 cloves; 1 tsp,GLUTEN; GRILLED; MAIN; PORK
+Mexico,Mole Poblano,Chicken; Dried chilies; Dark chocolate; Pumpkin seeds; Sesame seeds; Tomatoes; Onion; Garlic; Cinnamon; Cumin,1kg; 5; 50g; 50g; 3 tbsp; 3; 1; 4 cloves; 1/2 tsp; 1 tsp,CURRIES; MAIN; POULTRY; SESAME
+Mexico,Chiles en Nogada,Poblano chilies; Ground pork; Apple; Pear; Raisins; Almonds; Walnut cream; Pomegranate; Parsley; Cinnamon,6; 300g; 1; 1; 50g; 50g; 200ml; 100g; 1/4 cup; 1/2 tsp,DAIRY; MAIN; PORK; SULPHITES; TREE_NUTS
 Mexico,Pozole Rojo,Hominy corn; Pork shoulder; Dried guajillo chilies; Garlic; Onion; Oregano; Lettuce; Radishes; Lime; Tostadas,500g; 500g; 5; 4 cloves; 1; 2 tsp; 200g; 100g; 2; 8,MAIN; PORK; SOUPS
 Mexico,Tamales,Masa harina; Lard/Shortening; Pork; Salsa roja; Corn husks; Baking powder; Salt; Chicken broth; Cumin; Garlic,500g; 150g; 500g; 200ml; 20; 1 tsp; 1 tsp; 500ml; 1 tsp; 3 cloves,BREADS; MAIN; PORK
-Mexico,Enchiladas,Corn tortillas; Chicken; Chili sauce; Onion; Sour cream; Cheese; Cilantro; Garlic; Cumin; Oil,8; 500g; 300ml; 1; 150g; 150g; 1/4 cup; 2 cloves; 1 tsp; 3 tbsp,MAIN; POULTRY
+Mexico,Enchiladas,Corn tortillas; Chicken; Chili sauce; Onion; Sour cream; Cheese; Cilantro; Garlic; Cumin; Oil,8; 500g; 300ml; 1; 150g; 150g; 1/4 cup; 2 cloves; 1 tsp; 3 tbsp,DAIRY; GLUTEN; MAIN; POULTRY
 Mexico,Guacamole,Avocado; Lime juice; Cilantro; Onion; Tomato; Salt; Jalapeño,3; 2 tbsp; 1/4 cup; 1/2; 1; 1 tsp; 1,DIPS; GLUTEN_FREE; STARTERS; VEGAN; VEGETARIAN
-Moldova,Mămăligă,Cornmeal; Water; Salt; Butter; Sour cream,500g; 1L; 1 tsp; 50g; 100g,SIDES; VEGETARIAN
+Moldova,Mămăligă,Cornmeal; Water; Salt; Butter; Sour cream,500g; 1L; 1 tsp; 50g; 100g,DAIRY; SIDES; VEGETARIAN
 Moldova,Sarmale,Ground pork; Ground beef; Rice; Sauerkraut; Tomato juice; Onion; Bacon; Thyme; Dill; Black pepper,400g; 200g; 100g; 500g; 500ml; 1; 100g; 1 tsp; 1 tbsp; 1/2 tsp,BEEF; MAIN; PORK
-Moldova,Zeamă,Chicken; Noodles; Onion; Carrots; Celery; Parsley; Lovage; Sour cream; Salt; Black pepper,1kg; 100g; 1; 2; 1; 1/4 cup; 1 tbsp; 100g; 1 tsp; 1/2 tsp,MAIN; PASTA; POULTRY; SOUPS
+Moldova,Zeamă,Chicken; Noodles; Onion; Carrots; Celery; Parsley; Lovage; Sour cream; Salt; Black pepper,1kg; 100g; 1; 2; 1; 1/4 cup; 1 tbsp; 100g; 1 tsp; 1/2 tsp,CELERY; DAIRY; GLUTEN; MAIN; PASTA; POULTRY; SOUPS
 Mongolia,Khorkhog,Lamb; Potatoes; Carrots; Onion; Salt; Black pepper; Water; Hot stones,1kg; 3; 2; 1; 1 tsp; 1/2 tsp; 500ml; several,GRILLED; LAMB; MAIN
-Mongolia,Tsuivan,Hand-pulled noodles; Beef; Cabbage; Carrots; Onion; Garlic; Oil; Salt; Soy sauce; Pepper,400g; 500g; 200g; 1; 1; 3 cloves; 3 tbsp; 1 tsp; 2 tbsp; 1/2 tsp,BEEF; MAIN; PASTA
-Mongolia,Buuz,Flour; Ground lamb; Onion; Garlic; Salt; Black pepper; Water,300g; 500g; 2; 2 cloves; 1 tsp; 1/2 tsp; 150ml,LAMB; MAIN; SNACKS
-Montenegro,Burek s Mesom,Phyllo pastry; Ground beef; Onion; Egg; Salt; Black pepper; Oil,500g; 500g; 1; 1; 1 tsp; 1/2 tsp; 100ml,BEEF; BREADS; MAIN
-Montenegro,Jagnjećina ispod Sača,Lamb; Potatoes; Onion; Garlic; Rosemary; White wine; Olive oil; Salt; Black pepper; Bay leaf,1.5kg; 1kg; 2; 4 cloves; 2 sprigs; 200ml; 50ml; 1 tsp; 1/2 tsp; 2,GRILLED; LAMB; MAIN
+Mongolia,Tsuivan,Hand-pulled noodles; Beef; Cabbage; Carrots; Onion; Garlic; Oil; Salt; Soy sauce; Pepper,400g; 500g; 200g; 1; 1; 3 cloves; 3 tbsp; 1 tsp; 2 tbsp; 1/2 tsp,BEEF; GLUTEN; MAIN; PASTA; SOY
+Mongolia,Buuz,Flour; Ground lamb; Onion; Garlic; Salt; Black pepper; Water,300g; 500g; 2; 2 cloves; 1 tsp; 1/2 tsp; 150ml,GLUTEN; LAMB; MAIN; SNACKS
+Montenegro,Burek s Mesom,Phyllo pastry; Ground beef; Onion; Egg; Salt; Black pepper; Oil,500g; 500g; 1; 1; 1 tsp; 1/2 tsp; 100ml,BEEF; BREADS; EGGS; GLUTEN; MAIN
+Montenegro,Jagnjećina ispod Sača,Lamb; Potatoes; Onion; Garlic; Rosemary; White wine; Olive oil; Salt; Black pepper; Bay leaf,1.5kg; 1kg; 2; 4 cloves; 2 sprigs; 200ml; 50ml; 1 tsp; 1/2 tsp; 2,GRILLED; LAMB; MAIN; SULPHITES
 Montenegro,Kačamak,Cornmeal; Potatoes; Kajmak/Cream; Cheese; Salt; Butter,400g; 500g; 100g; 100g; 1 tsp; 50g,DAIRY; MAIN; VEGETARIAN
 Morocco,Tagine with Lamb,Lamb shoulder; Preserved lemon; Olives; Onion; Garlic; Ras el Hanout; Ginger; Saffron; Cilantro; Oil,1.5kg; 1; 150g; 2; 4 cloves; 1 tbsp; 1 tsp; pinch; 1/2 cup; 50ml,LAMB; MAIN; SOUPS
-Morocco,Couscous Marocain,Couscous; Lamb; Chickpeas; Carrots; Zucchini; Turnips; Onion; Ras el Hanout; Saffron; Butter,500g; 500g; 200g; 2; 2; 2; 1; 1 tbsp; pinch; 50g,LAMB; LEGUMES; MAIN; RICE
-Morocco,Pastilla,Pigeon or chicken; Phyllo pastry; Almonds; Eggs; Onion; Cinnamon; Sugar; Smen butter; Parsley; Saffron,1kg; 500g; 200g; 4; 2; 1 tsp; 2 tbsp; 50g; 1/2 cup; pinch,BREADS; MAIN; POULTRY
-Morocco,Harira,Tomatoes; Lentils; Chickpeas; Lamb; Onion; Celery; Parsley; Cilantro; Turmeric; Saffron,500g; 200g; 200g; 300g; 1; 2; 1/2 cup; 1/2 cup; 1 tsp; pinch,LAMB; LEGUMES; MAIN; SOUPS
-Morocco,Merguez Tagine,Merguez sausage; Tomatoes; Eggs; Bell pepper; Onion; Garlic; Cumin; Paprika; Harissa; Cilantro,500g; 4; 4; 1; 1; 3 cloves; 1 tsp; 1 tsp; 1 tsp; 1/4 cup,LAMB; MAIN; PORK
+Morocco,Couscous Marocain,Couscous; Lamb; Chickpeas; Carrots; Zucchini; Turnips; Onion; Ras el Hanout; Saffron; Butter,500g; 500g; 200g; 2; 2; 2; 1; 1 tbsp; pinch; 50g,DAIRY; GLUTEN; LAMB; LEGUMES; MAIN; RICE
+Morocco,Pastilla,Pigeon or chicken; Phyllo pastry; Almonds; Eggs; Onion; Cinnamon; Sugar; Smen butter; Parsley; Saffron,1kg; 500g; 200g; 4; 2; 1 tsp; 2 tbsp; 50g; 1/2 cup; pinch,BREADS; DAIRY; EGGS; GLUTEN; MAIN; POULTRY; TREE_NUTS
+Morocco,Harira,Tomatoes; Lentils; Chickpeas; Lamb; Onion; Celery; Parsley; Cilantro; Turmeric; Saffron,500g; 200g; 200g; 300g; 1; 2; 1/2 cup; 1/2 cup; 1 tsp; pinch,CELERY; LAMB; LEGUMES; MAIN; SOUPS
+Morocco,Merguez Tagine,Merguez sausage; Tomatoes; Eggs; Bell pepper; Onion; Garlic; Cumin; Paprika; Harissa; Cilantro,500g; 4; 4; 1; 1; 3 cloves; 1 tsp; 1 tsp; 1 tsp; 1/4 cup,EGGS; LAMB; MAIN; PORK
 Mozambique,Piri Piri Chicken,Chicken; Piri piri chili; Garlic; Lemon juice; Olive oil; Paprika; Ginger; Oregano; Salt,1kg; 6; 4 cloves; 50ml; 50ml; 1 tsp; 1 tsp; 1 tsp; 1 tsp,GRILLED; MAIN; POULTRY
-Mozambique,Camarão na Grelha,Tiger prawns; Butter; Garlic; Chili; Lime; Parsley; Salt,500g; 100g; 4 cloves; 2; 1; 1/4 cup; 1 tsp,CRUSTACEANS; GRILLED; MAIN
-Mozambique,Matapa,Cassava leaves; Peanut butter; Coconut milk; Garlic; Onion; Shrimp; Salt,500g; 200g; 400ml; 3 cloves; 1; 200g; 1 tsp,CRUSTACEANS; MAIN
+Mozambique,Camarão na Grelha,Tiger prawns; Butter; Garlic; Chili; Lime; Parsley; Salt,500g; 100g; 4 cloves; 2; 1; 1/4 cup; 1 tsp,CRUSTACEANS; DAIRY; GRILLED; MAIN
+Mozambique,Matapa,Cassava leaves; Peanut butter; Coconut milk; Garlic; Onion; Shrimp; Salt,500g; 200g; 400ml; 3 cloves; 1; 200g; 1 tsp,CRUSTACEANS; DAIRY; MAIN; PEANUTS
 Myanmar,Mohinga,Catfish; Lemongrass; Ginger; Garlic; Fish sauce; Rice vermicelli; Banana stem; Onion; Turmeric; Chickpea flour,500g; 1; 2 tbsp; 3 cloves; 2 tbsp; 400g; 200g; 2; 1 tsp; 2 tbsp,LEAN_FISH; MAIN; PASTA; SOUPS
-Myanmar,Ohno Khauk Swe,Coconut milk; Chicken; Rice noodles; Turmeric; Garlic; Ginger; Chickpea flour; Fish sauce; Shallots; Lime,800ml; 500g; 400g; 1 tsp; 3 cloves; 1 tbsp; 3 tbsp; 2 tbsp; 3; 1,CURRIES; MAIN; PASTA; POULTRY
-Myanmar,Lephet Thoke,Fermented tea leaves; Toasted sesame seeds; Crispy garlic; Fried peas; Tomatoes; Shrimp; Lime; Fish sauce; Peanuts; Ginger,100g; 2 tbsp; 2 tbsp; 100g; 2; 50g; 1; 2 tbsp; 50g; 1 tbsp,CRUSTACEANS; SALADS; STARTERS
+Myanmar,Ohno Khauk Swe,Coconut milk; Chicken; Rice noodles; Turmeric; Garlic; Ginger; Chickpea flour; Fish sauce; Shallots; Lime,800ml; 500g; 400g; 1 tsp; 3 cloves; 1 tbsp; 3 tbsp; 2 tbsp; 3; 1,CURRIES; DAIRY; MAIN; PASTA; POULTRY
+Myanmar,Lephet Thoke,Fermented tea leaves; Toasted sesame seeds; Crispy garlic; Fried peas; Tomatoes; Shrimp; Lime; Fish sauce; Peanuts; Ginger,100g; 2 tbsp; 2 tbsp; 100g; 2; 50g; 1; 2 tbsp; 50g; 1 tbsp,CRUSTACEANS; PEANUTS; SALADS; SESAME; STARTERS
 Namibia,Oshifima,Maize meal; Water; Salt,500g; 1L; 1 tsp,SIDES; VEGAN; VEGETARIAN
 Namibia,Kapana,Beef; Salt; Black pepper; Paprika; Oil; Chili sauce,500g; 1 tsp; 1/2 tsp; 1 tsp; 2 tbsp; 50ml,BEEF; GRILLED; MAIN
-Namibia,Potjiekos,Beef; Potatoes; Carrots; Onion; Sweet potato; Butternut; Red wine; Garlic; Thyme; Black pepper,1kg; 3; 2; 1; 1; 200g; 200ml; 3 cloves; 1 tsp; 1/2 tsp,BEEF; MAIN; SOUPS
-Nepal,Dal Bhat,Lentils; Rice; Ghee; Onion; Garlic; Ginger; Cumin; Turmeric; Mustard seeds; Coriander,300g; 400g; 3 tbsp; 1; 3 cloves; 1 tbsp; 1 tsp; 1 tsp; 1/2 tsp; 1 tsp,LEGUMES; MAIN; RICE; VEGETARIAN
-Nepal,Momo,Flour; Chicken; Onion; Garlic; Ginger; Cumin; Coriander; Turmeric; Salt; Oil,300g; 500g; 1; 2 cloves; 1 tsp; 1/2 tsp; 1/2 tsp; 1/4 tsp; 1 tsp; 1 tbsp,POULTRY; SNACKS; STARTERS
-Nepal,Sel Roti,Rice flour; Sugar; Banana; Cardamom; Fennel; Ghee; Water; Oil for frying,500g; 100g; 2; 1/2 tsp; 1/2 tsp; 50g; 200ml; 1L,DESSERTS; FRIED; VEGETARIAN
-Netherlands,Stamppot,Potatoes; Kale/Endive; Smoked sausage; Butter; Milk; Salt; Black pepper; Nutmeg,1kg; 400g; 400g; 50g; 100ml; 1 tsp; 1/2 tsp; 1/4 tsp,MAIN; PORK; SIDES
-Netherlands,Haring,Salted herring; Onion; Pickles; Bread rolls,4; 1; 4; 4,FAT_FISH; MAIN
-Netherlands,Erwtensoep,Yellow split peas; Ham hock; Leek; Celery; Celeriac; Onion; Smoked sausage; Salt; Black pepper; Parsley,500g; 1; 2; 1; 100g; 1; 200g; 1 tsp; 1/2 tsp; 1/4 cup,LEGUMES; MAIN; PORK; SOUPS
+Namibia,Potjiekos,Beef; Potatoes; Carrots; Onion; Sweet potato; Butternut; Red wine; Garlic; Thyme; Black pepper,1kg; 3; 2; 1; 1; 200g; 200ml; 3 cloves; 1 tsp; 1/2 tsp,BEEF; MAIN; SOUPS; SULPHITES
+Nepal,Dal Bhat,Lentils; Rice; Ghee; Onion; Garlic; Ginger; Cumin; Turmeric; Mustard seeds; Coriander,300g; 400g; 3 tbsp; 1; 3 cloves; 1 tbsp; 1 tsp; 1 tsp; 1/2 tsp; 1 tsp,DAIRY; LEGUMES; MAIN; MUSTARD; RICE; VEGETARIAN
+Nepal,Momo,Flour; Chicken; Onion; Garlic; Ginger; Cumin; Coriander; Turmeric; Salt; Oil,300g; 500g; 1; 2 cloves; 1 tsp; 1/2 tsp; 1/2 tsp; 1/4 tsp; 1 tsp; 1 tbsp,GLUTEN; POULTRY; SNACKS; STARTERS
+Nepal,Sel Roti,Rice flour; Sugar; Banana; Cardamom; Fennel; Ghee; Water; Oil for frying,500g; 100g; 2; 1/2 tsp; 1/2 tsp; 50g; 200ml; 1L,DAIRY; DESSERTS; FRIED; VEGETARIAN
+Netherlands,Stamppot,Potatoes; Kale/Endive; Smoked sausage; Butter; Milk; Salt; Black pepper; Nutmeg,1kg; 400g; 400g; 50g; 100ml; 1 tsp; 1/2 tsp; 1/4 tsp,DAIRY; MAIN; PORK; SIDES
+Netherlands,Haring,Salted herring; Onion; Pickles; Bread rolls,4; 1; 4; 4,FAT_FISH; GLUTEN; MAIN
+Netherlands,Erwtensoep,Yellow split peas; Ham hock; Leek; Celery; Celeriac; Onion; Smoked sausage; Salt; Black pepper; Parsley,500g; 1; 2; 1; 100g; 1; 200g; 1 tsp; 1/2 tsp; 1/4 cup,CELERY; LEGUMES; MAIN; PORK; SOUPS
 New Zealand,Hangi,Lamb; Chicken; Kumara/Sweet potato; Potatoes; Pumpkin; Cabbage; Stuffing,800g; 800g; 500g; 500g; 300g; 200g; 100g,GRILLED; LAMB; MAIN; POULTRY
-New Zealand,Pavlova,Egg whites; Sugar; Vinegar; Cornstarch; Vanilla; Whipped cream; Kiwi fruit; Strawberries; Passionfruit,6; 300g; 1 tsp; 1 tbsp; 1 tsp; 300ml; 3; 200g; 3,DESSERTS; VEGETARIAN
-New Zealand,Pāua Fritters,Abalone/Pāua; Flour; Egg; Spring onion; Salt; Black pepper; Oil for frying,500g; 100g; 1; 2; 1 tsp; 1/2 tsp; 200ml,FRIED; MAIN; MOLLUSKS
+New Zealand,Pavlova,Egg whites; Sugar; Vinegar; Cornstarch; Vanilla; Whipped cream; Kiwi fruit; Strawberries; Passionfruit,6; 300g; 1 tsp; 1 tbsp; 1 tsp; 300ml; 3; 200g; 3,DAIRY; DESSERTS; EGGS; VEGETARIAN
+New Zealand,Pāua Fritters,Abalone/Pāua; Flour; Egg; Spring onion; Salt; Black pepper; Oil for frying,500g; 100g; 1; 2; 1 tsp; 1/2 tsp; 200ml,EGGS; FRIED; GLUTEN; MAIN; MOLLUSKS
 Nicaragua,Gallo Pinto,Rice; Red beans; Onion; Bell pepper; Garlic; Cilantro; Oil; Salt; Cumin,400g; 300g; 1; 1; 2 cloves; 2 tbsp; 2 tbsp; 1 tsp; 1/2 tsp,LEGUMES; MAIN; RICE; VEGAN; VEGETARIAN
-Nicaragua,Nacatamal,Masa harina; Pork; Tomatoes; Potatoes; Raisins; Olives; Achiote; Salt; Lard; Banana leaves,500g; 500g; 2; 1; 50g; 50g; 1 tsp; 1 tsp; 100g; for wrapping,BREADS; MAIN; PORK
-Nicaragua,Indio Viejo,Corn tortillas; Beef; Tomatoes; Onion; Garlic; Cilantro; Achiote; Sour orange; Oil; Salt,8; 500g; 2; 1; 3 cloves; 1/4 cup; 1 tsp; 2 tbsp; 3 tbsp; 1 tsp,BEEF; MAIN
-Niger,Dambou,Millet; Peanut sauce; Sorrel leaves; Onion; Garlic; Chili; Oil; Salt,500g; 200g; 200g; 1; 2 cloves; 1; 100ml; 1 tsp,LEGUMES; MAIN; VEGAN; VEGETARIAN
-Niger,Fura da Nono,Millet flour; Yogurt/Milk; Sugar; Ginger; Spices,250g; 500ml; 50g; 1 tsp; 1 tsp,DRINKS; VEGETARIAN
-Niger,Kilishi,Beef; Spice paste; Peanuts; Ginger; Onion; Garlic; Chili; Salt,500g; 3 tbsp; 100g; 1 tsp; 1; 2 cloves; 1 tsp; 1 tsp,BEEF; MAIN
+Nicaragua,Nacatamal,Masa harina; Pork; Tomatoes; Potatoes; Raisins; Olives; Achiote; Salt; Lard; Banana leaves,500g; 500g; 2; 1; 50g; 50g; 1 tsp; 1 tsp; 100g; for wrapping,BREADS; MAIN; PORK; SULPHITES
+Nicaragua,Indio Viejo,Corn tortillas; Beef; Tomatoes; Onion; Garlic; Cilantro; Achiote; Sour orange; Oil; Salt,8; 500g; 2; 1; 3 cloves; 1/4 cup; 1 tsp; 2 tbsp; 3 tbsp; 1 tsp,BEEF; GLUTEN; MAIN
+Niger,Dambou,Millet; Peanut sauce; Sorrel leaves; Onion; Garlic; Chili; Oil; Salt,500g; 200g; 200g; 1; 2 cloves; 1; 100ml; 1 tsp,LEGUMES; MAIN; PEANUTS; VEGAN; VEGETARIAN
+Niger,Fura da Nono,Millet flour; Yogurt/Milk; Sugar; Ginger; Spices,250g; 500ml; 50g; 1 tsp; 1 tsp,DAIRY; DRINKS; GLUTEN; VEGETARIAN
+Niger,Kilishi,Beef; Spice paste; Peanuts; Ginger; Onion; Garlic; Chili; Salt,500g; 3 tbsp; 100g; 1 tsp; 1; 2 cloves; 1 tsp; 1 tsp,BEEF; MAIN; PEANUTS
 Nigeria,Jollof Rice,Long grain rice; Tomato puree; Bell peppers; Onion; Scotch bonnet; Chicken; Thyme; Curry powder; Bay leaf; Oil,500g; 400ml; 2; 2; 2; 500g; 1 tsp; 1 tsp; 2; 100ml,MAIN; POULTRY; RICE
 Nigeria,Egusi Soup,Egusi seeds; Spinach; Goat meat; Palm oil; Onion; Tomatoes; Crayfish powder; Chili pepper; Salt; Stockfish,200g; 400g; 500g; 100ml; 2; 3; 2 tbsp; 2; 1 tsp; 200g,LEAN_FISH; MAIN; SOUPS
-Nigeria,Suya,Beef sirloin; Suya spice; Peanuts; Ginger; Garlic; Paprika; Salt; Oil; Onion; Tomatoes,500g; 3 tbsp; 100g; 1 tsp; 2 cloves; 1 tsp; 1 tsp; 2 tbsp; 1; 2,BEEF; GRILLED; MAIN
+Nigeria,Suya,Beef sirloin; Suya spice; Peanuts; Ginger; Garlic; Paprika; Salt; Oil; Onion; Tomatoes,500g; 3 tbsp; 100g; 1 tsp; 2 cloves; 1 tsp; 1 tsp; 2 tbsp; 1; 2,BEEF; GRILLED; MAIN; PEANUTS
 Nigeria,Pounded Yam and Egusi,Yam; Egusi seeds; Leafy greens; Goat meat; Palm oil; Onion; Chili; Crayfish; Salt,1kg; 200g; 300g; 500g; 100ml; 1; 2; 2 tbsp; 1 tsp,MAIN; MEAT; SIDES; SOUPS
 Nigeria,Pepper Soup,Goat meat; Uziza seeds; Ehuru seeds; Utazi leaves; Onion; Scallions; Chili pepper; Garlic; Salt,1kg; 1 tbsp; 1 tbsp; 5; 1; 2; 2; 3 cloves; 1 tsp,MAIN; MEAT; SOUPS
 North Macedonia,Tavče Gravče,Haricot beans; Onion; Oil; Red pepper; Leek; Tomatoes; Salt; Paprika; Parsley,500g; 2; 100ml; 2; 1; 2; 1 tsp; 1 tsp; 1/4 cup,LEGUMES; MAIN; VEGETARIAN
 North Macedonia,Ajvar,Roasted red peppers; Eggplant; Garlic; Oil; Salt; Black pepper; Chili flakes; Vinegar,1kg; 2; 3 cloves; 100ml; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tbsp,DIPS; STARTERS; VEGETARIAN
-North Macedonia,Selsko Meso,Pork; Mushrooms; Onion; Bell pepper; Garlic; Paprika; White wine; Bay leaf; Parsley; Salt,1kg; 200g; 1; 1; 3 cloves; 1 tsp; 150ml; 1; 1/4 cup; 1 tsp,MAIN; PORK
-Norway,Fårikål,Lamb; Cabbage; Peppercorns; Salt; Flour; Water,1.5kg; 1 head; 1 tsp; 1 tsp; 2 tbsp; 1L,LAMB; MAIN; SOUPS
-Norway,Lutefisk,Dried cod/Lutefisk; Butter; Salt; Mustard sauce; Potatoes; Bacon; Peas,1kg; 100g; 1 tsp; 100ml; 1kg; 200g; 200g,LEAN_FISH; MAIN
-Norway,Raspeballer,Potatoes; Flour; Salt; Salted pork; Onion; Black pepper; Butter,1kg; 200g; 1 tsp; 200g; 1; 1/2 tsp; 50g,MAIN; PORK; SIDES
+North Macedonia,Selsko Meso,Pork; Mushrooms; Onion; Bell pepper; Garlic; Paprika; White wine; Bay leaf; Parsley; Salt,1kg; 200g; 1; 1; 3 cloves; 1 tsp; 150ml; 1; 1/4 cup; 1 tsp,MAIN; PORK; SULPHITES
+Norway,Fårikål,Lamb; Cabbage; Peppercorns; Salt; Flour; Water,1.5kg; 1 head; 1 tsp; 1 tsp; 2 tbsp; 1L,GLUTEN; LAMB; MAIN; SOUPS
+Norway,Lutefisk,Dried cod/Lutefisk; Butter; Salt; Mustard sauce; Potatoes; Bacon; Peas,1kg; 100g; 1 tsp; 100ml; 1kg; 200g; 200g,DAIRY; LEAN_FISH; MAIN; MUSTARD
+Norway,Raspeballer,Potatoes; Flour; Salt; Salted pork; Onion; Black pepper; Butter,1kg; 200g; 1 tsp; 200g; 1; 1/2 tsp; 50g,DAIRY; GLUTEN; MAIN; PORK; SIDES
 Oman,Shuwa,Lamb; Baharat; Dried limes; Garlic; Ginger; Cinnamon; Cardamom; Turmeric; Rice; Salt,2kg; 3 tbsp; 4; 5 cloves; 2 tbsp; 1 tsp; 1 tsp; 1 tsp; 500g; 2 tsp,GRILLED; LAMB; MAIN
-Oman,Majboos,Chicken; Basmati rice; Dried limes; Baharat; Onion; Garlic; Tomatoes; Cinnamon; Saffron; Ghee,1kg; 500g; 3; 1 tbsp; 2; 4 cloves; 2; 1/2 tsp; pinch; 50g,MAIN; POULTRY; RICE
-Oman,Halwa,Sugar; Cornstarch; Ghee; Rose water; Cardamom; Saffron; Almonds; Pistachios; Water,500g; 100g; 200g; 2 tbsp; 1 tsp; pinch; 100g; 100g; 1L,DESSERTS; VEGETARIAN
-Pakistan,Biryani,Basmati rice; Mutton; Yogurt; Onion; Ginger-garlic paste; Biryani masala; Ghee; Saffron; Kewra water; Mint,500g; 500g; 200g; 3; 3 tbsp; 3 tbsp; 100g; pinch; 1 tsp; 1/2 cup,LAMB; MAIN; RICE
-Pakistan,Nihari,Beef shank; Flour; Ginger; Garlic; Cardamom; Cinnamon; Bay leaf; Fennel; Ghee; Onion,1kg; 50g; 2 tbsp; 4 cloves; 3; 1 stick; 2; 1 tsp; 100g; 2,BEEF; MAIN; SOUPS
+Oman,Majboos,Chicken; Basmati rice; Dried limes; Baharat; Onion; Garlic; Tomatoes; Cinnamon; Saffron; Ghee,1kg; 500g; 3; 1 tbsp; 2; 4 cloves; 2; 1/2 tsp; pinch; 50g,DAIRY; MAIN; POULTRY; RICE
+Oman,Halwa,Sugar; Cornstarch; Ghee; Rose water; Cardamom; Saffron; Almonds; Pistachios; Water,500g; 100g; 200g; 2 tbsp; 1 tsp; pinch; 100g; 100g; 1L,DAIRY; DESSERTS; TREE_NUTS; VEGETARIAN
+Pakistan,Biryani,Basmati rice; Mutton; Yogurt; Onion; Ginger-garlic paste; Biryani masala; Ghee; Saffron; Kewra water; Mint,500g; 500g; 200g; 3; 3 tbsp; 3 tbsp; 100g; pinch; 1 tsp; 1/2 cup,DAIRY; LAMB; MAIN; RICE
+Pakistan,Nihari,Beef shank; Flour; Ginger; Garlic; Cardamom; Cinnamon; Bay leaf; Fennel; Ghee; Onion,1kg; 50g; 2 tbsp; 4 cloves; 3; 1 stick; 2; 1 tsp; 100g; 2,BEEF; DAIRY; GLUTEN; MAIN; SOUPS
 Pakistan,Karahi Chicken,Chicken; Tomatoes; Garlic; Ginger; Green chilies; Oil; Garam masala; Coriander; Black pepper; Salt,1kg; 500g; 5 cloves; 2 tbsp; 4; 100ml; 1 tsp; 1 tbsp; 1 tsp; 1 tsp,CURRIES; MAIN; POULTRY
-Pakistan,Haleem,Wheat; Lentils; Beef; Garam masala; Ginger; Garlic; Onion; Oil; Chili powder; Turmeric,200g; 200g; 500g; 2 tsp; 2 tbsp; 4 cloves; 2; 100ml; 1 tsp; 1 tsp,BEEF; LEGUMES; MAIN; SOUPS
-Palestine,Musakhan (Chicken),Chicken; Sumac; Red onion; Taboon bread; Pine nuts; Olive oil; Allspice; Cinnamon; Black pepper; Salt,1kg; 4 tbsp; 1kg; 4; 50g; 200ml; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tsp,MAIN; POULTRY
+Pakistan,Haleem,Wheat; Lentils; Beef; Garam masala; Ginger; Garlic; Onion; Oil; Chili powder; Turmeric,200g; 200g; 500g; 2 tsp; 2 tbsp; 4 cloves; 2; 100ml; 1 tsp; 1 tsp,BEEF; GLUTEN; LEGUMES; MAIN; SOUPS
+Palestine,Musakhan (Chicken),Chicken; Sumac; Red onion; Taboon bread; Pine nuts; Olive oil; Allspice; Cinnamon; Black pepper; Salt,1kg; 4 tbsp; 1kg; 4; 50g; 200ml; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tsp,GLUTEN; MAIN; POULTRY; TREE_NUTS
 Palestine,Maqluba (Lamb),Lamb; Basmati rice; Eggplant; Cauliflower; Tomatoes; Turmeric; Allspice; Cardamom; Garlic; Onion,1kg; 500g; 2; 1/2; 2; 1 tsp; 1 tsp; 1/2 tsp; 4 cloves; 1,LAMB; MAIN; RICE
-Palestine,Freekeh Soup,Freekeh; Chicken; Onion; Cinnamon; Allspice; Black pepper; Chicken stock; Pine nuts; Ghee; Salt,300g; 1kg; 1; 1 stick; 1 tsp; 1/2 tsp; 1.5L; 50g; 50g; 1 tsp,MAIN; POULTRY; RICE; SOUPS
+Palestine,Freekeh Soup,Freekeh; Chicken; Onion; Cinnamon; Allspice; Black pepper; Chicken stock; Pine nuts; Ghee; Salt,300g; 1kg; 1; 1 stick; 1 tsp; 1/2 tsp; 1.5L; 50g; 50g; 1 tsp,DAIRY; GLUTEN; MAIN; POULTRY; RICE; SOUPS; TREE_NUTS
 Panama,Sancocho de Gallina,Chicken; Yuca/Cassava; Corn; Potato; Culantro; Ñame; Onion; Garlic; Salt; Black pepper,1kg; 300g; 2; 2; 1/4 cup; 200g; 1; 3 cloves; 1 tsp; 1/2 tsp,MAIN; POULTRY; SOUPS
 Panama,Arroz con Pollo,Chicken; Rice; Tomato sauce; Bell pepper; Onion; Garlic; Sazón; Achiote; Oil; Peas,1kg; 400g; 200ml; 1; 1; 3 cloves; 1 tsp; 1 tsp; 3 tbsp; 100g,MAIN; POULTRY; RICE
-Panama,Ceviche de Corvina,Sea bass; Lime juice; Onion; Cilantro; Ají chombo; Celery; Tomato; Salt,500g; 200ml; 1; 1/2 cup; 1; 1; 1; 1 tsp,LEAN_FISH; SALADS; STARTERS
-Papua New Guinea,Mumu,Pork; Sweet potato; Banana; Taro; Coconut cream; Ginger; Garlic; Salt,1kg; 500g; 3; 500g; 400ml; 1 tbsp; 2 cloves; 1 tsp,GRILLED; MAIN; PORK
-Papua New Guinea,Sago Pudding,Sago starch; Coconut milk; Sugar; Pandan leaves; Salt,300g; 400ml; 100g; 2; pinch,DESSERTS; VEGETARIAN
-Papua New Guinea,Kokomo,Chicken; Sweet potato; Coconut milk; Onion; Garlic; Ginger; Chili; Salt; Oil,500g; 400g; 400ml; 1; 2 cloves; 1 tsp; 1; 1 tsp; 2 tbsp,CURRIES; MAIN; POULTRY
-Paraguay,Sopa Paraguaya,Cornmeal; Cheese; Eggs; Onion; Milk; Butter; Salt,500g; 200g; 4; 1; 200ml; 100g; 1 tsp,BREADS; DAIRY; MAIN; VEGETARIAN
-Paraguay,Bori Bori,Chicken; Cornmeal dumplings; Onion; Celery; Carrots; Garlic; Parsley; Salt; Black pepper,1kg; 300g; 1; 2; 2; 2 cloves; 1/4 cup; 1 tsp; 1/2 tsp,MAIN; POULTRY; SOUPS
+Panama,Ceviche de Corvina,Sea bass; Lime juice; Onion; Cilantro; Ají chombo; Celery; Tomato; Salt,500g; 200ml; 1; 1/2 cup; 1; 1; 1; 1 tsp,CELERY; LEAN_FISH; SALADS; STARTERS
+Papua New Guinea,Mumu,Pork; Sweet potato; Banana; Taro; Coconut cream; Ginger; Garlic; Salt,1kg; 500g; 3; 500g; 400ml; 1 tbsp; 2 cloves; 1 tsp,DAIRY; GRILLED; MAIN; PORK
+Papua New Guinea,Sago Pudding,Sago starch; Coconut milk; Sugar; Pandan leaves; Salt,300g; 400ml; 100g; 2; pinch,DAIRY; DESSERTS; VEGETARIAN
+Papua New Guinea,Kokomo,Chicken; Sweet potato; Coconut milk; Onion; Garlic; Ginger; Chili; Salt; Oil,500g; 400g; 400ml; 1; 2 cloves; 1 tsp; 1; 1 tsp; 2 tbsp,CURRIES; DAIRY; MAIN; POULTRY
+Paraguay,Sopa Paraguaya,Cornmeal; Cheese; Eggs; Onion; Milk; Butter; Salt,500g; 200g; 4; 1; 200ml; 100g; 1 tsp,BREADS; DAIRY; EGGS; MAIN; VEGETARIAN
+Paraguay,Bori Bori,Chicken; Cornmeal dumplings; Onion; Celery; Carrots; Garlic; Parsley; Salt; Black pepper,1kg; 300g; 1; 2; 2; 2 cloves; 1/4 cup; 1 tsp; 1/2 tsp,CELERY; MAIN; POULTRY; SOUPS
 Paraguay,Asado,Beef ribs; Chorizo; Morcilla; Coarse salt; Chimichurri; Oil,2kg; 4; 2; 3 tbsp; 100ml; 2 tbsp,BEEF; GRILLED; MAIN; PORK
 Peru,Ceviche,White fish; Lime juice; Red onion; Ají limo; Cilantro; Salt; Leche de tigre; Cancha; Sweet potato,500g; 300ml; 1; 2; 1/2 cup; 1 tsp; 200ml; 100g; 1,LEAN_FISH; SALADS; STARTERS
-Peru,Lomo Saltado,Beef sirloin; Tomatoes; Red onion; Soy sauce; Vinegar; Ají amarillo; Cilantro; French fries; Rice; Garlic,500g; 2; 1; 3 tbsp; 1 tbsp; 2; 1/4 cup; 500g; 200g; 3 cloves,BEEF; FRIED; MAIN
-Peru,Ají de Gallina,Chicken; Ají amarillo paste; Bread; Milk; Walnuts; Garlic; Onion; Turmeric; Hard-boiled eggs; Rice,1kg; 100g; 4 slices; 200ml; 100g; 3 cloves; 1; 1 tsp; 3; 200g,CURRIES; MAIN; POULTRY
-Peru,Causa Limeña,Potatoes; Ají amarillo paste; Lime juice; Chicken; Mayonnaise; Avocado; Egg; Olive; Onion; Salt,1kg; 3 tbsp; 50ml; 300g; 100g; 1; 2; 10; 1; 1 tsp,POULTRY; SALADS; STARTERS
-Peru,Anticuchos,Beef heart; Red wine vinegar; Ají panca; Cumin; Oregano; Garlic; Oil; Salt; Black pepper,1kg; 100ml; 3 tbsp; 1 tsp; 1 tsp; 4 cloves; 50ml; 1 tsp; 1/2 tsp,BEEF; GRILLED; MAIN
-Philippines,Adobo,Chicken; Soy sauce; Vinegar; Garlic; Bay leaf; Black pepper; Coconut milk; Oil; Onion; Sugar,1kg; 100ml; 100ml; 6 cloves; 3; 1 tsp; 200ml; 2 tbsp; 1; 1 tsp,MAIN; POULTRY
-Philippines,Sinigang,Pork ribs; Tamarind; Radish; Kangkong; Eggplant; String beans; Tomatoes; Onion; Fish sauce; Green chili,1kg; 100g; 1; 200g; 1; 100g; 2; 1; 2 tbsp; 2,MAIN; PORK; SOUPS
-Philippines,Kare-Kare,Oxtail; Peanut butter; Shrimp paste; Banana blossom; String beans; Eggplant; Garlic; Onion; Annatto; Bagoong,1.5kg; 300g; 3 tbsp; 1; 200g; 1; 4 cloves; 1; 2 tbsp; 100g,BEEF; MAIN; SOUPS
-Philippines,Lechon,Whole pig; Salt; Black pepper; Lemongrass; Garlic; Liver sauce; Soy sauce; Bay leaf; Onion,5kg; 3 tbsp; 1 tbsp; 3 stalks; 6 cloves; 200ml; 100ml; 5; 2,GRILLED; MAIN
-Philippines,Pancit Bihon,Rice noodles; Chicken; Shrimp; Cabbage; Carrots; Garlic; Soy sauce; Fish sauce; Calamansi; Oil,400g; 300g; 200g; 200g; 1; 3 cloves; 3 tbsp; 1 tbsp; 3; 3 tbsp,CRUSTACEANS; MAIN; PASTA; POULTRY
-Poland,Bigos,Sauerkraut; Fresh cabbage; Pork; Kielbasa sausage; Bacon; Tomato paste; Red wine; Bay leaf; Allspice; Black pepper,500g; 500g; 500g; 200g; 100g; 2 tbsp; 100ml; 2; 3; 1/2 tsp,MAIN; PORK; SOUPS
-Poland,Pierogi,Flour; Potato; Cheddar/Farmer cheese; Onion; Egg; Sour cream; Butter; Salt; Black pepper,400g; 500g; 200g; 1; 2; 200ml; 50g; 1 tsp; 1/2 tsp,DAIRY; MAIN; VEGETARIAN
-Poland,Żurek,Fermented rye flour; Potatoes; Kielbasa sausage; Hard-boiled eggs; Onion; Garlic; Cream; Marjoram; Salt; Horseradish,200ml; 4; 300g; 4; 1; 3 cloves; 100ml; 1 tsp; 1 tsp; 1 tbsp,MAIN; PORK; SOUPS
-Portugal,Bacalhau à Brás,Salt cod; Eggs; Potatoes; Onion; Olive oil; Parsley; Black olives; Salt; Black pepper,500g; 4; 500g; 1; 100ml; 1/4 cup; 50g; 1 tsp; 1/2 tsp,LEAN_FISH; MAIN
+Peru,Lomo Saltado,Beef sirloin; Tomatoes; Red onion; Soy sauce; Vinegar; Ají amarillo; Cilantro; French fries; Rice; Garlic,500g; 2; 1; 3 tbsp; 1 tbsp; 2; 1/4 cup; 500g; 200g; 3 cloves,BEEF; FRIED; GLUTEN; MAIN; SOY
+Peru,Ají de Gallina,Chicken; Ají amarillo paste; Bread; Milk; Walnuts; Garlic; Onion; Turmeric; Hard-boiled eggs; Rice,1kg; 100g; 4 slices; 200ml; 100g; 3 cloves; 1; 1 tsp; 3; 200g,CURRIES; DAIRY; EGGS; GLUTEN; MAIN; POULTRY; TREE_NUTS
+Peru,Causa Limeña,Potatoes; Ají amarillo paste; Lime juice; Chicken; Mayonnaise; Avocado; Egg; Olive; Onion; Salt,1kg; 3 tbsp; 50ml; 300g; 100g; 1; 2; 10; 1; 1 tsp,EGGS; POULTRY; SALADS; STARTERS
+Peru,Anticuchos,Beef heart; Red wine vinegar; Ají panca; Cumin; Oregano; Garlic; Oil; Salt; Black pepper,1kg; 100ml; 3 tbsp; 1 tsp; 1 tsp; 4 cloves; 50ml; 1 tsp; 1/2 tsp,BEEF; GRILLED; MAIN; SULPHITES
+Philippines,Adobo,Chicken; Soy sauce; Vinegar; Garlic; Bay leaf; Black pepper; Coconut milk; Oil; Onion; Sugar,1kg; 100ml; 100ml; 6 cloves; 3; 1 tsp; 200ml; 2 tbsp; 1; 1 tsp,DAIRY; GLUTEN; MAIN; POULTRY; SOY
+Philippines,Sinigang,Pork ribs; Tamarind; Radish; Kangkong; Eggplant; String beans; Tomatoes; Onion; Fish sauce; Green chili,1kg; 100g; 1; 200g; 1; 100g; 2; 1; 2 tbsp; 2,MAIN; PORK; SOUPS; SOY
+Philippines,Kare-Kare,Oxtail; Peanut butter; Shrimp paste; Banana blossom; String beans; Eggplant; Garlic; Onion; Annatto; Bagoong,1.5kg; 300g; 3 tbsp; 1; 200g; 1; 4 cloves; 1; 2 tbsp; 100g,BEEF; MAIN; PEANUTS; SOUPS; SOY
+Philippines,Lechon,Whole pig; Salt; Black pepper; Lemongrass; Garlic; Liver sauce; Soy sauce; Bay leaf; Onion,5kg; 3 tbsp; 1 tbsp; 3 stalks; 6 cloves; 200ml; 100ml; 5; 2,GLUTEN; GRILLED; MAIN; SOY
+Philippines,Pancit Bihon,Rice noodles; Chicken; Shrimp; Cabbage; Carrots; Garlic; Soy sauce; Fish sauce; Calamansi; Oil,400g; 300g; 200g; 200g; 1; 3 cloves; 3 tbsp; 1 tbsp; 3; 3 tbsp,CRUSTACEANS; GLUTEN; MAIN; PASTA; POULTRY; SOY
+Poland,Bigos,Sauerkraut; Fresh cabbage; Pork; Kielbasa sausage; Bacon; Tomato paste; Red wine; Bay leaf; Allspice; Black pepper,500g; 500g; 500g; 200g; 100g; 2 tbsp; 100ml; 2; 3; 1/2 tsp,MAIN; PORK; SOUPS; SULPHITES
+Poland,Pierogi,Flour; Potato; Cheddar/Farmer cheese; Onion; Egg; Sour cream; Butter; Salt; Black pepper,400g; 500g; 200g; 1; 2; 200ml; 50g; 1 tsp; 1/2 tsp,DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
+Poland,Żurek,Fermented rye flour; Potatoes; Kielbasa sausage; Hard-boiled eggs; Onion; Garlic; Cream; Marjoram; Salt; Horseradish,200ml; 4; 300g; 4; 1; 3 cloves; 100ml; 1 tsp; 1 tsp; 1 tbsp,DAIRY; EGGS; GLUTEN; MAIN; PORK; SOUPS
+Portugal,Bacalhau à Brás,Salt cod; Eggs; Potatoes; Onion; Olive oil; Parsley; Black olives; Salt; Black pepper,500g; 4; 500g; 1; 100ml; 1/4 cup; 50g; 1 tsp; 1/2 tsp,EGGS; LEAN_FISH; MAIN
 Portugal,Caldo Verde,Kale; Potatoes; Chorizo; Onion; Garlic; Olive oil; Salt; Water,300g; 1kg; 200g; 1; 2 cloves; 50ml; 1 tsp; 2L,MAIN; PORK; SOUPS
-Portugal,Pastel de Nata,Puff pastry; Egg yolks; Sugar; Cream; Flour; Lemon zest; Cinnamon; Salt; Milk; Butter,250g; 5; 150g; 300ml; 1 tbsp; 1 tsp; 1 tsp; pinch; 150ml; 1 tbsp,DAIRY; DESSERTS; VEGETARIAN
-Portugal,Carne de Porco à Alentejana,Pork; Clams; Potatoes; Garlic; White wine; Cilantro; Paprika; Bay leaf; Lard; Salt,700g; 500g; 500g; 4 cloves; 200ml; 1/2 cup; 1 tsp; 2; 50g; 1 tsp,MAIN; MOLLUSKS; PORK
-Portugal,Francesinha,Bread; Ham; Linguica sausage; Steak; Egg; Cheese; Beer sauce; Tomato sauce; Piri piri; Butter,4 slices; 4 slices; 4 slices; 4; 4; 200g; 500ml; 200ml; 1 tsp; 30g,BEEF; MAIN; PORK
+Portugal,Pastel de Nata,Puff pastry; Egg yolks; Sugar; Cream; Flour; Lemon zest; Cinnamon; Salt; Milk; Butter,250g; 5; 150g; 300ml; 1 tbsp; 1 tsp; 1 tsp; pinch; 150ml; 1 tbsp,DAIRY; DESSERTS; EGGS; GLUTEN; VEGETARIAN
+Portugal,Carne de Porco à Alentejana,Pork; Clams; Potatoes; Garlic; White wine; Cilantro; Paprika; Bay leaf; Lard; Salt,700g; 500g; 500g; 4 cloves; 200ml; 1/2 cup; 1 tsp; 2; 50g; 1 tsp,MAIN; MOLLUSKS; PORK; SULPHITES
+Portugal,Francesinha,Bread; Ham; Linguica sausage; Steak; Egg; Cheese; Beer sauce; Tomato sauce; Piri piri; Butter,4 slices; 4 slices; 4 slices; 4; 4; 200g; 500ml; 200ml; 1 tsp; 30g,BEEF; DAIRY; EGGS; GLUTEN; MAIN; PORK
 Qatar,Machboos,Chicken; Basmati rice; Baharat; Dried lime; Turmeric; Cinnamon; Cardamom; Cloves; Ginger; Garlic,1kg; 500g; 1 tbsp; 2; 1 tsp; 1 stick; 5; 3; 1 tbsp; 3 cloves,MAIN; POULTRY; RICE
-Qatar,Balaleet,Vermicelli; Eggs; Saffron; Cardamom; Sugar; Rose water; Butter; Cinnamon,300g; 4; pinch; 1 tsp; 50g; 2 tbsp; 50g; 1/2 tsp,DAIRY; MAIN; VEGETARIAN
+Qatar,Balaleet,Vermicelli; Eggs; Saffron; Cardamom; Sugar; Rose water; Butter; Cinnamon,300g; 4; pinch; 1 tsp; 50g; 2 tbsp; 50g; 1/2 tsp,DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
 Qatar,Saloona,Lamb; Tomatoes; Onion; Garlic; Bell pepper; Carrot; Potato; Cumin; Turmeric; Cilantro,500g; 3; 1; 3 cloves; 1; 1; 2; 1 tsp; 1/2 tsp; 1/4 cup,LAMB; MAIN; SOUPS
-Romania,Sarmale,Ground pork; Ground beef; Rice; Sauerkraut; Onion; Bacon; Tomato juice; Dill; Thyme; Sour cream,400g; 200g; 100g; 500g; 1; 100g; 500ml; 1 tbsp; 1 tsp; 100ml,BEEF; MAIN; PORK
-Romania,Mămăligă cu Brânză,Cornmeal; Feta cheese; Sour cream; Butter; Salt; Eggs,500g; 300g; 200ml; 50g; 1 tsp; 4,DAIRY; MAIN; VEGETARIAN
-Romania,Ciorbă de Burtă,Beef tripe; Sour cream; Eggs; Garlic; Vinegar; Carrots; Onion; Salt; Black pepper; Horseradish,1kg; 200ml; 2; 3 cloves; 50ml; 2; 1; 1 tsp; 1/2 tsp; 2 tbsp,BEEF; MAIN; SOUPS
-Russia,Beef Stroganoff,Beef sirloin; Sour cream; Mushrooms; Onion; Flour; Butter; Mustard; Beef stock; Salt; Black pepper,500g; 200ml; 200g; 1; 2 tbsp; 50g; 1 tsp; 250ml; 1 tsp; 1/2 tsp,BEEF; MAIN; SOUPS
-Russia,Borscht,Beets; Beef; Cabbage; Potatoes; Carrots; Onion; Tomato paste; Garlic; Sour cream; Dill,500g; 500g; 300g; 2; 1; 1; 2 tbsp; 3 cloves; 100ml; 1/4 cup,BEEF; MAIN; SOUPS
-Russia,Pelmeni,Flour; Ground pork; Ground beef; Onion; Egg; Sour cream; Salt; Black pepper; Butter,400g; 300g; 200g; 1; 1; 100ml; 1 tsp; 1/2 tsp; 30g,BEEF; MAIN; PORK
-Russia,Blini,Flour; Milk; Eggs; Butter; Sugar; Salt; Yeast; Sour cream; Caviar/Smoked salmon; Dill,300g; 500ml; 2; 50g; 1 tbsp; 1 tsp; 1 tsp; 200ml; 100g; 1 tbsp,BREADS; DAIRY; FAT_FISH; STARTERS
-Russia,Shashlik,Pork; Onion; White wine vinegar; Garlic; Paprika; Salt; Black pepper; Oil; Bay leaf,1kg; 3; 50ml; 3 cloves; 1 tsp; 1 tsp; 1/2 tsp; 50ml; 2,GRILLED; MAIN; PORK
-Rwanda,Isombe,Cassava leaves; Peanut butter; Palm oil; Onion; Garlic; Chili pepper; Salt; Water,500g; 200g; 50ml; 1; 2 cloves; 1; 1 tsp; 500ml,LEGUMES; MAIN; VEGETARIAN
+Romania,Sarmale,Ground pork; Ground beef; Rice; Sauerkraut; Onion; Bacon; Tomato juice; Dill; Thyme; Sour cream,400g; 200g; 100g; 500g; 1; 100g; 500ml; 1 tbsp; 1 tsp; 100ml,BEEF; DAIRY; MAIN; PORK
+Romania,Mămăligă cu Brânză,Cornmeal; Feta cheese; Sour cream; Butter; Salt; Eggs,500g; 300g; 200ml; 50g; 1 tsp; 4,DAIRY; EGGS; MAIN; VEGETARIAN
+Romania,Ciorbă de Burtă,Beef tripe; Sour cream; Eggs; Garlic; Vinegar; Carrots; Onion; Salt; Black pepper; Horseradish,1kg; 200ml; 2; 3 cloves; 50ml; 2; 1; 1 tsp; 1/2 tsp; 2 tbsp,BEEF; DAIRY; EGGS; MAIN; SOUPS
+Russia,Beef Stroganoff,Beef sirloin; Sour cream; Mushrooms; Onion; Flour; Butter; Mustard; Beef stock; Salt; Black pepper,500g; 200ml; 200g; 1; 2 tbsp; 50g; 1 tsp; 250ml; 1 tsp; 1/2 tsp,BEEF; DAIRY; GLUTEN; MAIN; MUSTARD; SOUPS
+Russia,Borscht,Beets; Beef; Cabbage; Potatoes; Carrots; Onion; Tomato paste; Garlic; Sour cream; Dill,500g; 500g; 300g; 2; 1; 1; 2 tbsp; 3 cloves; 100ml; 1/4 cup,BEEF; DAIRY; MAIN; SOUPS
+Russia,Pelmeni,Flour; Ground pork; Ground beef; Onion; Egg; Sour cream; Salt; Black pepper; Butter,400g; 300g; 200g; 1; 1; 100ml; 1 tsp; 1/2 tsp; 30g,BEEF; DAIRY; EGGS; GLUTEN; MAIN; PORK
+Russia,Blini,Flour; Milk; Eggs; Butter; Sugar; Salt; Yeast; Sour cream; Caviar/Smoked salmon; Dill,300g; 500ml; 2; 50g; 1 tbsp; 1 tsp; 1 tsp; 200ml; 100g; 1 tbsp,BREADS; DAIRY; EGGS; FAT_FISH; GLUTEN; STARTERS
+Russia,Shashlik,Pork; Onion; White wine vinegar; Garlic; Paprika; Salt; Black pepper; Oil; Bay leaf,1kg; 3; 50ml; 3 cloves; 1 tsp; 1 tsp; 1/2 tsp; 50ml; 2,GRILLED; MAIN; PORK; SULPHITES
+Rwanda,Isombe,Cassava leaves; Peanut butter; Palm oil; Onion; Garlic; Chili pepper; Salt; Water,500g; 200g; 50ml; 1; 2 cloves; 1; 1 tsp; 500ml,LEGUMES; MAIN; PEANUTS; VEGETARIAN
 Rwanda,Brochettes,Beef; Garlic; Ginger; Salt; Black pepper; Oil; Vegetables; Onion; Bell pepper; Chili,500g; 3 cloves; 1 tsp; 1 tsp; 1/2 tsp; 2 tbsp; 200g; 1; 1; 1,BEEF; GRILLED; MAIN
 Rwanda,Ugali na Nyama,Maize flour; Water; Salt; Beef stew; Tomatoes; Onion; Garlic; Cumin,500g; 1L; 1 tsp; 400g; 2; 1; 2 cloves; 1/2 tsp,BEEF; MAIN; SIDES
 Saint Lucia,Green Fig and Salt Fish,Salt cod; Green banana/fig; Onion; Bell pepper; Garlic; Oil; Thyme; Black pepper; Salt,300g; 6; 1; 1; 2 cloves; 3 tbsp; 1 tsp; 1/2 tsp; 1 tsp,LEAN_FISH; MAIN
-Saint Lucia,Bouyon,Beef; Dasheen; Green banana; Dumplings; Plantain; Onion; Thyme; Garlic; Chives; Salt,500g; 200g; 2; 4; 1; 1; 1 tsp; 2 cloves; 2 tbsp; 1 tsp,BEEF; MAIN; SOUPS
-Saint Lucia,Callaloo Soup,Dasheen/Callaloo leaves; Coconut milk; Crab; Onion; Garlic; Thyme; Scallions; Chili; Salt,400g; 400ml; 2; 1; 2 cloves; 1 tsp; 2; 1; 1 tsp,CRAB; MAIN; SOUPS
-Saudi Arabia,Kabsa,Basmati rice; Lamb; Tomatoes; Onion; Garlic; Kabsa spice mix; Dried fruits; Almonds; Ghee; Salt,500g; 1kg; 3; 2; 4 cloves; 2 tbsp; 100g; 100g; 50g; 1 tsp,LAMB; MAIN; RICE
-Saudi Arabia,Jareesh,Crushed wheat; Chicken; Yogurt; Onion; Cumin; Cinnamon; Ghee; Butter; Cardamom; Salt,500g; 500g; 400ml; 2; 1 tsp; 1/2 tsp; 50g; 30g; 1/2 tsp; 1 tsp,MAIN; POULTRY; RICE
-Saudi Arabia,Saleeg,Short-grain rice; Chicken broth; Milk; Butter; White pepper; Salt; Cardamom; Chicken,400g; 800ml; 200ml; 50g; 1/2 tsp; 1 tsp; 1/2 tsp; 500g,MAIN; POULTRY; RICE
-Saudi Arabia,Maamoul,Semolina; Butter; Blossom water; Dates; Pistachios; Walnuts; Sugar; Cardamom; Cinnamon,400g; 200g; 2 tbsp; 200g; 100g; 100g; 100g; 1 tsp; 1/2 tsp,DESSERTS; VEGETARIAN
-Saudi Arabia,Mutabbaq,Ground meat; Eggs; Spring onions; Flour; Water; Garlic; Cumin; Coriander; Salt; Oil,300g; 3; 3; 300g; 200ml; 2 cloves; 1 tsp; 1 tsp; 1 tsp; 500ml,BEEF; FRIED; MAIN
-Senegal,Thiéboudienne,Rice; Fish; Tomato paste; Onion; Garlic; Parsley; Tamarind; Chili; Oil; Cassava,500g; 1kg; 3 tbsp; 2; 4 cloves; 1/2 cup; 1 tbsp; 1; 100ml; 200g,LEAN_FISH; MAIN; RICE
-Senegal,Yassa Poulet,Chicken; Onion; Lemon juice; Mustard; Garlic; Dijon mustard; Bay leaf; Oil; Black pepper; Salt,1kg; 4; 200ml; 3 tbsp; 4 cloves; 1 tbsp; 2; 50ml; 1 tsp; 1 tsp,MAIN; POULTRY
-Senegal,Mafé,Beef; Peanut butter; Tomato paste; Onion; Garlic; Chili; Carrot; Sweet potato; Cabbage; Oil,1kg; 300g; 3 tbsp; 1; 3 cloves; 1; 2; 1; 200g; 100ml,BEEF; MAIN; SOUPS
+Saint Lucia,Bouyon,Beef; Dasheen; Green banana; Dumplings; Plantain; Onion; Thyme; Garlic; Chives; Salt,500g; 200g; 2; 4; 1; 1; 1 tsp; 2 cloves; 2 tbsp; 1 tsp,BEEF; GLUTEN; MAIN; SOUPS
+Saint Lucia,Callaloo Soup,Dasheen/Callaloo leaves; Coconut milk; Crab; Onion; Garlic; Thyme; Scallions; Chili; Salt,400g; 400ml; 2; 1; 2 cloves; 1 tsp; 2; 1; 1 tsp,CRAB; DAIRY; MAIN; SOUPS
+Saudi Arabia,Kabsa,Basmati rice; Lamb; Tomatoes; Onion; Garlic; Kabsa spice mix; Dried fruits; Almonds; Ghee; Salt,500g; 1kg; 3; 2; 4 cloves; 2 tbsp; 100g; 100g; 50g; 1 tsp,DAIRY; LAMB; MAIN; RICE; TREE_NUTS
+Saudi Arabia,Jareesh,Crushed wheat; Chicken; Yogurt; Onion; Cumin; Cinnamon; Ghee; Butter; Cardamom; Salt,500g; 500g; 400ml; 2; 1 tsp; 1/2 tsp; 50g; 30g; 1/2 tsp; 1 tsp,DAIRY; GLUTEN; MAIN; POULTRY; RICE
+Saudi Arabia,Saleeg,Short-grain rice; Chicken broth; Milk; Butter; White pepper; Salt; Cardamom; Chicken,400g; 800ml; 200ml; 50g; 1/2 tsp; 1 tsp; 1/2 tsp; 500g,DAIRY; MAIN; POULTRY; RICE
+Saudi Arabia,Maamoul,Semolina; Butter; Blossom water; Dates; Pistachios; Walnuts; Sugar; Cardamom; Cinnamon,400g; 200g; 2 tbsp; 200g; 100g; 100g; 100g; 1 tsp; 1/2 tsp,DAIRY; DESSERTS; GLUTEN; TREE_NUTS; VEGETARIAN
+Saudi Arabia,Mutabbaq,Ground meat; Eggs; Spring onions; Flour; Water; Garlic; Cumin; Coriander; Salt; Oil,300g; 3; 3; 300g; 200ml; 2 cloves; 1 tsp; 1 tsp; 1 tsp; 500ml,BEEF; EGGS; FRIED; GLUTEN; MAIN
+Senegal,Thiéboudienne,Rice; Fish; Tomato paste; Onion; Garlic; Parsley; Tamarind; Chili; Oil; Cassava,500g; 1kg; 3 tbsp; 2; 4 cloves; 1/2 cup; 1 tbsp; 1; 100ml; 200g,LEAN_FISH; MAIN; RICE; SOY
+Senegal,Yassa Poulet,Chicken; Onion; Lemon juice; Mustard; Garlic; Dijon mustard; Bay leaf; Oil; Black pepper; Salt,1kg; 4; 200ml; 3 tbsp; 4 cloves; 1 tbsp; 2; 50ml; 1 tsp; 1 tsp,MAIN; MUSTARD; POULTRY
+Senegal,Mafé,Beef; Peanut butter; Tomato paste; Onion; Garlic; Chili; Carrot; Sweet potato; Cabbage; Oil,1kg; 300g; 3 tbsp; 1; 3 cloves; 1; 2; 1; 200g; 100ml,BEEF; MAIN; PEANUTS; SOUPS
 Senegal,Thiou Bou Yapp,Rice; Lamb; Tomato paste; Onion; Garlic; Parsley; Eggplant; Carrot; Oil; Spices,500g; 500g; 3 tbsp; 2; 3 cloves; 1/4 cup; 1; 1; 100ml; 1 tsp,LAMB; MAIN; RICE
-Serbia,Ćevapčići,Ground beef; Ground pork; Garlic; Baking soda; Black pepper; Salt; Onion; Kajmak; Bread,700g; 300g; 3 cloves; 1/2 tsp; 1 tsp; 1 tsp; 2; 100g; 4,BEEF; GRILLED; MAIN; PORK
+Serbia,Ćevapčići,Ground beef; Ground pork; Garlic; Baking soda; Black pepper; Salt; Onion; Kajmak; Bread,700g; 300g; 3 cloves; 1/2 tsp; 1 tsp; 1 tsp; 2; 100g; 4,BEEF; DAIRY; GLUTEN; GRILLED; MAIN; PORK
 Serbia,Sarma,Ground pork; Pickled cabbage leaves; Rice; Onion; Bacon; Tomato paste; Paprika; Black pepper; Bay leaf; Salt,600g; 20; 100g; 1; 100g; 2 tbsp; 1 tsp; 1/2 tsp; 2; 1 tsp,MAIN; PORK
 Serbia,Prebranac,White beans; Onion; Garlic; Paprika; Oil; Bay leaf; Salt; Black pepper; Thyme; Tomato paste,500g; 2; 3 cloves; 2 tsp; 100ml; 2; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tbsp,LEGUMES; MAIN; VEGETARIAN
-Sierra Leone,Cassava Leaves Stew,Cassava leaves; Beef; Palm oil; Peanut butter; Smoked fish; Onion; Garlic; Chili; Salt,500g; 500g; 100ml; 150g; 200g; 1; 2 cloves; 1; 1 tsp,BEEF; LEAN_FISH; MAIN; SOUPS
-Sierra Leone,Groundnut Soup,Chicken; Groundnut paste; Tomatoes; Onion; Garlic; Chili pepper; Oil; Salt; Water,1kg; 300g; 3; 1; 3 cloves; 1; 50ml; 1 tsp; 1L,MAIN; POULTRY; SOUPS
+Sierra Leone,Cassava Leaves Stew,Cassava leaves; Beef; Palm oil; Peanut butter; Smoked fish; Onion; Garlic; Chili; Salt,500g; 500g; 100ml; 150g; 200g; 1; 2 cloves; 1; 1 tsp,BEEF; LEAN_FISH; MAIN; PEANUTS; SOUPS
+Sierra Leone,Groundnut Soup,Chicken; Groundnut paste; Tomatoes; Onion; Garlic; Chili pepper; Oil; Salt; Water,1kg; 300g; 3; 1; 3 cloves; 1; 50ml; 1 tsp; 1L,MAIN; PEANUTS; POULTRY; SOUPS; TREE_NUTS
 Sierra Leone,Fried Plantain,Plantains; Oil; Salt; Chili flakes; Onion powder,4; 500ml; 1/2 tsp; 1/2 tsp; 1/2 tsp,FRIED; SIDES; VEGAN; VEGETARIAN
-Singapore,Hainanese Chicken Rice,Chicken; Jasmine rice; Ginger; Garlic; Sesame oil; Soy sauce; Oyster sauce; Chili sauce; Spring onion; Chicken broth,1.5kg; 500g; 40g; 4 cloves; 2 tbsp; 3 tbsp; 2 tbsp; 100ml; 2; 1L,MAIN; POULTRY; RICE
-Singapore,Chilli Crab,Mud crab; Tomato ketchup; Chili paste; Garlic; Ginger; Egg; Spring onion; Cornstarch; Soy sauce; Sugar,2kg; 200ml; 3 tbsp; 4 cloves; 1 tbsp; 2; 2; 1 tbsp; 2 tbsp; 1 tbsp,CRAB; MAIN
-Singapore,Laksa,Rice noodles; Coconut milk; Shrimp; Fish balls; Laksa paste; Bean sprouts; Tofu puffs; Lemongrass; Chili; Kaffir lime,400g; 500ml; 200g; 10; 4 tbsp; 100g; 6; 1; 2; 2,CRUSTACEANS; CURRIES; MAIN; PASTA
-Singapore,Char Kway Teow,Flat rice noodles; Char siu pork; Shrimp; Eggs; Bean sprouts; Garlic; Chili; Soy sauce; Dark soy sauce; Oil,400g; 200g; 200g; 2; 100g; 3 cloves; 2; 2 tbsp; 1 tbsp; 3 tbsp,CRUSTACEANS; FRIED; MAIN; PASTA; PORK
-Slovakia,Bryndzové Halušky,Potato gnocchi; Bryndza sheep cheese; Bacon; Sour cream; Salt; Butter,500g; 200g; 200g; 100ml; 1 tsp; 30g,DAIRY; MAIN; PORK
-Slovakia,Kapustnica,Sauerkraut; Kielbasa sausage; Dried mushrooms; Onion; Garlic; Sour cream; Caraway; Paprika; Bay leaf; Salt,500g; 300g; 30g; 1; 2 cloves; 100ml; 1 tsp; 1 tsp; 1; 1 tsp,MAIN; PORK; SOUPS
-Slovakia,Šúľance,Dumplings; Milk; Butter; Sugar; Poppy seeds; Walnuts; Powdered sugar; Salt,400g; 200ml; 50g; 2 tbsp; 100g; 100g; 2 tbsp; pinch,DAIRY; MAIN; VEGETARIAN
-Slovenia,Kranjska Klobasa,Pork sausage; Onion; Mustard; Horseradish; Bread; Sauerkraut; Oil; Salt; Black pepper,500g; 1; 1 tbsp; 2 tbsp; 4; 200g; 2 tbsp; 1 tsp; 1/2 tsp,MAIN; PORK
-Slovenia,Potica,Flour; Walnuts; Honey; Butter; Eggs; Milk; Yeast; Sugar; Cinnamon; Rum,500g; 400g; 100ml; 100g; 3; 200ml; 1 tsp; 80g; 1 tsp; 2 tbsp,DAIRY; DESSERTS; VEGETARIAN
+Singapore,Hainanese Chicken Rice,Chicken; Jasmine rice; Ginger; Garlic; Sesame oil; Soy sauce; Oyster sauce; Chili sauce; Spring onion; Chicken broth,1.5kg; 500g; 40g; 4 cloves; 2 tbsp; 3 tbsp; 2 tbsp; 100ml; 2; 1L,GLUTEN; MAIN; POULTRY; RICE; SESAME; SOY
+Singapore,Chilli Crab,Mud crab; Tomato ketchup; Chili paste; Garlic; Ginger; Egg; Spring onion; Cornstarch; Soy sauce; Sugar,2kg; 200ml; 3 tbsp; 4 cloves; 1 tbsp; 2; 2; 1 tbsp; 2 tbsp; 1 tbsp,CRAB; EGGS; GLUTEN; MAIN; SOY
+Singapore,Laksa,Rice noodles; Coconut milk; Shrimp; Fish balls; Laksa paste; Bean sprouts; Tofu puffs; Lemongrass; Chili; Kaffir lime,400g; 500ml; 200g; 10; 4 tbsp; 100g; 6; 1; 2; 2,CRUSTACEANS; CURRIES; DAIRY; MAIN; PASTA; SOY
+Singapore,Char Kway Teow,Flat rice noodles; Char siu pork; Shrimp; Eggs; Bean sprouts; Garlic; Chili; Soy sauce; Dark soy sauce; Oil,400g; 200g; 200g; 2; 100g; 3 cloves; 2; 2 tbsp; 1 tbsp; 3 tbsp,CRUSTACEANS; EGGS; FRIED; GLUTEN; MAIN; PASTA; PORK; SOY
+Slovakia,Bryndzové Halušky,Potato gnocchi; Bryndza sheep cheese; Bacon; Sour cream; Salt; Butter,500g; 200g; 200g; 100ml; 1 tsp; 30g,DAIRY; GLUTEN; MAIN; PORK
+Slovakia,Kapustnica,Sauerkraut; Kielbasa sausage; Dried mushrooms; Onion; Garlic; Sour cream; Caraway; Paprika; Bay leaf; Salt,500g; 300g; 30g; 1; 2 cloves; 100ml; 1 tsp; 1 tsp; 1; 1 tsp,DAIRY; MAIN; PORK; SOUPS
+Slovakia,Šúľance,Dumplings; Milk; Butter; Sugar; Poppy seeds; Walnuts; Powdered sugar; Salt,400g; 200ml; 50g; 2 tbsp; 100g; 100g; 2 tbsp; pinch,DAIRY; GLUTEN; MAIN; TREE_NUTS; VEGETARIAN
+Slovenia,Kranjska Klobasa,Pork sausage; Onion; Mustard; Horseradish; Bread; Sauerkraut; Oil; Salt; Black pepper,500g; 1; 1 tbsp; 2 tbsp; 4; 200g; 2 tbsp; 1 tsp; 1/2 tsp,GLUTEN; MAIN; MUSTARD; PORK
+Slovenia,Potica,Flour; Walnuts; Honey; Butter; Eggs; Milk; Yeast; Sugar; Cinnamon; Rum,500g; 400g; 100ml; 100g; 3; 200ml; 1 tsp; 80g; 1 tsp; 2 tbsp,DAIRY; DESSERTS; EGGS; GLUTEN; TREE_NUTS; VEGETARIAN
 Slovenia,Jota,Sauerkraut; Pork ribs; Beans; Potatoes; Garlic; Bay leaf; Black pepper; Salt; Lard; Corn flour,400g; 500g; 300g; 3; 3 cloves; 2; 1/2 tsp; 1 tsp; 30g; 2 tbsp,LEGUMES; MAIN; PORK; SOUPS
-Somalia,Bariis Iskukaris,Basmati rice; Spiced lamb; Onion; Garlic; Cardamom; Cinnamon; Cumin; Bay leaf; Butter; Salt,500g; 500g; 2; 3 cloves; 3; 1 stick; 1 tsp; 2; 50g; 1 tsp,LAMB; MAIN; RICE
-Somalia,Sabaayad,Flour; Water; Butter; Salt; Oil for frying,300g; 200ml; 50g; 1 tsp; 200ml,BREADS; FRIED; SIDES; VEGETARIAN
-Somalia,Muufo,Corn flour; Water; Salt; Sugar; Sesame seeds; Oil,400g; 500ml; 1 tsp; 1 tbsp; 2 tbsp; 3 tbsp,BREADS; SIDES; VEGAN; VEGETARIAN
+Somalia,Bariis Iskukaris,Basmati rice; Spiced lamb; Onion; Garlic; Cardamom; Cinnamon; Cumin; Bay leaf; Butter; Salt,500g; 500g; 2; 3 cloves; 3; 1 stick; 1 tsp; 2; 50g; 1 tsp,DAIRY; LAMB; MAIN; RICE
+Somalia,Sabaayad,Flour; Water; Butter; Salt; Oil for frying,300g; 200ml; 50g; 1 tsp; 200ml,BREADS; DAIRY; FRIED; GLUTEN; SIDES; VEGETARIAN
+Somalia,Muufo,Corn flour; Water; Salt; Sugar; Sesame seeds; Oil,400g; 500ml; 1 tsp; 1 tbsp; 2 tbsp; 3 tbsp,BREADS; SESAME; SIDES; VEGAN; VEGETARIAN
 South Africa,Braai,Beef steak; Boerewors sausage; Lamb chops; Coarse salt; Oil; Garlic; Rosemary; Lemon,2kg; 500g; 500g; 2 tbsp; 2 tbsp; 3 cloves; 2 sprigs; 1,BEEF; GRILLED; LAMB; MAIN; PORK
-South Africa,Bobotie,Ground beef; Egg; Milk; Curry powder; Apricot jam; Bay leaf; Onion; Lemon; Bread; Raisins,500g; 3; 250ml; 2 tbsp; 2 tbsp; 3; 1; 1; 2 slices; 50g,BEEF; CURRIES; MAIN
-South Africa,Bunny Chow,Bread loaf; Lamb curry; Onion; Garlic; Ginger; Curry powder; Tomatoes; Potatoes; Salt; Chili,1; 500g; 1; 3 cloves; 1 tbsp; 2 tbsp; 2; 2; 1 tsp; 1,BREADS; CURRIES; LAMB; MAIN
-South Africa,Melktert,Flour; Butter; Eggs; Milk; Sugar; Cinnamon; Cornstarch; Vanilla; Salt,250g; 125g; 3; 1L; 150g; 1 tsp; 3 tbsp; 1 tsp; pinch,DAIRY; DESSERTS; VEGETARIAN
+South Africa,Bobotie,Ground beef; Egg; Milk; Curry powder; Apricot jam; Bay leaf; Onion; Lemon; Bread; Raisins,500g; 3; 250ml; 2 tbsp; 2 tbsp; 3; 1; 1; 2 slices; 50g,BEEF; CURRIES; DAIRY; EGGS; GLUTEN; MAIN; SULPHITES
+South Africa,Bunny Chow,Bread loaf; Lamb curry; Onion; Garlic; Ginger; Curry powder; Tomatoes; Potatoes; Salt; Chili,1; 500g; 1; 3 cloves; 1 tbsp; 2 tbsp; 2; 2; 1 tsp; 1,BREADS; CURRIES; GLUTEN; LAMB; MAIN
+South Africa,Melktert,Flour; Butter; Eggs; Milk; Sugar; Cinnamon; Cornstarch; Vanilla; Salt,250g; 125g; 3; 1L; 150g; 1 tsp; 3 tbsp; 1 tsp; pinch,DAIRY; DESSERTS; EGGS; GLUTEN; VEGETARIAN
 Spain,Paella Valenciana,Bomba rice; Chicken; Rabbit; Tomatoes; Green beans; Garlic; Paprika; Saffron; Olive oil; Chicken stock,500g; 500g; 500g; 2; 200g; 4 cloves; 1 tsp; pinch; 100ml; 1L,MAIN; POULTRY; RICE; WHITE_MEAT
-Spain,Tortilla Española,Eggs; Potatoes; Onion; Olive oil; Salt; Black pepper,6; 1kg; 2; 200ml; 1 tsp; 1/2 tsp,DAIRY; MAIN; VEGETARIAN
-Spain,Gazpacho,Tomatoes; Cucumber; Bell pepper; Bread; Garlic; Olive oil; Red wine vinegar; Salt; Water; Ice,1kg; 1; 1; 2 slices; 2 cloves; 50ml; 2 tbsp; 1 tsp; 200ml; for serving,RAW; SOUPS; STARTERS; VEGAN; VEGETARIAN
-Spain,Jamón Ibérico con Pan,Iberian ham; Bread; Tomato; Olive oil; Garlic; Salt,200g; 1 baguette; 2; 2 tbsp; 1 clove; pinch,PORK; STARTERS
-Spain,Gambas al Ajillo,Shrimp; Garlic; Olive oil; Chili flakes; White wine; Parsley; Salt; Lemon,500g; 6 cloves; 100ml; 1/2 tsp; 100ml; 1/4 cup; 1 tsp; 1,CRUSTACEANS; STARTERS
-Sri Lanka,Rice and Curry,Basmati rice; Chicken; Coconut milk; Curry leaves; Mustard seeds; Turmeric; Cinnamon; Cardamom; Garlic; Onion,400g; 500g; 400ml; 10; 1 tsp; 1 tsp; 1 stick; 3; 3 cloves; 1,CURRIES; MAIN; POULTRY; RICE
-Sri Lanka,Hoppers,Rice flour; Coconut milk; Yeast; Egg; Salt; Oil; Coconut cream; Sugar,300g; 400ml; 1 tsp; 1; 1 tsp; 2 tbsp; 100ml; 1 tsp,BREADS; DAIRY; MAIN; VEGETARIAN
+Spain,Tortilla Española,Eggs; Potatoes; Onion; Olive oil; Salt; Black pepper,6; 1kg; 2; 200ml; 1 tsp; 1/2 tsp,EGGS; MAIN; VEGETARIAN
+Spain,Gazpacho,Tomatoes; Cucumber; Bell pepper; Bread; Garlic; Olive oil; Red wine vinegar; Salt; Water; Ice,1kg; 1; 1; 2 slices; 2 cloves; 50ml; 2 tbsp; 1 tsp; 200ml; for serving,GLUTEN; RAW; SOUPS; STARTERS; SULPHITES; VEGAN; VEGETARIAN
+Spain,Jamón Ibérico con Pan,Iberian ham; Bread; Tomato; Olive oil; Garlic; Salt,200g; 1 baguette; 2; 2 tbsp; 1 clove; pinch,GLUTEN; PORK; STARTERS
+Spain,Gambas al Ajillo,Shrimp; Garlic; Olive oil; Chili flakes; White wine; Parsley; Salt; Lemon,500g; 6 cloves; 100ml; 1/2 tsp; 100ml; 1/4 cup; 1 tsp; 1,CRUSTACEANS; STARTERS; SULPHITES
+Sri Lanka,Rice and Curry,Basmati rice; Chicken; Coconut milk; Curry leaves; Mustard seeds; Turmeric; Cinnamon; Cardamom; Garlic; Onion,400g; 500g; 400ml; 10; 1 tsp; 1 tsp; 1 stick; 3; 3 cloves; 1,CURRIES; DAIRY; MAIN; MUSTARD; POULTRY; RICE
+Sri Lanka,Hoppers,Rice flour; Coconut milk; Yeast; Egg; Salt; Oil; Coconut cream; Sugar,300g; 400ml; 1 tsp; 1; 1 tsp; 2 tbsp; 100ml; 1 tsp,BREADS; DAIRY; EGGS; MAIN; VEGETARIAN
 Sri Lanka,Fish Ambul Thiyal,Tuna; Goraka/Dried gamboge; Garlic; Ginger; Peppercorns; Cinnamon; Cardamom; Curry leaves; Oil; Salt,500g; 30g; 3 cloves; 1 tsp; 1 tsp; 1/2 tsp; 2; 8; 2 tbsp; 1 tsp,CURRIES; LEAN_FISH; MAIN
-Sudan,Ful Medames,Fava beans; Olive oil; Lemon juice; Garlic; Cumin; Chili; Salt; Onion; Egg; Pita bread,500g; 50ml; 3 tbsp; 3 cloves; 1 tsp; 1; 1 tsp; 1; 2; 4,LEGUMES; MAIN; VEGETARIAN
-Sudan,Asida,Sorghum flour; Water; Salt; Honey; Butter; Yogurt,500g; 1L; 1 tsp; 2 tbsp; 50g; 200ml,SIDES; VEGETARIAN
+Sudan,Ful Medames,Fava beans; Olive oil; Lemon juice; Garlic; Cumin; Chili; Salt; Onion; Egg; Pita bread,500g; 50ml; 3 tbsp; 3 cloves; 1 tsp; 1; 1 tsp; 1; 2; 4,EGGS; GLUTEN; LEGUMES; MAIN; VEGETARIAN
+Sudan,Asida,Sorghum flour; Water; Salt; Honey; Butter; Yogurt,500g; 1L; 1 tsp; 2 tbsp; 50g; 200ml,DAIRY; GLUTEN; SIDES; VEGETARIAN
 Sudan,Mullah Stew,Beef; Onion; Tomatoes; Garlic; Cumin; Coriander; Chili; Oil; Salt; Potato,500g; 2; 3; 4 cloves; 1 tsp; 1 tsp; 1; 100ml; 1 tsp; 2,BEEF; MAIN; SOUPS
-Sweden,Köttbullar,Ground pork; Ground beef; Onion; Breadcrumbs; Milk; Egg; Allspice; Salt; Butter; Cream sauce,400g; 200g; 1; 50g; 50ml; 1; 1/4 tsp; 1 tsp; 50g; 200ml,BEEF; MAIN; PORK
-Sweden,Gravlax,Salmon; Salt; Sugar; Dill; White pepper; Mustard sauce; Lemon; Rye crispbread,500g; 50g; 50g; 1 bunch; 1 tsp; 100ml; 1; for serving,FAT_FISH; RAW; STARTERS
-Sweden,Smörgåsbord,Gravlax; Pickled herring; Meatballs; Janssons frestelse; Hard-boiled eggs; Crispbread; Butter; Sour cream; Mustard; Dill,200g; 200g; 20; 400g; 4; 200g; 100g; 100ml; 2 tbsp; 1/4 cup,FAT_FISH; STARTERS
-Switzerland,Fondue,Gruyère cheese; Emmental cheese; Dry white wine; Garlic; Cornstarch; Kirsch; Nutmeg; Pepper; Bread,300g; 300g; 300ml; 1 clove; 1 tbsp; 2 tbsp; 1/4 tsp; 1/4 tsp; 1 baguette,DAIRY; MAIN; VEGETARIAN
+Sweden,Köttbullar,Ground pork; Ground beef; Onion; Breadcrumbs; Milk; Egg; Allspice; Salt; Butter; Cream sauce,400g; 200g; 1; 50g; 50ml; 1; 1/4 tsp; 1 tsp; 50g; 200ml,BEEF; DAIRY; EGGS; GLUTEN; MAIN; PORK
+Sweden,Gravlax,Salmon; Salt; Sugar; Dill; White pepper; Mustard sauce; Lemon; Rye crispbread,500g; 50g; 50g; 1 bunch; 1 tsp; 100ml; 1; for serving,FAT_FISH; GLUTEN; MUSTARD; RAW; STARTERS
+Sweden,Smörgåsbord,Gravlax; Pickled herring; Meatballs; Janssons frestelse; Hard-boiled eggs; Crispbread; Butter; Sour cream; Mustard; Dill,200g; 200g; 20; 400g; 4; 200g; 100g; 100ml; 2 tbsp; 1/4 cup,DAIRY; EGGS; FAT_FISH; GLUTEN; MUSTARD; STARTERS
+Switzerland,Fondue,Gruyère cheese; Emmental cheese; Dry white wine; Garlic; Cornstarch; Kirsch; Nutmeg; Pepper; Bread,300g; 300g; 300ml; 1 clove; 1 tbsp; 2 tbsp; 1/4 tsp; 1/4 tsp; 1 baguette,DAIRY; GLUTEN; MAIN; SULPHITES; VEGETARIAN
 Switzerland,Rösti,Potatoes; Butter; Salt; Black pepper; Bacon; Gruyère cheese; Onion,1kg; 80g; 1 tsp; 1/2 tsp; 150g; 100g; 1,DAIRY; MAIN; PORK
-Switzerland,Zürcher Geschnetzeltes,Veal; Mushrooms; Heavy cream; White wine; Shallots; Butter; Flour; Salt; Parsley; Lemon,500g; 200g; 200ml; 100ml; 2; 50g; 1 tbsp; 1 tsp; 2 tbsp; 1,BEEF; MAIN
-Syria,Kibbeh Nayyeh,Ground lamb; Bulghur; Onion; Mint; Allspice; Cinnamon; Olive oil; Salt; Pine nuts; Black pepper,500g; 200g; 1; 1/4 cup; 1 tsp; 1/2 tsp; 50ml; 1 tsp; 50g; 1/2 tsp,LAMB; RAW; STARTERS
-Syria,Fattoush,Stale pita bread; Romaine lettuce; Tomatoes; Cucumber; Radish; Parsley; Mint; Sumac; Olive oil; Lemon juice,2; 1 head; 2; 1; 5; 1/2 cup; 1/4 cup; 2 tsp; 50ml; 3 tbsp,RAW; SALADS; STARTERS; VEGAN; VEGETARIAN
+Switzerland,Zürcher Geschnetzeltes,Veal; Mushrooms; Heavy cream; White wine; Shallots; Butter; Flour; Salt; Parsley; Lemon,500g; 200g; 200ml; 100ml; 2; 50g; 1 tbsp; 1 tsp; 2 tbsp; 1,BEEF; DAIRY; GLUTEN; MAIN; SULPHITES
+Syria,Kibbeh Nayyeh,Ground lamb; Bulghur; Onion; Mint; Allspice; Cinnamon; Olive oil; Salt; Pine nuts; Black pepper,500g; 200g; 1; 1/4 cup; 1 tsp; 1/2 tsp; 50ml; 1 tsp; 50g; 1/2 tsp,LAMB; RAW; STARTERS; TREE_NUTS
+Syria,Fattoush,Stale pita bread; Romaine lettuce; Tomatoes; Cucumber; Radish; Parsley; Mint; Sumac; Olive oil; Lemon juice,2; 1 head; 2; 1; 5; 1/2 cup; 1/4 cup; 2 tsp; 50ml; 3 tbsp,GLUTEN; RAW; SALADS; STARTERS; VEGAN; VEGETARIAN
 Syria,Kafta,Ground lamb; Ground beef; Onion; Parsley; Allspice; Cinnamon; Cumin; Paprika; Salt; Black pepper,400g; 200g; 1; 1/2 cup; 1 tsp; 1/2 tsp; 1/2 tsp; 1 tsp; 1 tsp; 1/2 tsp,BEEF; GRILLED; LAMB; MAIN
-Taiwan,Beef Noodle Soup,Beef shank; Ramen noodles; Soy sauce; Doubanjiang; Garlic; Ginger; Star anise; Tomatoes; Scallions; Chili,1kg; 400g; 100ml; 2 tbsp; 4 cloves; 2 tbsp; 3; 2; 2; 2,BEEF; MAIN; PASTA; SOUPS
-Taiwan,Lu Rou Fan,Pork belly; Soy sauce; Rice wine; Sugar; Five-spice; Shallots; Garlic; Eggs; Mushrooms; Rice,500g; 100ml; 50ml; 2 tbsp; 1 tsp; 4; 3 cloves; 4; 50g; 400g,MAIN; PORK; RICE
-Taiwan,Scallion Pancake,Flour; Scallions; Sesame oil; Salt; Oil; Water; Dipping sauce,400g; 4; 3 tbsp; 1 tsp; 3 tbsp; 250ml; 50ml,BREADS; FRIED; STARTERS; VEGAN; VEGETARIAN
-Tajikistan,Qurutob,Flatbread; Katyk/Sour milk; Onion; Butter; Coriander; Dill; Parsley; Garlic; Salt; Black pepper,4; 500ml; 2; 50g; 1/4 cup; 1/4 cup; 1/4 cup; 2 cloves; 1 tsp; 1/2 tsp,DAIRY; MAIN; VEGETARIAN
+Taiwan,Beef Noodle Soup,Beef shank; Ramen noodles; Soy sauce; Doubanjiang; Garlic; Ginger; Star anise; Tomatoes; Scallions; Chili,1kg; 400g; 100ml; 2 tbsp; 4 cloves; 2 tbsp; 3; 2; 2; 2,BEEF; GLUTEN; MAIN; PASTA; SOUPS; SOY
+Taiwan,Lu Rou Fan,Pork belly; Soy sauce; Rice wine; Sugar; Five-spice; Shallots; Garlic; Eggs; Mushrooms; Rice,500g; 100ml; 50ml; 2 tbsp; 1 tsp; 4; 3 cloves; 4; 50g; 400g,EGGS; GLUTEN; MAIN; PORK; RICE; SOY; SULPHITES
+Taiwan,Scallion Pancake,Flour; Scallions; Sesame oil; Salt; Oil; Water; Dipping sauce,400g; 4; 3 tbsp; 1 tsp; 3 tbsp; 250ml; 50ml,BREADS; FRIED; GLUTEN; SESAME; STARTERS; VEGAN; VEGETARIAN
+Tajikistan,Qurutob,Flatbread; Katyk/Sour milk; Onion; Butter; Coriander; Dill; Parsley; Garlic; Salt; Black pepper,4; 500ml; 2; 50g; 1/4 cup; 1/4 cup; 1/4 cup; 2 cloves; 1 tsp; 1/2 tsp,DAIRY; GLUTEN; MAIN; VEGETARIAN
 Tajikistan,Osh,Basmati rice; Lamb; Carrots; Onion; Garlic; Cumin; Dried berberries; Oil; Salt; Black pepper,500g; 500g; 2; 2; 1 head; 1 tsp; 50g; 100ml; 1 tsp; 1/2 tsp,LAMB; MAIN; RICE
 Tajikistan,Shurbo,Lamb; Potatoes; Carrots; Onion; Tomatoes; Garlic; Bay leaf; Cumin; Parsley; Salt,1kg; 3; 2; 1; 2; 3 cloves; 2; 1 tsp; 1/4 cup; 1 tsp,LAMB; MAIN; SOUPS
 Tanzania,Nyama Choma (Goat),Goat meat; Nyama Choma (base),200g; 1 serving,MAIN; MEAT; GRILLED
 Tanzania,Pilau,Basmati rice; Beef; Pilau masala; Onion; Garlic; Ginger; Tomatoes; Oil; Salt; Cardamom,500g; 500g; 2 tbsp; 2; 3 cloves; 1 tbsp; 2; 100ml; 1 tsp; 3,BEEF; MAIN; RICE
 Tanzania,Ugali na Samaki,Maize flour; Water; Salt; Fish; Tomatoes; Onion; Garlic; Chili; Oil,500g; 1L; 1 tsp; 500g; 2; 1; 2 cloves; 1; 3 tbsp,LEAN_FISH; MAIN; SIDES
-Thailand,Pad Thai,Rice noodles; Shrimp; Tofu; Egg; Bean sprouts; Peanuts; Tamarind sauce; Fish sauce; Garlic; Green onion,400g; 200g; 200g; 2; 100g; 50g; 3 tbsp; 2 tbsp; 3 cloves; 2,CRUSTACEANS; MAIN; PASTA
-Thailand,Green Curry,Chicken; Green curry paste; Coconut milk; Thai basil; Kaffir lime leaves; Fish sauce; Palm sugar; Zucchini; Bamboo shoots; Galangal,500g; 3 tbsp; 400ml; 1/2 cup; 4; 2 tbsp; 1 tbsp; 1; 100g; 1 tsp,CURRIES; MAIN; POULTRY
+Thailand,Pad Thai,Rice noodles; Shrimp; Tofu; Egg; Bean sprouts; Peanuts; Tamarind sauce; Fish sauce; Garlic; Green onion,400g; 200g; 200g; 2; 100g; 50g; 3 tbsp; 2 tbsp; 3 cloves; 2,CRUSTACEANS; EGGS; MAIN; PASTA; PEANUTS; SOY
+Thailand,Green Curry,Chicken; Green curry paste; Coconut milk; Thai basil; Kaffir lime leaves; Fish sauce; Palm sugar; Zucchini; Bamboo shoots; Galangal,500g; 3 tbsp; 400ml; 1/2 cup; 4; 2 tbsp; 1 tbsp; 1; 100g; 1 tsp,CURRIES; DAIRY; MAIN; POULTRY
 Thailand,Tom Yum Goong,Shrimp; Lemongrass; Kaffir lime leaves; Galangal; Thai bird chili; Mushrooms; Lime juice; Fish sauce; Cilantro; Nam prik pao,500g; 3 stalks; 6; 30g; 4; 100g; 3 tbsp; 2 tbsp; 1/4 cup; 1 tbsp,CRUSTACEANS; MAIN; SOUPS
-Thailand,Som Tum,Green papaya; Lime juice; Fish sauce; Garlic; Bird's eye chili; Cherry tomatoes; Peanuts; Palm sugar; Dried shrimp; Long beans,500g; 3 tbsp; 2 tbsp; 3 cloves; 3; 100g; 50g; 1 tbsp; 2 tbsp; 100g,CRUSTACEANS; SALADS; STARTERS
-Thailand,Massaman Curry,Beef; Massaman curry paste; Coconut milk; Potatoes; Onion; Peanuts; Tamarind; Fish sauce; Palm sugar; Bay leaf,500g; 3 tbsp; 400ml; 3; 1; 50g; 1 tbsp; 2 tbsp; 1 tbsp; 2,BEEF; CURRIES; MAIN
-Thailand,Khao Man Gai,Poached chicken; Jasmine rice; Ginger; Garlic; Cucumber; Spring onion; Chicken broth; Chili dipping sauce; Cilantro; Sesame oil,1.5kg; 400g; 30g; 4 cloves; 1; 2; 1L; 100ml; 1/4 cup; 1 tbsp,MAIN; POULTRY; RICE
+Thailand,Som Tum,Green papaya; Lime juice; Fish sauce; Garlic; Bird's eye chili; Cherry tomatoes; Peanuts; Palm sugar; Dried shrimp; Long beans,500g; 3 tbsp; 2 tbsp; 3 cloves; 3; 100g; 50g; 1 tbsp; 2 tbsp; 100g,CRUSTACEANS; PEANUTS; SALADS; STARTERS
+Thailand,Massaman Curry,Beef; Massaman curry paste; Coconut milk; Potatoes; Onion; Peanuts; Tamarind; Fish sauce; Palm sugar; Bay leaf,500g; 3 tbsp; 400ml; 3; 1; 50g; 1 tbsp; 2 tbsp; 1 tbsp; 2,BEEF; CURRIES; DAIRY; MAIN; PEANUTS; SOY
+Thailand,Khao Man Gai,Poached chicken; Jasmine rice; Ginger; Garlic; Cucumber; Spring onion; Chicken broth; Chili dipping sauce; Cilantro; Sesame oil,1.5kg; 400g; 30g; 4 cloves; 1; 2; 1L; 100ml; 1/4 cup; 1 tbsp,MAIN; POULTRY; RICE; SESAME
 Timor-Leste,Batar Da'an,Corn; Black-eyed peas; Pumpkin; Onion; Garlic; Oil; Salt,400g; 200g; 300g; 1; 2 cloves; 3 tbsp; 1 tsp,LEGUMES; MAIN; VEGAN; VEGETARIAN
-Timor-Leste,Ikan Pepes,White fish; Lemongrass; Galangal; Garlic; Shallots; Turmeric; Chili; Lime; Coconut milk; Banana leaves,500g; 1; 1 tsp; 3 cloves; 4; 1/2 tsp; 2; 1; 50ml; for wrapping,CURRIES; LEAN_FISH; MAIN
+Timor-Leste,Ikan Pepes,White fish; Lemongrass; Galangal; Garlic; Shallots; Turmeric; Chili; Lime; Coconut milk; Banana leaves,500g; 1; 1 tsp; 3 cloves; 4; 1/2 tsp; 2; 1; 50ml; for wrapping,CURRIES; DAIRY; LEAN_FISH; MAIN
 Timor-Leste,Tapay,Rice; Tapioca; Sugar; Yeast; Water,400g; 100g; 50g; 1 tsp; 300ml,DESSERTS; VEGETARIAN
 Togo,Fufu,Cassava; Plantain; Water; Salt,500g; 300g; 1L; 1 tsp,SIDES; VEGAN; VEGETARIAN
 Togo,Akoumé,Corn flour; Water; Salt; Palm oil; Onion; Tomatoes; Chili,400g; 1L; 1 tsp; 50ml; 1; 2; 1,MAIN; VEGAN; VEGETARIAN
 Togo,Grilled Tilapia,Tilapia; Garlic; Ginger; Lemon juice; Chili powder; Paprika; Oil; Salt; Onion; Parsley,2; 3 cloves; 1 tsp; 2 tbsp; 1 tsp; 1 tsp; 2 tbsp; 1 tsp; 1; 1 tbsp,GRILLED; LEAN_FISH; MAIN
-Trinidad and Tobago,Doubles,Bara fried bread; Curried chickpeas; Tamarind sauce; Pepper sauce; Cucumber; Chutney; Cumin; Turmeric; Flour; Yeast,2; 200g; 2 tbsp; 1 tsp; 1/2; 2 tbsp; 1 tsp; 1/2 tsp; 300g; 1 tsp,BREADS; FRIED; LEGUMES; STARTERS; VEGETARIAN
-Trinidad and Tobago,Pelau,Chicken; Rice; Pigeon peas; Coconut milk; Brown sugar; Onion; Garlic; Thyme; Carrots; Pumpkin,500g; 400g; 200g; 400ml; 2 tbsp; 1; 3 cloves; 1 tsp; 1; 200g,LEGUMES; MAIN; POULTRY; RICE
-Trinidad and Tobago,Callaloo,Dasheen leaves; Coconut milk; Crab; Onion; Garlic; Thyme; Pumpkin; Okra; Salt meat; Pepper,500g; 400ml; 2; 1; 3 cloves; 2 sprigs; 200g; 10; 200g; 1,CRAB; MAIN; SOUPS
-Tunisia,Shakshuka,Eggs; Tomatoes; Bell pepper; Onion; Garlic; Cumin; Paprika; Harissa; Olive oil; Parsley,6; 500g; 2; 1; 3 cloves; 1 tsp; 1 tsp; 1 tbsp; 3 tbsp; 2 tbsp,DAIRY; MAIN; VEGETARIAN
-Tunisia,Brik,Thin pastry; Egg; Tuna; Harissa; Onion; Parsley; Capers; Oil for frying,2 sheets; 2; 100g; 1 tsp; 1/2; 2 tbsp; 1 tbsp; 200ml,FRIED; LEAN_FISH; STARTERS
-Tunisia,Lamb Couscous,Couscous; Lamb shoulder; Chickpeas; Harissa; Tomato paste; Carrots; Zucchini; Onion; Ras el Hanout; Olive oil,500g; 500g; 200g; 2 tbsp; 2 tbsp; 2; 2; 1; 1 tbsp; 50ml,LAMB; LEGUMES; MAIN; RICE
-Turkey,Doner Kebab,Lamb; Beef; Yogurt; Onion; Garlic; Cumin; Paprika; Thyme; Egg; Black pepper,700g; 300g; 200ml; 1; 3 cloves; 1 tsp; 1 tbsp; 1 tsp; 1; 1 tsp,BEEF; GRILLED; LAMB; MAIN
-Turkey,Lahmacun,Flour; Ground beef; Onion; Tomatoes; Bell pepper; Garlic; Parsley; Red pepper paste; Cumin; Oil,500g; 300g; 1; 2; 1; 3 cloves; 1/4 cup; 2 tbsp; 1 tsp; 50ml,BEEF; BREADS; MAIN
-Turkey,Manti,Flour; Ground beef; Onion; Garlic; Yogurt; Butter; Paprika; Cumin; Mint; Black pepper,400g; 300g; 1; 2 cloves; 400ml; 100g; 1 tsp; 1/2 tsp; 1 tsp; 1/2 tsp,BEEF; DAIRY; MAIN
-Turkey,İskender Kebab,Lamb or beef; Pita bread; Yogurt; Tomato sauce; Butter; Paprika; Cumin; Salt; Onion; Parsley,500g; 4; 200ml; 200ml; 100g; 1 tsp; 1/2 tsp; 1 tsp; 1; 1/4 cup,BEEF; LAMB; MAIN
-Turkey,Baklava,Phyllo dough; Pistachios; Walnuts; Butter; Honey; Sugar; Water; Cinnamon; Lemon juice,400g; 200g; 200g; 200g; 200ml; 200g; 200ml; 1 tsp; 1 tbsp,BREADS; DAIRY; DESSERTS; VEGETARIAN
-Turkey,Mercimek Çorbası,Red lentils; Onion; Carrot; Celery; Tomato paste; Cumin; Paprika; Olive oil; Salt; Lemon,300g; 1; 1; 1; 2 tbsp; 1 tsp; 1 tsp; 3 tbsp; 1 tsp; 1,LEGUMES; MAIN; SOUPS; VEGAN; VEGETARIAN
+Trinidad and Tobago,Doubles,Bara fried bread; Curried chickpeas; Tamarind sauce; Pepper sauce; Cucumber; Chutney; Cumin; Turmeric; Flour; Yeast,2; 200g; 2 tbsp; 1 tsp; 1/2; 2 tbsp; 1 tsp; 1/2 tsp; 300g; 1 tsp,BREADS; FRIED; GLUTEN; LEGUMES; SOY; STARTERS; VEGETARIAN
+Trinidad and Tobago,Pelau,Chicken; Rice; Pigeon peas; Coconut milk; Brown sugar; Onion; Garlic; Thyme; Carrots; Pumpkin,500g; 400g; 200g; 400ml; 2 tbsp; 1; 3 cloves; 1 tsp; 1; 200g,DAIRY; LEGUMES; MAIN; POULTRY; RICE
+Trinidad and Tobago,Callaloo,Dasheen leaves; Coconut milk; Crab; Onion; Garlic; Thyme; Pumpkin; Okra; Salt meat; Pepper,500g; 400ml; 2; 1; 3 cloves; 2 sprigs; 200g; 10; 200g; 1,CRAB; DAIRY; MAIN; SOUPS
+Tunisia,Shakshuka,Eggs; Tomatoes; Bell pepper; Onion; Garlic; Cumin; Paprika; Harissa; Olive oil; Parsley,6; 500g; 2; 1; 3 cloves; 1 tsp; 1 tsp; 1 tbsp; 3 tbsp; 2 tbsp,EGGS; MAIN; VEGETARIAN
+Tunisia,Brik,Thin pastry; Egg; Tuna; Harissa; Onion; Parsley; Capers; Oil for frying,2 sheets; 2; 100g; 1 tsp; 1/2; 2 tbsp; 1 tbsp; 200ml,EGGS; FRIED; GLUTEN; LEAN_FISH; STARTERS
+Tunisia,Lamb Couscous,Couscous; Lamb shoulder; Chickpeas; Harissa; Tomato paste; Carrots; Zucchini; Onion; Ras el Hanout; Olive oil,500g; 500g; 200g; 2 tbsp; 2 tbsp; 2; 2; 1; 1 tbsp; 50ml,GLUTEN; LAMB; LEGUMES; MAIN; RICE
+Turkey,Doner Kebab,Lamb; Beef; Yogurt; Onion; Garlic; Cumin; Paprika; Thyme; Egg; Black pepper,700g; 300g; 200ml; 1; 3 cloves; 1 tsp; 1 tbsp; 1 tsp; 1; 1 tsp,BEEF; DAIRY; EGGS; GRILLED; LAMB; MAIN
+Turkey,Lahmacun,Flour; Ground beef; Onion; Tomatoes; Bell pepper; Garlic; Parsley; Red pepper paste; Cumin; Oil,500g; 300g; 1; 2; 1; 3 cloves; 1/4 cup; 2 tbsp; 1 tsp; 50ml,BEEF; BREADS; GLUTEN; MAIN
+Turkey,Manti,Flour; Ground beef; Onion; Garlic; Yogurt; Butter; Paprika; Cumin; Mint; Black pepper,400g; 300g; 1; 2 cloves; 400ml; 100g; 1 tsp; 1/2 tsp; 1 tsp; 1/2 tsp,BEEF; DAIRY; GLUTEN; MAIN
+Turkey,İskender Kebab,Lamb or beef; Pita bread; Yogurt; Tomato sauce; Butter; Paprika; Cumin; Salt; Onion; Parsley,500g; 4; 200ml; 200ml; 100g; 1 tsp; 1/2 tsp; 1 tsp; 1; 1/4 cup,BEEF; DAIRY; GLUTEN; LAMB; MAIN
+Turkey,Baklava,Phyllo dough; Pistachios; Walnuts; Butter; Honey; Sugar; Water; Cinnamon; Lemon juice,400g; 200g; 200g; 200g; 200ml; 200g; 200ml; 1 tsp; 1 tbsp,BREADS; DAIRY; DESSERTS; GLUTEN; TREE_NUTS; VEGETARIAN
+Turkey,Mercimek Çorbası,Red lentils; Onion; Carrot; Celery; Tomato paste; Cumin; Paprika; Olive oil; Salt; Lemon,300g; 1; 1; 1; 2 tbsp; 1 tsp; 1 tsp; 3 tbsp; 1 tsp; 1,CELERY; LEGUMES; MAIN; SOUPS; VEGAN; VEGETARIAN
 Turkmenistan,Plov,Basmati rice; Lamb; Carrots; Onion; Garlic; Cumin; Coriander; Oil; Salt; Black pepper,500g; 500g; 2; 2; 1 head; 1 tsp; 1 tsp; 100ml; 1 tsp; 1/2 tsp,LAMB; MAIN; RICE
-Turkmenistan,Çal,Camel milk; Water; Salt; Sugar,500ml; 200ml; 1/2 tsp; 1 tsp,DRINKS
-Turkmenistan,Dograma,Bread; Lamb; Onion; Black pepper; Salt; Water,4; 500g; 2; 1 tsp; 1 tsp; 500ml,LAMB; MAIN
-Uganda,Rolex,Chapati; Eggs; Tomatoes; Onion; Bell pepper; Oil; Salt; Chili,2; 4; 2; 1; 1; 2 tbsp; 1/2 tsp; 1,BREADS; DAIRY; MAIN; VEGETARIAN
+Turkmenistan,Çal,Camel milk; Water; Salt; Sugar,500ml; 200ml; 1/2 tsp; 1 tsp,DAIRY; DRINKS
+Turkmenistan,Dograma,Bread; Lamb; Onion; Black pepper; Salt; Water,4; 500g; 2; 1 tsp; 1 tsp; 500ml,GLUTEN; LAMB; MAIN
+Uganda,Rolex,Chapati; Eggs; Tomatoes; Onion; Bell pepper; Oil; Salt; Chili,2; 4; 2; 1; 1; 2 tbsp; 1/2 tsp; 1,BREADS; EGGS; MAIN; VEGETARIAN
 Uganda,Matoke,Green bananas; Salt; Oil; Onion; Tomatoes; Garlic; Water,6; 1 tsp; 2 tbsp; 1; 2; 2 cloves; 300ml,SIDES; VEGAN; VEGETARIAN
-Uganda,Groundnut Stew,Beef; Groundnut paste; Tomatoes; Onion; Garlic; Ginger; Chili; Oil; Salt; Water,500g; 300g; 3; 1; 3 cloves; 1 tbsp; 1; 100ml; 1 tsp; 1L,BEEF; MAIN; SOUPS
-Ukraine,Varenyky,Flour; Potato; Onion; Butter; Egg; Sour cream; Salt; Black pepper; Bacon; Cheddar cheese,400g; 600g; 1; 50g; 1; 100ml; 1 tsp; 1/2 tsp; 100g; 100g,DAIRY; MAIN; PORK
-Ukraine,Borscht,Beets; Beef; Cabbage; Potatoes; Carrots; Tomato paste; Onion; Garlic; Sour cream; Dill,500g; 500g; 300g; 2; 1; 2 tbsp; 1; 3 cloves; 100ml; 1/4 cup,BEEF; MAIN; SOUPS
-Ukraine,Chicken Kyiv,Chicken breast; Butter; Garlic; Dill; Flour; Egg; Breadcrumbs; Oil; Salt; Lemon,4; 150g; 3 cloves; 2 tbsp; 100g; 2; 150g; 500ml; 1 tsp; 1,FRIED; MAIN; POULTRY
-United Arab Emirates,Mandi,Lamb; Basmati rice; Mandi spices; Onion; Tomatoes; Garlic; Ghee; Saffron; Raisins; Almonds,2kg; 1kg; 3 tbsp; 2; 3; 4 cloves; 100g; pinch; 100g; 100g,LAMB; MAIN; RICE
-United Arab Emirates,Harees,Wheat; Lamb; Butter; Cinnamon; Salt; Cumin; Water,300g; 500g; 100g; 1/2 tsp; 1 tsp; 1/2 tsp; 2L,LAMB; MAIN; RICE
-United Arab Emirates,Luqaimat,Flour; Yeast; Sugar; Cardamom; Saffron; Oil for frying; Honey; Sesame seeds,250g; 1 tsp; 1 tbsp; 1/2 tsp; pinch; 1L; 100ml; 2 tbsp,DESSERTS; FRIED; VEGETARIAN
-United Kingdom,Fish and Chips,Cod fillets; Potatoes; Flour; Baking powder; Beer; Salt; Oil for frying; Malt vinegar; Mushy peas,4; 1kg; 200g; 1 tsp; 300ml; 1 tsp; 1L; for serving; 200g,FRIED; LEAN_FISH; MAIN
-United Kingdom,Sunday Roast,Beef rib roast; Potatoes; Carrots; Parsnips; Yorkshire pudding batter; Beef gravy; Horseradish sauce; Peas; Brussels sprouts; Butter,2kg; 1kg; 2; 4; 400ml; 500ml; 100ml; 200g; 200g; 50g,BEEF; GRILLED; MAIN
-United Kingdom,Shepherd's Pie,Ground lamb; Potatoes; Onion; Carrots; Peas; Beef stock; Worcestershire sauce; Butter; Milk; Salt,500g; 1kg; 1; 2; 200g; 250ml; 2 tbsp; 50g; 100ml; 1 tsp,LAMB; MAIN
-United Kingdom,Chicken Tikka Masala,Chicken; Tomato sauce; Heavy cream; Garlic; Ginger; Garam masala; Cumin; Paprika; Yogurt; Onion,500g; 400ml; 150ml; 4 cloves; 2 tbsp; 2 tsp; 1 tsp; 2 tsp; 150ml; 1,CURRIES; MAIN; POULTRY
+Uganda,Groundnut Stew,Beef; Groundnut paste; Tomatoes; Onion; Garlic; Ginger; Chili; Oil; Salt; Water,500g; 300g; 3; 1; 3 cloves; 1 tbsp; 1; 100ml; 1 tsp; 1L,BEEF; MAIN; PEANUTS; SOUPS; TREE_NUTS
+Ukraine,Varenyky,Flour; Potato; Onion; Butter; Egg; Sour cream; Salt; Black pepper; Bacon; Cheddar cheese,400g; 600g; 1; 50g; 1; 100ml; 1 tsp; 1/2 tsp; 100g; 100g,DAIRY; EGGS; GLUTEN; MAIN; PORK
+Ukraine,Borscht,Beets; Beef; Cabbage; Potatoes; Carrots; Tomato paste; Onion; Garlic; Sour cream; Dill,500g; 500g; 300g; 2; 1; 2 tbsp; 1; 3 cloves; 100ml; 1/4 cup,BEEF; DAIRY; MAIN; SOUPS
+Ukraine,Chicken Kyiv,Chicken breast; Butter; Garlic; Dill; Flour; Egg; Breadcrumbs; Oil; Salt; Lemon,4; 150g; 3 cloves; 2 tbsp; 100g; 2; 150g; 500ml; 1 tsp; 1,DAIRY; EGGS; FRIED; GLUTEN; MAIN; POULTRY
+United Arab Emirates,Mandi,Lamb; Basmati rice; Mandi spices; Onion; Tomatoes; Garlic; Ghee; Saffron; Raisins; Almonds,2kg; 1kg; 3 tbsp; 2; 3; 4 cloves; 100g; pinch; 100g; 100g,DAIRY; LAMB; MAIN; RICE; SULPHITES; TREE_NUTS
+United Arab Emirates,Harees,Wheat; Lamb; Butter; Cinnamon; Salt; Cumin; Water,300g; 500g; 100g; 1/2 tsp; 1 tsp; 1/2 tsp; 2L,DAIRY; GLUTEN; LAMB; MAIN; RICE
+United Arab Emirates,Luqaimat,Flour; Yeast; Sugar; Cardamom; Saffron; Oil for frying; Honey; Sesame seeds,250g; 1 tsp; 1 tbsp; 1/2 tsp; pinch; 1L; 100ml; 2 tbsp,DESSERTS; FRIED; GLUTEN; SESAME; VEGETARIAN
+United Kingdom,Fish and Chips,Cod fillets; Potatoes; Flour; Baking powder; Beer; Salt; Oil for frying; Malt vinegar; Mushy peas,4; 1kg; 200g; 1 tsp; 300ml; 1 tsp; 1L; for serving; 200g,FRIED; GLUTEN; LEAN_FISH; MAIN
+United Kingdom,Sunday Roast,Beef rib roast; Potatoes; Carrots; Parsnips; Yorkshire pudding batter; Beef gravy; Horseradish sauce; Peas; Brussels sprouts; Butter,2kg; 1kg; 2; 4; 400ml; 500ml; 100ml; 200g; 200g; 50g,BEEF; DAIRY; GLUTEN; GRILLED; MAIN
+United Kingdom,Shepherd's Pie,Ground lamb; Potatoes; Onion; Carrots; Peas; Beef stock; Worcestershire sauce; Butter; Milk; Salt,500g; 1kg; 1; 2; 200g; 250ml; 2 tbsp; 50g; 100ml; 1 tsp,DAIRY; GLUTEN; LAMB; MAIN
+United Kingdom,Chicken Tikka Masala,Chicken; Tomato sauce; Heavy cream; Garlic; Ginger; Garam masala; Cumin; Paprika; Yogurt; Onion,500g; 400ml; 150ml; 4 cloves; 2 tbsp; 2 tsp; 1 tsp; 2 tsp; 150ml; 1,CURRIES; DAIRY; MAIN; POULTRY
 United States,Barbecue Ribs,Pork ribs; Barbecue sauce; Brown sugar; Paprika; Cumin; Garlic powder; Onion powder; Salt; Black pepper; Apple cider vinegar,2kg; 500ml; 3 tbsp; 2 tbsp; 1 tsp; 1 tsp; 1 tsp; 1 tsp; 1 tsp; 50ml,GRILLED; MAIN; PORK
-United States,Clam Chowder,Clams; Potatoes; Bacon; Onion; Celery; Heavy cream; Butter; Thyme; Bay leaf; Salt,500g; 3; 200g; 1; 2; 300ml; 50g; 1 tsp; 2; 1 tsp,MAIN; MOLLUSKS; PORK; SOUPS
+United States,Clam Chowder,Clams; Potatoes; Bacon; Onion; Celery; Heavy cream; Butter; Thyme; Bay leaf; Salt,500g; 3; 200g; 1; 2; 300ml; 50g; 1 tsp; 2; 1 tsp,CELERY; DAIRY; MAIN; MOLLUSKS; PORK; SOUPS
 United States,Philly Cheesesteak,Beef steak; Hoagie roll; Provolone cheese; Green pepper; Onion; Mushrooms; Oil; Salt; Black pepper,500g; 4; 200g; 1; 1; 100g; 3 tbsp; 1 tsp; 1/2 tsp,BEEF; DAIRY; MAIN
-United States,Mac and Cheese,Macaroni; Cheddar cheese; Butter; Flour; Milk; Salt; Black pepper; Mustard powder; Breadcrumbs; Paprika,400g; 300g; 50g; 3 tbsp; 500ml; 1 tsp; 1/2 tsp; 1/2 tsp; 50g; 1/2 tsp,DAIRY; MAIN; VEGETARIAN
-United States,Pancakes,Flour; Milk; Eggs; Butter; Baking powder; Sugar; Salt; Vanilla; Maple syrup; Blueberries,300g; 300ml; 2; 50g; 2 tsp; 2 tbsp; 1/2 tsp; 1 tsp; 100ml; 100g,DAIRY; MAIN; VEGETARIAN
-Uruguay,Chivito,Beef steak; Ham; Fried egg; Bacon; Mozzarella; Tomato; Lettuce; Mayonnaise; Bread roll; Pickles,150g; 50g; 1; 2 strips; 50g; 1; 2 leaves; 2 tbsp; 1; 20g,BEEF; DAIRY; MAIN; PORK
+United States,Mac and Cheese,Macaroni; Cheddar cheese; Butter; Flour; Milk; Salt; Black pepper; Mustard powder; Breadcrumbs; Paprika,400g; 300g; 50g; 3 tbsp; 500ml; 1 tsp; 1/2 tsp; 1/2 tsp; 50g; 1/2 tsp,DAIRY; GLUTEN; MAIN; MUSTARD; VEGETARIAN
+United States,Pancakes,Flour; Milk; Eggs; Butter; Baking powder; Sugar; Salt; Vanilla; Maple syrup; Blueberries,300g; 300ml; 2; 50g; 2 tsp; 2 tbsp; 1/2 tsp; 1 tsp; 100ml; 100g,DAIRY; EGGS; GLUTEN; MAIN; VEGETARIAN
+Uruguay,Chivito,Beef steak; Ham; Fried egg; Bacon; Mozzarella; Tomato; Lettuce; Mayonnaise; Bread roll; Pickles,150g; 50g; 1; 2 strips; 50g; 1; 2 leaves; 2 tbsp; 1; 20g,BEEF; DAIRY; EGGS; GLUTEN; MAIN; PORK
 Uruguay,Asado,Beef ribs; Chorizo; Morcilla; Coarse salt; Chimichurri; Olive oil; Garlic,2kg; 4; 2; 3 tbsp; 100ml; 50ml; 4 cloves,BEEF; GRILLED; MAIN; PORK
-Uruguay,Torta Frita,Flour; Lard/Fat; Water; Salt; Baking powder; Oil for frying,300g; 100g; 150ml; 1 tsp; 1 tsp; 500ml,BREADS; FRIED; SIDES; VEGETARIAN
-Uzbekistan,Plov,Basmati rice; Lamb; Carrots; Onion; Garlic; Cumin; Coriander; Oil; Raisins; Chickpeas,500g; 500g; 2; 2; 1 head; 1 tsp; 1 tsp; 100ml; 50g; 100g,LAMB; LEGUMES; MAIN; RICE
-Uzbekistan,Lagman,Beef; Hand-pulled noodles; Bell pepper; Onion; Garlic; Tomato paste; Cumin; Star anise; Cilantro; Oil,500g; 400g; 1; 1; 4 cloves; 2 tbsp; 1 tsp; 1; 2 tbsp; 100ml,BEEF; MAIN; PASTA; SOUPS
-Uzbekistan,Manti,Flour; Lamb; Onion; Cumin; Black pepper; Salt; Water; Butter; Sour cream; Paprika,400g; 500g; 2; 1 tsp; 1/2 tsp; 1 tsp; 200ml; 50g; 100ml; 1 tsp,LAMB; MAIN
-Uzbekistan,Somsa,Puff pastry; Lamb; Onion; Cumin; Black pepper; Salt; Sesame seeds,400g; 400g; 2; 1 tsp; 1/2 tsp; 1 tsp; 1 tbsp,BREADS; LAMB; STARTERS
+Uruguay,Torta Frita,Flour; Lard/Fat; Water; Salt; Baking powder; Oil for frying,300g; 100g; 150ml; 1 tsp; 1 tsp; 500ml,BREADS; FRIED; GLUTEN; SIDES; VEGETARIAN
+Uzbekistan,Plov,Basmati rice; Lamb; Carrots; Onion; Garlic; Cumin; Coriander; Oil; Raisins; Chickpeas,500g; 500g; 2; 2; 1 head; 1 tsp; 1 tsp; 100ml; 50g; 100g,LAMB; LEGUMES; MAIN; RICE; SULPHITES
+Uzbekistan,Lagman,Beef; Hand-pulled noodles; Bell pepper; Onion; Garlic; Tomato paste; Cumin; Star anise; Cilantro; Oil,500g; 400g; 1; 1; 4 cloves; 2 tbsp; 1 tsp; 1; 2 tbsp; 100ml,BEEF; GLUTEN; MAIN; PASTA; SOUPS
+Uzbekistan,Manti,Flour; Lamb; Onion; Cumin; Black pepper; Salt; Water; Butter; Sour cream; Paprika,400g; 500g; 2; 1 tsp; 1/2 tsp; 1 tsp; 200ml; 50g; 100ml; 1 tsp,DAIRY; GLUTEN; LAMB; MAIN
+Uzbekistan,Somsa,Puff pastry; Lamb; Onion; Cumin; Black pepper; Salt; Sesame seeds,400g; 400g; 2; 1 tsp; 1/2 tsp; 1 tsp; 1 tbsp,BREADS; GLUTEN; LAMB; SESAME; STARTERS
 Venezuela,Pabellón Criollo,Shredded beef; Black beans; White rice; Fried plantains; Onion; Garlic; Tomatoes; Cumin; Salt; Oil,500g; 300g; 400g; 2; 1; 3 cloves; 2; 1 tsp; 1 tsp; 100ml,BEEF; LEGUMES; MAIN; RICE
-Venezuela,Arepas,Masarepa corn flour; Water; Salt; Cheese; Shredded meat; Avocado; Butter; Eggs,400g; 500ml; 1 tsp; 200g; 200g; 1; 30g; 2,BEEF; BREADS; DAIRY; MAIN
-Venezuela,Hallacas,Corn dough; Beef; Pork; Chicken; Raisins; Olives; Capers; Onion; Bell pepper; Banana leaves,500g; 200g; 200g; 200g; 50g; 50g; 2 tbsp; 1; 1; for wrapping,BEEF; BREADS; MAIN; PORK; POULTRY
+Venezuela,Arepas,Masarepa corn flour; Water; Salt; Cheese; Shredded meat; Avocado; Butter; Eggs,400g; 500ml; 1 tsp; 200g; 200g; 1; 30g; 2,BEEF; BREADS; DAIRY; EGGS; MAIN
+Venezuela,Hallacas,Corn dough; Beef; Pork; Chicken; Raisins; Olives; Capers; Onion; Bell pepper; Banana leaves,500g; 200g; 200g; 200g; 50g; 50g; 2 tbsp; 1; 1; for wrapping,BEEF; BREADS; GLUTEN; MAIN; PORK; POULTRY; SULPHITES
 Vietnam,Phở Bò,Beef bone broth; Beef brisket; Rice noodles; Star anise; Cinnamon; Cloves; Ginger; Onion; Fish sauce; Bean sprouts,2L; 500g; 400g; 3; 1 stick; 3; 50g; 1; 3 tbsp; 100g,BEEF; MAIN; PASTA; SOUPS
-Vietnam,Bánh Mì,Baguette; Pork pâté; Char siu pork; Pickled carrot and daikon; Cucumber; Cilantro; Jalapeño; Mayonnaise; Soy sauce; Maggi seasoning,1; 100g; 200g; 100g; 1; 1/4 cup; 1; 2 tbsp; 1 tbsp; 1 tbsp,BREADS; MAIN; PORK
+Vietnam,Bánh Mì,Baguette; Pork pâté; Char siu pork; Pickled carrot and daikon; Cucumber; Cilantro; Jalapeño; Mayonnaise; Soy sauce; Maggi seasoning,1; 100g; 200g; 100g; 1; 1/4 cup; 1; 2 tbsp; 1 tbsp; 1 tbsp,BREADS; GLUTEN; MAIN; PORK; SOY
 Vietnam,Bún Bò Huế,Beef shank; Lemongrass; Shrimp paste; Chili; Rice noodles; Onion; Fish sauce; Pork blood; Star anise; Cilantro,1kg; 2 stalks; 2 tbsp; 3; 400g; 1; 3 tbsp; 100g; 2; 1/4 cup,BEEF; MAIN; PASTA; PORK; SOUPS
-Vietnam,Gỏi Cuốn,Rice paper; Shrimp; Pork; Rice vermicelli; Lettuce; Bean sprouts; Mint; Cilantro; Hoisin sauce; Peanut sauce,12; 200g; 200g; 200g; 1 head; 100g; 1/2 cup; 1/2 cup; 100ml; 100ml,CRUSTACEANS; PORK; RAW; STARTERS
-Vietnam,Cơm Tấm,Broken rice; Grilled pork chop; Shredded pork skin; Steamed egg meatloaf; Pickled vegetables; Fish sauce; Scallion oil; Garlic; Sugar; Lime,400g; 2; 100g; 200g; 100g; 3 tbsp; 2 tbsp; 3 cloves; 1 tbsp; 1,GRILLED; MAIN; PORK; RICE
-Vietnam,Chả Cá Lã Vọng,Catfish; Turmeric; Dill; Galangal; Shrimp paste; Scallions; Rice noodles; Peanuts; Fish sauce; Rice wine,500g; 1 tsp; 1 bunch; 1 tsp; 1 tbsp; 3; 400g; 50g; 2 tbsp; 2 tbsp,GRILLED; LEAN_FISH; MAIN
+Vietnam,Gỏi Cuốn,Rice paper; Shrimp; Pork; Rice vermicelli; Lettuce; Bean sprouts; Mint; Cilantro; Hoisin sauce; Peanut sauce,12; 200g; 200g; 200g; 1 head; 100g; 1/2 cup; 1/2 cup; 100ml; 100ml,CRUSTACEANS; PEANUTS; PORK; RAW; STARTERS
+Vietnam,Cơm Tấm,Broken rice; Grilled pork chop; Shredded pork skin; Steamed egg meatloaf; Pickled vegetables; Fish sauce; Scallion oil; Garlic; Sugar; Lime,400g; 2; 100g; 200g; 100g; 3 tbsp; 2 tbsp; 3 cloves; 1 tbsp; 1,EGGS; GRILLED; MAIN; PORK; RICE
+Vietnam,Chả Cá Lã Vọng,Catfish; Turmeric; Dill; Galangal; Shrimp paste; Scallions; Rice noodles; Peanuts; Fish sauce; Rice wine,500g; 1 tsp; 1 bunch; 1 tsp; 1 tbsp; 3; 400g; 50g; 2 tbsp; 2 tbsp,GRILLED; LEAN_FISH; MAIN; PEANUTS; SULPHITES
 Yemen,Salta,Lamb; Fenugreek foam; Tomatoes; Onion; Garlic; Potato; Leek; Chili; Salt; Hulba sauce,500g; 200ml; 2; 1; 3 cloves; 2; 1; 1; 1 tsp; 100ml,LAMB; MAIN; SOUPS
 Yemen,Fahsa,Lamb; Garlic; Ginger; Tomatoes; Onion; Cumin; Coriander; Chili; Salt; Water,1kg; 4 cloves; 1 tbsp; 3; 1; 1 tsp; 1 tsp; 1; 1 tsp; 1.5L,LAMB; MAIN; SOUPS
-Yemen,Bint al-Sahn,Flour; Honey; Eggs; Butter; Yeast; Salt; Sesame seeds; Cardamom; Black cumin; Sugar,400g; 200ml; 3; 150g; 1 tsp; 1/2 tsp; 2 tbsp; 1/2 tsp; 1 tsp; 50g,BREADS; DAIRY; DESSERTS; VEGETARIAN
+Yemen,Bint al-Sahn,Flour; Honey; Eggs; Butter; Yeast; Salt; Sesame seeds; Cardamom; Black cumin; Sugar,400g; 200ml; 3; 150g; 1 tsp; 1/2 tsp; 2 tbsp; 1/2 tsp; 1 tsp; 50g,BREADS; DAIRY; DESSERTS; EGGS; GLUTEN; SESAME; VEGETARIAN
 Zambia,Nshima,White maize flour; Water; Salt,500g; 1L; 1 tsp,SIDES; VEGAN; VEGETARIAN
-Zambia,Ifisashi,Greens; Peanut butter; Onion; Tomatoes; Oil; Salt; Chili pepper,400g; 200g; 1; 2; 3 tbsp; 1 tsp; 1,LEGUMES; MAIN; VEGETARIAN
+Zambia,Ifisashi,Greens; Peanut butter; Onion; Tomatoes; Oil; Salt; Chili pepper,400g; 200g; 1; 2; 3 tbsp; 1 tsp; 1,LEGUMES; MAIN; PEANUTS; VEGETARIAN
 Zambia,Braised Beef,Beef; Onion; Tomatoes; Garlic; Ginger; Oil; Salt; Black pepper; Chili; Water,500g; 1; 2; 3 cloves; 1 tsp; 100ml; 1 tsp; 1/2 tsp; 1; 500ml,BEEF; MAIN; SOUPS
 Zimbabwe,Sadza,White maize meal; Water; Salt,500g; 1L; 1 tsp,SIDES; VEGAN; VEGETARIAN
-Zimbabwe,Muriwo une Dovi,Greens/Kale; Peanut butter; Tomatoes; Onion; Garlic; Oil; Salt; Chili,500g; 200g; 2; 1; 2 cloves; 3 tbsp; 1 tsp; 1,LEGUMES; MAIN; VEGETARIAN
+Zimbabwe,Muriwo une Dovi,Greens/Kale; Peanut butter; Tomatoes; Onion; Garlic; Oil; Salt; Chili,500g; 200g; 2; 1; 2 cloves; 3 tbsp; 1 tsp; 1,LEGUMES; MAIN; PEANUTS; VEGETARIAN
 Zimbabwe,Nyama Choma,Beef; Salt; Garlic; Ginger; Lemon juice; Oil; Paprika; Black pepper,1kg; 1 tsp; 3 cloves; 1 tsp; 2 tbsp; 2 tbsp; 1 tsp; 1/2 tsp,BEEF; GRILLED; MAIN

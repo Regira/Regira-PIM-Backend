@@ -574,6 +574,67 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 "kidney bean", "black bean"))
             codes.Add("LEGUMES");
 
+        // ── Allergens (from ingredient list) ─────────────────────────────
+        // GLUTEN — wheat, rye, barley and common gluten-containing preparations
+        if (IngredientsContainAny(ings, "flour", "wheat", "barley", "rye", "semolina",
+                "bulgur", "freekeh", "spelt", "bread", "pasta", "spaghetti", "noodle",
+                "pita", "naan", "roti", "flatbread", "tortilla", "couscous", "phyllo",
+                "pastry", "dough", "breadcrumb", "batter", "crepe", "pancake",
+                "dumpling", "wonton", "gyoza", "vermicelli", "lasagna", "penne",
+                "macaroni", "udon", "soba", "beer", "malt", "seitan",
+                "soy sauce", "worcestershire"))
+            codes.Add("GLUTEN");
+
+        // EGGS
+        if (IngredientsContainAny(ings, "egg", "eggs", "egg yolk", "egg white",
+                "hollandaise", "mayonnaise", "meringue"))
+            codes.Add("EGGS");
+
+        // DAIRY
+        if (IngredientsContainAny(ings, "milk", "cream", "butter", "cheese", "yogurt",
+                "yoghurt", "ghee", "sour cream", "crème fraîche", "ricotta",
+                "mozzarella", "parmesan", "feta", "cheddar", "gruyère", "emmental",
+                "halloumi", "paneer", "kajmak", "bryndza", "katyk", "lactose",
+                "whey", "casein"))
+            codes.Add("DAIRY");
+
+        // PEANUTS
+        if (IngredientsContainAny(ings, "peanut", "groundnut", "satay sauce"))
+            codes.Add("PEANUTS");
+
+        // SOY
+        if (IngredientsContainAny(ings, "soy", "soya", "tofu", "tempeh", "edamame",
+                "miso", "natto", "kecap", "soy sauce", "tamari"))
+            codes.Add("SOY");
+
+        // TREE NUTS — almonds, walnuts, hazelnuts, cashews, pistachios, pecans, etc.
+        if (IngredientsContainAny(ings, "almond", "walnut", "hazelnut", "cashew",
+                "pistachio", "pecan", "macadamia", "brazil nut", "chestnut",
+                "pine nut", "marzipan", "praline", "nougat"))
+            codes.Add("TREE_NUTS");
+
+        // SESAME
+        if (IngredientsContainAny(ings, "sesame", "tahini"))
+            codes.Add("SESAME");
+
+        // MUSTARD
+        if (IngredientsContainAny(ings, "mustard"))
+            codes.Add("MUSTARD");
+
+        // CELERY
+        if (IngredientsContainAny(ings, "celery", "celeriac", "celery salt", "celery seed"))
+            codes.Add("CELERY");
+
+        // SULPHITES — found in wine, vinegar and dried fruits
+        if (IngredientsContainAny(ings, "wine", "vinegar", "raisins", "dried apricot",
+                "dried fig", "dried grape", "dried plum", "dried mango", "dried berry",
+                "balsamic"))
+            codes.Add("SULPHITES");
+
+        // LUPIN
+        if (IngredientsContainAny(ings, "lupin", "lupine", "lupin flour"))
+            codes.Add("LUPIN");
+
         return codes;
     }
 
