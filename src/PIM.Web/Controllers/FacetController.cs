@@ -19,7 +19,7 @@ public class FacetController(IFacetService service)
         sw.Start();
         var tree = await service.GetAncestors(facetIds, groupIds, level);
         sw.Stop();
-        return Ok(tree.ToTreeNodeListResult(sw.ElapsedMilliseconds));
+        return Ok(tree.ToTreeViewListResult(sw.ElapsedMilliseconds));
     }
 
     [HttpGet("offspring")]
@@ -29,7 +29,7 @@ public class FacetController(IFacetService service)
         sw.Start();
         var tree = await service.GetOffspring(facetIds, groupIds, level);
         sw.Stop();
-        return Ok(tree.ToTreeNodeListResult(sw.ElapsedMilliseconds));
+        return Ok(tree.ToTreeViewListResult(sw.ElapsedMilliseconds));
     }
 
     [HttpGet("family")]
@@ -39,6 +39,6 @@ public class FacetController(IFacetService service)
         sw.Start();
         var tree = await service.GetFamily(facetIds, groupIds, level);
         sw.Stop();
-        return Ok(tree.ToTreeNodeListResult(sw.ElapsedMilliseconds));
+        return Ok(tree.ToTreeViewListResult(sw.ElapsedMilliseconds));
     }
 }

@@ -19,7 +19,7 @@ public class ProductController(IProductService service)
         sw.Start();
         var tree = await service.GetAncestors(ids, level);
         sw.Stop();
-        return Ok(tree.ToTreeNodeListResult(sw.ElapsedMilliseconds));
+        return Ok(tree.ToTreeViewListResult(sw.ElapsedMilliseconds));
     }
 
     [HttpGet("offspring")]
@@ -29,7 +29,7 @@ public class ProductController(IProductService service)
         sw.Start();
         var tree = await service.GetOffspring(ids, level);
         sw.Stop();
-        return Ok(tree.ToTreeNodeListResult(sw.ElapsedMilliseconds));
+        return Ok(tree.ToTreeViewListResult(sw.ElapsedMilliseconds));
     }
 
     [HttpGet("family")]
@@ -39,6 +39,6 @@ public class ProductController(IProductService service)
         sw.Start();
         var tree = await service.GetFamily(ids, level);
         sw.Stop();
-        return Ok(tree.ToTreeNodeListResult(sw.ElapsedMilliseconds));
+        return Ok(tree.ToTreeViewListResult(sw.ElapsedMilliseconds));
     }
 }

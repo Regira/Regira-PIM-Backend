@@ -5,11 +5,11 @@ namespace PIM.Web.Extensions;
 
 public static class TreeListExtensions
 {
-    public static ListResult<TreeNode<T>> ToTreeNodeListResult<T>(this TreeList<T> tree, long? duration = null)
+    public static ListResult<T> ToTreeViewListResult<T>(this TreeList<T> tree, long? duration = null)
     {
-        return new ListResult<TreeNode<T>>
+        return new ListResult<T>
         {
-            Items = tree,
+            Items = tree.ToTreeView(),
             Duration = duration
         };
     }
