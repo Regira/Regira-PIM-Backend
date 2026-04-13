@@ -21,9 +21,9 @@ public class FacetQueryFilter(PimDbContext dbContext) : FilteredQueryBuilderBase
         if (so.IsRoot != null)
             query = query.Where(x => so.IsRoot == !x.ParentEntities!.Any());
         if (so.IsParent != null)
-            query = query.Where(x => so.IsParent == x.ChildEntities!.Any());
+            query = query.Where(x => so.IsParent == (x.ChildEntities!.Any() || x.FacetChildGroups!.Any()));
         if (so.IsChild != null)
-            query = query.Where(x => so.IsChild == x.ParentEntities!.Any());
+            query = query.Where(x => so.IsChild == (x.ParentEntities!.Any() || x.FacetParentGroups!.Any()));
 
         if (so.AncestorId?.Any() == true)
         {
