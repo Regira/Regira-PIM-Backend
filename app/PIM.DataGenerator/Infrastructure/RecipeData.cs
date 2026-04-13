@@ -117,9 +117,7 @@ public static class RecipeDataLoader
                 .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
                 .ToList();
 
-            var facets = fields.Count > 4
-                ? fields[4].Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToList()
-                : (List<string>)[];
+            var facets = ParseFacetsFromField(fields, 4);
 
             entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets));
         }
@@ -155,9 +153,7 @@ public static class RecipeDataLoader
                 .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
                 .ToList();
 
-            var facets = fields.Count > 4
-                ? fields[4].Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToList()
-                : (List<string>)[];
+            var facets = ParseFacetsFromField(fields, 4);
 
             entries.Add(new PartialDishEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets));
         }
@@ -186,6 +182,11 @@ public static class RecipeDataLoader
 
         return entries;
     }
+
+    private static List<string> ParseFacetsFromField(List<string> fields, int columnIndex) =>
+        fields.Count > columnIndex
+            ? fields[columnIndex].Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToList()
+            : [];
 
     private static IngredientEntry ParseIngredientEntry(string part)
     {
