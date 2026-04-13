@@ -206,6 +206,16 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
                     .Select(FC).Where(f => f != null).Select(f => Link(f!))
                     .ToList()
             },
+            new()
+            {
+                // EU "Big 14" allergens — FISH and SHELLFISH reuse the existing seafood hierarchy facets
+                Code = "ALLERGENS",
+                Title = "Allergens",
+                Description = "Common food allergens based on EU and US regulatory standards",
+                ChildFacets = new[] { "GLUTEN", "DAIRY", "EGGS", "FISH", "SHELLFISH", "PEANUTS", "SOY", "TREE_NUTS", "SESAME", "MUSTARD", "CELERY", "SULPHITES", "LUPIN" }
+                    .Select(FC).Where(f => f != null).Select(f => Link(f!))
+                    .ToList()
+            },
         };
 
         logger.LogInformation("Seeding {Count} facet groups...", groups.Count);

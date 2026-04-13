@@ -58,3 +58,13 @@ FRUIT_VEG,Fruit Vegetables,Tomatoes peppers aubergine and other botanical fruits
 TOMATOES,Tomatoes,Round tomatoes Roma tomatoes cherry tomatoes and other varieties
 STEM_VEG,Stem Vegetables,Celery asparagus and other stem vegetables
 ONIONS,Onions,White onion red onion shallot and other alliums
+GLUTEN,Contains Gluten,Dishes or ingredients containing wheat rye barley or their derivatives
+EGGS,Contains Eggs,Dishes or ingredients containing eggs
+PEANUTS,Contains Peanuts,Dishes or ingredients containing peanuts or groundnuts
+SOY,Contains Soy,Dishes or ingredients containing soy soya tofu or soy derivatives
+TREE_NUTS,Contains Tree Nuts,Dishes or ingredients containing tree nuts such as almonds walnuts hazelnuts cashews or pistachios
+SESAME,Contains Sesame,Dishes or ingredients containing sesame seeds or tahini
+MUSTARD,Contains Mustard,Dishes or ingredients containing mustard
+CELERY,Contains Celery,Dishes or ingredients containing celery or celeriac
+SULPHITES,Contains Sulphites,Dishes containing sulphites or sulphur dioxide found in wines vinegars and dried fruits
+LUPIN,Contains Lupin,Dishes or ingredients containing lupin or lupin flour
