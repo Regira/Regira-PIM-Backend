@@ -2,9 +2,9 @@ namespace PIM.DataGenerator.Infrastructure;
 
 public record IngredientEntry(string Name, decimal Quantity);
 
-public record RecipeEntry(string Country, string Dish, IReadOnlyList<IngredientEntry> Ingredients);
+public record RecipeEntry(string Country, string Dish, IReadOnlyList<IngredientEntry> Ingredients, IReadOnlyList<string> Facets);
 
-public record PartialDishEntry(string Category, string Name, IReadOnlyList<IngredientEntry> Ingredients);
+public record PartialDishEntry(string Category, string Name, IReadOnlyList<IngredientEntry> Ingredients, IReadOnlyList<string> Facets);
 
 public record FacetCategoryEntry(string Code, string Title, string Description);
 
@@ -23,6 +23,12 @@ public static class RecipeDataLoader
             ["Germany"] = "European", ["Greece"] = "European", ["Hungary"] = "European",
             ["Iceland"] = "European", ["Ireland"] = "European", ["Italy"] = "European",
             ["Latvia"] = "European", ["Lithuania"] = "European", ["Luxembourg"] = "European",
+            ["Malta"] = "European", ["Moldova"] = "European", ["Montenegro"] = "European",
+            ["Netherlands"] = "European", ["North Macedonia"] = "European", ["Norway"] = "European",
+            ["Poland"] = "European", ["Portugal"] = "European", ["Romania"] = "European",
+            ["Russia"] = "European", ["Serbia"] = "European", ["Slovakia"] = "European",
+            ["Slovenia"] = "European", ["Spain"] = "European", ["Sweden"] = "European",
+            ["Switzerland"] = "European", ["Ukraine"] = "European", ["United Kingdom"] = "European",
             // African
             ["Algeria"] = "African", ["Angola"] = "African", ["Benin"] = "African",
             ["Botswana"] = "African", ["Burkina Faso"] = "African", ["Burundi"] = "African",
@@ -33,35 +39,56 @@ public static class RecipeDataLoader
             ["Ethiopia"] = "African", ["Gabon"] = "African", ["Gambia"] = "African",
             ["Ghana"] = "African", ["Guinea"] = "African", ["Kenya"] = "African",
             ["Lesotho"] = "African", ["Liberia"] = "African", ["Madagascar"] = "African",
-            ["Malawi"] = "African",
+            ["Malawi"] = "African", ["Mali"] = "African", ["Mauritania"] = "African",
+            ["Mauritius"] = "African", ["Morocco"] = "African", ["Mozambique"] = "African",
+            ["Namibia"] = "African", ["Niger"] = "African", ["Nigeria"] = "African",
+            ["Rwanda"] = "African", ["Senegal"] = "African", ["Sierra Leone"] = "African",
+            ["Somalia"] = "African", ["South Africa"] = "African", ["Sudan"] = "African",
+            ["Tanzania"] = "African", ["Togo"] = "African", ["Tunisia"] = "African",
+            ["Uganda"] = "African", ["Zambia"] = "African", ["Zimbabwe"] = "African",
             // Asian
             ["Afghanistan"] = "Asian", ["Bangladesh"] = "Asian", ["Bhutan"] = "Asian",
             ["Brunei"] = "Asian", ["Cambodia"] = "Asian", ["China"] = "Asian",
             ["India"] = "Asian", ["Indonesia"] = "Asian", ["Japan"] = "Asian",
             ["Kazakhstan"] = "Asian", ["Korea (South)"] = "Asian", ["Kyrgyzstan"] = "Asian",
             ["Laos"] = "Asian", ["Malaysia"] = "Asian", ["Maldives"] = "Asian",
+            ["Mongolia"] = "Asian", ["Myanmar"] = "Asian", ["Nepal"] = "Asian",
+            ["Pakistan"] = "Asian", ["Philippines"] = "Asian", ["Singapore"] = "Asian",
+            ["Sri Lanka"] = "Asian", ["Taiwan"] = "Asian", ["Tajikistan"] = "Asian",
+            ["Thailand"] = "Asian", ["Timor-Leste"] = "Asian", ["Turkmenistan"] = "Asian",
+            ["Uzbekistan"] = "Asian", ["Vietnam"] = "Asian",
             // Middle Eastern
             ["Bahrain"] = "Middle Eastern", ["Egypt"] = "Middle Eastern",
             ["Iran"] = "Middle Eastern", ["Iraq"] = "Middle Eastern",
             ["Israel"] = "Middle Eastern", ["Jordan"] = "Middle Eastern",
             ["Kuwait"] = "Middle Eastern", ["Lebanon"] = "Middle Eastern",
-            ["Libya"] = "Middle Eastern",
+            ["Libya"] = "Middle Eastern", ["Oman"] = "Middle Eastern",
+            ["Palestine"] = "Middle Eastern", ["Qatar"] = "Middle Eastern",
+            ["Saudi Arabia"] = "Middle Eastern", ["Syria"] = "Middle Eastern",
+            ["Turkey"] = "Middle Eastern", ["United Arab Emirates"] = "Middle Eastern",
+            ["Yemen"] = "Middle Eastern",
             // Caribbean
             ["Antigua and Barbuda"] = "Caribbean", ["Bahamas"] = "Caribbean",
             ["Barbados"] = "Caribbean", ["Belize"] = "Caribbean", ["Cuba"] = "Caribbean",
             ["Dominica"] = "Caribbean", ["Dominican Republic"] = "Caribbean",
             ["Grenada"] = "Caribbean", ["Guyana"] = "Caribbean", ["Haiti"] = "Caribbean",
-            ["Jamaica"] = "Caribbean",
+            ["Jamaica"] = "Caribbean", ["Saint Lucia"] = "Caribbean",
+            ["Trinidad and Tobago"] = "Caribbean",
             // South American
             ["Argentina"] = "South American", ["Bolivia"] = "South American",
             ["Brazil"] = "South American", ["Chile"] = "South American",
             ["Colombia"] = "South American", ["Ecuador"] = "South American",
+            ["Paraguay"] = "South American", ["Peru"] = "South American",
+            ["Uruguay"] = "South American", ["Venezuela"] = "South American",
             // North/Central American
             ["Canada"] = "North American", ["Costa Rica"] = "North American",
             ["El Salvador"] = "North American", ["Guatemala"] = "North American",
-            ["Honduras"] = "North American",
+            ["Honduras"] = "North American", ["Mexico"] = "North American",
+            ["Nicaragua"] = "North American", ["Panama"] = "North American",
+            ["United States"] = "North American",
             // Oceanian
             ["Australia"] = "Oceanian", ["Fiji"] = "Oceanian",
+            ["New Zealand"] = "Oceanian", ["Papua New Guinea"] = "Oceanian",
         };
 
     public static IReadOnlyList<RecipeEntry> Load()
@@ -90,7 +117,11 @@ public static class RecipeDataLoader
                 .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
                 .ToList();
 
-            entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients));
+            var facets = fields.Count > 4
+                ? fields[4].Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToList()
+                : (List<string>)[];
+
+            entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets));
         }
 
         return entries;
@@ -124,7 +155,11 @@ public static class RecipeDataLoader
                 .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
                 .ToList();
 
-            entries.Add(new PartialDishEntry(fields[0].Trim(), fields[1].Trim(), ingredients));
+            var facets = fields.Count > 4
+                ? fields[4].Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToList()
+                : (List<string>)[];
+
+            entries.Add(new PartialDishEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets));
         }
 
         return entries;

@@ -346,7 +346,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     _ => "g"   // Paste, Spice Mix, Blend
                 };
 
-                var partialFacets = GetPartialDishFacetCodes(partialDish.Category, partialDish.Ingredients.Select(i => i.Name))
+                var partialFacetCodes = partialDish.Facets.Count > 0
+                    ? (IEnumerable<string>)partialDish.Facets
+                    : GetPartialDishFacetCodes(partialDish.Category, partialDish.Ingredients.Select(i => i.Name));
+                var partialFacets = partialFacetCodes
                     .Where(facetByCode.ContainsKey)
                     .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
                     .ToList();
@@ -398,9 +401,12 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 if (facetByTitle.TryGetValue(country, out var countryFacet))
                     tags.Add(new ProductFacet { FacetId = countryFacet.Id });
 
-            // Add category facets based on ingredients and dish name
+            // Use CSV-provided facets when available; fall back to detection only when none are specified
             var ingredientNames = primaryRecipe.Ingredients.Select(e => e.Name).ToList();
-            foreach (var code in GetDishCategoryCodes(dishName, ingredientNames))
+            var categoryCodes = primaryRecipe.Facets.Count > 0
+                ? (IEnumerable<string>)primaryRecipe.Facets
+                : GetDishCategoryCodes(dishName, ingredientNames);
+            foreach (var code in categoryCodes)
                 if (facetByCode.TryGetValue(code, out var catFacet))
                     tags.Add(new ProductFacet { FacetId = catFacet.Id });
 
