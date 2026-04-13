@@ -266,8 +266,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             .OrderBy(n => n)
             .ToList();
 
+        var partialDishNames = partialDishes.Select(p => p.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
+
         var extraIngredients = allCsvIngredients
-            .Where(name => !ingByTitle.ContainsKey(name))
+            .Where(name => !ingByTitle.ContainsKey(name) && !partialDishNames.Contains(name))
             .Select(name => new Product
             {
                 Title = name,

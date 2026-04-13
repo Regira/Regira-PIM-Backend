@@ -70,7 +70,7 @@ public static class RecipeDataLoader
         var entries = new List<RecipeEntry>();
 
         using var reader = new StreamReader(path);
-        reader.ReadLine(); // skip header
+        reader.ReadLine(); // skip header: Country,Dish,Ingredients,Quantities
 
         string? line;
         while ((line = reader.ReadLine()) != null)
@@ -80,10 +80,14 @@ public static class RecipeDataLoader
             var fields = ParseCsvLine(line);
             if (fields.Count < 3) continue;
 
-            var ingredients = fields[2]
-                .Split(';')
-                .Select(i => ParseIngredientEntry(i.Trim()))
-                .Where(i => !string.IsNullOrWhiteSpace(i.Name))
+            var names = fields[2].Split(';').Select(n => n.Trim()).ToList();
+            var quantities = fields.Count > 3
+                ? fields[3].Split(';').Select(q => q.Trim()).ToList()
+                : [];
+
+            var ingredients = names
+                .Where(n => !string.IsNullOrWhiteSpace(n))
+                .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
                 .ToList();
 
             entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients));
@@ -100,7 +104,7 @@ public static class RecipeDataLoader
         if (!File.Exists(path)) return entries;
 
         using var reader = new StreamReader(path);
-        reader.ReadLine(); // skip header: Category,Name,Ingredients (Quantity)
+        reader.ReadLine(); // skip header: Category,Name,Ingredients,Quantities
 
         string? line;
         while ((line = reader.ReadLine()) != null)
@@ -110,10 +114,14 @@ public static class RecipeDataLoader
             var fields = ParseCsvLine(line);
             if (fields.Count < 3) continue;
 
-            var ingredients = fields[2]
-                .Split(';')
-                .Select(i => ParseIngredientEntry(i.Trim()))
-                .Where(i => !string.IsNullOrWhiteSpace(i.Name))
+            var names = fields[2].Split(';').Select(n => n.Trim()).ToList();
+            var quantities = fields.Count > 3
+                ? fields[3].Split(';').Select(q => q.Trim()).ToList()
+                : [];
+
+            var ingredients = names
+                .Where(n => !string.IsNullOrWhiteSpace(n))
+                .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
                 .ToList();
 
             entries.Add(new PartialDishEntry(fields[0].Trim(), fields[1].Trim(), ingredients));

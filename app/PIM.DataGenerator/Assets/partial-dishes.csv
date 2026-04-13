@@ -1,43 +1,43 @@
-Category,Name,Ingredients (Quantity)
-Stock,Chicken Stock,"Chicken carcass (1kg); Carrots (2); Celery (2 stalks); Onion (1); Garlic (3 cloves); Bay leaf (2); Thyme (2 sprigs); Parsley (4 sprigs); Peppercorns (5g); Water (3l)"
-Stock,Beef Stock,"Beef bones (1kg); Carrots (2); Celery (2 stalks); Onion (1); Garlic (4 cloves); Bay leaf (2); Thyme (3 sprigs); Peppercorns (5g); Water (3l); Salt (5g)"
-Stock,Vegetable Stock,"Carrots (3); Celery (3 stalks); Onion (2); Leek (1); Garlic (4 cloves); Bay leaf (2); Thyme (3 sprigs); Parsley (1 bunch); Peppercorns (5g); Water (2l)"
-Stock,Fish Stock,"Fish bones (500g); White wine (200ml); Shallots (2); Leek (1); Bay leaf (2); Thyme (2 sprigs); Parsley (4 sprigs); Peppercorns (5g); Water (1l)"
-Stock,Dashi Stock,"Kombu (30g); Dried bonito flakes (30g); Water (1l)"
-Stock,Veal Stock,"Veal bones (1kg); Carrots (2); Onion (1); Celery (2 stalks); Tomato paste (30g); Garlic (4 cloves); Bay leaf (2); Thyme (3 sprigs); Water (3l)"
-Sauce,Tomato Sauce,"Tomatoes (1kg); Garlic (4 cloves); Onion (1); Olive oil (50ml); Basil (1 bunch); Sugar (5g); Salt (5g); Black pepper (3g)"
-Sauce,Béchamel Sauce,"Butter (60g); Flour (60g); Milk (600ml); Nutmeg (1g); Salt (5g); Black pepper (1g)"
-Sauce,Hollandaise Sauce,"Butter (200g); Egg yolks (3); Lemon juice (30ml); White wine vinegar (15ml); Salt (3g); Cayenne pepper (1g)"
-Sauce,Chimichurri,"Parsley (1 bunch); Garlic (4 cloves); Red wine vinegar (50ml); Olive oil (100ml); Chili flakes (5g); Oregano (5g); Salt (5g)"
-Sauce,Pesto,"Basil (2 bunches); Pine nuts (50g); Parmesan (50g); Garlic (2 cloves); Olive oil (100ml); Salt (3g)"
-Sauce,Tzatziki,"Yogurt (400g); Cucumber (1); Garlic (3 cloves); Dill (10g); Lemon juice (15ml); Olive oil (30ml); Salt (3g)"
-Sauce,Mole Sauce,"Dried chilies (100g); Tomatoes (3); Onion (1); Garlic (4 cloves); Dark chocolate (50g); Cumin (5g); Cinnamon (3g); Chicken Stock (500ml); Oil (45ml); Salt (5g)"
-Sauce,Romesco Sauce,"Roasted red peppers (3); Tomatoes (2); Almonds (50g); Garlic (3 cloves); Olive oil (100ml); Red wine vinegar (30ml); Smoked paprika (5g); Salt (3g)"
-Paste,Red Curry Paste,"Red chilies (10); Lemongrass (2 stalks); Galangal (30g); Garlic (5 cloves); Shallots (3); Kaffir lime leaves (4); Coriander (5g); Cumin (3g); Shrimp paste (15g)"
-Paste,Green Curry Paste,"Green chilies (10); Lemongrass (2 stalks); Galangal (30g); Garlic (5 cloves); Shallots (3); Coriander (20g); Kaffir lime leaves (4); Cumin (3g); Shrimp paste (15g)"
-Base,Sofrito,"Tomatoes (4); Bell pepper (2); Onion (2); Garlic (4 cloves); Olive oil (100ml); Parsley (10g); Salt (5g)"
-Base,Mirepoix,"Onion (2); Carrots (2); Celery (3 stalks); Butter (30g); Bay leaf (1); Thyme (2 sprigs); Salt (5g)"
-Spice Mix,Garam Masala,"Cumin (30g); Coriander (30g); Cardamom (20g); Cinnamon (10g); Cloves (10g); Black pepper (10g); Nutmeg (5g)"
-Spice Mix,Ras el Hanout,"Cumin (10g); Coriander (10g); Cinnamon (5g); Cardamom (5g); Turmeric (5g); Paprika (5g); Allspice (3g); Cloves (3g); Ginger (3g); Nutmeg (1g)"
-Spice Mix,Baharat Blend,"Allspice (20g); Black pepper (20g); Coriander (20g); Cumin (10g); Cinnamon (10g); Cardamom (8g); Nutmeg (8g); Cloves (8g)"
-Blend,Ground beef/lamb,"Ground beef (500g); Ground lamb (500g)"
-Blend,Ground beef/pork,"Ground beef (500g); Ground pork (500g)"
-Blend,Ground chicken/beef,"Chicken (250g); Ground beef (250g)"
-Base,"Sancocho (base)","Plantain (2); Cassava (200g); Potato (2); Corn (2); Onion (1); Garlic (3 cloves); Cumin (1 tsp); Cilantro (1/4 cup); Saffron/Achiote (1/2 tsp)"
-Base,"Casado (base)","Rice (200g); Black beans (200g); Fried plantain (1); Cabbage salad (100g); Fried egg (1); Tortilla (1); Onion (1); Garlic (2 cloves); Salt (1 tsp)"
-Base,"Peka (base)","Potatoes (1kg); Carrots (2); Onion (1); Garlic (3 cloves); Rosemary (2 sprigs); White wine (100ml); Olive oil (50ml); Salt (2 tsp); Black pepper (1 tsp)"
-Base,"Souvla (base)","Oregano (2 tbsp); Salt (2 tsp); Black pepper (1 tsp); Olive oil (50ml)"
-Base,"Fah-fah (base)","Cabbage (200g); Potatoes (2); Carrots (2); Green chili (1); Garlic (3 cloves); Ginger (1 tsp); Cilantro (1/4 cup); Salt (2 tsp)"
-Base,"Callaloo Soup (base)","Callaloo/Dasheen leaves (500g); Coconut milk (400ml); Salt meat (200g); Onion (1); Garlic (3 cloves); Thyme (2 sprigs); Scallions (2); Black pepper (1/2 tsp); Salt (1 tsp)"
-Base,"La Bandera (base)","White rice (400g); Red beans (300g); Onion (1); Bell pepper (1); Tomato paste (2 tbsp); Garlic (3 cloves); Oregano (1 tsp); Cilantro (2 tbsp); Salt (1 tsp)"
-Base,"Pepe Soup (base)","Njansang seeds (2 tbsp); Garlic (3 cloves); Ginger (1 tsp); Chili pepper (2); Onion (1); Salt (1 tsp); Water (1.5L)"
-Base,"Zigni (base)","Berbere spice (4 tbsp); Niter Kibbeh/Butter (100g); Onion (4); Tomato paste (3 tbsp); Garlic (4 cloves); Ginger (1 tbsp); Salt (1 tsp)"
-Base,"Lovo (base)","Fish (500g); Cassava (500g); Taro (500g); Coconut milk (400ml); Garlic (4 cloves); Ginger (1 tbsp); Salt (2 tsp); Banana leaves (for wrapping)"
-Base,"Domoda (base)","Peanut butter (250g); Tomato paste (2 tbsp); Onion (2); Garlic (3 cloves); Chili pepper (1); Lemon juice (2 tbsp); Salt (1 tsp); Water (1L)"
-Base,"Benachin (base)","Rice (500g); Tomato paste (3 tbsp); Onion (2); Bell pepper (1); Eggplant (1); Cabbage (200g); Ginger (1 tsp); Chili (1); Oil (100ml)"
-Base,"Fufu with Light Soup (base)","Cassava (500g); Plantain (500g); Tomatoes (3); Onion (1); Ginger (1 tbsp); Garlic (2 cloves); Chili pepper (1); Salt (1 tsp)"
-Base,"Cook-up Rice (base)","Rice (400g); Black-eyed peas (200g); Coconut milk (400ml); Onion (1); Garlic (3 cloves); Thyme (2 sprigs); Scallions (2); Salt (1 tsp); Black pepper (1/2 tsp)"
-Base,"Beshbarmak (base)","Flat noodles (300g); Onion (3); Black pepper (1 tsp); Salt (2 tsp); Parsley (1 tbsp); Beef broth (500ml)"
-Base,"Nyama Choma (base)","Salt (2 tbsp); Garlic (3 cloves); Ginger (1 tsp); Lemon juice (2 tbsp)"
-Base,"Palm Butter (base)","Palm nut pulp (500g); Onion (1); Garlic (2 cloves); Chili pepper (1); Salt (1 tsp); Water (1L)"
-Base,"Satay (base)","Lemongrass (2); Turmeric (1 tsp); Coriander (1 tsp); Cumin (1/2 tsp); Shallots (4); Garlic (3 cloves); Peanut sauce (200ml); Sugar (2 tbsp); Salt (1 tsp)"
+﻿Category,Name,Ingredients,Quantities
+Stock,Chicken Stock,Chicken carcass; Carrots; Celery; Onion; Garlic; Bay leaf; Thyme; Parsley; Peppercorns; Water,1kg; 2; 2 stalks; 1; 3 cloves; 2; 2 sprigs; 4 sprigs; 5g; 3l
+Stock,Beef Stock,Beef bones; Carrots; Celery; Onion; Garlic; Bay leaf; Thyme; Peppercorns; Water; Salt,1kg; 2; 2 stalks; 1; 4 cloves; 2; 3 sprigs; 5g; 3l; 5g
+Stock,Vegetable Stock,Carrots; Celery; Onion; Leek; Garlic; Bay leaf; Thyme; Parsley; Peppercorns; Water,3; 3 stalks; 2; 1; 4 cloves; 2; 3 sprigs; 1 bunch; 5g; 2l
+Stock,Fish Stock,Fish bones; White wine; Shallots; Leek; Bay leaf; Thyme; Parsley; Peppercorns; Water,500g; 200ml; 2; 1; 2; 2 sprigs; 4 sprigs; 5g; 1l
+Stock,Dashi Stock,Kombu; Dried bonito flakes; Water,30g; 30g; 1l
+Stock,Veal Stock,Veal bones; Carrots; Onion; Celery; Tomato paste; Garlic; Bay leaf; Thyme; Water,1kg; 2; 1; 2 stalks; 30g; 4 cloves; 2; 3 sprigs; 3l
+Sauce,Tomato Sauce,Tomatoes; Garlic; Onion; Olive oil; Basil; Sugar; Salt; Black pepper,1kg; 4 cloves; 1; 50ml; 1 bunch; 5g; 5g; 3g
+Sauce,Béchamel Sauce,Butter; Flour; Milk; Nutmeg; Salt; Black pepper,60g; 60g; 600ml; 1g; 5g; 1g
+Sauce,Hollandaise Sauce,Butter; Egg yolks; Lemon juice; White wine vinegar; Salt; Cayenne pepper,200g; 3; 30ml; 15ml; 3g; 1g
+Sauce,Chimichurri,Parsley; Garlic; Red wine vinegar; Olive oil; Chili flakes; Oregano; Salt,1 bunch; 4 cloves; 50ml; 100ml; 5g; 5g; 5g
+Sauce,Pesto,Basil; Pine nuts; Parmesan; Garlic; Olive oil; Salt,2 bunches; 50g; 50g; 2 cloves; 100ml; 3g
+Sauce,Tzatziki,Yogurt; Cucumber; Garlic; Dill; Lemon juice; Olive oil; Salt,400g; 1; 3 cloves; 10g; 15ml; 30ml; 3g
+Sauce,Mole Sauce,Dried chilies; Tomatoes; Onion; Garlic; Dark chocolate; Cumin; Cinnamon; Chicken Stock; Oil; Salt,100g; 3; 1; 4 cloves; 50g; 5g; 3g; 500ml; 45ml; 5g
+Sauce,Romesco Sauce,Roasted red peppers; Tomatoes; Almonds; Garlic; Olive oil; Red wine vinegar; Smoked paprika; Salt,3; 2; 50g; 3 cloves; 100ml; 30ml; 5g; 3g
+Paste,Red Curry Paste,Red chilies; Lemongrass; Galangal; Garlic; Shallots; Kaffir lime leaves; Coriander; Cumin; Shrimp paste,10; 2 stalks; 30g; 5 cloves; 3; 4; 5g; 3g; 15g
+Paste,Green Curry Paste,Green chilies; Lemongrass; Galangal; Garlic; Shallots; Coriander; Kaffir lime leaves; Cumin; Shrimp paste,10; 2 stalks; 30g; 5 cloves; 3; 20g; 4; 3g; 15g
+Base,Sofrito,Tomatoes; Bell pepper; Onion; Garlic; Olive oil; Parsley; Salt,4; 2; 2; 4 cloves; 100ml; 10g; 5g
+Base,Mirepoix,Onion; Carrots; Celery; Butter; Bay leaf; Thyme; Salt,2; 2; 3 stalks; 30g; 1; 2 sprigs; 5g
+Spice Mix,Garam Masala,Cumin; Coriander; Cardamom; Cinnamon; Cloves; Black pepper; Nutmeg,30g; 30g; 20g; 10g; 10g; 10g; 5g
+Spice Mix,Ras el Hanout,Cumin; Coriander; Cinnamon; Cardamom; Turmeric; Paprika; Allspice; Cloves; Ginger; Nutmeg,10g; 10g; 5g; 5g; 5g; 5g; 3g; 3g; 3g; 1g
+Spice Mix,Baharat Blend,Allspice; Black pepper; Coriander; Cumin; Cinnamon; Cardamom; Nutmeg; Cloves,20g; 20g; 20g; 10g; 10g; 8g; 8g; 8g
+Blend,Ground beef/lamb,Ground beef; Ground lamb,500g; 500g
+Blend,Ground beef/pork,Ground beef; Ground pork,500g; 500g
+Blend,Ground chicken/beef,Chicken; Ground beef,250g; 250g
+Base,Sancocho (base),Plantain; Cassava; Potato; Corn; Onion; Garlic; Cumin; Cilantro; Saffron/Achiote,2; 200g; 2; 2; 1; 3 cloves; 1 tsp; 1/4 cup; 1/2 tsp
+Base,Casado (base),Rice; Black beans; Fried plantain; Cabbage salad; Fried egg; Tortilla; Onion; Garlic; Salt,200g; 200g; 1; 100g; 1; 1; 1; 2 cloves; 1 tsp
+Base,Peka (base),Potatoes; Carrots; Onion; Garlic; Rosemary; White wine; Olive oil; Salt; Black pepper,1kg; 2; 1; 3 cloves; 2 sprigs; 100ml; 50ml; 2 tsp; 1 tsp
+Base,Souvla (base),Oregano; Salt; Black pepper; Olive oil,2 tbsp; 2 tsp; 1 tsp; 50ml
+Base,Fah-fah (base),Cabbage; Potatoes; Carrots; Green chili; Garlic; Ginger; Cilantro; Salt,200g; 2; 2; 1; 3 cloves; 1 tsp; 1/4 cup; 2 tsp
+Base,Callaloo Soup (base),Callaloo/Dasheen leaves; Coconut milk; Salt meat; Onion; Garlic; Thyme; Scallions; Black pepper; Salt,500g; 400ml; 200g; 1; 3 cloves; 2 sprigs; 2; 1/2 tsp; 1 tsp
+Base,La Bandera (base),White rice; Red beans; Onion; Bell pepper; Tomato paste; Garlic; Oregano; Cilantro; Salt,400g; 300g; 1; 1; 2 tbsp; 3 cloves; 1 tsp; 2 tbsp; 1 tsp
+Base,Pepe Soup (base),Njansang seeds; Garlic; Ginger; Chili pepper; Onion; Salt; Water,2 tbsp; 3 cloves; 1 tsp; 2; 1; 1 tsp; 1.5L
+Base,Zigni (base),Berbere spice; Niter Kibbeh/Butter; Onion; Tomato paste; Garlic; Ginger; Salt,4 tbsp; 100g; 4; 3 tbsp; 4 cloves; 1 tbsp; 1 tsp
+Base,Lovo (base),Fish; Cassava; Taro; Coconut milk; Garlic; Ginger; Salt; Banana leaves,500g; 500g; 500g; 400ml; 4 cloves; 1 tbsp; 2 tsp; for wrapping
+Base,Domoda (base),Peanut butter; Tomato paste; Onion; Garlic; Chili pepper; Lemon juice; Salt; Water,250g; 2 tbsp; 2; 3 cloves; 1; 2 tbsp; 1 tsp; 1L
+Base,Benachin (base),Rice; Tomato paste; Onion; Bell pepper; Eggplant; Cabbage; Ginger; Chili; Oil,500g; 3 tbsp; 2; 1; 1; 200g; 1 tsp; 1; 100ml
+Base,Fufu with Light Soup (base),Cassava; Plantain; Tomatoes; Onion; Ginger; Garlic; Chili pepper; Salt,500g; 500g; 3; 1; 1 tbsp; 2 cloves; 1; 1 tsp
+Base,Cook-up Rice (base),Rice; Black-eyed peas; Coconut milk; Onion; Garlic; Thyme; Scallions; Salt; Black pepper,400g; 200g; 400ml; 1; 3 cloves; 2 sprigs; 2; 1 tsp; 1/2 tsp
+Base,Beshbarmak (base),Flat noodles; Onion; Black pepper; Salt; Parsley; Beef broth,300g; 3; 1 tsp; 2 tsp; 1 tbsp; 500ml
+Base,Nyama Choma (base),Salt; Garlic; Ginger; Lemon juice,2 tbsp; 3 cloves; 1 tsp; 2 tbsp
+Base,Palm Butter (base),Palm nut pulp; Onion; Garlic; Chili pepper; Salt; Water,500g; 1; 2 cloves; 1; 1 tsp; 1L
+Base,Satay (base),Lemongrass; Turmeric; Coriander; Cumin; Shallots; Garlic; Peanut sauce; Sugar; Salt,2; 1 tsp; 1 tsp; 1/2 tsp; 4; 3 cloves; 200ml; 2 tbsp; 1 tsp
