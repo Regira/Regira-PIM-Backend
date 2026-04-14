@@ -13,10 +13,22 @@ Sauce,Pesto,Basil; Pine nuts; Parmesan; Garlic; Olive oil; Salt,2 bunches; 50g; 
 Sauce,Tzatziki,Yogurt; Cucumber; Garlic; Dill; Lemon juice; Olive oil; Salt,400g; 1; 3 cloves; 10g; 15ml; 30ml; 3g,CONDIMENTS; DAIRY
 Sauce,Mole Sauce,Dried chilies; Tomatoes; Onion; Garlic; Dark chocolate; Cumin; Cinnamon; Chicken Stock; Oil; Salt,100g; 3; 1; 4 cloves; 50g; 5g; 3g; 500ml; 45ml; 5g,CONDIMENTS; POULTRY
 Sauce,Romesco Sauce,Roasted red peppers; Tomatoes; Almonds; Garlic; Olive oil; Red wine vinegar; Smoked paprika; Salt,3; 2; 50g; 3 cloves; 100ml; 30ml; 5g; 3g,CONDIMENTS; SULPHITES; TREE_NUTS
+Sauce,Mayonnaise,Egg yolks; Oil; Lemon juice; Mustard; Salt,2; 300ml; 1 tbsp; 1 tsp; 1/2 tsp,CONDIMENTS; EGGS; MUSTARD
+Sauce,Peanut Sauce,Peanut butter; Coconut milk; Soy sauce; Lime juice; Garlic; Ginger; Chili; Brown sugar,200g; 200ml; 2 tbsp; 1 tbsp; 2 cloves; 1 tsp; 1; 1 tbsp,CONDIMENTS; DAIRY; PEANUTS; SOY
+Sauce,Teriyaki Sauce,Soy sauce; Mirin; Sugar; Garlic; Ginger; Cornstarch,100ml; 100ml; 2 tbsp; 2 cloves; 1 tsp; 1 tsp,CONDIMENTS; GLUTEN; SOY
+Sauce,Harissa,Dried red chilies; Garlic; Caraway seeds; Cumin; Coriander; Olive oil; Lemon juice; Salt,100g; 4 cloves; 1 tsp; 1 tsp; 1 tsp; 50ml; 1 tbsp; 1/2 tsp,CONDIMENTS
+Sauce,Tahini Sauce,Tahini; Lemon juice; Garlic; Water; Salt,150g; 50ml; 2 cloves; 50ml; 1/2 tsp,CONDIMENTS; SESAME
 Paste,Red Curry Paste,Red chilies; Lemongrass; Galangal; Garlic; Shallots; Kaffir lime leaves; Coriander; Cumin; Shrimp paste,10; 2 stalks; 30g; 5 cloves; 3; 4; 5g; 3g; 15g,CONDIMENTS; CRUSTACEANS
 Paste,Green Curry Paste,Green chilies; Lemongrass; Galangal; Garlic; Shallots; Coriander; Kaffir lime leaves; Cumin; Shrimp paste,10; 2 stalks; 30g; 5 cloves; 3; 20g; 4; 3g; 15g,CONDIMENTS; CRUSTACEANS
 Base,Sofrito,Tomatoes; Bell pepper; Onion; Garlic; Olive oil; Parsley; Salt,4; 2; 2; 4 cloves; 100ml; 10g; 5g,CONDIMENTS
 Base,Mirepoix,Onion; Carrots; Celery; Butter; Bay leaf; Thyme; Salt,2; 2; 3 stalks; 30g; 1; 2 sprigs; 5g,CELERY; CONDIMENTS; DAIRY
+Sauce,Velouté,Butter; Flour; Chicken Stock; Salt; White pepper,30g; 30g; 500ml; 1/2 tsp; 1/4 tsp,CONDIMENTS; DAIRY; GLUTEN; POULTRY
+Sauce,Espagnole,Beef Stock; Mirepoix; Tomato paste; Red wine; Flour; Butter; Thyme; Bay leaf,1L; 1 serving; 2 tbsp; 100ml; 2 tbsp; 30g; 2 sprigs; 1,BEEF; CONDIMENTS; DAIRY; GLUTEN; SULPHITES
+Sauce,Demi-Glace,Espagnole; Veal Stock; Thyme; Bay leaf,500ml; 500ml; 2 sprigs; 1,BEEF; CONDIMENTS; DAIRY; GLUTEN; SULPHITES
+Sauce,BBQ Sauce,Tomato Sauce; Brown sugar; Vinegar; Worcestershire sauce; Paprika; Garlic powder; Mustard; Salt,200ml; 50g; 2 tbsp; 2 tbsp; 1 tsp; 1 tsp; 1 tsp; 1/2 tsp,CONDIMENTS; MUSTARD; SULPHITES
+Sauce,Tartare Sauce,Mayonnaise; Capers; Pickles; Parsley; Lemon juice; Dill; Shallots,200g; 1 tbsp; 3; 1 tbsp; 1 tsp; 1 tsp; 1,CONDIMENTS; EGGS; MUSTARD
+Sauce,Aioli,Mayonnaise; Garlic; Lemon juice; Salt,200g; 4 cloves; 1 tbsp; 1/2 tsp,CONDIMENTS; EGGS; MUSTARD
+Sauce,Remoulade,Mayonnaise; Mustard; Capers; Pickles; Parsley; Lemon juice; Salt,200g; 1 tbsp; 1 tbsp; 2; 1 tbsp; 1 tsp; 1/2 tsp,CONDIMENTS; EGGS; MUSTARD
 Spice Mix,Garam Masala,Cumin; Coriander; Cardamom; Cinnamon; Cloves; Black pepper; Nutmeg,30g; 30g; 20g; 10g; 10g; 10g; 5g,SPICES
 Spice Mix,Ras el Hanout,Cumin; Coriander; Cinnamon; Cardamom; Turmeric; Paprika; Allspice; Cloves; Ginger; Nutmeg,10g; 10g; 5g; 5g; 5g; 5g; 3g; 3g; 3g; 1g,SPICES
 Spice Mix,Baharat Blend,Allspice; Black pepper; Coriander; Cumin; Cinnamon; Cardamom; Nutmeg; Cloves,20g; 20g; 20g; 10g; 10g; 8g; 8g; 8g,SPICES
@@ -41,3 +53,8 @@ Base,Beshbarmak (base),Flat noodles; Onion; Black pepper; Salt; Parsley; Beef br
 Base,Nyama Choma (base),Salt; Garlic; Ginger; Lemon juice,2 tbsp; 3 cloves; 1 tsp; 2 tbsp,CONDIMENTS
 Base,Palm Butter (base),Palm nut pulp; Onion; Garlic; Chili pepper; Salt; Water,500g; 1; 2 cloves; 1; 1 tsp; 1L,CONDIMENTS
 Base,Satay (base),Lemongrass; Turmeric; Coriander; Cumin; Shallots; Garlic; Peanut sauce; Sugar; Salt,2; 1 tsp; 1 tsp; 1/2 tsp; 4; 3 cloves; 200ml; 2 tbsp; 1 tsp,CONDIMENTS; PEANUTS
+Base,Custard,Egg yolks; Sugar; Milk; Heavy cream; Vanilla,4; 100g; 250ml; 250ml; 1 tsp,CONDIMENTS; DAIRY; EGGS
+Base,Shortcrust Pastry,Flour; Butter; Salt; Water; Sugar,250g; 125g; 1/2 tsp; 50ml; 1 tbsp,CONDIMENTS; DAIRY; GLUTEN
+Base,Choux Pastry,Water; Butter; Flour; Eggs; Salt,250ml; 100g; 150g; 4; 1/4 tsp,CONDIMENTS; DAIRY; EGGS; GLUTEN
+Base,Steamed Egg Meatloaf,Ground pork; Eggs; Dashi Stock; Soy sauce; Fish sauce; Sugar; Sesame oil; White pepper,300g; 4; 200ml; 1 tbsp; 1 tbsp; 1 tsp; 1 tsp; 1/2 tsp,CONDIMENTS; EGGS; PORK; SOY; SESAME
+Base,Char Siu Pork,Pork shoulder; Hoisin sauce; Soy sauce; Honey; Five-spice powder; Shaoxing wine; Garlic; Ginger,500g; 3 tbsp; 2 tbsp; 2 tbsp; 1 tsp; 2 tbsp; 3 cloves; 1 tsp,CONDIMENTS; GLUTEN; PORK; SOY; SULPHITES
