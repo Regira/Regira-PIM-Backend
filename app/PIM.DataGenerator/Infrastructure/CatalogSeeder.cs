@@ -35,7 +35,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         }
 
         using var reader = new StreamReader(path);
-        reader.ReadLine(); // skip header: Code,Title,UnitType,Facets,DerivedFrom
+        reader.ReadLine(); // skip header: Code,Title,UnitType,Facets,DerivedFrom,Description
 
         while (reader.ReadLine() is { } line)
         {
@@ -52,11 +52,14 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 .Where(f => !string.IsNullOrWhiteSpace(f))
                 .ToArray();
             var isAssembled = fields.Count >= 5 && !string.IsNullOrWhiteSpace(fields[4]);
+            var description = fields.Count >= 6 && !string.IsNullOrWhiteSpace(fields[5])
+                ? fields[5].Trim()
+                : title;
 
             // Generate a reasonable price based on category
             var price = GeneratePrice(unitCode, facets);
 
-            ingredients[title] = (title, unitCode, price, facets, isAssembled);
+            ingredients[title] = (description, unitCode, price, facets, isAssembled);
         }
 
         Console.WriteLine($"Loaded {ingredients.Count} canonical ingredients from {path}");
@@ -357,7 +360,9 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 var product = new Product
                 {
                     Title = partialDish.Name,
-                    Description = $"A {partialDish.Category.ToLower()} used as a base component in cooking",
+                    Description = !string.IsNullOrWhiteSpace(partialDish.Description)
+                        ? partialDish.Description
+                        : $"A {partialDish.Category.ToLower()} used as a base component in cooking",
                     Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(1.50m, 8.99m), 2) }],
                     UnitTypeId = byCode.TryGetValue(unitCode, out var partialUnit) ? partialUnit.Id : null,
                     DefaultQuantity = GetDefaultQuantityForPartialDish(partialDish.Category),
@@ -410,26 +415,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 if (facetByCode.TryGetValue(code, out var catFacet))
                     tags.Add(new ProductFacet { FacetId = catFacet.Id });
 
-            // Description: origin + protein source first, then up to 2 other ingredients
-            var originText = allCountries.Count == 1
-                ? allCountries[0]
-                : $"{string.Join(", ", allCountries[..^1])} and {allCountries[^1]}";
-
-            var validIngredients = primaryRecipe.Ingredients
-                .Where(e => ingByTitle.ContainsKey(e.Name))
-                .ToList();
-            var proteinIngredient = validIngredients.FirstOrDefault(e => IsProteinIngredient(e.Name));
-            var otherIngredients = validIngredients
-                .Where(e => !IsProteinIngredient(e.Name))
-                .Take(proteinIngredient != null ? 2 : 3)
-                .Select(e => e.Name);
-            var describedIngredients = (proteinIngredient != null
-                    ? new[] { proteinIngredient.Name }.Concat(otherIngredients)
-                    : otherIngredients)
-                .ToList();
-            var description = describedIngredients.Count > 0
-                ? $"A traditional dish from {originText} with {string.Join(", ", describedIngredients)}"
-                : $"A traditional dish from {originText}";
+            // Description: prefer CSV description; fall back to auto-generated origin+ingredient summary
+            var description = !string.IsNullOrWhiteSpace(primaryRecipe.Description)
+                ? primaryRecipe.Description
+                : BuildDishDescription(primaryRecipe, allCountries, ingByTitle);
 
             var product = new Product
             {
@@ -480,6 +469,33 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             "salmon", "tuna", "cod", "turkey", "duck", "bacon", "ham", "sausage", "steak",
             "meat", "seafood", "lobster", "scallop", "oyster", "squid", "octopus", "conch",
             "barramundi", "hilsa", "anchovy", "sardine", "tilapia");
+
+    /// <summary>
+    /// Builds an auto-generated description for a dish based on its origin countries and key ingredients.
+    /// </summary>
+    private static string BuildDishDescription(RecipeEntry recipe, IReadOnlyList<string> allCountries, IDictionary<string, Product> ingByTitle)
+    {
+        var originText = allCountries.Count == 1
+            ? allCountries[0]
+            : $"{string.Join(", ", allCountries[..^1])} and {allCountries[^1]}";
+
+        var validIngredients = recipe.Ingredients
+            .Where(e => ingByTitle.ContainsKey(e.Name))
+            .ToList();
+        var proteinIngredient = validIngredients.FirstOrDefault(e => IsProteinIngredient(e.Name));
+        var otherIngredients = validIngredients
+            .Where(e => !IsProteinIngredient(e.Name))
+            .Take(proteinIngredient != null ? 2 : 3)
+            .Select(e => e.Name);
+        var describedIngredients = (proteinIngredient != null
+                ? new[] { proteinIngredient.Name }.Concat(otherIngredients)
+                : otherIngredients)
+            .ToList();
+
+        return describedIngredients.Count > 0
+            ? $"A traditional dish from {originText} with {string.Join(", ", describedIngredients)}"
+            : $"A traditional dish from {originText}";
+    }
 
     /// <summary>
     /// Determines relevant facet category codes for a dish based on its name and ingredient list.
