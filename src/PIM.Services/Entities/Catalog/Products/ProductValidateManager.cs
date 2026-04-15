@@ -1,4 +1,3 @@
-using PIM.Data;
 using PIM.Models.Catalog.Products;
 using PIM.Services.Entities.Catalog.Abstractions;
 using PIM.Services.Entities.Catalog.Pricing;

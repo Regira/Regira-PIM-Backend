@@ -61,16 +61,20 @@ try
         {
             foreach (var sql in dbFunctions)
             {
-                await pimDb.Database.ExecuteSqlRawAsync(sql);
+                try
+                {
+                    await pimDb.Database.ExecuteSqlRawAsync(sql);
+                }
+                catch
+                {
+                    // ignore
+                }
             }
         }
     }
 
-    if (!pimDb.Orders.Any())
-    {
-        var seeder = scope.ServiceProvider.GetRequiredService<PimDataSeeder>();
-        await seeder.SeedAsync();
-    }
+    var seeder = scope.ServiceProvider.GetRequiredService<PimDataSeeder>();
+    await seeder.SeedAsync();
 
     logger.LogInformation("Data seeding completed.");
 }

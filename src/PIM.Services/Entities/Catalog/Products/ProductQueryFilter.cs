@@ -53,6 +53,22 @@ public class ProductQueryFilter(PimDbContext dbContext, IQKeywordHelper qHelper)
                     );
             }
         }
+        if (so.ExcludeFacetId?.Any() == true)
+        {
+            // A single call to GetFacetOffspring for all facet IDs, and then we can filter the offspring facets for each facet ID in memory, to avoid multiple calls to GetFacetOffspring.
+            var facetOffspringIds = GetFacetOffspring(so.ExcludeFacetId).ToList();
+            foreach (var facetId in so.ExcludeFacetId)
+            {
+                // For each facet, we need to find all its offspring facets, and then filter products that have any of those facets.
+                var offspringIds = facetOffspringIds.FindAll(o => o.ParentId == facetId).ConvertAll(o => o.ChildId);
+                var facetIds = offspringIds.Concat([facetId]).Distinct().ToArray();
+                query = query
+                    .Where(x => !(x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
+                                || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
+                                    .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId))
+                    ));
+            }
+        }
 
         if (so.IsRoot.HasValue)
             query = query.Where(x => so.IsRoot.Value == !x.Assemblies!.Any());
@@ -75,6 +91,12 @@ public class ProductQueryFilter(PimDbContext dbContext, IQKeywordHelper qHelper)
             // For each component, we need to check if it's in the assemblies or components of the product, or if it's in the ancestors of the product (i.e. the product is an offspring of the component).
             foreach (var componentId in so.AllComponentId)
                 query = query.Where(x => dbContext.GetProductAncestors(new[] { componentId }, 9).Any(o => o.ParentId == x.Id));
+        }
+        if (so.ExcludeComponentId?.Any() == true)
+        {
+            // For each component, we need to check if it's in the assemblies or components of the product, or if it's in the ancestors of the product (i.e. the product is an offspring of the component).
+            foreach (var componentId in so.ExcludeComponentId)
+                query = query.Where(x => !dbContext.GetProductAncestors(new[] { componentId }, 9).Any(o => o.ParentId == x.Id));
         }
 
         if (so.SupplierId?.Any() == true)
