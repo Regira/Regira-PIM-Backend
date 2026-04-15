@@ -2,9 +2,9 @@ namespace PIM.DataGenerator.Infrastructure;
 
 public record IngredientEntry(string Name, decimal Quantity);
 
-public record RecipeEntry(string Country, string Dish, IReadOnlyList<IngredientEntry> Ingredients, IReadOnlyList<string> Facets);
+public record RecipeEntry(string Country, string Dish, IReadOnlyList<IngredientEntry> Ingredients, IReadOnlyList<string> Facets, string Description = "");
 
-public record PartialDishEntry(string Category, string Name, IReadOnlyList<IngredientEntry> Ingredients, IReadOnlyList<string> Facets);
+public record PartialDishEntry(string Category, string Name, IReadOnlyList<IngredientEntry> Ingredients, IReadOnlyList<string> Facets, string Description = "");
 
 public record FacetCategoryEntry(string Code, string Title, string Description);
 
@@ -118,8 +118,9 @@ public static class RecipeDataLoader
                 .ToList();
 
             var facets = ParseFacetsFromField(fields, 4);
+            var description = fields.Count > 5 ? fields[5].Trim() : string.Empty;
 
-            entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets));
+            entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets, description));
         }
 
         return entries;
@@ -154,8 +155,9 @@ public static class RecipeDataLoader
                 .ToList();
 
             var facets = ParseFacetsFromField(fields, 4);
+            var description = fields.Count > 5 ? fields[5].Trim() : string.Empty;
 
-            entries.Add(new PartialDishEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets));
+            entries.Add(new PartialDishEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets, description));
         }
 
         return entries;
