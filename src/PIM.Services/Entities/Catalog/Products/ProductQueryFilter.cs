@@ -46,7 +46,11 @@ public class ProductQueryFilter(PimDbContext dbContext, IQKeywordHelper qHelper)
                 // For each facet, we need to find all its offspring facets, and then filter products that have any of those facets.
                 var offspringIds = facetOffspringIds.FindAll(o => o.ParentId == facetId).ConvertAll(o => o.ChildId);
                 var facetIds = offspringIds.Concat([facetId]).Distinct().ToArray();
-                query = query.Where(x => x.Facets!.Any(ac => facetIds.Contains(ac.FacetId)));
+                query = query
+                    .Where(x => x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
+                        || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
+                            .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId))
+                    );
             }
         }
 

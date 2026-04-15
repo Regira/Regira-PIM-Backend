@@ -477,7 +477,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
     {
         var originText = allCountries.Count == 1
             ? allCountries[0]
-            : $"{string.Join(", ", allCountries[..^1])} and {allCountries[^1]}";
+            : $"{string.Join(", ", allCountries.SkipLast(1))} and {allCountries[^1]}";
 
         var validIngredients = recipe.Ingredients
             .Where(e => ingByTitle.ContainsKey(e.Name))
@@ -762,9 +762,9 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             ContainsAny(name, "milk", "cream", "yogurt", "juice", "stock", "broth",
                 "wine", "beer", "vinegar", "sauce", "syrup", "molasses", "kefir",
                 "batter", "gravy", "water", "puree"))
-            return "ml";
 
         // Countable items → pc
+            return "ml";
         // Use specific phrases for "pepper" to avoid matching ground/spice pepper varieties
         if (ContainsAny(name,
                 "egg", "yolk",
