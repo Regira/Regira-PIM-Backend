@@ -11,6 +11,11 @@ namespace PIM.DataGenerator.Infrastructure;
 public class CatalogSeeder(IEntityRepository<Product> productService, IEntityService<UnitType> unitTypeService, ILogger<CatalogSeeder> logger)
 {
     private const int BatchSize = 100;
+    private static readonly HashSet<string> AllergenFacetCodes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "GLUTEN", "EGGS", "DAIRY", "FISH", "SHELLFISH", "PEANUTS", "SOY",
+        "TREE_NUTS", "SESAME", "MUSTARD", "CELERY", "SULPHITES", "LUPIN"
+    };
 
     // Canonical ingredient list loaded from CSV.
     // Key → (Description, UnitCode, Price, CategoryCodes, IsAssembled)
@@ -245,6 +250,8 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         {
             if (!CanonicalIngredients.TryGetValue(ingredient.Title, out var meta)) continue;
             var ingredientFacets = meta.CategoryCodes
+                .Concat(GetAllergenFacetCodes(new[] { ingredient.Title }))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
                 .Where(facetByCode.ContainsKey)
                 .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
                 .ToList();
@@ -298,6 +305,8 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             {
                 ingByTitle[extra.Title] = extra;
                 var extraFacets = GuessIngredientCategoryCodes(extra.Title)
+                    .Concat(GetAllergenFacetCodes(new[] { extra.Title }))
+                    .Distinct(StringComparer.OrdinalIgnoreCase)
                     .Where(facetByCode.ContainsKey)
                     .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
                     .ToList();
@@ -309,7 +318,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             }
             await productService.SaveChanges();
 
-            ingredients = [.. ingredients, .. extraIngredients];
+            ingredients = ingredients.Concat(extraIngredients).ToList();
         }
 
         // Helper lambda — resolves the component quantity:
@@ -353,6 +362,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     ? (IEnumerable<string>)partialDish.Facets
                     : GetPartialDishFacetCodes(partialDish.Category, partialDish.Ingredients.Select(i => i.Name));
                 var partialFacets = partialFacetCodes
+                    .Where(code => !IsAllergenFacetCode(code))
                     .Where(facetByCode.ContainsKey)
                     .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
                     .ToList();
@@ -412,8 +422,12 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 ? (IEnumerable<string>)primaryRecipe.Facets
                 : GetDishCategoryCodes(dishName, ingredientNames);
             foreach (var code in categoryCodes)
+            {
+                if (code.Equals("LEGUMES", StringComparison.OrdinalIgnoreCase) || IsAllergenFacetCode(code))
+                    continue;
                 if (facetByCode.TryGetValue(code, out var catFacet))
                     tags.Add(new ProductFacet { FacetId = catFacet.Id });
+            }
 
             // Description: prefer CSV description; fall back to auto-generated origin+ingredient summary
             var description = !string.IsNullOrWhiteSpace(primaryRecipe.Description)
@@ -659,6 +673,73 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
     private static bool IngredientsContainAny(IEnumerable<string> ingredients, params string[] keywords)
         => ingredients.Any(ing => keywords.Any(k => ing.Contains(k, StringComparison.OrdinalIgnoreCase)));
+
+    private static bool IsAllergenFacetCode(string code)
+        => AllergenFacetCodes.Contains(code);
+
+    private static IEnumerable<string> GetAllergenFacetCodes(IEnumerable<string> ingredientNames)
+    {
+        var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var ings = ingredientNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        if (IngredientsContainAny(ings, "flour", "wheat", "barley", "rye", "semolina",
+                "bulgur", "freekeh", "spelt", "bread", "pasta", "spaghetti", "noodle",
+                "pita", "naan", "roti", "flatbread", "tortilla", "couscous", "phyllo",
+                "pastry", "dough", "breadcrumb", "batter", "crepe", "pancake",
+                "dumpling", "wonton", "gyoza", "vermicelli", "lasagna", "penne",
+                "macaroni", "udon", "soba", "beer", "malt", "seitan",
+                "soy sauce", "worcestershire"))
+            codes.Add("GLUTEN");
+
+        if (IngredientsContainAny(ings, "egg", "eggs", "egg yolk", "egg white",
+                "hollandaise", "mayonnaise", "meringue"))
+            codes.Add("EGGS");
+
+        if (IngredientsContainAny(ings, "milk", "cream", "butter", "cheese", "yogurt",
+                "yoghurt", "ghee", "sour cream", "crème fraîche", "ricotta",
+                "mozzarella", "parmesan", "feta", "cheddar", "gruyère", "emmental",
+                "halloumi", "paneer", "kajmak", "bryndza", "katyk", "lactose",
+                "whey", "casein"))
+            codes.Add("DAIRY");
+
+        if (IngredientsContainAny(ings, "fish"))
+            codes.Add("FISH");
+
+        if (IngredientsContainAny(ings, "crab", "shrimp", "prawn", "lobster", "crayfish",
+                "mussel", "oyster", "clam", "scallop", "squid", "octopus", "conch", "shellfish"))
+            codes.Add("SHELLFISH");
+
+        if (IngredientsContainAny(ings, "peanut", "groundnut", "satay sauce"))
+            codes.Add("PEANUTS");
+
+        if (IngredientsContainAny(ings, "soy", "soya", "tofu", "tempeh", "edamame",
+                "miso", "natto", "kecap", "soy sauce", "tamari"))
+            codes.Add("SOY");
+
+        if (IngredientsContainAny(ings, "almond", "walnut", "hazelnut", "cashew",
+                "pistachio", "pecan", "macadamia", "brazil nut", "chestnut",
+                "pine nut", "marzipan", "praline", "nougat"))
+            codes.Add("TREE_NUTS");
+
+        if (IngredientsContainAny(ings, "sesame", "tahini"))
+            codes.Add("SESAME");
+
+        if (IngredientsContainAny(ings, "mustard"))
+            codes.Add("MUSTARD");
+
+        if (IngredientsContainAny(ings, "celery", "celeriac", "celery salt", "celery seed"))
+            codes.Add("CELERY");
+
+        if (IngredientsContainAny(ings, "wine", "vinegar", "raisins", "dried apricot",
+                "dried fig", "dried grape", "dried plum", "dried mango", "dried berry",
+                "balsamic"))
+            codes.Add("SULPHITES");
+
+        if (IngredientsContainAny(ings, "lupin", "lupine", "lupin flour"))
+            codes.Add("LUPIN");
+
+        return codes;
+    }
 
     /// <summary>
     /// Returns facet codes for a partial dish (stock, sauce, paste, base, or spice mix)
