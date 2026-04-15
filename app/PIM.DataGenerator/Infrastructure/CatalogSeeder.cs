@@ -680,7 +680,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
     private static IEnumerable<string> GetAllergenFacetCodes(IEnumerable<string> ingredientNames)
     {
         var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var ings = ingredientNames.Select(i => i.ToLower()).ToHashSet();
+        var ings = ingredientNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         if (IngredientsContainAny(ings, "flour", "wheat", "barley", "rye", "semolina",
                 "bulgur", "freekeh", "spelt", "bread", "pasta", "spaghetti", "noodle",
