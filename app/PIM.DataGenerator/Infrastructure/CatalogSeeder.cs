@@ -245,12 +245,11 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         }
         await productService.SaveChanges();
 
-        // Assign category facets to ingredient products
+        // Assign category facets to ingredient products.
         foreach (var ingredient in ingredients)
         {
             if (!CanonicalIngredients.TryGetValue(ingredient.Title, out var meta)) continue;
             var ingredientFacets = meta.CategoryCodes
-                .Concat(GetAllergenFacetCodes(new[] { ingredient.Title }))
                 .Distinct(StringComparer.OrdinalIgnoreCase)
                 .Where(facetByCode.ContainsKey)
                 .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
@@ -300,23 +299,8 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             }
             await productService.SaveChanges();
 
-            // Assign guessed category facets to extra ingredients and add to the lookup
             foreach (var extra in extraIngredients)
-            {
                 ingByTitle[extra.Title] = extra;
-                var extraFacets = GuessIngredientCategoryCodes(extra.Title)
-                    .Concat(GetAllergenFacetCodes(new[] { extra.Title }))
-                    .Distinct(StringComparer.OrdinalIgnoreCase)
-                    .Where(facetByCode.ContainsKey)
-                    .Select(code => new ProductFacet { FacetId = facetByCode[code].Id })
-                    .ToList();
-                if (extraFacets.Count > 0)
-                {
-                    extra.Facets = extraFacets;
-                    await productService.Save(extra);
-                }
-            }
-            await productService.SaveChanges();
 
             ingredients = ingredients.Concat(extraIngredients).ToList();
         }
@@ -358,9 +342,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     _ => "g"   // Paste, Spice Mix, Blend
                 };
 
-                var partialFacetCodes = partialDish.Facets.Count > 0
-                    ? (IEnumerable<string>)partialDish.Facets
-                    : GetPartialDishFacetCodes(partialDish.Category, partialDish.Ingredients.Select(i => i.Name));
+                var partialFacetCodes = (IEnumerable<string>)partialDish.Facets;
                 var partialFacets = partialFacetCodes
                     .Where(code => !IsAllergenFacetCode(code))
                     .Where(facetByCode.ContainsKey)
@@ -416,11 +398,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 if (facetByTitle.TryGetValue(country, out var countryFacet))
                     tags.Add(new ProductFacet { FacetId = countryFacet.Id });
 
-            // Use CSV-provided facets when available; fall back to detection only when none are specified
-            var ingredientNames = primaryRecipe.Ingredients.Select(e => e.Name).ToList();
-            var categoryCodes = primaryRecipe.Facets.Count > 0
-                ? (IEnumerable<string>)primaryRecipe.Facets
-                : GetDishCategoryCodes(dishName, ingredientNames);
+            var categoryCodes = (IEnumerable<string>)primaryRecipe.Facets;
             foreach (var code in categoryCodes)
             {
                 if (code.Equals("LEGUMES", StringComparison.OrdinalIgnoreCase) || IsAllergenFacetCode(code))
@@ -511,261 +489,11 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             : $"A traditional dish from {originText}";
     }
 
-    /// <summary>
-    /// Determines relevant facet category codes for a dish based on its name and ingredient list.
-    /// </summary>
-    private static IEnumerable<string> GetDishCategoryCodes(string dishName, IReadOnlyList<string> ingredients)
-    {
-        var dish = dishName.ToLower();
-        var ings = ingredients.Select(i => i.ToLower()).ToHashSet();
-        var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
-        // ── Course ──────────────────────────────────────────────────────────
-        if (ContainsAny(dish, "cake", "pudding", "ice cream", "halva", "baklava", "duff",
-                "torte", "tart", "sweet", "dessert", "ladoo", "mochi", "gulab", "tiramisu",
-                "mousse", "strudel", "churro", "flan"))
-            codes.Add("DESSERTS");
-        else if (ContainsAny(dish, "juice", "tea", "coffee", "smoothie", "cocktail", "lassi", "ayran"))
-            codes.Add("DRINKS");
-        else if (ContainsAny(dish, "fufu", "ugali", "injera", "bogobe", "sadza", "tô",
-                "bread", "naan", "pita", "flatbread", "rice", "chips", "fries", "polenta"))
-            codes.Add("SIDES");
-        else if (ContainsAny(dish, "salad", "hummus", "guacamole", "bruschetta",
-                "spring roll", "dumpling", "samosa", "fritter", "empanada", "kibbeh"))
-            codes.Add("STARTERS");
-        else
-            codes.Add("MAIN");
-
-        // ── Food type ────────────────────────────────────────────────────────
-        if (ContainsAny(dish, "soup", "broth", "shorba", "chorba", "chowder", "potage",
-                "bisque", "harira", "shchi", "rassolnik"))
-            codes.Add("SOUPS");
-        if (ContainsAny(dish, "stew", "tagine", "wat", "casserole") ||
-            ContainsAny(dish, "carbonade", "calulu", "machanka", "kavarma", "ndole"))
-            codes.Add("SOUPS");
-        if (ContainsAny(dish, "pasta", "spaghetti", "noodle", "kuy teav", "laksa",
-                "pad thai", "lo mein"))
-            codes.Add("PASTA");
-        if (ContainsAny(dish, "rice", "biryani", "paella", "plov", "pilaf", "risotto",
-                "jollof", "riz", "pilau", "mujaddara", "machboos", "muhammar", "nasi"))
-            codes.Add("RICE");
-        if (ContainsAny(dish, "curry", "masala", "korma", "dal", "rendang", "tikka",
-                "vindaloo", "adobo", "ema datshi"))
-            codes.Add("CURRIES");
-        if (ContainsAny(dish, "grilled", "bbq", "roasted", "asado", "kebab", "satay",
-                "khorovats", "souvla", "churrasco", "yakitori", "galbi", "bulgogi"))
-            codes.Add("GRILLED");
-        if (ContainsAny(dish, "bread", "naan", "pita", "injera", "flatbread", "roti",
-                "chapati", "pancake", "crepe", "byrek", "burek", "banitsa", "phyllo",
-                "pastel", "pie", "strudel", "pastry", "börek", "lavash"))
-            codes.Add("BREADS");
-        if (ContainsAny(dish, "salad"))
-            codes.Add("SALADS");
-        if (ContainsAny(dish, "hummus", "dip", "guacamole", "tahini", "tzatziki",
-                "baba", "muhammara", "pesto", "aioli", "chimichurri"))
-            codes.Add("DIPS");
-        if (ContainsAny(dish, "fritter", "spring roll", "samosa", "falafel", "gyoza",
-                "dumpling", "wonton", "kuli", "puff"))
-            codes.Add("SNACKS");
-
-        // ── Protein (from ingredient list) ────────────────────────────────
-        // Only assign the most-specific (leaf) facet; parent codes are reachable via the hierarchy.
-        if (IngredientsContainAny(ings, "chicken", "hen", "duck", "turkey", "galinha", "poulet"))
-            codes.Add("POULTRY");
-        if (IngredientsContainAny(ings, "beef", "steak", "brisket", "ground beef", "veal"))
-            codes.Add("BEEF");
-        if (IngredientsContainAny(ings, "pork", "bacon", "ham", "chorizo", "sausage",
-                "lard", "pig", "ribs", "salt pork"))
-            codes.Add("PORK");
-        if (IngredientsContainAny(ings, "lamb", "mutton"))
-            codes.Add("LAMB");
-        if (IngredientsContainAny(ings, "salmon", "trout", "mackerel", "herring", "anchovy"))
-            codes.Add("FAT_FISH");
-        if (IngredientsContainAny(ings, "cod", "tilapia", "haddock", "barramundi", "hilsa",
-                "dried fish", "smoked fish", "flying fish"))
-            codes.Add("LEAN_FISH");
-        if (IngredientsContainAny(ings, "tuna"))
-            codes.Add("LEAN_FISH");
-        if (IngredientsContainAny(ings, "fish") &&
-            !IngredientsContainAny(ings, "fish sauce", "fish stock", "fish oil", "fish broth", "fish paste") &&
-            !codes.Contains("FAT_FISH") && !codes.Contains("LEAN_FISH"))
-            codes.Add("FISH");
-        if (IngredientsContainAny(ings, "crab"))
-            codes.Add("CRAB");
-        if (IngredientsContainAny(ings, "shrimp", "prawn", "lobster", "crayfish"))
-            codes.Add("CRUSTACEANS");
-        if (IngredientsContainAny(ings, "mussel", "oyster", "clam", "scallop", "squid", "octopus", "conch"))
-            codes.Add("MOLLUSKS");
-        if (IngredientsContainAny(ings, "seafood") &&
-            !codes.Contains("FISH") && !codes.Contains("FAT_FISH") && !codes.Contains("LEAN_FISH") &&
-            !codes.Contains("CRUSTACEANS") && !codes.Contains("CRAB") && !codes.Contains("MOLLUSKS"))
-            codes.Add("SEAFOOD");
-        if (IngredientsContainAny(ings, "bean", "lentil", "chickpea", "split pea",
-                "kidney bean", "black bean"))
-            codes.Add("LEGUMES");
-
-        // ── Allergens (from ingredient list) ─────────────────────────────
-        // GLUTEN — wheat, rye, barley and common gluten-containing preparations
-        if (IngredientsContainAny(ings, "flour", "wheat", "barley", "rye", "semolina",
-                "bulgur", "freekeh", "spelt", "bread", "pasta", "spaghetti", "noodle",
-                "pita", "naan", "roti", "flatbread", "tortilla", "couscous", "phyllo",
-                "pastry", "dough", "breadcrumb", "batter", "crepe", "pancake",
-                "dumpling", "wonton", "gyoza", "vermicelli", "lasagna", "penne",
-                "macaroni", "udon", "soba", "beer", "malt", "seitan",
-                "soy sauce", "worcestershire"))
-            codes.Add("GLUTEN");
-
-        // EGGS
-        if (IngredientsContainAny(ings, "egg", "eggs", "egg yolk", "egg white",
-                "hollandaise", "mayonnaise", "meringue"))
-            codes.Add("EGGS");
-
-        // DAIRY
-        if (IngredientsContainAny(ings, "milk", "cream", "butter", "cheese", "yogurt",
-                "yoghurt", "ghee", "sour cream", "crème fraîche", "ricotta",
-                "mozzarella", "parmesan", "feta", "cheddar", "gruyère", "emmental",
-                "halloumi", "paneer", "kajmak", "bryndza", "katyk", "lactose",
-                "whey", "casein"))
-            codes.Add("DAIRY");
-
-        // PEANUTS
-        if (IngredientsContainAny(ings, "peanut", "groundnut", "satay sauce"))
-            codes.Add("PEANUTS");
-
-        // SOY
-        if (IngredientsContainAny(ings, "soy", "soya", "tofu", "tempeh", "edamame",
-                "miso", "natto", "kecap", "soy sauce", "tamari"))
-            codes.Add("SOY");
-
-        // TREE NUTS — almonds, walnuts, hazelnuts, cashews, pistachios, pecans, etc.
-        if (IngredientsContainAny(ings, "almond", "walnut", "hazelnut", "cashew",
-                "pistachio", "pecan", "macadamia", "brazil nut", "chestnut",
-                "pine nut", "marzipan", "praline", "nougat"))
-            codes.Add("TREE_NUTS");
-
-        // SESAME
-        if (IngredientsContainAny(ings, "sesame", "tahini"))
-            codes.Add("SESAME");
-
-        // MUSTARD
-        if (IngredientsContainAny(ings, "mustard"))
-            codes.Add("MUSTARD");
-
-        // CELERY
-        if (IngredientsContainAny(ings, "celery", "celeriac", "celery salt", "celery seed"))
-            codes.Add("CELERY");
-
-        // SULPHITES — found in wine, vinegar and dried fruits
-        if (IngredientsContainAny(ings, "wine", "vinegar", "raisins", "dried apricot",
-                "dried fig", "dried grape", "dried plum", "dried mango", "dried berry",
-                "balsamic"))
-            codes.Add("SULPHITES");
-
-        // LUPIN
-        if (IngredientsContainAny(ings, "lupin", "lupine", "lupin flour"))
-            codes.Add("LUPIN");
-
-        return codes;
-    }
-
     private static bool ContainsAny(string text, params string[] keywords)
         => keywords.Any(k => text.Contains(k, StringComparison.OrdinalIgnoreCase));
 
-    private static bool IngredientsContainAny(IEnumerable<string> ingredients, params string[] keywords)
-        => ingredients.Any(ing => keywords.Any(k => ing.Contains(k, StringComparison.OrdinalIgnoreCase)));
-
     private static bool IsAllergenFacetCode(string code)
         => AllergenFacetCodes.Contains(code);
-
-    private static IEnumerable<string> GetAllergenFacetCodes(IEnumerable<string> ingredientNames)
-    {
-        var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var ings = ingredientNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
-
-        if (IngredientsContainAny(ings, "flour", "wheat", "barley", "rye", "semolina",
-                "bulgur", "freekeh", "spelt", "bread", "pasta", "spaghetti", "noodle",
-                "pita", "naan", "roti", "flatbread", "tortilla", "couscous", "phyllo",
-                "pastry", "dough", "breadcrumb", "batter", "crepe", "pancake",
-                "dumpling", "wonton", "gyoza", "vermicelli", "lasagna", "penne",
-                "macaroni", "udon", "soba", "beer", "malt", "seitan",
-                "soy sauce", "worcestershire"))
-            codes.Add("GLUTEN");
-
-        if (IngredientsContainAny(ings, "egg", "eggs", "egg yolk", "egg white",
-                "hollandaise", "mayonnaise", "meringue"))
-            codes.Add("EGGS");
-
-        if (IngredientsContainAny(ings, "milk", "cream", "butter", "cheese", "yogurt",
-                "yoghurt", "ghee", "sour cream", "crème fraîche", "ricotta",
-                "mozzarella", "parmesan", "feta", "cheddar", "gruyère", "emmental",
-                "halloumi", "paneer", "kajmak", "bryndza", "katyk", "lactose",
-                "whey", "casein"))
-            codes.Add("DAIRY");
-
-        if (IngredientsContainAny(ings, "fish"))
-            codes.Add("FISH");
-
-        if (IngredientsContainAny(ings, "crab", "shrimp", "prawn", "lobster", "crayfish",
-                "mussel", "oyster", "clam", "scallop", "squid", "octopus", "conch", "shellfish"))
-            codes.Add("SHELLFISH");
-
-        if (IngredientsContainAny(ings, "peanut", "groundnut", "satay sauce"))
-            codes.Add("PEANUTS");
-
-        if (IngredientsContainAny(ings, "soy", "soya", "tofu", "tempeh", "edamame",
-                "miso", "natto", "kecap", "soy sauce", "tamari"))
-            codes.Add("SOY");
-
-        if (IngredientsContainAny(ings, "almond", "walnut", "hazelnut", "cashew",
-                "pistachio", "pecan", "macadamia", "brazil nut", "chestnut",
-                "pine nut", "marzipan", "praline", "nougat"))
-            codes.Add("TREE_NUTS");
-
-        if (IngredientsContainAny(ings, "sesame", "tahini"))
-            codes.Add("SESAME");
-
-        if (IngredientsContainAny(ings, "mustard"))
-            codes.Add("MUSTARD");
-
-        if (IngredientsContainAny(ings, "celery", "celeriac", "celery salt", "celery seed"))
-            codes.Add("CELERY");
-
-        if (IngredientsContainAny(ings, "wine", "vinegar", "raisins", "dried apricot",
-                "dried fig", "dried grape", "dried plum", "dried mango", "dried berry",
-                "balsamic"))
-            codes.Add("SULPHITES");
-
-        if (IngredientsContainAny(ings, "lupin", "lupine", "lupin flour"))
-            codes.Add("LUPIN");
-
-        return codes;
-    }
-
-    /// <summary>
-    /// Returns facet codes for a partial dish (stock, sauce, paste, base, or spice mix)
-    /// based on its category and the names of its ingredients.
-    /// </summary>
-    private static IEnumerable<string> GetPartialDishFacetCodes(string category, IEnumerable<string> ingredientNames)
-    {
-        var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var ings = ingredientNames.Select(i => i.ToLower()).ToHashSet();
-
-        // All partial dishes are categorised as condiments except spice mixes
-        if (category.Equals("Spice Mix", StringComparison.OrdinalIgnoreCase))
-            codes.Add("SPICES");
-        else
-            codes.Add("CONDIMENTS");
-
-        // Add protein-based facets derived from the ingredient list
-        if (IngredientsContainAny(ings, "chicken", "hen", "duck", "turkey")) codes.Add("POULTRY");
-        if (IngredientsContainAny(ings, "beef", "veal")) codes.Add("BEEF");
-        if (IngredientsContainAny(ings, "pork", "bacon", "ham")) codes.Add("PORK");
-        if (IngredientsContainAny(ings, "lamb", "mutton")) codes.Add("LAMB");
-        if (IngredientsContainAny(ings, "bonito", "kombu", "fish bone")) codes.Add("FISH");
-        if (IngredientsContainAny(ings, "shrimp paste")) codes.Add("CRUSTACEANS");
-
-        return codes;
-    }
 
     /// <summary>
     /// Returns a realistic DefaultQuantity for an assembled ingredient (one with a DerivedFrom)
@@ -866,157 +594,5 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         // Default → weight
         return "g";
-    }
-
-    /// <summary>
-    /// Guesses category facet codes for an ingredient product based on its name.
-    /// Only assigns the most-specific (leaf) facet codes; parent codes are reachable via the hierarchy.
-    /// Used when auto-creating ingredient products from CSV data.
-    /// </summary>
-    private static IEnumerable<string> GuessIngredientCategoryCodes(string ingredientName)
-    {
-        var name = ingredientName.ToLower();
-        var codes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
-        // ── Proteins — leaf codes only ────────────────────────────────────────
-        if (ContainsAny(name, "chicken", "duck", "turkey", "hen", "poultry",
-                "drumstick", "wing", "thigh", "galinha"))
-            codes.Add("POULTRY");
-        if (ContainsAny(name, "beef", "steak", "brisket", "veal", "ox", "corned beef"))
-            codes.Add("BEEF");
-        if (ContainsAny(name, "pork", "bacon", "ham", "sausage", "chorizo", "lard", "ribs", "pig"))
-            codes.Add("PORK");
-        if (ContainsAny(name, "lamb", "mutton", "sheep"))
-            codes.Add("LAMB");
-
-        // ── Seafood — leaf codes only ─────────────────────────────────────────
-        if (ContainsAny(name, "salmon", "trout", "mackerel", "herring", "sardine", "anchovy"))
-            codes.Add("FAT_FISH");
-        if (ContainsAny(name, "cod", "tilapia", "haddock", "sole", "plaice", "snapper",
-                "barramundi", "hilsa", "flying fish", "whiting", "tuna"))
-            codes.Add("LEAN_FISH");
-        // Generic "fish" when no specific variety matched
-        if (ContainsAny(name, "smoked fish", "dried fish") ||
-            (name.Contains("fish") && !ContainsAny(name, "sauce", "oil", "stock", "broth", "paste") &&
-             !codes.Contains("FAT_FISH") && !codes.Contains("LEAN_FISH")))
-            codes.Add("FISH");
-        if (ContainsAny(name, "crab"))
-            codes.Add("CRAB");
-        if (ContainsAny(name, "shrimp", "prawn", "lobster", "crawfish", "crayfish"))
-            codes.Add("CRUSTACEANS");
-        if (ContainsAny(name, "mussel", "oyster", "clam", "scallop", "squid", "octopus", "conch"))
-            codes.Add("MOLLUSKS");
-        if (ContainsAny(name, "seafood") &&
-            !codes.Contains("FISH") && !codes.Contains("FAT_FISH") && !codes.Contains("LEAN_FISH") &&
-            !codes.Contains("CRAB") && !codes.Contains("CRUSTACEANS") && !codes.Contains("MOLLUSKS"))
-            codes.Add("SEAFOOD");
-
-        // ── Legumes ──────────────────────────────────────────────────────────
-        if (ContainsAny(name, "bean", "lentil", "chickpea", "split pea", "legume", "dal", "tofu", "soy"))
-            codes.Add("LEGUMES");
-
-        // ── Spices & Herbs ───────────────────────────────────────────────────
-        if (ContainsAny(name, "pepper", "chili", "cayenne", "paprika", "cumin", "turmeric",
-                "coriander", "cinnamon", "cardamom", "allspice", "nutmeg", "clove", "saffron",
-                "spice", "blend", "masala", "berbere", "harissa", "ras el hanout", "sumac", "za'atar",
-                "achu spice", "kanwa", "fenugreek", "anise", "caraway"))
-            codes.Add("SPICES");
-        if (ContainsAny(name, "thyme", "oregano", "rosemary", "basil", "dill", "mint",
-                "parsley", "cilantro", "chive", "sage", "tarragon", "bay leaf", "lemongrass",
-                "kaffir", "scallion", "leek"))
-            codes.Add("HERBS");
-
-        // ── Dairy — leaf codes only ───────────────────────────────────────────
-        if (ContainsAny(name, "butter", "ghee"))
-            codes.Add("BUTTER");
-        if (ContainsAny(name, "yogurt", "yoghurt", "kefir"))
-            codes.Add("YOGHURT");
-        if (ContainsAny(name, "milk", "cream", "sour cream", "creme fraiche") && !codes.Contains("BUTTER") && !codes.Contains("YOGHURT"))
-            codes.Add("MILK");
-        if (ContainsAny(name, "cheddar", "parmesan", "parmigiano", "gouda", "gruyere",
-                "pecorino", "manchego", "emmental", "comté"))
-            codes.Add("HARD_CHEESE");
-        if (ContainsAny(name, "brie", "camembert"))
-            codes.Add("SOFT_CHEESE");
-        if (ContainsAny(name, "ricotta", "mozzarella", "cream cheese", "cottage cheese",
-                "mascarpone", "quark"))
-            codes.Add("FRESH_CHEESE");
-        if (ContainsAny(name, "gorgonzola", "stilton", "roquefort", "blue cheese"))
-            codes.Add("BLUE_CHEESE");
-        // Generic cheese/dairy when no specific sub-type matched
-        if (ContainsAny(name, "feta", "halloumi", "paneer", "curd", "cheese") &&
-            !codes.Contains("HARD_CHEESE") && !codes.Contains("SOFT_CHEESE") &&
-            !codes.Contains("FRESH_CHEESE") && !codes.Contains("BLUE_CHEESE"))
-            codes.Add("CHEESE");
-        if (ContainsAny(name, "egg", "dairy") && !codes.Contains("DAIRY") &&
-            !codes.Contains("BUTTER") && !codes.Contains("YOGHURT") && !codes.Contains("MILK") &&
-            !codes.Contains("CHEESE") && !codes.Contains("HARD_CHEESE") && !codes.Contains("SOFT_CHEESE") &&
-            !codes.Contains("FRESH_CHEESE") && !codes.Contains("BLUE_CHEESE"))
-            codes.Add("DAIRY");
-
-        // ── Vegetables — leaf codes only ──────────────────────────────────────
-        // Root vegetables
-        if (ContainsAny(name, "carrot", "potato", "beet", "beetroot", "parsnip", "turnip",
-                "radish", "yam", "cassava", "cocoyam", "celeriac"))
-        { codes.Add("ROOT_VEG"); codes.Add("RAW"); }
-        // Onions / alliums (child of STEM_VEG)
-        if (ContainsAny(name, "onion", "shallot", "spring onion", "scallion", "leek", "chive", "garlic"))
-        { codes.Add("ONIONS"); codes.Add("RAW"); }
-        // Other stem vegetables when not already an onion
-        if (ContainsAny(name, "celery", "asparagus", "fennel stalk", "lemongrass") && !codes.Contains("ONIONS"))
-            codes.Add("STEM_VEG");
-        // Leafy vegetables
-        if (ContainsAny(name, "spinach", "kale", "chard", "arugula", "watercress",
-                "collard", "bok choy", "pak choi", "mustard green", "pea shoot"))
-        { codes.Add("LEAFY_VEG"); codes.Add("RAW"); }
-        if (ContainsAny(name, "lettuce", "romaine", "iceberg", "endive", "radicchio"))
-        { codes.Add("LETTUCE"); codes.Add("RAW"); }  // LETTUCE is child of LEAFY_VEG
-        // Flower vegetables
-        if (ContainsAny(name, "broccoli", "cauliflower", "cabbage", "brussels sprout", "kohlrabi", "okra"))
-        { codes.Add("FLOWER_VEG"); codes.Add("RAW"); }
-        // Tomatoes (leaf, child of FRUIT_VEG)
-        if (ContainsAny(name, "tomato"))
-        { codes.Add("TOMATOES"); codes.Add("RAW"); }
-        // Other fruit-vegetables
-        if (ContainsAny(name, "bell pepper", "sweet pepper"))
-        { codes.Add("FRUIT_VEG"); codes.Add("RAW"); }
-        if (ContainsAny(name, "eggplant", "aubergine", "zucchini", "courgette",
-                "cucumber", "squash", "pumpkin", "plantain", "avocado"))
-            codes.Add("FRUIT_VEG");
-        // Fruits (use FRUIT_VEG as no further sub-type)
-        if (ContainsAny(name, "mango", "banana", "apple", "orange", "lemon", "lime",
-                "plum", "peach", "pear", "fig", "grape", "berry"))
-        { codes.Add("FRUIT_VEG"); codes.Add("RAW"); }
-        // Mushrooms — no hierarchy sub-type, use VEGETABLES directly
-        if (ContainsAny(name, "mushroom"))
-            codes.Add("VEGETABLES");
-        if (ContainsAny(name, "artichoke", "ginger") && !codes.Contains("STEM_VEG") && !codes.Contains("ONIONS"))
-            codes.Add("VEGETABLES");
-        if (ContainsAny(name, "vegetable", "greens", "bean sprout") &&
-            !codes.Contains("ROOT_VEG") && !codes.Contains("LEAFY_VEG") && !codes.Contains("LETTUCE") &&
-            !codes.Contains("FLOWER_VEG") && !codes.Contains("FRUIT_VEG") && !codes.Contains("TOMATOES") &&
-            !codes.Contains("STEM_VEG") && !codes.Contains("ONIONS"))
-            codes.Add("VEGETABLES");
-
-        // ── Grains ───────────────────────────────────────────────────────────
-        if (ContainsAny(name, "flour", "rice", "corn", "maize", "wheat", "oat", "barley",
-                "breadcrumb", "grain", "cereal", "starch", "polenta", "semolina", "teff",
-                "sorghum", "millet", "injera", "couscous", "bulgur", "quinoa"))
-            codes.Add("GRAINS");
-
-        // ── Condiments / Pantry ──────────────────────────────────────────────
-        if (ContainsAny(name, "oil", "vinegar", "sauce", "stock", "broth", "soy sauce",
-                "fish sauce", "tahini", "paste", "ketchup", "mustard", "mayo", "dressing",
-                "niter kibbeh", "palm oil", "coconut milk", "peanut butter", "tamarind"))
-            codes.Add("CONDIMENTS");
-        if (ContainsAny(name, "sugar", "honey", "syrup", "vanilla", "cocoa", "baking", "yeast",
-                "water", "salt", "limestone"))
-            codes.Add("PANTRY");
-
-        // Fallback
-        if (codes.Count == 0)
-            codes.Add("PANTRY");
-
-        return codes;
     }
 }
