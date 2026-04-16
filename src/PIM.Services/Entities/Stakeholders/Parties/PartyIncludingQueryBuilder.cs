@@ -19,13 +19,13 @@ public class PartyIncludingQueryBuilder : IIncludableQueryBuilder<Party, int, Pa
 
         if (includes.Value.HasFlag(PartyIncludes.Parents))
             query = query
-                .Include(x => x.ParentRelationships!).ThenInclude(r => r.Parent!).ThenInclude(p => p.ContactData)
-                .Include(x => x.ParentRelationships!).ThenInclude(r => r.RelationshipType);
+                .Include(x => x.ParentRelationships!.Where(r => !r.Parent!.IsArchived)).ThenInclude(r => r.Parent!).ThenInclude(p => p.ContactData)
+                .Include(x => x.ParentRelationships!.Where(r => !r.Parent!.IsArchived)).ThenInclude(r => r.RelationshipType);
 
         if (includes.Value.HasFlag(PartyIncludes.Children))
             query = query
-                .Include(x => x.ChildRelationships!.OrderBy(r => r.SortOrder)).ThenInclude(r => r.Child!).ThenInclude(p => p.ContactData)
-                .Include(x => x.ChildRelationships!.OrderBy(r => r.SortOrder)).ThenInclude(r => r.RelationshipType);
+                .Include(x => x.ChildRelationships!.Where(r => !r.Child!.IsArchived).OrderBy(r => r.SortOrder)).ThenInclude(r => r.Child!).ThenInclude(p => p.ContactData)
+                .Include(x => x.ChildRelationships!.Where(r => !r.Child!.IsArchived).OrderBy(r => r.SortOrder)).ThenInclude(r => r.RelationshipType);
 
         return query;
     }

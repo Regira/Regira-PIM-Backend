@@ -12,11 +12,11 @@ public class FacetIncludingQueryBuilder : IIncludableQueryBuilder<Facet, int, Fa
             return query;
 
         if (includes.Value.HasFlag(FacetIncludes.Parents))
-            query = query.Include(x => x.ParentEntities!).ThenInclude(x => x.Parent);
+            query = query.Include(x => x.ParentEntities!.Where(f => !f.Parent!.IsArchived)).ThenInclude(x => x.Parent);
         if (includes.Value.HasFlag(FacetIncludes.Children))
-            query = query.Include(x => x.ChildEntities!).ThenInclude(x => x.Child);
+            query = query.Include(x => x.ChildEntities!.Where(f => !f.Child!.IsArchived)).ThenInclude(x => x.Child);
         if (includes.Value.HasFlag(FacetIncludes.FacetGroups))
-            query = query.Include(x => x.FacetParentGroups!).ThenInclude(x => x.FacetGroup);
+            query = query.Include(x => x.FacetParentGroups!.Where(f => !f.FacetGroup!.IsArchived)).ThenInclude(x => x.FacetGroup);
 
         return query;
     }

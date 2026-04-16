@@ -12,10 +12,10 @@ public class FacetGroupIncludingQueryBuilder : IIncludableQueryBuilder<FacetGrou
             return query;
 
         if (includes.Value.HasFlag(FacetGroupIncludes.ChildFacets))
-            query = query.Include(x => x.ChildFacets!).ThenInclude(x => x.Facet);
+            query = query.Include(x => x.ChildFacets!.Where(fg => !fg.Facet!.IsArchived)).ThenInclude(x => x.Facet);
 
         if (includes.Value.HasFlag(FacetGroupIncludes.ParentFacets))
-            query = query.Include(x => x.ParentFacets!).ThenInclude(x => x.Facet);
+            query = query.Include(x => x.ParentFacets!.Where(fg => !fg.Facet!.IsArchived)).ThenInclude(x => x.Facet);
 
         return query;
     }
