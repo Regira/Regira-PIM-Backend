@@ -6,7 +6,8 @@ public class FacetSearchObject : SearchObject
 {
     public ICollection<int>? ParentId { get; set; }
     public ICollection<int>? ChildId { get; set; }
-    public ICollection<int>? FacetGroupId { get; set; }
+    public ICollection<int>? ParentGroupId { get; set; }
+    public ICollection<int>? ChildGroupId { get; set; }
 
     public bool? IsRoot { get; set; }
     public bool? IsParent { get; set; }

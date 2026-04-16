@@ -120,10 +120,14 @@ public class StakeholderSeeder(PimDbContext dbContext, IEntityService<Party> par
         types = new List<RelationshipType>
         {
             new() { Code = "EMP",  Title = "Employee",       Description = "Person is employed by an organization" },
-            new() { Code = "MBR",  Title = "Member",         Description = "Person is a member of the organization" },
-            new() { Code = "UNIT",  Title = "Unit",          Description = "Organization is a unit of another organization" },
-            new() { Code = "REP",  Title = "Representative", Description = "Person represents the organization" },
+            new() { Code = "UNIT", Title = "Unit",           Description = "Organization is a unit of another organization" },
             new() { Code = "CON",  Title = "Contact",        Description = "Person is a contact for the organization" },
+            new() { Code = "ASC",  Title = "Associate",      Description = "Person is an associate of the organization" },
+            new() { Code = "OWN",  Title = "Owner",          Description = "Person is an owner of the organization" },
+            new() { Code = "MGR",  Title = "Manager",        Description = "Person manages the organization" },
+            new() { Code = "ADM",  Title = "Administration", Description = "Person handles administration for the organization" },
+            new() { Code = "SUP",  Title = "Support",        Description = "Person provides support for the organization" },
+            new() { Code = "FRL",  Title = "Freelance",      Description = "Person works as a freelancer for the organization" },
         };
 
         logger.LogInformation("Seeding relationship types...");
@@ -149,32 +153,84 @@ public class StakeholderSeeder(PimDbContext dbContext, IEntityService<Party> par
         if (organizations.Count == 0 || persons.Count == 0)
             return;
 
+        var unitType = relationshipTypes.First(t => t.Code == "UNIT");
+        var contactType = relationshipTypes.First(t => t.Code == "CON");
+        var personRelTypes = relationshipTypes
+            .Where(t => new[] { "ASC", "OWN", "CON", "MGR", "ADM", "SUP", "FRL" }.Contains(t.Code))
+            .ToList();
+
+        // Shuffle orgs and split into 3 hierarchy levels
+        var shuffled = f.Random.Shuffle(organizations).ToList();
+        int third = Math.Max(1, shuffled.Count / 3);
+        var level1 = shuffled.Take(third).ToList();
+        var level2 = shuffled.Skip(third).Take(third).ToList();
+        var level3 = shuffled.Skip(2 * third).ToList();
+
+        // Build Org → Org Unit map (parentId → list of child org IDs)
+        var unitChildMap = new Dictionary<int, List<int>>();
+        foreach (var org in level2)
+        {
+            var parent = f.PickRandom(level1);
+            if (!unitChildMap.TryGetValue(parent.Id, out var children))
+                unitChildMap[parent.Id] = children = [];
+            children.Add(org.Id);
+        }
+        foreach (var org in level3)
+        {
+            var parent = f.PickRandom(level2);
+            if (!unitChildMap.TryGetValue(parent.Id, out var children))
+                unitChildMap[parent.Id] = children = [];
+            children.Add(org.Id);
+        }
+
         int count = 0;
         logger.LogInformation("Seeding stakeholder relationships...");
         foreach (var org in organizations)
         {
-            if (!f.Random.Bool(0.7f))
-                continue;
-
             var loaded = await partyService.Details(org.Id);
             if (loaded == null)
                 continue;
 
-            var relType = f.PickRandom(relationshipTypes);
-            loaded.ChildRelationships = f.PickRandom(persons, f.Random.Int(2, Math.Min(8, persons.Count)))
-                .DistinctBy(p => p.Id)
-                .Select(p =>
+            var childRels = new List<PartyRelationship>();
+
+            // Org → Org Unit relationships
+            if (unitChildMap.TryGetValue(org.Id, out var childOrgIds))
+            {
+                childRels.AddRange(childOrgIds.Select(childId =>
+                    new PartyRelationship { ChildId = childId, RelationshipTypeId = unitType.Id }));
+            }
+
+            // Org → Person relationships (Shareholder, Owner, Contact, Sales)
+            if (f.Random.Bool(0.8f))
+            {
+                var selectedPersons = f.PickRandom(persons, f.Random.Int(2, Math.Min(8, persons.Count)))
+                    .DistinctBy(p => p.Id)
+                    .ToList();
+
+                foreach (var person in selectedPersons)
                 {
+                    // Weight towards Contact as the default type
+                    var relType = f.Random.Bool(0.4f) ? contactType : f.PickRandom(personRelTypes);
                     var contactData = new List<PartyRelationshipContactDetails>
                     {
-                        new() { Title = "Work Email", Value = f.Internet.Email(p.Title), DataType = ContactDataTypes.Email, SortOrder = 0 },
+                        new() { Title = "Work Email", Value = f.Internet.Email(person.Title), DataType = ContactDataTypes.Email, SortOrder = 0 },
                     };
                     if (f.Random.Bool(0.6f))
                         contactData.Add(new() { Title = "Work Phone", Value = f.Phone.PhoneNumber(), DataType = ContactDataTypes.Phone, SortOrder = 1 });
-                    return new PartyRelationship { ChildId = p.Id, RelationshipTypeId = relType.Id, ContactData = contactData };
-                })
-                .ToList();
 
+                    childRels.Add(new PartyRelationship
+                    {
+                        ChildId = person.Id,
+                        RelationshipTypeId = relType.Id,
+                        ContactData = contactData
+                    });
+                }
+            }
+
+            if (childRels.Count == 0)
+                continue;
+
+            loaded.ChildRelationships = childRels;
             await partyService.Save(loaded);
             count++;
             if (count % BatchSize == 0)

@@ -7,6 +7,14 @@ public class ProductSearchObject : SearchObject
     public string? Title { get; set; }
 
     /// <summary>
+    /// Filters products that belong to ANY of the facets that belong to ANY of the specified facet group IDs.
+    /// </summary>
+    public ICollection<int>? FacetGroupId { get; set; }
+    /// <summary>
+    /// Filters products that do NOT belong to ANY of the facets that belong to ANY of the specified facet group IDs.
+    /// </summary>
+    public ICollection<int>? ExcludeFacetGroupId { get; set; }
+    /// <summary>
     /// Filters products that belong to ANY of the specified facet IDs.
     /// </summary>
     public ICollection<int>? FacetId { get; set; }

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PIM.Core.Abstractions;
 using PIM.Data;
 using PIM.Models.Catalog.Products;
@@ -23,6 +24,7 @@ public class ProductProcessor(PimDbContext dbContext, IOrderContext orderContext
             var itemIds = items.Select(x => x.Id).ToList();
 
             var activePrices = await dbContext.Products
+                .AsNoTracking()
                 .Where(a => itemIds.Contains(a.Id))
                 .GetActivePrices<Product, ProductPricePeriod>(priceDate);
 

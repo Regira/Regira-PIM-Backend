@@ -66,13 +66,15 @@ public partial class PimDbContext
         // Party Tree
         modelBuilder.Entity<PartyTreeItem>(entity =>
         {
-            entity.HasNoKey();
-            //entity.HasOne(x => x.Parent)
-            //    .WithMany();
-            //entity.HasOne(x => x.Child)
-            //    .WithMany();
-            //entity.HasOne(x => x.Root)
-            //    .WithMany();
+            entity.HasNoKey().ToTable((string?)null);
+            entity.HasOne(x => x.Parent)
+               .WithMany();
+            entity.HasOne(x => x.Child)
+               .WithMany();
+            entity.HasOne(x => x.Root)
+               .WithMany();
+            entity.HasOne(x => x.RelationshipType)
+                .WithMany();
         });
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetPartyOffspring), flags, [typeof(string), typeof(int)])!)
             .HasSchema(schema);
@@ -81,7 +83,7 @@ public partial class PimDbContext
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetPartyFamily), flags, [typeof(string), typeof(int)])!)
             .HasSchema(schema);
         // Product Tree
-        modelBuilder.Entity<ProductTreeItem>().HasNoKey();
+        modelBuilder.Entity<ProductTreeItem>().HasNoKey().ToTable((string?)null);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductOffspring), flags, [typeof(string), typeof(int)])!)
             .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductAncestors), flags, [typeof(string), typeof(int)])!)
@@ -89,7 +91,7 @@ public partial class PimDbContext
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetProductFamily), flags, [typeof(string), typeof(int)])!)
             .HasSchema(schema);
         // Facet Tree
-        modelBuilder.Entity<FacetTreeItem>().HasNoKey();
+        modelBuilder.Entity<FacetTreeItem>().HasNoKey().ToTable((string?)null);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetFacetOffspring), flags, [typeof(string), typeof(string), typeof(int)])!)
             .HasSchema(schema);
         modelBuilder.HasDbFunction(typeof(PimDbContext).GetMethod(nameof(GetFacetAncestors), flags, [typeof(string), typeof(string), typeof(int)])!)

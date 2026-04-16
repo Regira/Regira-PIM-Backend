@@ -21,7 +21,7 @@ public static class StakeholderServiceConfiguration
 
         services.For<Party, PartySearchObject, PartySortBy, PartyIncludes>(e =>
         {
-            e.AddFilter<PartyQueryBuilder>();
+            e.AddFilter<PartyQueryFilter>();
             e.AddSortBy<PartySortingQueryBuilder>();
             e.AddIncludes<PartyIncludingQueryBuilder>();
 

@@ -5,7 +5,7 @@ using Regira.Entities.EFcore.QueryBuilders.Abstractions;
 
 namespace PIM.Services.Entities.Stakeholders.Parties;
 
-public class PartyQueryBuilder(PimDbContext dbContext) : FilteredQueryBuilderBase<Party, int, PartySearchObject>
+public class PartyQueryFilter(PimDbContext dbContext) : FilteredQueryBuilderBase<Party, int, PartySearchObject>
 {
     public override IQueryable<Party> Build(IQueryable<Party> query, PartySearchObject? so)
     {
