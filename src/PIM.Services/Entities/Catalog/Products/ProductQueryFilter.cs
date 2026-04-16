@@ -1,7 +1,6 @@
 using PIM.Data;
 using PIM.Models.Catalog.Pricing.Utilities;
 using PIM.Models.Catalog.Products;
-using PIM.Models.Taxonomy.FacetGroups;
 using PIM.Models.Taxonomy.Facets;
 using Regira.Entities.EFcore.Extensions;
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
@@ -13,6 +12,17 @@ public class ProductQueryFilter(PimDbContext dbContext, IQKeywordHelper qHelper)
 {
     IQueryable<FacetTreeItem> GetFacetOffspring(IEnumerable<int>? facetIds, IEnumerable<int>? facetGroupIds = null)
         => dbContext.GetFacetOffspring(facetIds, facetGroupIds).Where(o => o.ChildType == nameof(Facet));
+
+    // Products inherit facets from their ancestors, so we also check ancestor products that carry the facets.
+    IQueryable<Product> FilterByFacets(IQueryable<Product> query, IEnumerable<int> facetIds)
+        => query.Where(x => x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
+                            || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
+                                .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId)));
+
+    IQueryable<Product> ExcludeByFacets(IQueryable<Product> query, IEnumerable<int> facetIds)
+        => query.Where(x => !(x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
+                              || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
+                                  .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId))));
 
     public override IQueryable<Product> Build(IQueryable<Product> query, ProductSearchObject? so)
     {
@@ -30,85 +40,48 @@ public class ProductQueryFilter(PimDbContext dbContext, IQKeywordHelper qHelper)
             var facetIds = GetFacetOffspring(null, so.FacetGroupId)
                 .Select(o => o.ChildId)
                 .ToHashSet();
-            query = query
-                .Where(x => x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
-                            // We also need to include products that are offspring of products that have the facets, since they should inherit the facets of their ancestors.
-                            || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
-                                .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId))
-                );
+            query = FilterByFacets(query, facetIds);
         }
         if (so.ExcludeFacetGroupId?.Any() == true)
         {
-            var facetOffspringIds = GetFacetOffspring(null, so.ExcludeFacetGroupId).ToList();
-            foreach (var facetGroupId in so.ExcludeFacetGroupId)
-            {
-                // For each facet, we need to find all its offspring facets, and then filter products that have any of those facets.
-                var facetIds = facetOffspringIds.FindAll(o => o.ParentId == facetGroupId && o is { ParentType: nameof(FacetGroup), ChildType: nameof(Facet) })
-                    .ConvertAll(o => o.ChildId)
-                    .Distinct()
-                    .ToHashSet();
-                query = query
-                    .Where(x => !(x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
-                                  || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
-                                      .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId))
-                        ));
-            }
+            // !(A) AND !(B) == !(A OR B): combine all groups into one set and exclude in a single pass
+            var facetIds = GetFacetOffspring(null, so.ExcludeFacetGroupId)
+                .Select(o => o.ChildId)
+                .ToHashSet();
+            query = ExcludeByFacets(query, facetIds);
         }
 
         if (so.FacetId?.Any() == true)
         {
-            var facetOffspringIds = GetFacetOffspring(so.FacetId)
+            var offspringIds = GetFacetOffspring(so.FacetId)
                 .Select(o => o.ChildId)
-                .Distinct()
                 .ToHashSet();
-            var facetIds = so.FacetId.Concat(facetOffspringIds)
-                .Distinct()
-                .ToHashSet();
-            query = query
-                .Where(x => x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
-                            // We also need to include products that are offspring of products that have the facets, since they should inherit the facets of their ancestors.
-                            || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
-                                .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId))
-                );
+            var facetIds = offspringIds.Concat(so.FacetId).ToHashSet();
+            query = FilterByFacets(query, facetIds);
         }
         if (so.AllFacetId?.Any() == true)
         {
-            // A single call to GetFacetOffspring for all facet IDs, and then we can filter the offspring facets for each facet ID in memory, to avoid multiple calls to GetFacetOffspring.
+            // Each facet is ANDed: product must match all of them — one Where per facet
             var facetOffspringIds = GetFacetOffspring(so.AllFacetId).ToList();
             foreach (var facetId in so.AllFacetId)
             {
-                // For each facet, we need to find all its offspring facets, and then filter products that have any of those facets.
-                var offspringIds = facetOffspringIds.FindAll(o => o.ParentId == facetId)
-                    .ConvertAll(o => o.ChildId);
-                var facetIds = offspringIds.Concat([facetId])
-                    .Distinct()
+                var facetIds = facetOffspringIds
+                    .Where(o => o.ParentId == facetId)
+                    .Select(o => o.ChildId)
+                    .Append(facetId)
                     .ToHashSet();
-                query = query
-                    .Where(x => x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
-                                || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
-                                    .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId))
-                    );
+                query = FilterByFacets(query, facetIds);
             }
         }
         if (so.ExcludeFacetId?.Any() == true)
         {
-            // A single call to GetFacetOffspring for all facet IDs, and then we can filter the offspring facets for each facet ID in memory, to avoid multiple calls to GetFacetOffspring.
-            var facetOffspringIds = GetFacetOffspring(so.ExcludeFacetId).ToList();
-            foreach (var facetId in so.ExcludeFacetId)
-            {
-                // For each facet, we need to find all its offspring facets, and then filter products that have any of those facets.
-                var offspringIds = facetOffspringIds
-                    .FindAll(o => o.ParentId == facetId)
-                    .ConvertAll(o => o.ChildId);
-                var facetIds = offspringIds.Concat([facetId])
-                    .Distinct()
-                    .ToHashSet();
-                query = query
-                    .Where(x => !(x.Facets!.Any(ac => facetIds.Contains(ac.FacetId))
-                                  || dbContext.Set<ProductFacet>().Where(pf => facetIds.Contains(pf.FacetId))
-                                      .Any(pf => dbContext.GetProductOffspring().Where(o => o.ParentId == x.Id).Any(o => o.ChildId == pf.ProductId))
-                        ));
-            }
+            // !(A) AND !(B) == !(A OR B): combine all excluded facets and their offspring into one set
+            var facetIds = GetFacetOffspring(so.ExcludeFacetId)
+                .Select(o => o.ChildId)
+                .ToList()
+                .Concat(so.ExcludeFacetId)
+                .ToHashSet();
+            query = ExcludeByFacets(query, facetIds);
         }
 
         if (so.IsRoot.HasValue)
@@ -129,13 +102,11 @@ public class ProductQueryFilter(PimDbContext dbContext, IQKeywordHelper qHelper)
             query = query.Where(x => dbContext.GetProductAncestors(so.OffspringId, 9).Any(o => o.ParentId == x.Id));
         if (so.AllComponentId?.Any() == true)
         {
-            // For each component, we need to check if it's in the assemblies or components of the product, or if it's in the ancestors of the product (i.e. the product is an offspring of the component).
             foreach (var componentId in so.AllComponentId)
                 query = query.Where(x => dbContext.GetProductAncestors(new[] { componentId }, 9).Any(o => o.ParentId == x.Id));
         }
         if (so.ExcludeComponentId?.Any() == true)
         {
-            // For each component, we need to check if it's in the assemblies or components of the product, or if it's in the ancestors of the product (i.e. the product is an offspring of the component).
             foreach (var componentId in so.ExcludeComponentId)
                 query = query.Where(x => !dbContext.GetProductAncestors(new[] { componentId }, 9).Any(o => o.ParentId == x.Id));
         }
