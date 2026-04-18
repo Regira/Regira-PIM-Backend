@@ -1,12 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using PIM.Data;
-using PIM.Models.Stakeholders.Parties;
-using PIM.Services.Entities.Stakeholders.Abstractions;
 using PIM.Services.Entities.Stakeholders.Addresses;
 using PIM.Services.Entities.Stakeholders.ContactData;
-using PIM.Services.Entities.Stakeholders.Parties;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
-using Regira.Entities.Extensions;
 using Regira.Globalization.LibPhoneNumber;
 
 namespace PIM.DependencyInjection.Stakeholders;
@@ -19,27 +15,8 @@ public static class StakeholderServiceConfiguration
         services.Services.AddTransient<ContactDataNormalizer>();
         services.Services.AddTransient<AddressNormalizer>();
 
-        services.For<Party, PartySearchObject, PartySortBy, PartyIncludes>(e =>
-        {
-            e.AddFilter<PartyQueryFilter>();
-            e.AddSortBy<PartySortingQueryBuilder>();
-            e.AddIncludes<PartyIncludingQueryBuilder>();
-
-            e.Related(x => x.ContactData, x => x.ContactData?.SetSortOrder());
-            e.Related(x => x.Addresses, x => x.Addresses?.SetSortOrder());
-            e.Related(x => x.ChildRelationships, x=> x.ChildRelationships?.SetSortOrder());
-            e.Related(x => x.ParentRelationships, x => x.ParentRelationships?.SetSortOrder());
-
-            e.AddNormalizer<PartyNormalizer>();
-            e.HasRepository<PartyRepository>();
-            e.AddTransient<IPartyRepository, PartyRepository>();
-            e.AddTransient<IPartyService, PartyRepository>();
-        });
-
-        services.For<RelationshipType>(e =>
-        {
-            e.SortBy(query => query.OrderBy(x => x.Title));
-        });
+        services.AddParties();
+        services.AddRelationshipTypes();
 
         return services;
     }

@@ -19,7 +19,7 @@ using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
 using Regira.Entities.Mapping.Mapster;
 
-namespace PIM.DependencyInjection;
+namespace PIM.DependencyInjection.Extensions;
 
 public static class ServiceCollectionExtensions
 {

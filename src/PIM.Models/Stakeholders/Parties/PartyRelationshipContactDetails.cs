@@ -2,4 +2,7 @@
 
 namespace PIM.Models.Stakeholders.Parties;
 
-public class PartyRelationshipContactDetails : ContactDetailsBase;
+public class PartyRelationshipContactDetails : ContactDetailsBase
+{
+    public int PartyRelationshipId { get; set; }
+}

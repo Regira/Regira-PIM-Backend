@@ -19,8 +19,10 @@ public static class OrderServiceConfiguration
             e.AddFilter<OrderQueryBuilder>();
             e.AddSortBy<OrderSortingQueryBuilder>();
             e.AddIncludes<OrderIncludingQueryBuilder>();
-            e.Related(x => x.OrderLines, item => item.OrderLines?.SetSortOrder());
+
             e.AddPrepper<OrderPrepper>();
+            e.Related(x => x.OrderLines, item => item.OrderLines?.SetSortOrder());
+
             e.AddNormalizer<OrderNormalizer>();
             e.AddTransient<IOrderServiceValidator, OrderManagerValidator>();
             e.UseEntityService<IEntityService<Order, OrderSearchObject, OrderSortBy, OrderIncludes>>(p =>

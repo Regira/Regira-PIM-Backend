@@ -6,10 +6,10 @@ using Scalar.AspNetCore;
 using Serilog;
 using System.Text.Json.Serialization;
 using PIM.Core.Constants;
-using PIM.DependencyInjection;
 using PIM.Identity.Data;
 using PIM.Identity.DependencyInjection;
 using PIM.Shop.API.Infrastructure;
+using PIM.DependencyInjection.Extensions;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 

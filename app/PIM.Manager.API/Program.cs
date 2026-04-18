@@ -7,8 +7,8 @@ using System.Text.Json.Serialization;
 using PIM.Admin.API.Infrastructure;
 using PIM.Admin.DependencyInjection;
 using PIM.Core.Constants;
-using PIM.DependencyInjection;
 using PIM.Identity.DependencyInjection;
+using PIM.DependencyInjection.Extensions;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 

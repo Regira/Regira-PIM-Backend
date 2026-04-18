@@ -122,7 +122,7 @@ public partial class PimDbContext(DbContextOptions<PimDbContext> options) : DbCo
                 .HasIndex(r => new { r.ParentId, r.ChildId, r.RelationshipTypeId })
                 .IsUnique();
 
-            entity.HasMany(e => e.ContactData).WithOne().OnDelete(DeleteBehavior.Cascade);
+            entity.HasMany(e => e.ContactData).WithOne().HasForeignKey(c => c.PartyRelationshipId).OnDelete(DeleteBehavior.Cascade);
         });
 
         // Orders

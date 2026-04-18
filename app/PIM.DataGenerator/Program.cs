@@ -7,7 +7,7 @@ using PIM.Admin.DependencyInjection;
 using PIM.Core.Constants;
 using PIM.Data;
 using PIM.DataGenerator.Infrastructure;
-using PIM.DependencyInjection;
+using PIM.DependencyInjection.Extensions;
 using PIM.Identity.DependencyInjection;
 using Regira.Office.Mail.MailGun;
 using Serilog;

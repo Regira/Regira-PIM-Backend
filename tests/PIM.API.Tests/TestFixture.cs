@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PIM.Core.Abstractions;
 using PIM.Core.Constants;
 using PIM.Data;
-using PIM.DependencyInjection;
+using PIM.DependencyInjection.Extensions;
 using PIM.Services.Entities.Catalog.Products;
 using Regira.DAL.EFcore.Services;
 using Regira.Entities.EFcore.Normalizing;

@@ -16,13 +16,16 @@ public static class ProductServiceConfiguration
             e.AddFilter<ProductQueryFilter>();
             e.AddSortBy<ProductSortingQueryBuilder>();
             e.AddIncludes<ProductIncludingQueryBuilder>();
+
             e.Related(item => item.Facets);
             e.Related(item => item.Components, item => item.Components?.SetSortOrder());
             e.Related(item => item.AllowedComponentAdditions);
             e.Related(item => item.Suppliers);
             e.Related(item => item.Prices);
+
             e.AddProcessor<ProductProcessor>();
             e.AddNormalizer<ProductNormalizer>();
+
             e.HasRepository<ProductRepository>();
             e.AddTransient<IProductRepository, ProductRepository>();
             e.AddTransient<IProductService, ProductValidateManager>();
