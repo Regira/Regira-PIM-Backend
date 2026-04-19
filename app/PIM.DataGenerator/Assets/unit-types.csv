@@ -1,0 +1,16 @@
+Code,Title,IsUom
+pc,Piece,0
+portion,Portion,0
+slice,Slice,0
+cup,Cup,0
+bowl,Bowl,0
+plate,Plate,0
+g,Gram,1
+kg,Kilogram,1
+mL,Milliliter,1
+L,Liter,1
+sprig,Sprig,0
+bunch,Bunch,0
+stalk,Stalk,0
+leaf,Leaf,0
+clove,Clove,0

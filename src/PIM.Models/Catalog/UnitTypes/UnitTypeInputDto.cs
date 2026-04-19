@@ -9,4 +9,5 @@ public class UnitTypeInputDto
     public string Code { get; set; } = null!;
     [Required, MaxLength(64)]
     public string Title { get; set; } = null!;
+    public bool IsUom { get; set; }
 }

@@ -15,19 +15,19 @@ public class FacetRepository(
     IEntityWriteService<Facet, int> writeService)
     : EntityRepository<Facet, FacetSearchObject, EntitySortBy, FacetIncludes>(readService, writeService), IFacetRepository
 {
-    public async Task<TreeList<FacetTreeItem>> GetAncestors(IList<int> facetIds, IList<int>? groupIds = null, int maxLevel = 9)
+    public async Task<TreeList<FacetTreeItem>> GetAncestors(IList<int>? facetIds, IList<int>? groupIds = null, int maxLevel = 9)
     {
         var items = await dbContext.GetFacetAncestors(facetIds, groupIds, maxLevel).ToListAsync();
-        return items.ToTreeList(x => items.FindAll(p => p.ChildId == x.ParentId));
+        return items.ToTreeList(x => items.FindAll(p => p.ChildId == x.ParentId && p.ChildType == x.ParentType));
     }
-    public async Task<TreeList<FacetTreeItem>> GetOffspring(IList<int> facetIds, IList<int>? groupIds = null, int maxLevel = 9)
+    public async Task<TreeList<FacetTreeItem>> GetOffspring(IList<int>? facetIds, IList<int>? groupIds = null, int maxLevel = 9)
     {
         var items = await dbContext.GetFacetOffspring(facetIds, groupIds, maxLevel).ToListAsync();
-        return items.ToTreeList(x => items.FindAll(p => p.ParentId == x.ChildId));
+        return items.ToTreeList(x => items.FindAll(p => p.ParentId == x.ChildId && p.ParentType == x.ChildType));
     }
-    public async Task<TreeList<FacetTreeItem>> GetFamily(IList<int> facetIds, IList<int>? groupIds = null, int maxLevel = 9)
+    public async Task<TreeList<FacetTreeItem>> GetFamily(IList<int>? facetIds, IList<int>? groupIds = null, int maxLevel = 9)
     {
         var items = await dbContext.GetFacetFamily(facetIds, groupIds, maxLevel).ToListAsync();
-        return items.ToTreeList(x => items.FindAll(p => p.ChildId == x.ParentId));
+        return items.ToTreeList(x => items.FindAll(p => p.ChildId == x.ParentId && p.ChildType == x.ParentType));
     }
 }

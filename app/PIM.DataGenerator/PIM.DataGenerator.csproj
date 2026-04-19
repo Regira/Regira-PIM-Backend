@@ -14,19 +14,7 @@
 	  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	</Content>
-    <Content Include="Assets\recipes-per-country.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Assets\facets.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Assets\ingredients.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Assets\partial-dishes.csv">
+    <Content Include="Assets\*.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -34,6 +22,7 @@
 
   <ItemGroup>
 	<PackageReference Include="Bogus" Version="35.6.5" />
+	<PackageReference Include="CsvHelper" Version="33.1.0" />
 	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />
 	<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.5" />
 	<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.5" />

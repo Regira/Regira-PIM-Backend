@@ -22,6 +22,9 @@ public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasN
     [MaxLength(2048), Normalized(SourceProperties = [nameof(Title), nameof(Description)])]
     public string? NormalizedContent { get; set; }
 
+    /// <summary>
+    /// The unit type associated with this product, when applied in assembly or component relationships.
+    /// </summary>
     public int? UnitTypeId { get; set; }
     public decimal? DefaultQuantity { get; set; }
 

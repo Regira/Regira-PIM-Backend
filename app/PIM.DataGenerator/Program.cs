@@ -34,6 +34,7 @@ try
         .AddAdminServices(builder.Configuration)
         .AddTransient<StakeholderSeeder>()
         .AddTransient<TaxonomySeeder>()
+        .AddTransient<UnitTypeSeeder>()
         .AddTransient<CatalogSeeder>()
         .AddTransient<PimDataSeeder>();
 

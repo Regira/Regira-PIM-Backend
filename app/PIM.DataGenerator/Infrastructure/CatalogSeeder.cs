@@ -1,14 +1,19 @@
 using Bogus;
+using CsvHelper;
+using CsvHelper.Configuration;
 using Microsoft.Extensions.Logging;
 using PIM.Models.Catalog.Products;
 using PIM.Models.Catalog.UnitTypes;
-using PIM.Models.Stakeholders.Parties;
+using PIM.Models.Taxonomy.FacetGroups;
 using PIM.Models.Taxonomy.Facets;
+using PIM.Services.Entities.Taxonomy.Abstractions;
+using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
+using System.Globalization;
 
 namespace PIM.DataGenerator.Infrastructure;
 
-public class CatalogSeeder(IEntityRepository<Product> productService, IEntityService<UnitType> unitTypeService, ILogger<CatalogSeeder> logger)
+public class CatalogSeeder(IEntityRepository<Product> productService, IEntityService<FacetGroup, FacetGroupSearchObject, EntitySortBy, FacetGroupIncludes> facetGroupService, IEntityService<UnitType> unitTypeService, IFacetService facetService, ILogger<CatalogSeeder> logger)
 {
     private const int BatchSize = 100;
     private static readonly HashSet<string> AllergenFacetCodes = new(StringComparer.OrdinalIgnoreCase)
@@ -25,133 +30,49 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
     private static IReadOnlyDictionary<string, (string Description, string UnitCode, string[] CategoryCodes, bool IsAssembled)> CanonicalIngredients =>
         LazyCanonicalIngredients.Value;
 
+    private record IngredientCsvRow
+    {
+        public string Code { get; init; } = "";
+        public string Title { get; init; } = "";
+        public string UnitType { get; init; } = "";
+        public string Facets { get; init; } = "";
+        public string DerivedFrom { get; init; } = "";
+        public string Description { get; init; } = "";
+    }
+
     /// <summary>
     /// Loads canonical ingredients from the ingredients.csv file.
     /// </summary>
     private static IReadOnlyDictionary<string, (string Description, string UnitCode, string[] CategoryCodes, bool IsAssembled)> LoadCanonicalIngredientsFromCsv()
     {
         var path = Path.Combine(AppContext.BaseDirectory, "Assets", "ingredients.csv");
-        var ingredients = new Dictionary<string, (string, string, string[], bool)>(StringComparer.OrdinalIgnoreCase);
 
         if (!File.Exists(path))
-        {
-            // Fallback to empty dictionary if CSV doesn't exist
-            return ingredients;
-        }
+            return new Dictionary<string, (string, string, string[], bool)>(StringComparer.OrdinalIgnoreCase);
+
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true };
 
         using var reader = new StreamReader(path);
-        reader.ReadLine(); // skip header: Code,Title,UnitType,Facets,DerivedFrom,Description
+        using var csv = new CsvReader(reader, config);
 
-        while (reader.ReadLine() is { } line)
-        {
-            if (string.IsNullOrWhiteSpace(line)) continue;
-
-            var fields = ParseCsvLine(line);
-            if (fields.Count < 4) continue;
-
-            var title = fields[1].Trim();
-            var unitCode = fields[2].Trim();
-            var facets = fields[3]
-                .Split(';')
-                .Select(f => f.Trim())
-                .Where(f => !string.IsNullOrWhiteSpace(f))
-                .ToArray();
-            var isAssembled = fields.Count >= 5 && !string.IsNullOrWhiteSpace(fields[4]);
-            var description = fields.Count >= 6 && !string.IsNullOrWhiteSpace(fields[5])
-                ? fields[5].Trim()
-                : title;
-
-            ingredients[title] = (description, unitCode, facets, isAssembled);
-        }
+        var ingredients = csv.GetRecords<IngredientCsvRow>()
+            .ToDictionary(
+                row => row.Title,
+                row =>
+                (
+                    Description: !string.IsNullOrWhiteSpace(row.Description) ? row.Description : row.Title,
+                    UnitCode: row.UnitType,
+                    CategoryCodes: row.Facets.Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToArray(),
+                    IsAssembled: !string.IsNullOrWhiteSpace(row.DerivedFrom)
+                ),
+                StringComparer.OrdinalIgnoreCase
+            );
 
         Console.WriteLine($"Loaded {ingredients.Count} canonical ingredients from {path}");
         return ingredients;
     }
 
-    /// <summary>
-    /// Parses a CSV line, handling quoted fields with commas.
-    /// </summary>
-    private static List<string> ParseCsvLine(string line)
-    {
-        var fields = new List<string>();
-        var inQuotes = false;
-        var field = new System.Text.StringBuilder();
-
-        for (int i = 0; i < line.Length; i++)
-        {
-            var c = line[i];
-
-            if (c == '"')
-            {
-                if (inQuotes && i + 1 < line.Length && line[i + 1] == '"')
-                {
-                    field.Append('"');
-                    i++; // skip next quote
-                }
-                else
-                {
-                    inQuotes = !inQuotes;
-                }
-            }
-            else if (c == ',' && !inQuotes)
-            {
-                fields.Add(field.ToString());
-                field.Clear();
-            }
-            else
-            {
-                field.Append(c);
-            }
-        }
-
-        fields.Add(field.ToString());
-        return fields;
-    }
-
-    public async Task<IList<Product>> SeedAsync(IList<Facet> facets, IList<Organization> suppliers)
-    {
-        var unitTypes = await SeedUnitTypes();
-        return await SeedProducts(facets, suppliers, unitTypes);
-    }
-
-    public async Task<IList<UnitType>> SeedUnitTypes()
-    {
-        var types = await unitTypeService.List();
-
-        if (types.Any())
-        {
-            logger.LogInformation("Unit types already exist, skipping seeding.");
-            return types;
-        }
-
-        types = new List<UnitType>
-        {
-            new() { Code = "pc",      Title = "Piece"      },
-            new() { Code = "portion", Title = "Portion"    },
-            new() { Code = "slice",   Title = "Slice"      },
-            new() { Code = "c",       Title = "Cup"        },
-            new() { Code = "bowl",    Title = "Bowl"       },
-            new() { Code = "plate",   Title = "Plate"      },
-            new() { Code = "g",       Title = "Gram"       },
-            new() { Code = "kg",      Title = "Kilogram"   },
-            new() { Code = "ml",      Title = "Milliliter" },
-            new() { Code = "L",       Title = "Liter"      },
-            new() { Code = "sprig",   Title = "Sprig"      },
-            new() { Code = "bunch",   Title = "Bunch"      },
-            new() { Code = "stalk",   Title = "Stalk"      },
-            new() { Code = "leaf",    Title = "Leaf"       },
-            new() { Code = "clove",   Title = "Clove"      },
-        };
-
-        logger.LogInformation("Seeding unit types...");
-        foreach (var type in types)
-            await unitTypeService.Save(type);
-        await unitTypeService.SaveChanges();
-
-        return types;
-    }
-
-    public async Task<IList<Product>> SeedProducts(IList<Facet> facets, IList<Organization> suppliers, IList<UnitType> unitTypes)
+    public async Task<IList<Product>> SeedAsync()
     {
         var products = await productService.List();
 
@@ -161,12 +82,18 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             return products;
         }
 
-        var f = new Faker();
+        var faker = new Faker();
+
+        var unitTypes = await unitTypeService.List();
+        var facetGroups = await facetGroupService.List([], [], FacetGroupIncludes.Facets, null);
+        var facets = await facetService.List([], [], FacetIncludes.Parents | FacetIncludes.FacetGroups, null);
+        //var facetTree = await facetService.GetOffspring(null, facetGroups.Select(g => g.Id).ToArray());
+
         var facetByTitle = facets.ToDictionary(x => x.Title, x => x, StringComparer.OrdinalIgnoreCase);
         var facetByCode = facets
             .Where(x => !string.IsNullOrEmpty(x.Code))
             .ToDictionary(x => x.Code!, x => x, StringComparer.OrdinalIgnoreCase);
-        var byCode = unitTypes.ToDictionary(u => u.Code!, u => u, StringComparer.OrdinalIgnoreCase);
+        var unitByCode = unitTypes.ToDictionary(u => u.Code!, u => u, StringComparer.OrdinalIgnoreCase);
         // Reverse lookup: UnitTypeId → unit code (used for sensible quantity defaults)
         var unitCodeById = unitTypes
             .Where(u => u.Code != null)
@@ -180,7 +107,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             {
                 Title = kv.Key,
                 Description = kv.Value.Description,
-                UnitTypeId = byCode.TryGetValue(kv.Value.UnitCode, out var ut) ? ut.Id : null,
+                UnitTypeId = unitByCode.TryGetValue(kv.Value.UnitCode, out var ut) ? ut.Id : null,
                 DefaultQuantity = kv.Value.IsAssembled
                     ? GetDefaultQuantityForIngredient(kv.Value.UnitCode, kv.Value.CategoryCodes)
                     : null,
@@ -190,13 +117,13 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         logger.LogInformation("Seeding {Count} ingredient products...", ingredients.Count);
         foreach (var ingredient in ingredients)
         {
-            if (f.Random.Bool(0.6f))
-            {
-                ingredient.Suppliers = f.PickRandom(suppliers, f.Random.Int(1, Math.Min(3, suppliers.Count)))
-                    .DistinctBy(s => s.Id)
-                    .Select(s => new ProductSupplier { SupplierId = s.Id })
-                    .ToList();
-            }
+            //if (f.Random.Bool(0.6f))
+            //{
+            //    ingredient.Suppliers = f.PickRandom(suppliers, f.Random.Int(1, Math.Min(3, suppliers.Count)))
+            //        .DistinctBy(s => s.Id)
+            //        .Select(s => new ProductSupplier { SupplierId = s.Id })
+            //        .ToList();
+            //}
             await productService.Save(ingredient);
         }
         await productService.SaveChanges();
@@ -220,44 +147,6 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
         var ingByTitle = ingredients.ToDictionary(i => i.Title, i => i, StringComparer.OrdinalIgnoreCase);
 
-        // Auto-create ingredient products for any CSV ingredient not yet in the canonical list,
-        // so that every recipe and partial dish ingredient can become an actual Product component.
-        var allCsvIngredients = recipes
-            .SelectMany(r => r.Ingredients)
-            .Concat(partialDishes.SelectMany(p => p.Ingredients))
-            .Select(i => i.Name)
-            .Where(n => !string.IsNullOrWhiteSpace(n))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(n => n)
-            .ToList();
-
-        var partialDishNames = partialDishes.Select(p => p.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
-
-        var extraIngredients = allCsvIngredients
-            .Where(name => !ingByTitle.ContainsKey(name) && !partialDishNames.Contains(name))
-            .Select(name => new Product
-            {
-                Title = name,
-                Description = name,
-                UnitTypeId = byCode.TryGetValue(GuessUnitCode(name), out var guessedUnit) ? guessedUnit.Id : null,
-            })
-            .ToList();
-
-        if (extraIngredients.Count > 0)
-        {
-            logger.LogInformation("Seeding {Count} extra ingredient products from CSV...", extraIngredients.Count);
-            foreach (var (extra, idx) in extraIngredients.Select((e, i) => (e, i)))
-            {
-                await productService.Save(extra);
-                if ((idx + 1) % BatchSize == 0)
-                    await productService.SaveChanges();
-            }
-            await productService.SaveChanges();
-
-            foreach (var extra in extraIngredients)
-                ingByTitle[extra.Title] = extra;
-        }
-
         // Helper lambda — resolves the component quantity:
         // 1. Uses the explicit CSV quantity when provided (qty > 0).
         // 2. Falls back to the product's DefaultQuantity if set (covers assembled ingredients and partial dishes).
@@ -268,7 +157,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             {
                 qty = ing.DefaultQuantity
                     ?? (ing.UnitTypeId != null && unitCodeById.TryGetValue(ing.UnitTypeId ?? 0, out var unitCode)
-                        ? unitCode switch { "g" => 100m, "ml" => 100m, _ => 1m }
+                        ? unitCode switch { "g" => 100m, "mL" => 100m, _ => 1m }
                         : 1m);
             }
             return new ProductComponent { ComponentId = ing.Id, Quantity = qty, IsOmittable = omittable };
@@ -290,7 +179,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
                 var unitCode = partialDish.Category switch
                 {
-                    "Stock" or "Sauce" => "ml",
+                    "Stock" or "Sauce" => "mL",
                     "Base" => "portion",
                     _ => "g"   // Paste, Spice Mix, Blend
                 };
@@ -308,7 +197,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Description = !string.IsNullOrWhiteSpace(partialDish.Description)
                         ? partialDish.Description
                         : $"A {partialDish.Category.ToLower()} used as a base component in cooking",
-                    UnitTypeId = byCode.TryGetValue(unitCode, out var partialUnit) ? partialUnit.Id : null,
+                    UnitTypeId = unitByCode.TryGetValue(unitCode, out var partialUnit) ? partialUnit.Id : null,
                     DefaultQuantity = GetDefaultQuantityForPartialDish(partialDish.Category),
                     Facets = partialFacets,
                     Components = partialComponents,
@@ -340,7 +229,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             // Map every CSV ingredient to its Product component using the parsed quantity
             var components = primaryRecipe.Ingredients
                 .Where(e => ingByTitle.ContainsKey(e.Name))
-                .Select(e => Comp(ingByTitle[e.Name], qty: e.Quantity, omittable: f.Random.Bool(0.3f)))
+                .Select(e => Comp(ingByTitle[e.Name], qty: e.Quantity, omittable: faker.Random.Bool(0.3f)))
                 .DistinctBy(c => c.ComponentId)
                 .ToList();
 
@@ -368,16 +257,16 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             {
                 Title = dishName,
                 Description = description,
-                UnitTypeId = f.PickRandom(servingUnitTypes).Id,
+                UnitTypeId = faker.PickRandom(servingUnitTypes).Id,
                 DefaultQuantity = 1m,
                 Facets = tags.DistinctBy(t => t.FacetId).ToList(),
                 Components = components,
-                Suppliers = f.Random.Bool(0.5f)
-                    ? f.PickRandom(suppliers, f.Random.Int(1, Math.Min(2, suppliers.Count)))
-                        .DistinctBy(s => s.Id)
-                        .Select(s => new ProductSupplier { SupplierId = s.Id })
-                        .ToList()
-                    : null,
+                //Suppliers = f.Random.Bool(0.5f)
+                //    ? f.PickRandom(suppliers, f.Random.Int(1, Math.Min(2, suppliers.Count)))
+                //        .DistinctBy(s => s.Id)
+                //        .Select(s => new ProductSupplier { SupplierId = s.Id })
+                //        .ToList()
+                //    : null,
             };
 
             dishProducts.Add(product);
@@ -388,7 +277,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
         {
             await productService.Save(product);
             if ((idx + 1) % BatchSize == 0)
+            {
+                logger.LogInformation($"Saving Products batch {idx + 1}...");
                 await productService.SaveChanges();
+            }
         }
         await productService.SaveChanges();
 
@@ -453,7 +345,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             "sprig" => 1m,
             "leaf" => 3m,
             "stalk" => 1m,
-            "ml" => 50m,
+            "mL" => 50m,
             "g" => GetDefaultGramsForIngredient(facets),
             _ => 1m
         };
@@ -496,47 +388,4 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             _ => 100m
         };
 
-    /// <summary>
-    /// Guesses an appropriate unit type code for an auto-created ingredient product based on its name.
-    /// Returns "ml" for liquids, "pc" for countable items, and "g" for everything else.
-    /// </summary>
-    private static string GuessUnitCode(string ingredientName)
-    {
-        var name = ingredientName.ToLower();
-
-        // Ground/powdered/processed ingredients are always measured by weight
-        if (ContainsAny(name, "flakes", "powder", "meal", "starch", "crumb",
-                "ground", "paste", "zest"))
-            return "g";
-
-        // Liquids → ml
-        // Use " oil" (with leading space) to avoid matching "boiled"
-        if (name.Contains(" oil") || name.StartsWith("oil") ||
-            ContainsAny(name, "milk", "cream", "yogurt", "juice", "stock", "broth",
-                "wine", "beer", "vinegar", "sauce", "syrup", "molasses", "kefir",
-                "batter", "gravy", "water", "puree"))
-
-            // Countable items → pc
-            return "ml";
-        // Use specific phrases for "pepper" to avoid matching ground/spice pepper varieties
-        if (ContainsAny(name,
-                "egg", "yolk",
-                "bell pepper", "chili pepper", "hot pepper", "sweet pepper",
-                "chili", "jalapeño", "chile",
-                "tomato", "onion", "shallot",
-                "carrot", "potato", "eggplant", "zucchini", "courgette",
-                "avocado", "mango", "banana", "apple", "orange", "lemon", "lime",
-                "plum", "peach", "pear", "fig",
-                "leaf", "leaves", "sprig", "stalk", "bunch",
-                "fillet", "steak", "schnitzel", "cutlet", "breast", "leg", "drumstick", "thigh", "wing",
-                "sausage", "bratwurst", "chorizo",
-                "tortilla", "flatbread", "dumpling", "wonton", "pastry", "arepa",
-                "cucumber", "cob", "plantain",
-                "artichoke", "cauliflower", "broccoli", "beet", "beetroot",
-                "piece", "pieces"))
-            return "pc";
-
-        // Default → weight
-        return "g";
-    }
 }

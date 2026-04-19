@@ -1,70 +1,70 @@
-Code,Title,Description
-SOUPS,Soups & Stews,Hot soups stews and broths
-PASTA,Pasta & Noodles,Pasta noodle and dumpling dishes
-RICE,Rice Dishes,Rice porridge and grain-based dishes
-GRILLED,Grilled & Roasted,Grilled BBQ and roasted preparations
-CURRIES,Curries,Curried and spiced dishes
-BREADS,Breads & Pastries,Bread pastry and dough-based dishes
-SALADS,Salads,Fresh and mixed salads
-DIPS,Dips & Spreads,Dips spreads and condiments
-SNACKS,Snacks,Snacks and street food bites
-STARTERS,Starters,Appetizers and starters
-MAIN,Main Dishes,Main courses and entrees
-DESSERTS,Desserts,Sweet desserts and puddings
-DRINKS,Drinks,Beverages hot and cold
-SIDES,Side Dishes,Accompaniments and side dishes
-POULTRY,Poultry,Chicken turkey duck and other poultry
-BEEF,Beef,Beef dishes and preparations
-PORK,Pork,Pork dishes and preparations
-LAMB,Lamb & Mutton,Lamb and mutton dishes
-SEAFOOD,Seafood,Fish shellfish and other seafood
-LEGUMES,Legumes & Pulses,Bean lentil and pulse dishes
-VEGETABLES,Vegetables,Fresh and cooked vegetables
-HERBS,Herbs,Fresh and dried herbs
-SPICES,Spices,Ground and whole spices
-GRAINS,Grains & Starches,Grains flours and starchy staples
-DAIRY,Dairy & Eggs,Dairy products and eggs
-CONDIMENTS,Sauces & Condiments,Sauces dressings and condiments
-PANTRY,Pantry,Basic pantry staples and oils
-VEGAN,Vegan,Plant-based options
-VEGETARIAN,Vegetarian,Meat-free options
-GLUTEN_FREE,Gluten-Free,Gluten-free options
-KETO,Keto,Low-carb high-fat options
-RAW,Raw Food,Foods suitable for eating raw
-FRIED,Fried Food,Food that has been cooked in hot oil, fat, or butter
-MEAT,Meat,Meat including red meat white meat and poultry
-RED_MEAT,Red Meat,Beef lamb and other red meats
-WHITE_MEAT,White Meat,Pork rabbit and other white meats
-FISH,Fish,All types of fish
-FAT_FISH,Fat & Oily Fish,Salmon trout mackerel and other oily fish
-LEAN_FISH,Lean Fish,Cod tilapia haddock and other lean white fish
-SHELLFISH,Shellfish,Crustaceans mollusks and other shellfish
-CRUSTACEANS,Crustaceans,Shrimp prawns crab and lobster
-CRAB,Crab,King crab Dungeness crab blue crab and other crab varieties
-MOLLUSKS,Mollusks,Oysters mussels clams and scallops
-MILK,Milk & Cream,Milk cream and fresh dairy liquids
-BUTTER,Butter,Butter ghee and dairy spreads
-YOGHURT,Yoghurt,Yoghurt kefir and fermented milk products
-CHEESE,Cheese,All types of cheese
-HARD_CHEESE,Hard Cheese,Cheddar Parmesan Gouda and other aged hard cheeses
-SOFT_CHEESE,Soft Cheese,Brie Camembert and other soft-ripened cheeses
-FRESH_CHEESE,Fresh Cheese,Ricotta Mozzarella Cream cheese and other unripened cheeses
-BLUE_CHEESE,Blue Cheese,Gorgonzola Stilton Roquefort and other blue-veined cheeses
-ROOT_VEG,Root Vegetables,Carrots potatoes beets and other root vegetables
-LEAFY_VEG,Leafy Vegetables,Spinach kale and other leafy greens
-LETTUCE,Lettuce,Romaine iceberg and other lettuce varieties
-FLOWER_VEG,Flower Vegetables,Broccoli cauliflower and cabbage
-FRUIT_VEG,Fruit Vegetables,Tomatoes peppers aubergine and other botanical fruits
-TOMATOES,Tomatoes,Round tomatoes Roma tomatoes cherry tomatoes and other varieties
-STEM_VEG,Stem Vegetables,Celery asparagus and other stem vegetables
-ONIONS,Onions,White onion red onion shallot and other alliums
-GLUTEN,Contains Gluten,Dishes or ingredients containing wheat rye barley or their derivatives
-EGGS,Contains Eggs,Dishes or ingredients containing eggs
-PEANUTS,Contains Peanuts,Dishes or ingredients containing peanuts or groundnuts
-SOY,Contains Soy,Dishes or ingredients containing soy soya tofu or soy derivatives
-TREE_NUTS,Contains Tree Nuts,Dishes or ingredients containing tree nuts such as almonds walnuts hazelnuts cashews or pistachios
-SESAME,Contains Sesame,Dishes or ingredients containing sesame seeds or tahini
-MUSTARD,Contains Mustard,Dishes or ingredients containing mustard
-CELERY,Contains Celery,Dishes or ingredients containing celery or celeriac
-SULPHITES,Contains Sulphites,Dishes containing sulphites or sulphur dioxide found in wines vinegars and dried fruits
-LUPIN,Contains Lupin,Dishes or ingredients containing lupin or lupin flour
+Code,Title,Description,FacetGroups,ParentCode
+SOUPS,Soups & Stews,Hot soups stews and broths,FOOD_TYPES,
+PASTA,Pasta & Noodles,Pasta noodle and dumpling dishes,FOOD_TYPES,
+RICE,Rice Dishes,Rice porridge and grain-based dishes,FOOD_TYPES,
+GRILLED,Grilled & Roasted,Grilled BBQ and roasted preparations,FOOD_TYPES,
+CURRIES,Curries,Curried and spiced dishes,FOOD_TYPES,
+BREADS,Breads & Pastries,Bread pastry and dough-based dishes,FOOD_TYPES,
+SALADS,Salads,Fresh and mixed salads,FOOD_TYPES,
+DIPS,Dips & Spreads,Dips spreads and condiments,FOOD_TYPES,
+SNACKS,Snacks,Snacks and street food bites,FOOD_TYPES,
+STARTERS,Starters,Appetizers and starters,COURSE,
+MAIN,Main Dishes,Main courses and entrees,COURSE,
+DESSERTS,Desserts,Sweet desserts and puddings,COURSE,
+DRINKS,Drinks,Beverages hot and cold,COURSE,
+SIDES,Side Dishes,Accompaniments and side dishes,COURSE,
+POULTRY,Poultry,Chicken turkey duck and other poultry,,MEAT
+BEEF,Beef,Beef dishes and preparations,,RED_MEAT
+PORK,Pork,Pork dishes and preparations,,WHITE_MEAT
+LAMB,Lamb & Mutton,Lamb and mutton dishes,,RED_MEAT
+SEAFOOD,Seafood,Fish shellfish and other seafood,PROTEINS,
+LEGUMES,Legumes & Pulses,Bean lentil and pulse dishes,PROTEINS,
+VEGETABLES,Vegetables,Fresh and cooked vegetables,INGREDIENTS,
+HERBS,Herbs,Fresh and dried herbs,INGREDIENTS,
+SPICES,Spices,Ground and whole spices,INGREDIENTS,
+GRAINS,Grains & Starches,Grains flours and starchy staples,INGREDIENTS,
+DAIRY,Dairy,Dairy products and dairy-based ingredients,INGREDIENTS;ALLERGENS;PROTEINS,
+CONDIMENTS,Sauces & Condiments,Sauces dressings and condiments,INGREDIENTS,
+PANTRY,Pantry,Basic pantry staples and oils,INGREDIENTS,
+VEGAN,Vegan,Plant-based options,DIETARY,
+VEGETARIAN,Vegetarian,Meat-free options,DIETARY,
+GLUTEN_FREE,Gluten-Free,Gluten-free options,DIETARY,
+KETO,Keto,Low-carb high-fat options,DIETARY,
+RAW,Raw Food,Foods suitable for eating raw,DIETARY,
+FRIED,Fried Food,"Food that has been cooked in hot oil, fat, or butter",FOOD_TYPES,
+MEAT,Meat,Meat including red meat white meat and poultry,PROTEINS,
+RED_MEAT,Red Meat,Beef lamb and other red meats,,MEAT
+WHITE_MEAT,White Meat,Pork rabbit and other white meats,,MEAT
+FISH,Fish,All types of fish,ALLERGENS,SEAFOOD
+FAT_FISH,Fat & Oily Fish,Salmon trout mackerel and other oily fish,,FISH
+LEAN_FISH,Lean Fish,Cod tilapia haddock and other lean white fish,,FISH
+SHELLFISH,Shellfish,Crustaceans mollusks and other shellfish,ALLERGENS,SEAFOOD
+CRUSTACEANS,Crustaceans,Shrimp prawns crab and lobster,,SHELLFISH
+CRAB,Crab,King crab Dungeness crab blue crab and other crab varieties,,CRUSTACEANS
+MOLLUSKS,Mollusks,Oysters mussels clams and scallops,,SHELLFISH
+MILK,Milk & Cream,Milk cream and fresh dairy liquids,,DAIRY
+BUTTER,Butter,Butter ghee and dairy spreads,,MILK
+YOGHURT,Yoghurt,Yoghurt kefir and fermented milk products,,MILK
+CHEESE,Cheese,All types of cheese,,MILK
+HARD_CHEESE,Hard Cheese,Cheddar Parmesan Gouda and other aged hard cheeses,,CHEESE
+SOFT_CHEESE,Soft Cheese,Brie Camembert and other soft-ripened cheeses,,CHEESE
+FRESH_CHEESE,Fresh Cheese,Ricotta Mozzarella Cream cheese and other unripened cheeses,,CHEESE
+BLUE_CHEESE,Blue Cheese,Gorgonzola Stilton Roquefort and other blue-veined cheeses,,CHEESE
+ROOT_VEG,Root Vegetables,Carrots potatoes beets and other root vegetables,,VEGETABLES
+LEAFY_VEG,Leafy Vegetables,Spinach kale and other leafy greens,,VEGETABLES
+LETTUCE,Lettuce,Romaine iceberg and other lettuce varieties,,LEAFY_VEG
+FLOWER_VEG,Flower Vegetables,Broccoli cauliflower and cabbage,,VEGETABLES
+FRUIT_VEG,Fruit Vegetables,Tomatoes peppers aubergine and other botanical fruits,,VEGETABLES
+TOMATOES,Tomatoes,Round tomatoes Roma tomatoes cherry tomatoes and other varieties,,FRUIT_VEG
+STEM_VEG,Stem Vegetables,Celery asparagus and other stem vegetables,,VEGETABLES
+ONIONS,Onions,White onion red onion shallot and other alliums,,STEM_VEG
+GLUTEN,Contains Gluten,Dishes or ingredients containing wheat rye barley or their derivatives,ALLERGENS,
+EGGS,Eggs,Eggs and egg products,,DAIRY
+PEANUTS,Contains Peanuts,Dishes or ingredients containing peanuts or groundnuts,ALLERGENS,
+SOY,Contains Soy,Dishes or ingredients containing soy soya tofu or soy derivatives,ALLERGENS,
+TREE_NUTS,Contains Tree Nuts,Dishes or ingredients containing tree nuts such as almonds walnuts hazelnuts cashews or pistachios,ALLERGENS,
+SESAME,Contains Sesame,Dishes or ingredients containing sesame seeds or tahini,ALLERGENS,
+MUSTARD,Contains Mustard,Dishes or ingredients containing mustard,ALLERGENS,
+CELERY,Contains Celery,Dishes or ingredients containing celery or celeriac,ALLERGENS,
+SULPHITES,Contains Sulphites,Dishes containing sulphites or sulphur dioxide found in wines vinegars and dried fruits,ALLERGENS,
+LUPIN,Contains Lupin,Dishes or ingredients containing lupin or lupin flour,ALLERGENS,

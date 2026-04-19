@@ -1,3 +1,7 @@
+using CsvHelper;
+using CsvHelper.Configuration;
+using System.Globalization;
+
 namespace PIM.DataGenerator.Infrastructure;
 
 public record IngredientEntry(string Name, decimal Quantity);
@@ -6,7 +10,9 @@ public record RecipeEntry(string Country, string Dish, IReadOnlyList<IngredientE
 
 public record PartialDishEntry(string Category, string Name, IReadOnlyList<IngredientEntry> Ingredients, IReadOnlyList<string> Facets, string Description = "");
 
-public record FacetCategoryEntry(string Code, string Title, string Description);
+public record FacetCategoryEntry(string Code, string Title, string Description, string FacetGroups = "", string ParentCode = "");
+
+public record FacetGroupEntry(string Code, string Title, string Description);
 
 public static class RecipeDataLoader
 {
@@ -91,104 +97,99 @@ public static class RecipeDataLoader
             ["New Zealand"] = "Oceanian", ["Papua New Guinea"] = "Oceanian",
         };
 
+    private record RecipeCsvRow
+    {
+        public string Country { get; init; } = "";
+        public string Dish { get; init; } = "";
+        public string Ingredients { get; init; } = "";
+        public string Quantities { get; init; } = "";
+        public string Facets { get; init; } = "";
+        public string Description { get; init; } = "";
+    }
+
     public static IReadOnlyList<RecipeEntry> Load()
     {
         var path = Path.Combine(AppContext.BaseDirectory, "Assets", "recipes-per-country.csv");
-        var entries = new List<RecipeEntry>();
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true };
 
         using var reader = new StreamReader(path);
-        reader.ReadLine(); // skip header: Country,Dish,Ingredients,Quantities
+        using var csv = new CsvReader(reader, config);
 
-        string? line;
-        while ((line = reader.ReadLine()) != null)
-        {
-            if (string.IsNullOrWhiteSpace(line)) continue;
+        return csv.GetRecords<RecipeCsvRow>()
+            .Select(row =>
+            {
+                var names = row.Ingredients.Split(';').Select(n => n.Trim()).ToList();
+                var quantities = row.Quantities.Split(';').Select(q => q.Trim()).ToList();
+                var ingredients = names
+                    .Where(n => !string.IsNullOrWhiteSpace(n))
+                    .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
+                    .ToList();
+                var facets = row.Facets.Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToList();
+                return new RecipeEntry(row.Country, row.Dish, ingredients, facets, row.Description);
+            })
+            .ToList();
+    }
 
-            var fields = ParseCsvLine(line);
-            if (fields.Count < 3) continue;
-
-            var names = fields[2].Split(';').Select(n => n.Trim()).ToList();
-            var quantities = fields.Count > 3
-                ? fields[3].Split(';').Select(q => q.Trim()).ToList()
-                : [];
-
-            var ingredients = names
-                .Where(n => !string.IsNullOrWhiteSpace(n))
-                .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
-                .ToList();
-
-            var facets = ParseFacetsFromField(fields, 4);
-            var description = fields.Count > 5 ? fields[5].Trim() : string.Empty;
-
-            entries.Add(new RecipeEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets, description));
-        }
-
-        return entries;
+    private record PartialDishCsvRow
+    {
+        public string Category { get; init; } = "";
+        public string Name { get; init; } = "";
+        public string Ingredients { get; init; } = "";
+        public string Quantities { get; init; } = "";
+        public string Facets { get; init; } = "";
+        public string Description { get; init; } = "";
     }
 
     public static IReadOnlyList<PartialDishEntry> LoadPartialDishes()
     {
         var path = Path.Combine(AppContext.BaseDirectory, "Assets", "partial-dishes.csv");
-        var entries = new List<PartialDishEntry>();
 
-        if (!File.Exists(path)) return entries;
+        if (!File.Exists(path)) return [];
+
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true };
 
         using var reader = new StreamReader(path);
-        reader.ReadLine(); // skip header: Category,Name,Ingredients,Quantities
+        using var csv = new CsvReader(reader, config);
 
-        string? line;
-        while ((line = reader.ReadLine()) != null)
-        {
-            if (string.IsNullOrWhiteSpace(line)) continue;
+        // Materialise before the reader is disposed
+        var rows = csv.GetRecords<PartialDishCsvRow>().ToList();
+        return rows
+            .Select(row =>
+            {
+                var names = row.Ingredients.Split(';').Select(n => n.Trim()).ToList();
+                var quantities = row.Quantities.Split(';').Select(q => q.Trim()).ToList();
 
-            var fields = ParseCsvLine(line);
-            if (fields.Count < 3) continue;
-
-            var names = fields[2].Split(';').Select(n => n.Trim()).ToList();
-            var quantities = fields.Count > 3
-                ? fields[3].Split(';').Select(q => q.Trim()).ToList()
-                : [];
-
-            var ingredients = names
-                .Where(n => !string.IsNullOrWhiteSpace(n))
-                .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
-                .ToList();
-
-            var facets = ParseFacetsFromField(fields, 4);
-            var description = fields.Count > 5 ? fields[5].Trim() : string.Empty;
-
-            entries.Add(new PartialDishEntry(fields[0].Trim(), fields[1].Trim(), ingredients, facets, description));
-        }
-
-        return entries;
+                var ingredients = names
+                    .Where(n => !string.IsNullOrWhiteSpace(n))
+                    .Select((n, idx) => new IngredientEntry(n, idx < quantities.Count ? ParseQuantity(quantities[idx]) : 0m))
+                    .ToList();
+                var facets = row.Facets.Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToList();
+                return new PartialDishEntry(row.Category, row.Name, ingredients, facets, row.Description);
+            })
+            .ToList();
     }
 
     public static IReadOnlyList<FacetCategoryEntry> LoadFacetCategories()
     {
         var path = Path.Combine(AppContext.BaseDirectory, "Assets", "facets.csv");
-        var entries = new List<FacetCategoryEntry>();
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true };
 
         using var reader = new StreamReader(path);
-        reader.ReadLine(); // skip header
+        using var csv = new CsvReader(reader, config);
 
-        string? line;
-        while ((line = reader.ReadLine()) != null)
-        {
-            if (string.IsNullOrWhiteSpace(line)) continue;
-
-            var fields = ParseCsvLine(line);
-            if (fields.Count < 3) continue;
-
-            entries.Add(new FacetCategoryEntry(fields[0].Trim(), fields[1].Trim(), fields[2].Trim()));
-        }
-
-        return entries;
+        return csv.GetRecords<FacetCategoryEntry>().ToList();
     }
 
-    private static List<string> ParseFacetsFromField(List<string> fields, int columnIndex) =>
-        fields.Count > columnIndex
-            ? fields[columnIndex].Split(';').Select(f => f.Trim()).Where(f => !string.IsNullOrWhiteSpace(f)).ToList()
-            : [];
+    public static IReadOnlyList<FacetGroupEntry> LoadFacetGroups()
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, "Assets", "facet-groups.csv");
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true };
+
+        using var reader = new StreamReader(path);
+        using var csv = new CsvReader(reader, config);
+
+        return csv.GetRecords<FacetGroupEntry>().ToList();
+    }
 
     private static IngredientEntry ParseIngredientEntry(string part)
     {
@@ -305,20 +306,4 @@ public static class RecipeDataLoader
         // Everything else (plain numbers, "small", "large", "piece", unknown) — no conversion
         _                                                     => 1m,
     };
-
-    private static List<string> ParseCsvLine(string line)
-    {
-        var fields = new List<string>();
-        var sb = new System.Text.StringBuilder();
-        var inQuotes = false;
-
-        foreach (var c in line)
-        {
-            if (c == '"') { inQuotes = !inQuotes; }
-            else if (c == ',' && !inQuotes) { fields.Add(sb.ToString()); sb.Clear(); }
-            else { sb.Append(c); }
-        }
-        fields.Add(sb.ToString());
-        return fields;
-    }
 }

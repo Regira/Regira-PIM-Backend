@@ -2,11 +2,12 @@ using Microsoft.Extensions.Logging;
 using PIM.Models.Taxonomy.FacetGroupFacets;
 using PIM.Models.Taxonomy.FacetGroups;
 using PIM.Models.Taxonomy.Facets;
+using PIM.Services.Entities.Taxonomy.Abstractions;
 using Regira.Entities.Services.Abstractions;
 
 namespace PIM.DataGenerator.Infrastructure;
 
-public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<FacetGroup> facetGroupService, ILogger<TaxonomySeeder> logger)
+public class TaxonomySeeder(IFacetService facetService, IEntityService<FacetGroup> facetGroupService, ILogger<TaxonomySeeder> logger)
 {
     public async Task<IList<Facet>> SeedAsync()
     {
@@ -36,14 +37,14 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
         // Region facets (Level 2 of cuisine hierarchy)
         var regionDescriptions = new Dictionary<string, string>
         {
-            ["European"]       = "Cuisines from European countries",
-            ["African"]        = "Cuisines from African countries",
-            ["Asian"]          = "Cuisines from Asian countries",
+            ["European"] = "Cuisines from European countries",
+            ["African"] = "Cuisines from African countries",
+            ["Asian"] = "Cuisines from Asian countries",
             ["Middle Eastern"] = "Cuisines from the Middle East",
-            ["Caribbean"]      = "Cuisines from Caribbean islands and surrounding regions",
+            ["Caribbean"] = "Cuisines from Caribbean islands and surrounding regions",
             ["South American"] = "Cuisines from South American countries",
             ["North American"] = "Cuisines from North and Central American countries",
-            ["Oceanian"]       = "Cuisines from Oceania",
+            ["Oceanian"] = "Cuisines from Oceania",
         };
 
         var regionFacets = regionDescriptions.ToDictionary(
@@ -74,9 +75,9 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
         // Parent-child relationships — set after flush so IDs are assigned
         FacetLink Child(Facet child) => new() { ChildId = child.Id };
 
-        // Region → Country
-        foreach (var group in countryFacets.Keys.GroupBy(c =>
-            RecipeDataLoader.CountryRegions.GetValueOrDefault(c, string.Empty))
+        // Region → Country (driven by CountryRegions lookup)
+        foreach (var group in countryFacets.Keys
+            .GroupBy(c => RecipeDataLoader.CountryRegions.GetValueOrDefault(c, string.Empty))
             .Where(g => !string.IsNullOrEmpty(g.Key)))
         {
             if (regionFacets.TryGetValue(group.Key, out var regionFacet))
@@ -85,37 +86,14 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
                     .ToList();
         }
 
-        // Category facet hierarchy — set parent-child links between category facets
-        void SetChildren(string parentCode, params string[] childCodes)
+        // Category facet hierarchy — driven by ParentCode column in facets.csv
+        foreach (var entry in categoryEntries.Where(e => !string.IsNullOrEmpty(e.ParentCode)))
         {
-            if (!categoryFacets.TryGetValue(parentCode, out var parent)) return;
-            parent.ChildEntities = childCodes
-                .Where(categoryFacets.ContainsKey)
-                .Select(code => Child(categoryFacets[code]))
-                .ToList();
+            if (!categoryFacets.TryGetValue(entry.ParentCode, out var parent)) continue;
+            if (!categoryFacets.TryGetValue(entry.Code, out var child)) continue;
+            parent.ChildEntities ??= [];
+            parent.ChildEntities.Add(Child(child));
         }
-
-        // Protein / meat hierarchy
-        SetChildren("MEAT",     "RED_MEAT", "WHITE_MEAT", "POULTRY");
-        SetChildren("RED_MEAT", "BEEF", "LAMB");
-        SetChildren("WHITE_MEAT", "PORK");
-
-        // Seafood hierarchy
-        SetChildren("SEAFOOD",     "FISH", "SHELLFISH");
-        SetChildren("FISH",        "FAT_FISH", "LEAN_FISH");
-        SetChildren("SHELLFISH",   "CRUSTACEANS", "MOLLUSKS");
-        SetChildren("CRUSTACEANS", "CRAB");
-
-        // Dairy hierarchy
-        SetChildren("DAIRY",  "MILK");
-        SetChildren("MILK",   "BUTTER", "YOGHURT", "CHEESE");
-        SetChildren("CHEESE", "HARD_CHEESE", "SOFT_CHEESE", "FRESH_CHEESE", "BLUE_CHEESE");
-
-        // Vegetable hierarchy
-        SetChildren("VEGETABLES", "ROOT_VEG", "LEAFY_VEG", "FLOWER_VEG", "FRUIT_VEG", "STEM_VEG");
-        SetChildren("LEAFY_VEG",  "LETTUCE");
-        SetChildren("FRUIT_VEG",  "TOMATOES");
-        SetChildren("STEM_VEG",   "ONIONS");
 
         logger.LogInformation("Saving facet hierarchy...");
         foreach (var facet in regionFacets.Values
@@ -136,6 +114,17 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
             return existing;
         }
 
+        var groupEntries = RecipeDataLoader.LoadFacetGroups();
+        var facetEntries = RecipeDataLoader.LoadFacetCategories();
+
+        // Map group code → list of facet codes (from FacetGroups column in facets.csv)
+        var groupFacetCodes = facetEntries
+            .SelectMany(e => e.FacetGroups
+                .Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Select(g => (GroupCode: g, FacetCode: e.Code)))
+            .GroupBy(x => x.GroupCode, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(g => g.Key, g => g.Select(x => x.FacetCode).ToList(), StringComparer.OrdinalIgnoreCase);
+
         Facet? F(string title) => facets.FirstOrDefault(f =>
             string.Equals(f.Title, title, StringComparison.OrdinalIgnoreCase));
         Facet? FC(string code) => facets.FirstOrDefault(f =>
@@ -150,73 +139,23 @@ public class TaxonomySeeder(IEntityService<Facet> facetService, IEntityService<F
             "North American Cuisine", "Oceanian Cuisine"
         ];
 
-        var groups = new List<FacetGroup>
+        var groups = groupEntries.Select(entry =>
         {
-            new()
+            // WORLD_CUISINES facets are region facets created dynamically (not in facets.csv)
+            var childFacets = string.Equals(entry.Code, "WORLD_CUISINES", StringComparison.OrdinalIgnoreCase)
+                ? regionTitles.Select(F).Where(f => f != null).Select(f => Link(f!)).ToList()
+                : groupFacetCodes.TryGetValue(entry.Code, out var codes)
+                    ? codes.Select(FC).Where(f => f != null).Select(f => Link(f!)).ToList()
+                    : new List<FacetParentGroup>();
+
+            return new FacetGroup
             {
-                Code = "WORLD_CUISINES",
-                Title = "World Cuisines",
-                Description = "Cuisines from around the world organized by region and country",
-                ChildFacets = regionTitles
-                    .Select(F).Where(f => f != null).Select(f => Link(f!))
-                    .ToList()
-            },
-            new()
-            {
-                Code = "COURSE",
-                Title = "Course",
-                Description = "Meal course categories",
-                ChildFacets = new[] { "STARTERS", "MAIN", "SIDES", "DESSERTS", "DRINKS" }
-                    .Select(FC).Where(f => f != null).Select(f => Link(f!))
-                    .ToList()
-            },
-            new()
-            {
-                Code = "FOOD_TYPES",
-                Title = "Food Types",
-                Description = "Categorization by food preparation style",
-                ChildFacets = new[] { "SOUPS", "PASTA", "RICE", "GRILLED", "CURRIES", "BREADS", "SALADS", "DIPS", "SNACKS" }
-                    .Select(FC).Where(f => f != null).Select(f => Link(f!))
-                    .ToList()
-            },
-            new()
-            {
-                Code = "PROTEINS",
-                Title = "Proteins",
-                Description = "Dishes and ingredients categorized by protein source",
-                ChildFacets = new[] { "MEAT", "SEAFOOD", "LEGUMES" }
-                    .Select(FC).Where(f => f != null).Select(f => Link(f!))
-                    .ToList()
-            },
-            new()
-            {
-                Code = "INGREDIENTS",
-                Title = "Ingredients",
-                Description = "Ingredient types and pantry categories",
-                ChildFacets = new[] { "VEGETABLES", "HERBS", "SPICES", "GRAINS", "DAIRY", "CONDIMENTS", "PANTRY" }
-                    .Select(FC).Where(f => f != null).Select(f => Link(f!))
-                    .ToList()
-            },
-            new()
-            {
-                Code = "DIETARY",
-                Title = "Dietary",
-                Description = "Dietary preference categories",
-                ChildFacets = new[] { "VEGAN", "VEGETARIAN", "GLUTEN_FREE", "KETO", "RAW" }
-                    .Select(FC).Where(f => f != null).Select(f => Link(f!))
-                    .ToList()
-            },
-            new()
-            {
-                // EU "Big 14" allergens — FISH and SHELLFISH reuse the existing seafood hierarchy facets
-                Code = "ALLERGENS",
-                Title = "Allergens",
-                Description = "Common food allergens based on EU and US regulatory standards",
-                ChildFacets = new[] { "GLUTEN", "DAIRY", "EGGS", "FISH", "SHELLFISH", "PEANUTS", "SOY", "TREE_NUTS", "SESAME", "MUSTARD", "CELERY", "SULPHITES", "LUPIN" }
-                    .Select(FC).Where(f => f != null).Select(f => Link(f!))
-                    .ToList()
-            },
-        };
+                Code = entry.Code,
+                Title = entry.Title,
+                Description = entry.Description,
+                ChildFacets = childFacets
+            };
+        }).ToList();
 
         logger.LogInformation("Seeding {Count} facet groups...", groups.Count);
 
