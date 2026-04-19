@@ -1,6 +1,5 @@
 using PIM.Models.Catalog.Products;
 using PIM.Services.Entities.Catalog.Abstractions;
-using PIM.Services.Entities.Catalog.Pricing;
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
 using Regira.TreeList;
@@ -29,13 +28,6 @@ public class ProductValidateManager(IProductRepository service)
     public void Validate(Product item)
     {
         var errors = new Dictionary<string, string>();
-
-        // Pricing
-        var priceErrors = item.Validate<Product, ProductPricePeriod>();
-        foreach (var error in priceErrors)
-        {
-            errors.Add(error.Key, error.Value);
-        }
 
         // Components
         if (item.Components?.Any(ac => ac.Quantity <= 0) == true)

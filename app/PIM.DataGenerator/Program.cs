@@ -35,7 +35,6 @@ try
         .AddTransient<StakeholderSeeder>()
         .AddTransient<TaxonomySeeder>()
         .AddTransient<CatalogSeeder>()
-        .AddTransient<OrderSeeder>()
         .AddTransient<PimDataSeeder>();
 
     var host = builder.Build();

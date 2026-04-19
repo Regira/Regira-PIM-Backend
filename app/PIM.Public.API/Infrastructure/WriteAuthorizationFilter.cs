@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using PIM.Core.Constants;
 
 namespace PIM.Shop.API.Infrastructure;
 
@@ -9,7 +8,6 @@ namespace PIM.Shop.API.Infrastructure;
 /// Central authorization filter for the Public API:
 /// - [AllowAnonymous] endpoints (AccountController, PasswordController) → pass through
 /// - Product controller → GET/Search/List are public; write operations (Save, Create, Modify, Delete) are forbidden
-/// - Order controller → requires Customer permission for all operations (read + write)
 /// - All other write operations → Forbidden
 /// - All other read operations → require authenticated user
 /// Note: POST /search and POST /list are treated as reads, not writes.
@@ -53,21 +51,6 @@ public class WriteAuthorizationFilter : IAsyncActionFilter
         }
 
         var user = context.HttpContext.User;
-
-        // Orders require Customer permission for both reads and writes
-        if (string.Equals(controller, "Order", StringComparison.OrdinalIgnoreCase))
-        {
-            if (!user.HasClaim(PimClaimTypes.Permission, PimPermissionValues.Customer))
-            {
-                context.Result = user.Identity?.IsAuthenticated == true
-                    ? new ForbidResult()
-                    : new UnauthorizedResult();
-                return;
-            }
-
-            await next();
-            return;
-        }
 
         // Writes on any other entity are not allowed in the public API
         if (IsWriteOperation(context))

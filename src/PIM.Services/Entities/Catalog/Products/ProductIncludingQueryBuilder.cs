@@ -18,16 +18,9 @@ public class ProductIncludingQueryBuilder : IIncludableQueryBuilder<Product, int
         if (includes.Value.HasFlag(ProductIncludes.Components))
             query = query
                 .Include(x => x.Components!.Where(c => !c.Component!.IsArchived).OrderBy(c => c.SortOrder).ThenBy(c => c.Component!.Title))
-                    .ThenInclude(ac => ac.Component!).ThenInclude(x => x.UnitType)
-                .Include(x => x.Components!.Where(c => !c.Component!.IsArchived).OrderBy(c => c.SortOrder).ThenBy(c => c.Component!.Title))
-                    .ThenInclude(ac => ac.Component!).ThenInclude(x => x.Prices);
-        if (includes.Value.HasFlag(ProductIncludes.AllowedComponentAdditions))
-            query = query.Include(x => x.AllowedComponentAdditions!.Where(c => !c.Component!.IsArchived))
-                .ThenInclude(ac => ac.Component!).ThenInclude(a => a.Prices!.OrderByDescending(ph => ph.StartDate));
+                    .ThenInclude(ac => ac.Component!).ThenInclude(x => x.UnitType);
         if (includes.Value.HasFlag(ProductIncludes.Suppliers))
             query = query.Include(x => x.Suppliers!.Where(s => !s.Supplier!.IsArchived).OrderBy(s => s.Supplier!.Id)).ThenInclude(s => s.Supplier);
-        if (includes.Value.HasFlag(ProductIncludes.PricePeriod))
-            query = query.Include(x => x.Prices!.OrderByDescending(ph => ph.StartDate));
 
         return query;
     }

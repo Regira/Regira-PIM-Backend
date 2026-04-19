@@ -6,7 +6,5 @@ public enum ProductSortBy
     Id,
     IdDesc,
     Title,
-    TitleDesc,
-    Price,
-    PriceDesc
+    TitleDesc
 }

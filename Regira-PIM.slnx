@@ -37,9 +37,6 @@
   <Folder Name="/src/Identity/">
     <Project Path="src/PIM.Identity/PIM.Identity.csproj" Id="89b45eb0-405e-45b4-a75b-b846d36b7d2b" />
   </Folder>
-  <Folder Name="/src/Shop/">
-    <Project Path="src/PIM.Shop/PIM.Shop.csproj" Id="f83eadca-9adf-465c-90a4-f16b52c1d447" />
-  </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/PIM.API.Tests/PIM.API.Tests.csproj" />
   </Folder>

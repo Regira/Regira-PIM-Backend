@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using PIM.Core.Constants;
 using PIM.Models.Catalog.Products;
 using PIM.Models.Catalog.UnitTypes;
-using PIM.Models.Orders;
 using PIM.Models.Stakeholders.Identity;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Taxonomy.FacetGroupFacets;
@@ -23,7 +22,6 @@ public partial class PimDbContext(DbContextOptions<PimDbContext> options) : DbCo
     public DbSet<FacetGroup> FacetGroups { get; set; } = null!;
     public DbSet<UnitType> UnitTypes { get; set; } = null!;
     public DbSet<Product> Products { get; set; } = null!;
-    public DbSet<Order> Orders { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -62,7 +60,6 @@ public partial class PimDbContext(DbContextOptions<PimDbContext> options) : DbCo
         // Products
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasMany(e => e.Prices).WithOne(ph => ph.Product).HasForeignKey(ph => ph.ObjectId).OnDelete(DeleteBehavior.Cascade);
             entity.HasOne(e => e.UnitType).WithMany().OnDelete(DeleteBehavior.Restrict);
         });
         modelBuilder.Entity<ProductFacet>(e =>
@@ -76,12 +73,6 @@ public partial class PimDbContext(DbContextOptions<PimDbContext> options) : DbCo
             e.HasIndex(ac => new { ac.AssemblyId, ac.ComponentId }).IsUnique();
             e.HasOne(ac => ac.Assembly).WithMany(a => a.Components).HasForeignKey(ac => ac.AssemblyId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne(ac => ac.Component).WithMany(a => a.Assemblies).HasForeignKey(ac => ac.ComponentId).OnDelete(DeleteBehavior.Restrict);
-        });
-        modelBuilder.Entity<ProductAllowedComponentAddition>(e =>
-        {
-            e.HasIndex(ac => new { ac.AssemblyId, ac.ComponentId }).IsUnique();
-            e.HasOne(ac => ac.Assembly).WithMany(a => a.AllowedComponentAdditions).HasForeignKey(ac => ac.AssemblyId).OnDelete(DeleteBehavior.Cascade);
-            e.HasOne(ac => ac.Component).WithMany().HasForeignKey(ac => ac.ComponentId).OnDelete(DeleteBehavior.Restrict);
         });
         modelBuilder.Entity<ProductSupplier>(e =>
         {
@@ -123,32 +114,6 @@ public partial class PimDbContext(DbContextOptions<PimDbContext> options) : DbCo
                 .IsUnique();
 
             entity.HasMany(e => e.ContactData).WithOne().HasForeignKey(c => c.PartyRelationshipId).OnDelete(DeleteBehavior.Cascade);
-        });
-
-        // Orders
-        modelBuilder.Entity<Order>(e =>
-        {
-            e.HasIndex(o => o.Code).IsUnique();
-            e.HasOne(o => o.Customer).WithMany().OnDelete(DeleteBehavior.Restrict);
-            e.HasMany(o => o.OrderLines).WithOne(ol => ol.Order).OnDelete(DeleteBehavior.Cascade);
-        });
-
-        modelBuilder.Entity<OrderLine>(e =>
-        {
-            e.HasOne(ol => ol.Product).WithMany().OnDelete(DeleteBehavior.Restrict);
-            e.HasMany(ol => ol.ComponentAdditions).WithOne().OnDelete(DeleteBehavior.Cascade);
-            e.HasMany(ol => ol.ComponentOmissions).WithOne().OnDelete(DeleteBehavior.Cascade);
-        });
-
-        modelBuilder.Entity<OrderLineComponentAddition>(entity =>
-        {
-            entity.HasOne(olp => olp.Product).WithMany().OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(olp => olp.OrderLine).WithMany(ol => ol.ComponentAdditions).HasForeignKey(olp => olp.OrderLineId).OnDelete(DeleteBehavior.Cascade);
-        });
-        modelBuilder.Entity<OrderLineComponentOmission>(entity =>
-        {
-            entity.HasOne(olp => olp.Product).WithMany().OnDelete(DeleteBehavior.Restrict);
-            entity.HasOne(olp => olp.OrderLine).WithMany(ol => ol.ComponentOmissions).HasForeignKey(olp => olp.OrderLineId).OnDelete(DeleteBehavior.Cascade);
         });
 
         ConfigureFunctions(modelBuilder);

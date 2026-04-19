@@ -18,20 +18,20 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
     };
 
     // Canonical ingredient list loaded from CSV.
-    // Key → (Description, UnitCode, Price, CategoryCodes, IsAssembled)
-    private static readonly Lazy<IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes, bool IsAssembled)>> LazyCanonicalIngredients =
+    // Key → (Description, UnitCode, CategoryCodes, IsAssembled)
+    private static readonly Lazy<IReadOnlyDictionary<string, (string Description, string UnitCode, string[] CategoryCodes, bool IsAssembled)>> LazyCanonicalIngredients =
         new(LoadCanonicalIngredientsFromCsv);
 
-    private static IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes, bool IsAssembled)> CanonicalIngredients =>
+    private static IReadOnlyDictionary<string, (string Description, string UnitCode, string[] CategoryCodes, bool IsAssembled)> CanonicalIngredients =>
         LazyCanonicalIngredients.Value;
 
     /// <summary>
     /// Loads canonical ingredients from the ingredients.csv file.
     /// </summary>
-    private static IReadOnlyDictionary<string, (string Description, string UnitCode, decimal Price, string[] CategoryCodes, bool IsAssembled)> LoadCanonicalIngredientsFromCsv()
+    private static IReadOnlyDictionary<string, (string Description, string UnitCode, string[] CategoryCodes, bool IsAssembled)> LoadCanonicalIngredientsFromCsv()
     {
         var path = Path.Combine(AppContext.BaseDirectory, "Assets", "ingredients.csv");
-        var ingredients = new Dictionary<string, (string, string, decimal, string[], bool)>(StringComparer.OrdinalIgnoreCase);
+        var ingredients = new Dictionary<string, (string, string, string[], bool)>(StringComparer.OrdinalIgnoreCase);
 
         if (!File.Exists(path))
         {
@@ -61,54 +61,11 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 ? fields[5].Trim()
                 : title;
 
-            // Generate a reasonable price based on category
-            var price = GeneratePrice(unitCode, facets);
-
-            ingredients[title] = (description, unitCode, price, facets, isAssembled);
+            ingredients[title] = (description, unitCode, facets, isAssembled);
         }
 
         Console.WriteLine($"Loaded {ingredients.Count} canonical ingredients from {path}");
         return ingredients;
-    }
-
-    /// <summary>
-    /// Generates a reasonable price for an ingredient based on its unit type and categories.
-    /// </summary>
-    private static decimal GeneratePrice(string unitCode, string[] facets)
-    {
-        // Base price by unit type
-        var basePrice = unitCode switch
-        {
-            "ml" => 0.15m,
-            "pc" => 0.25m,
-            "g" => 0.10m,
-            "kg" => 5.00m,
-            "L" => 2.00m,
-            "sprig" => 0.10m,
-            "bunch" => 1.00m,
-            "stalk" => 0.20m,
-            "leaf" => 0.05m,
-            "clove" => 0.05m,
-            _ => 0.10m
-        };
-
-        // Adjust by category
-        if (facets.Contains("SPICES", StringComparer.OrdinalIgnoreCase))
-            basePrice *= 1.5m;
-        if (facets.Contains("SAFFRON", StringComparer.OrdinalIgnoreCase))
-            basePrice *= 15m;
-        if (facets.Any(f => f.Contains("FISH", StringComparison.OrdinalIgnoreCase) ||
-                           f.Contains("SEAFOOD", StringComparison.OrdinalIgnoreCase) ||
-                           f.Contains("CRUSTACEANS", StringComparison.OrdinalIgnoreCase)))
-            basePrice *= 1.8m;
-        if (facets.Any(f => f.Contains("BEEF", StringComparison.OrdinalIgnoreCase) ||
-                           f.Contains("LAMB", StringComparison.OrdinalIgnoreCase)))
-            basePrice *= 1.5m;
-        if (facets.Contains("CHEESE", StringComparer.OrdinalIgnoreCase) ||
-            facets.Any(f => f.EndsWith("_CHEESE", StringComparison.OrdinalIgnoreCase)))
-            basePrice *= 1.3m;
-
-        return Math.Round(basePrice, 2);
     }
 
     /// <summary>
@@ -223,7 +180,6 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             {
                 Title = kv.Key,
                 Description = kv.Value.Description,
-                Prices = [new ProductPricePeriod { Price = kv.Value.Price }],
                 UnitTypeId = byCode.TryGetValue(kv.Value.UnitCode, out var ut) ? ut.Id : null,
                 DefaultQuantity = kv.Value.IsAssembled
                     ? GetDefaultQuantityForIngredient(kv.Value.UnitCode, kv.Value.CategoryCodes)
@@ -283,7 +239,6 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             {
                 Title = name,
                 Description = name,
-                Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(0.05m, 2.00m), 2) }],
                 UnitTypeId = byCode.TryGetValue(GuessUnitCode(name), out var guessedUnit) ? guessedUnit.Id : null,
             })
             .ToList();
@@ -301,8 +256,6 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
 
             foreach (var extra in extraIngredients)
                 ingByTitle[extra.Title] = extra;
-
-            ingredients = ingredients.Concat(extraIngredients).ToList();
         }
 
         // Helper lambda — resolves the component quantity:
@@ -355,7 +308,6 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                     Description = !string.IsNullOrWhiteSpace(partialDish.Description)
                         ? partialDish.Description
                         : $"A {partialDish.Category.ToLower()} used as a base component in cooking",
-                    Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(1.50m, 8.99m), 2) }],
                     UnitTypeId = byCode.TryGetValue(unitCode, out var partialUnit) ? partialUnit.Id : null,
                     DefaultQuantity = GetDefaultQuantityForPartialDish(partialDish.Category),
                     Facets = partialFacets,
@@ -416,18 +368,10 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
             {
                 Title = dishName,
                 Description = description,
-                Prices = [new ProductPricePeriod { Price = Math.Round(f.Random.Decimal(6.99m, 24.99m), 2) }],
                 UnitTypeId = f.PickRandom(servingUnitTypes).Id,
                 DefaultQuantity = 1m,
-                AllowAdditions = f.Random.Bool(0.7f),
                 Facets = tags.DistinctBy(t => t.FacetId).ToList(),
                 Components = components,
-                AllowedComponentAdditions = f.Random.Bool(0.4f) && ingByTitle.Count > 0
-                    ? f.PickRandom(ingredients, f.Random.Int(1, Math.Min(3, ingredients.Count)))
-                        .DistinctBy(i => i.Id)
-                        .Select(i => new ProductAllowedComponentAddition { ComponentId = i.Id })
-                        .ToList()
-                    : null,
                 Suppliers = f.Random.Bool(0.5f)
                     ? f.PickRandom(suppliers, f.Random.Int(1, Math.Min(2, suppliers.Count)))
                         .DistinctBy(s => s.Id)
@@ -572,7 +516,7 @@ public class CatalogSeeder(IEntityRepository<Product> productService, IEntitySer
                 "wine", "beer", "vinegar", "sauce", "syrup", "molasses", "kefir",
                 "batter", "gravy", "water", "puree"))
 
-        // Countable items → pc
+            // Countable items → pc
             return "ml";
         // Use specific phrases for "pepper" to avoid matching ground/spice pepper varieties
         if (ContainsAny(name,

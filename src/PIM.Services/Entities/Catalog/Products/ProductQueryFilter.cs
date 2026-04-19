@@ -1,5 +1,4 @@
 using PIM.Data;
-using PIM.Models.Catalog.Pricing.Utilities;
 using PIM.Models.Catalog.Products;
 using PIM.Models.Taxonomy.Facets;
 using Regira.Entities.EFcore.Extensions;
@@ -113,22 +112,6 @@ public class ProductQueryFilter(PimDbContext dbContext, IQKeywordHelper qHelper)
 
         if (so.SupplierId?.Any() == true)
             query = query.Where(x => x.Suppliers!.Any(s => so.SupplierId.Contains(s.SupplierId)));
-
-        var priceDate = so.PriceDate ?? DateTime.UtcNow;
-        if (so.MinPrice.HasValue)
-            query = query.Where(x =>
-                x.Prices!.Any(p => p.StartDate == null || p.StartDate <= priceDate)
-                && x.Prices!.Where(p => p.StartDate == null || p.StartDate <= priceDate)
-                    .OrderByDescending(p => p.StartDate)
-                    .First().Price >= so.MinPrice);
-        if (so.MaxPrice.HasValue)
-            query = query.Where(x =>
-                x.Prices!.Any(p => p.StartDate == null || p.StartDate <= priceDate)
-                && x.Prices!.Where(p => p.StartDate == null || p.StartDate <= priceDate)
-                    .OrderByDescending(p => p.StartDate)
-                    .First().Price <= so.MaxPrice);
-        if (so.HasPrice.HasValue)
-            query = query.Where(a => so.HasPrice.Value == a.Prices!.AsQueryable().Any(PricePeriodUtility.IsActiveOn<ProductPricePeriod>(priceDate)));
 
         return query;
     }

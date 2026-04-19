@@ -40,11 +40,8 @@ try
 
     var accountsDb = scope.ServiceProvider.GetRequiredService<AccountsDbContext>();
     await accountsDb.Database.EnsureCreatedAsync();
-    if (!accountsDb.Users.Any())
-    {
-        var accountsSeeder = scope.ServiceProvider.GetRequiredService<AccountsDataSeeder>();
-        await accountsSeeder.SeedAsync();
-    }
+    var accountsSeeder = scope.ServiceProvider.GetRequiredService<AccountsDataSeeder>();
+    await accountsSeeder.SeedAsync();
 
     logger.LogInformation("Data seeding completed.");
 }

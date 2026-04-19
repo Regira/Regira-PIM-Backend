@@ -1,9 +1,7 @@
-﻿using PIM.Models.Catalog.Pricing.Abstractions;
-using PIM.Models.Catalog.UnitTypes;
+﻿using PIM.Models.Catalog.UnitTypes;
 using Regira.Entities.Models.Abstractions;
 using Regira.Normalizing;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PIM.Models.Catalog.Products;
 
@@ -11,7 +9,7 @@ namespace PIM.Models.Catalog.Products;
 /// A product can be any producible item. 
 /// They can be categorized using Facets. The facets are usually more general than products and in plural form, while a Product usually represents a single item.
 /// </summary>
-public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasPricePeriod, IHasPricePeriod<ProductPricePeriod>, IHasNormalizedTitle, IHasNormalizedContent, IArchivable
+public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasNormalizedTitle, IHasNormalizedContent, IArchivable
 {
     public int Id { get; set; }
 
@@ -24,7 +22,6 @@ public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasP
     [MaxLength(2048), Normalized(SourceProperties = [nameof(Title), nameof(Description)])]
     public string? NormalizedContent { get; set; }
 
-    public bool AllowAdditions { get; set; } = true;
     public int? UnitTypeId { get; set; }
     public decimal? DefaultQuantity { get; set; }
 
@@ -50,16 +47,5 @@ public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasP
     /// <see cref="ProductComponent"/> and may include details such as quantity and whether it is omittable.
     /// </remarks>
     public ICollection<ProductComponent>? Components { get; set; } // children
-    public ICollection<ProductAllowedComponentAddition>? AllowedComponentAdditions { get; set; }
     public ICollection<ProductSupplier>? Suppliers { get; set; }
-    public ICollection<ProductPricePeriod>? Prices { get; set; }
-    ICollection<IPricePeriod>? IHasPricePeriod.Prices
-    {
-        get => Prices?.Cast<IPricePeriod>().ToList();
-        set => Prices = value?.Cast<ProductPricePeriod>().ToList();
-    }
-
-    /// <summary> Gets or sets the current price of the product, calculated from the price history. </summary>
-    [NotMapped]
-    public decimal? Price { get; set; }
 }

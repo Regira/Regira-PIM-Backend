@@ -40,37 +40,6 @@ public class ProductServiceTests(TestFixture fixture) : IClassFixture<TestFixtur
     }
 
     [Fact]
-    public async Task Filter_By_Price_Range()
-    {
-        using var scope = fixture.CreateScope();
-        var service = GetProductService(scope);
-
-        await service.Save(new Product { Title = "Cheap Product", Prices = [new ProductPricePeriod { Price = 1.00m }] });
-        await service.Save(new Product { Title = "Mid Product", Prices = [new ProductPricePeriod { Price = 5.00m }] });
-        await service.Save(new Product { Title = "Expensive Product", Prices = [new ProductPricePeriod { Price = 20.00m }] });
-        await service.SaveChanges();
-
-        var results = await service.List([new ProductSearchObject { MinPrice = 3.00m, MaxPrice = 10.00m }], [], ProductIncludes.Price);
-        Assert.All(results, a => Assert.InRange(a.Price!.Value, 3.00m, 10.00m));
-    }
-
-    [Fact]
-    public async Task Sort_By_Price_Ascending()
-    {
-        using var scope = fixture.CreateScope();
-        var service = GetProductService(scope);
-
-        await service.Save(new Product { Title = "B-Priced Product", Prices = [new ProductPricePeriod { Price = 15.00m }] });
-        await service.Save(new Product { Title = "A-Priced Product", Prices = [new ProductPricePeriod { Price = 5.00m }] });
-        await service.Save(new Product { Title = "C-Priced Product", Prices = [new ProductPricePeriod { Price = 25.00m }] });
-        await service.SaveChanges();
-
-        var results = await service.List([new ProductSearchObject()], [ProductSortBy.Price]);
-        var prices = results.Select(a => a.Price).ToList();
-        Assert.Equal(prices.OrderBy(p => p).ToList(), prices);
-    }
-
-    [Fact]
     public async Task Related_Components_Are_Synced()
     {
         using var scope = fixture.CreateScope();

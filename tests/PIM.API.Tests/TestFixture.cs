@@ -5,7 +5,6 @@ using PIM.Core.Abstractions;
 using PIM.Core.Constants;
 using PIM.Data;
 using PIM.DependencyInjection.Extensions;
-using PIM.Services.Entities.Catalog.Products;
 using Regira.DAL.EFcore.Services;
 using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
@@ -30,11 +29,6 @@ public class TestFixture
             return Task.CompletedTask;
         }
     }
-    public class FakeOrderContext : IOrderContext
-    {
-        public int? CustomerId => null;
-        public DateTime? OrderDate { get; set; }
-    }
     public class FakeUserContext : IUserContext
     {
         public string? UserId => null;
@@ -51,7 +45,6 @@ public class TestFixture
             // PIM App Contexts
             .AddScoped<IAppContext, FakeAppContext>()
             .AddScoped<ICultureContext, FakeCultureContext>()
-            .AddScoped<IOrderContext, FakeOrderContext>()
             .AddScoped<IUserContext, FakeUserContext>()
             // Each scope gets its own in-memory SQLite database
             .AddScoped(_ =>
@@ -70,9 +63,7 @@ public class TestFixture
                     .AddAutoTruncateInterceptors();
             })
             // Entity Services
-            .AddEntityServices()
-            // Concrete service registrations for tests
-            .AddScoped<ProductProcessor>();
+            .AddEntityServices();
 
         ServiceProvider = services.BuildServiceProvider();
     }

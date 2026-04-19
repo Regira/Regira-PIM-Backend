@@ -8,7 +8,6 @@ using PIM.Core.Constants;
 using PIM.Data;
 using PIM.DependencyInjection.Catalog;
 using PIM.DependencyInjection.Countries;
-using PIM.DependencyInjection.Orders;
 using PIM.DependencyInjection.Stakeholders;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Stakeholders.Parties.DTO;
@@ -35,7 +34,6 @@ public static class ServiceCollectionExtensions
                 // AppContexts
                 .AddScoped<IAppContext>(_ => new PimAppContext { AppType = pimAppType })
                 .AddScoped<ICultureContext, CultureContext>()
-                .AddScoped<IOrderContext, OrderContext>()
                 .AddScoped<IUserContext, UserContext>()
                 // DbContext
                 .AddDbContext<PimDbContext>((sp, options) =>
@@ -73,7 +71,6 @@ public static class ServiceCollectionExtensions
                 })
                 .AddCountries()
                 .AddCatalog()
-                .AddOrders()
                 .AddStakeholders();
 
             return services;
