@@ -1,9 +1,11 @@
 ﻿using PIM.Identity.Data;
+using PIM.Identity.Models;
+using PIM.Identity.Services;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
 using Regira.Entities.Models;
 
-namespace PIM.Identity.Models;
+namespace PIM.Identity.DependencyInjection;
 
 public static class PimUserServiceConfiguration
 {

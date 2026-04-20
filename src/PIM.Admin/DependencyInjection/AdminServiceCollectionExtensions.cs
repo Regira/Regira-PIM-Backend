@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PIM.Identity.Data;
-using PIM.Identity.Models;
+using PIM.Identity.DependencyInjection;
 using Regira.DAL.EFcore.Services;
 using Regira.Entities.DependencyInjection.ServiceBuilders.Extensions;
 using Regira.Entities.EFcore.Normalizing;

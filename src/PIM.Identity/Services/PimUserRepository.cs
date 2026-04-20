@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PIM.Identity.Data;
+using PIM.Identity.Models;
 using Regira.DAL.Paging;
 using Regira.Entities.EFcore.QueryBuilders.Abstractions;
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
 using Regira.Utilities;
 
-namespace PIM.Identity.Models;
+namespace PIM.Identity.Services;
 
 public class PimUserRepository(AccountsDbContext dbContext, UserManager<PimIdentityUser> userManager, IEnumerable<IFilteredQueryBuilder<PimIdentityUser, string, PimUserSearchObject>> queryFilters, IMapper mapper)
     : IEntityRepository<PimUserEntity, string, PimUserSearchObject, EntitySortBy, PimUserIncludes>

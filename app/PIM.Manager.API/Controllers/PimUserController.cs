@@ -8,6 +8,6 @@ using Regira.Entities.Web.Controllers.Abstractions;
 namespace PIM.Admin.API.Controllers;
 
 [ApiController]
-[Route("users")]
+[Route("user")]
 [Authorize(Policy = PimPolicies.AdminOnly)]
 public class PimUserController : EntityControllerBase<PimUserEntity, string, PimUserSearchObject, EntitySortBy, PimUserIncludes, PimUserDto, PimUserInputDto>;
