@@ -14,8 +14,6 @@ namespace PIM.Identity.Services;
 public class PimUserRepository(AccountsDbContext dbContext, UserManager<PimIdentityUser> userManager, IEnumerable<IFilteredQueryBuilder<PimIdentityUser, string, PimUserSearchObject>> queryFilters, IMapper mapper)
     : IEntityRepository<PimUserEntity, string, PimUserSearchObject, EntitySortBy, PimUserIncludes>
 {
-    protected AccountsDbContext DbContext => dbContext;
-
     public async Task<PimUserEntity?> Details(string id)
     {
         var item = await GetItem(id);
@@ -31,10 +29,9 @@ public class PimUserRepository(AccountsDbContext dbContext, UserManager<PimIdent
     }
     public Task<IList<PimUserEntity>> List(PimUserSearchObject? so = null, PagingInfo? pagingInfo = null)
         => List([so], [], null, pagingInfo);
-
-
     public Task<IList<PimUserEntity>> List(object? so = null, PagingInfo? pagingInfo = null)
         => List([Convert(so)], [], null, pagingInfo);
+
     public Task<long> Count(IList<PimUserSearchObject?> searchObjects)
     {
         var query = Filter(dbContext.Users, searchObjects.Select(Convert).ToList());
