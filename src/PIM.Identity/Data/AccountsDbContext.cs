@@ -28,7 +28,7 @@ public class AccountsDbContext(DbContextOptions<AccountsDbContext> options) : Id
                 .WithOne()
                 .HasForeignKey(e => e.UserId);
         });
-        builder.Entity<IdentityUserClaim<int>>(entity =>
+        builder.Entity<IdentityUserClaim<string>>(entity =>
         {
             entity.HasIndex(e => e.UserId);
             entity.Property(e => e.ClaimType).HasMaxLength(64);
