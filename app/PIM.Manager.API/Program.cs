@@ -1,14 +1,16 @@
+using FastEndpoints;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using PIM.Admin.API.Infrastructure;
+using PIM.Admin.DependencyInjection;
+using PIM.Core.Constants;
+using PIM.DependencyInjection.Extensions;
+using PIM.Identity.DependencyInjection;
+using Regira.Entities.Web.FastEndpoints.Extensions;
 using Regira.Office.Mail.MailGun;
 using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
 using System.Text.Json.Serialization;
-using PIM.Admin.API.Infrastructure;
-using PIM.Admin.DependencyInjection;
-using PIM.Core.Constants;
-using PIM.Identity.DependencyInjection;
-using PIM.DependencyInjection.Extensions;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 
@@ -77,6 +79,9 @@ try
         .AddAdminServices(builder.Configuration)
         .AddPimServices(builder.Configuration, PimAppTypes.Manager);
 
+    //builder.Services
+    //    .AddFastEndpoints();
+
     // APP configuration
     var app = builder.Build();
 
@@ -113,6 +118,9 @@ try
             endpoints.MapControllers()
                 .RequireAuthorization(PimPolicies.AdminOrEditor);
         });
+
+    //app.MapFastEndpoints();
+    //app.MapEntityEndpoints();
 
     app.Run();
 }

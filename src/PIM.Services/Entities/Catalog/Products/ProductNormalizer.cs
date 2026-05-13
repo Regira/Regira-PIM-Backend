@@ -14,29 +14,30 @@ public class ProductNormalizer(INormalizer normalizer, PimDbContext dbContext) :
     private IList<Product> _components = null!;
     private IList<Party> _suppliers = null!;
 
-    public override async Task HandleNormalizeMany(IEnumerable<Product> items)
+    public override async Task HandleNormalizeMany(IEnumerable<Product> items, CancellationToken token = default)
     {
-        var facetIds = items.SelectMany(x => x.Facets?.Select(c => c.FacetId) ?? []).Distinct().ToList();
+        var itemList = items.ToList();
+        var facetIds = itemList.SelectMany(x => x.Facets?.Select(c => c.FacetId) ?? []).Distinct().ToList();
         _facets = await dbContext.Facets
             .Where(c => facetIds.Contains(c.Id))
             .AsNoTrackingWithIdentityResolution()
             .ToListAsync();
-        var componentIds = items.SelectMany(x => x.Components?.Select(c => c.ComponentId) ?? []).Distinct().ToList();
+        var componentIds = itemList.SelectMany(x => x.Components?.Select(c => c.ComponentId) ?? []).Distinct().ToList();
         _components = await dbContext.Products
             .Where(a => componentIds.Contains(a.Id))
             .AsNoTrackingWithIdentityResolution()
             .ToListAsync();
-        var supplierIds = items.SelectMany(x => x.Suppliers?.Select(s => s.SupplierId) ?? []).Distinct().ToList();
+        var supplierIds = itemList.SelectMany(x => x.Suppliers?.Select(s => s.SupplierId) ?? []).Distinct().ToList();
         _suppliers = await dbContext.Parties
             .Where(p => supplierIds.Contains(p.Id))
             .AsNoTrackingWithIdentityResolution()
             .ToListAsync();
-        await base.HandleNormalizeMany(items);
+        await base.HandleNormalizeMany(itemList);
     }
 
-    public override async Task HandleNormalize(Product item)
+    public override async Task HandleNormalize(Product item, CancellationToken token = default)
     {
-        await base.HandleNormalize(item);
+        await base.HandleNormalize(item, token);
 
         var contentEntries = new List<string?> { item.NormalizedContent };
 

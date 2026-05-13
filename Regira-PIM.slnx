@@ -1,14 +1,5 @@
 <Solution>
-  <Folder Name="/.github/">
-    <File Path=".github/copilot-instructions.md" />
-    <File Path=".github/entities.advanced.example.md" />
-    <File Path=".github/entities.examples.md" />
-    <File Path=".github/entities.instructions.md" />
-    <File Path=".github/entities.namespaces.md" />
-    <File Path=".github/entities.setup.md" />
-    <File Path=".github/entities.signatures.md" />
-    <File Path=".github/project.setup.md" />
-  </Folder>
+  <Folder Name="/.github/" />
   <Folder Name="/app/" />
   <Folder Name="/app/APIs/">
     <Project Path="app/PIM.Manager.API/PIM.Admin.API.csproj" Id="7f9fa34f-522f-424a-bc1d-0f6d9efe704f" />

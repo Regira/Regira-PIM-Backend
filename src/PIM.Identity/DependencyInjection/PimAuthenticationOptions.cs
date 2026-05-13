@@ -4,8 +4,8 @@ namespace PIM.Identity.DependencyInjection;
 
 public class PimAuthenticationOptions
 {
-    internal Func<IServiceProvider, IMailer>? MailerFactory;
-    public void AddMailer(Func<IServiceProvider, IMailer> factory)
+    internal Func<IServiceProvider, IMailService>? MailerFactory;
+    public void AddMailer(Func<IServiceProvider, IMailService> factory)
     {
         MailerFactory = factory;
     }

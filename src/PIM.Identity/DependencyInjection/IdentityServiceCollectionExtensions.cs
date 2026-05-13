@@ -22,7 +22,7 @@ public static class IdentityServiceCollectionExtensions
 {
     const string AUTH_SECRET = "PIM_SECRET:F061E1B7-363F-40F3-B052-0EE536792551:5A296568-C287-412F-836B-8E29ACD93A6A";
 
-    public static IdentityServiceBuilder AddPimAuthentication(this IServiceCollection services, IConfiguration config, Func<IServiceProvider, IMailer> mailerFactory)
+    public static IdentityServiceBuilder AddPimAuthentication(this IServiceCollection services, IConfiguration config, Func<IServiceProvider, IMailService> mailerFactory)
     {
         return services
             .AddPimAuthentication(o =>

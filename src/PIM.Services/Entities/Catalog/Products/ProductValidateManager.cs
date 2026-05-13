@@ -9,20 +9,20 @@ namespace PIM.Services.Entities.Catalog.Products;
 public class ProductValidateManager(IProductRepository service)
     : EntityWrappingServiceBase<Product, ProductSearchObject, ProductSortBy, ProductIncludes>(service), IProductValidateManager
 {
-    public override Task Add(Product item)
+    public override Task Add(Product item, CancellationToken token = default)
     {
         Validate(item);
         return base.Add(item);
     }
-    public override Task<Product?> Modify(Product item)
+    public override Task<Product?> Modify(Product item, CancellationToken token = default)
     {
         Validate(item);
-        return base.Modify(item);
+        return base.Modify(item, token);
     }
-    public override Task Save(Product item)
+    public override Task Save(Product item, CancellationToken token = default)
     {
         Validate(item);
-        return base.Save(item);
+        return base.Save(item, token);
     }
 
     public void Validate(Product item)

@@ -18,9 +18,9 @@
 
   <ItemGroup>
 	<PackageReference Include="Bogus" Version="35.6.5" />
-	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />
-	<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.5" />
-	<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.5" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.8" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.8" />
+	<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.8" />
 	<PackageReference Include="Serilog.Extensions.Hosting" Version="*" />
 	<PackageReference Include="Serilog.Settings.Configuration" Version="*" />
 	<PackageReference Include="Serilog.Sinks.Console" Version="*" />

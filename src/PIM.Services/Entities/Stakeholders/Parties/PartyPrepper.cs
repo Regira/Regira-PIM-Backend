@@ -8,10 +8,10 @@ namespace PIM.Services.Entities.Stakeholders.Parties;
 
 public class PartyPrepper(PimDbContext dbContext) : EntityPrepperBase<Party>
 {
-    public override Task Prepare(Party modified, Party? original)
+    public override Task Prepare(Party modified, Party? original, CancellationToken token = default)
     {
-        modified.ChildRelationships?.PrepareContactData(dbContext, original?.ChildRelationships);
-        modified.ParentRelationships?.PrepareContactData(dbContext, original?.ParentRelationships);
+        modified.ChildRelationships?.PrepareContactData(dbContext, original?.ChildRelationships, token);
+        modified.ParentRelationships?.PrepareContactData(dbContext, original?.ParentRelationships, token);
 
         return Task.CompletedTask;
     }
@@ -19,7 +19,7 @@ public class PartyPrepper(PimDbContext dbContext) : EntityPrepperBase<Party>
 
 public static class PartyRelationPrepperExtensions
 {
-    public static void PrepareContactData(this ICollection<PartyRelationship> relationships, PimDbContext dbContext, ICollection<PartyRelationship>? originalRelationships)
+    public static void PrepareContactData(this ICollection<PartyRelationship> relationships, PimDbContext dbContext, ICollection<PartyRelationship>? originalRelationships, CancellationToken token = default)
     {
         foreach (var relationship in relationships)
         {

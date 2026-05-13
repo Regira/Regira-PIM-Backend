@@ -2,7 +2,7 @@
 using Regira.DAL.Paging;
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
-using Regira.Globalization;
+using Regira.Globalization.Utilities;
 using Regira.Utilities;
 using CountryEntity = PIM.Models.Countries.Country;
 
@@ -10,16 +10,16 @@ namespace PIM.Services.Entities.Countries;
 
 public class CountryRepository(ICultureContext cultureContext) : IEntityService<CountryEntity, string, SearchObject<string>>
 {
-    public Task<CountryEntity?> Details(string id)
+    public Task<CountryEntity?> Details(string id, CancellationToken token = default)
     {
         var country = CountryUtility.GetCountry(id);
         var item = country != null ? Convert(country) : null;
         return Task.FromResult(item);
     }
 
-    public Task<IList<CountryEntity>> List(SearchObject<string>? so = null, PagingInfo? pagingInfo = null)
+    public Task<IList<CountryEntity>> List(SearchObject<string>? so = null, PagingInfo? pagingInfo = null, CancellationToken token = default)
     {
-        var query = CountryUtility.GetAllCountries();
+        var query = CountryUtility.GetCountries();
         if (!string.IsNullOrWhiteSpace(so?.Q))
         {
             query = query
@@ -36,7 +36,7 @@ public class CountryRepository(ICultureContext cultureContext) : IEntityService<
                 .ThenBy(x => x.Title);
         }
 
-        var itemQuery = query.Select(Convert);
+        var itemQuery = query.Select(x => Convert(x));
         if (pagingInfo?.PageSize > 0)
         {
             itemQuery = itemQuery.PageItems(pagingInfo.PageSize, pagingInfo.Page - 1);
@@ -46,29 +46,26 @@ public class CountryRepository(ICultureContext cultureContext) : IEntityService<
     }
 
 
-    Task<IList<CountryEntity>> IEntityReadService<CountryEntity, string>.List(object? so, PagingInfo? pagingInfo)
-        => List(Convert(so), pagingInfo);
-    public Task<long> Count(object? so)
-        => Count(Convert(so));
-    public async Task<long> Count(SearchObject<string>? so)
-        => (await List(so)).Count;
+    Task<IList<CountryEntity>> IEntityReadService<CountryEntity, string>.List(object? so, PagingInfo? pagingInfo, CancellationToken token)
+        => List(Convert(so), pagingInfo, token);
+    public Task<long> Count(object? so, CancellationToken token = default)
+        => Count(Convert(so), token);
+    public async Task<long> Count(SearchObject<string>? so, CancellationToken token = default)
+        => (await List(so, null, token)).Count;
 
 
-    public int CalculateWeight(Regira.Globalization.Country item, SearchObject<string>? so)
+    public int CalculateWeight(Regira.Globalization.Models.Country item, SearchObject<string>? so)
     {
         var weight = 0;
         if (!string.IsNullOrWhiteSpace(so?.Q))
         {
             // title in current language
-            var itemTitle = (item.NamesByLanguage?.ContainsKey(cultureContext.Culture.Name) == true
-                                ? item.NamesByLanguage![cultureContext.Culture.Name]
-                                : null)
-                            ?? item.Title;
+            var itemTitle = item.GetName();
             if (item.Iso2Code.Equals(so.Q, StringComparison.InvariantCultureIgnoreCase))
             {
                 weight += 20;
             }
-            var titles = item.NamesByLanguage!.Values;
+            var titles = item.Names.Values;
             if (titles.Any(title => title.Equals(so.Q, StringComparison.InvariantCultureIgnoreCase)))
             {
                 weight += 25;
@@ -81,7 +78,7 @@ public class CountryRepository(ICultureContext cultureContext) : IEntityService<
             {
                 weight += 20;
             }
-            else if (item.NamesByLanguage!.Values.Any(title => title.StartsWith(so.Q, StringComparison.InvariantCultureIgnoreCase)))
+            else if (item.Names.Values.Any(title => title.StartsWith(so.Q, StringComparison.InvariantCultureIgnoreCase)))
             {
                 weight += 10;
             }
@@ -98,13 +95,13 @@ public class CountryRepository(ICultureContext cultureContext) : IEntityService<
 
         return weight;
     }
-    public CountryEntity Convert(Regira.Globalization.Country item)
+    public CountryEntity Convert(Regira.Globalization.Models.Country item)
     {
         return new CountryEntity
         {
             Id = item.Iso2Code,
             Code = item.Iso2Code,
-            Title = (item.NamesByLanguage?.TryGetValue(cultureContext.Culture.Name, out var value) is true ? value : null) ?? item.Title,
+            Title = item.GetName(),
             IsDefault = item.Iso2Code == cultureContext.CountryCode
         };
     }
@@ -121,23 +118,23 @@ public class CountryRepository(ICultureContext cultureContext) : IEntityService<
 
 
     #region NotSupported
-    public Task Add(CountryEntity item)
+    public Task Add(CountryEntity item, CancellationToken token = default)
     {
         throw new NotImplementedException();
     }
-    public Task<CountryEntity?> Modify(CountryEntity item)
+    public Task<CountryEntity?> Modify(CountryEntity item, CancellationToken token = default)
     {
         throw new NotImplementedException();
     }
-    public Task Save(CountryEntity item)
+    public Task Save(CountryEntity item, CancellationToken token = default)
     {
         throw new NotImplementedException();
     }
-    public Task Remove(CountryEntity item)
+    public Task Remove(CountryEntity item, CancellationToken token = default)
     {
         throw new NotImplementedException();
     }
-    public Task<int> SaveChanges(CancellationToken token = new())
+    public Task<int> SaveChanges(CancellationToken token = default)
     {
         throw new NotImplementedException();
     }

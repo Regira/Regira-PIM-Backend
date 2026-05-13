@@ -1,5 +1,5 @@
 ﻿using PIM.Models.Stakeholders.Addresses;
-using Regira.Globalization;
+using Regira.Globalization.Utilities;
 using Regira.Normalizing.Abstractions;
 
 namespace PIM.Services.Entities.Stakeholders.Addresses;

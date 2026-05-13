@@ -4,7 +4,7 @@ using Regira.Office.Mail.Models;
 
 namespace PIM.Identity.Services;
 
-public class IdentityMailer(IMailer mailer) : IEmailSender
+public class IdentityMailer(IMailService mailer) : IEmailSender
 {
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {

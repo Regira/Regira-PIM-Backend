@@ -8,15 +8,15 @@ namespace PIM.Services.Entities.Stakeholders.ContactData;
 public class ContactDataNormalizer(INormalizer defaultNormalizer, PhoneNumberFormatter phoneNumberNormalizer)
     : EntityNormalizerBase<IContactDetails>(defaultNormalizer)
 {
-    public override Task HandleNormalizeMany(IEnumerable<IContactDetails> items)
+    public override Task HandleNormalizeMany(IEnumerable<IContactDetails> items, CancellationToken token = default)
     {
         foreach (var item in items)
         {
-            HandleNormalize(item);
+            HandleNormalize(item, token);
         }
         return Task.CompletedTask;
     }
-    public override Task HandleNormalize(IContactDetails item)
+    public override Task HandleNormalize(IContactDetails item, CancellationToken token = default)
     {
         item.NormalizedValue = Normalize(item);
         return Task.CompletedTask;

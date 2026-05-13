@@ -14,39 +14,39 @@ namespace PIM.Identity.Services;
 public class PimUserRepository(AccountsDbContext dbContext, UserManager<PimIdentityUser> userManager, IEnumerable<IFilteredQueryBuilder<PimIdentityUser, string, PimUserSearchObject>> queryFilters, IMapper mapper)
     : IEntityRepository<PimUserEntity, string, PimUserSearchObject, EntitySortBy, PimUserIncludes>
 {
-    public async Task<PimUserEntity?> Details(string id)
+    public async Task<PimUserEntity?> Details(string id, CancellationToken token = default)
     {
-        var item = await GetItem(id);
+        var item = await GetItem(id, token);
         return mapper.Map<PimUserEntity>(item!);
     }
-    public async Task<IList<PimUserEntity>> List(IList<PimUserSearchObject?> searchObjects, IList<EntitySortBy> sortBy, PimUserIncludes? includes = null, PagingInfo? pagingInfo = null)
+    public async Task<IList<PimUserEntity>> List(IList<PimUserSearchObject?> searchObjects, IList<EntitySortBy> sortBy, PimUserIncludes? includes = null, PagingInfo? pagingInfo = null, CancellationToken token = default)
     {
         IQueryable<PimIdentityUser> query = Query(dbContext.Users, searchObjects, includes, pagingInfo);
         var items = await query
             .AsNoTrackingWithIdentityResolution()
-            .ToListAsync();
+            .ToListAsync(token);
         return mapper.Map<List<PimUserEntity>>(items);
     }
-    public Task<IList<PimUserEntity>> List(PimUserSearchObject? so = null, PagingInfo? pagingInfo = null)
-        => List([so], [], null, pagingInfo);
-    public Task<IList<PimUserEntity>> List(object? so = null, PagingInfo? pagingInfo = null)
-        => List([Convert(so)], [], null, pagingInfo);
+    public Task<IList<PimUserEntity>> List(PimUserSearchObject? so = null, PagingInfo? pagingInfo = null, CancellationToken token = default)
+        => List([so], [], null, pagingInfo, token);
+    public Task<IList<PimUserEntity>> List(object? so = null, PagingInfo? pagingInfo = null, CancellationToken token = default)
+        => List([Convert(so)], [], null, pagingInfo, token);
 
-    public Task<long> Count(IList<PimUserSearchObject?> searchObjects)
+    public Task<long> Count(IList<PimUserSearchObject?> searchObjects, CancellationToken token = default)
     {
         var query = Filter(dbContext.Users, searchObjects.Select(Convert).ToList());
-        return query.LongCountAsync();
+        return query.LongCountAsync(token);
     }
-    public Task<long> Count(object? so)
-        => Count([Convert(so)]);
-    public Task<long> Count(PimUserSearchObject? so)
-        => Count([so]);
+    public Task<long> Count(object? so, CancellationToken token = default)
+        => Count([Convert(so)], token);
+    public Task<long> Count(PimUserSearchObject? so, CancellationToken token = default)
+        => Count([so], token);
 
-    public Task<PimIdentityUser?> GetItem(string id)
+    public Task<PimIdentityUser?> GetItem(string id, CancellationToken token = default)
     {
         return AddIncludes(dbContext.Users, PimUserIncludes.All)
             .AsNoTrackingWithIdentityResolution()
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync(x => x.Id == id, token);
     }
     public IQueryable<PimIdentityUser> Filter(IQueryable<PimIdentityUser> query, PimUserSearchObject? so)
     {
@@ -82,7 +82,7 @@ public class PimUserRepository(AccountsDbContext dbContext, UserManager<PimIdent
     }
 
 
-    public async Task Add(PimUserEntity model)
+    public async Task Add(PimUserEntity model, CancellationToken token = default)
     {
         PrepareItem(model, null);
         var item = mapper.Map<PimIdentityUser>(model);
@@ -91,39 +91,39 @@ public class PimUserRepository(AccountsDbContext dbContext, UserManager<PimIdent
             : await userManager.CreateAsync(item, model.NewPassword);
         if (result.Succeeded)
         {
-            await Modify(model, item);
+            await Modify(model, item, token);
         }
     }
-    public async Task<PimUserEntity?> Modify(PimUserEntity model)
+    public async Task<PimUserEntity?> Modify(PimUserEntity model, CancellationToken token = default)
     {
-        var original = await GetItem(model.Id);
+        var original = await GetItem(model.Id, token);
         if (original != null)
         {
             PrepareItem(model, original);
-            await Modify(model, original);
-            await UpdateUser(model, original);
+            await Modify(model, original, token);
+            await UpdateUser(model, original, token);
 
             return model;
         }
 
         return null;
     }
-    public async Task Save(PimUserEntity model)
+    public async Task Save(PimUserEntity model, CancellationToken token = default)
     {
-        var original = await GetItem(model.Id);
+        var original = await GetItem(model.Id, token);
         if (original != null)
         {
             PrepareItem(model, original);
-            await Modify(model, original);
-            await UpdateUser(model, original);
+            await Modify(model, original, token);
+            await UpdateUser(model, original, token);
         }
         else
         {
-            await Add(model);
+            await Add(model, token);
         }
     }
 
-    public async Task Remove(PimUserEntity item)
+    public async Task Remove(PimUserEntity item, CancellationToken token = default)
     {
         var user = await userManager.FindByIdAsync(item.Id);
         if (user != null)
@@ -155,7 +155,7 @@ public class PimUserRepository(AccountsDbContext dbContext, UserManager<PimIdent
             }
         }
     }
-    public async Task UpdateUser(PimUserEntity model, PimIdentityUser item)
+    public async Task UpdateUser(PimUserEntity model, PimIdentityUser item, CancellationToken token = default)
     {
         var entry = dbContext.Entry(item);
         if (entry.State == EntityState.Detached)
@@ -168,7 +168,7 @@ public class PimUserRepository(AccountsDbContext dbContext, UserManager<PimIdent
             throw new Exception(result.Errors.FirstOrDefault()?.Code);
         }
     }
-    public Task Modify(PimUserEntity item, PimIdentityUser original)
+    public Task Modify(PimUserEntity item, PimIdentityUser original, CancellationToken token = default)
     {
         var modified = mapper.Map<PimIdentityUser>(item);
         if (modified.UserClaims != null)

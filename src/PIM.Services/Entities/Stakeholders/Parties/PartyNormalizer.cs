@@ -7,16 +7,16 @@ namespace PIM.Services.Entities.Stakeholders.Parties;
 
 public class PartyNormalizer(ContactDataNormalizer contactDataNormalizer, AddressNormalizer addressNormalizer) : EntityNormalizerBase<Party>
 {
-    public override async Task HandleNormalize(Party item)
+    public override async Task HandleNormalize(Party item, CancellationToken token = default)
     {
-        await base.HandleNormalize(item);
+        await base.HandleNormalize(item, token);
 
         var contentEntries = new List<string?> { item.NormalizedTitle };
 
         // ContactData
         if (item.ContactData?.Any() == true)
         {
-            await contactDataNormalizer.HandleNormalizeMany(item.ContactData);
+            await contactDataNormalizer.HandleNormalizeMany(item.ContactData, token);
         }
         if (item.ContactData?.Any() == true)
         {
