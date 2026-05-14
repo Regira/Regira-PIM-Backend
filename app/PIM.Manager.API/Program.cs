@@ -79,6 +79,7 @@ try
         .AddAdminServices(builder.Configuration)
         .AddPimServices(builder.Configuration, PimAppTypes.Manager);
 
+    //builder.Services.AddSingleton(builder.Services);
     //builder.Services
     //    .AddFastEndpoints();
 
@@ -117,7 +118,8 @@ try
         {
             endpoints.MapControllers()
                 .RequireAuthorization(PimPolicies.AdminOrEditor);
-        });
+        })
+        ;
 
     //app.MapFastEndpoints();
     //app.MapEntityEndpoints();

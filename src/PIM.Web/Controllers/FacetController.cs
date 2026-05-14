@@ -9,8 +9,8 @@ using System.Diagnostics;
 namespace PIM.Web.Controllers;
 
 [ApiController, Route("facets")]
-public class FacetController(IFacetService service) : ControllerBase
-//: EntityControllerBase<Facet, FacetSearchObject, EntitySortBy, FacetIncludes, FacetDto, FacetInputDto>
+public class FacetController(IFacetService service)
+    : EntityControllerBase<Facet, FacetSearchObject, EntitySortBy, FacetIncludes, FacetDto, FacetInputDto>
 {
     [HttpGet("ancestors")]
     public async Task<IActionResult> GetAncestors([FromQuery] IList<int> ids, [FromQuery] IList<int>? groupIds = null, int level = 9)
