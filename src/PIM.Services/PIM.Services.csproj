@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Regira.Globalization.LibPhoneNumber" Version="5.2.7" />
+	<PackageReference Include="Regira.Globalization.LibPhoneNumber" Version="5.3.1" />
   </ItemGroup>
 
 </Project>

@@ -17,11 +17,16 @@ public static class PartyServiceConfiguration
             e.AddSortBy<PartySortingQueryBuilder>();
             e.AddIncludes<PartyIncludingQueryBuilder>();
 
-            e.AddPrepper<PartyPrepper>(); // put first!
-            e.Related(x => x.ContactData, x => x.ContactData?.Prepare());
-            e.Related(x => x.Addresses, x => x.Addresses?.Prepare());
-            e.Related(x => x.ChildRelationships, x => x.ChildRelationships?.Prepare());
-            e.Related(x => x.ParentRelationships, x => x.ParentRelationships?.Prepare());
+            e.Related(item => item.ContactData, item => item.ContactData?.Prepare());
+            e.Related(item => item.Addresses, item => item.Addresses?.Prepare());
+            e.Related(
+                item => item.ChildRelationships, item => item.ChildRelationships?.Prepare(),
+                rel => rel.Related(r => r.ContactData, r => r.ContactData?.Prepare())
+            );
+            e.Related(
+                item => item.ParentRelationships, item => item.ParentRelationships?.Prepare(),
+                rel => rel.Related(r => r.ContactData, r => r.ContactData?.Prepare())
+            );
 
             e.AddNormalizer<PartyNormalizer>();
             e.HasRepository<PartyRepository>();

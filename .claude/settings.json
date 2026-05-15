@@ -1,7 +1,18 @@
 {
   "permissions": {
     "allow": [
-      "Read(//c/Users/bramv/.nuget/packages/**)"
+      "Read(//c/Users/bramv/.nuget/packages/**)",
+      "Bash(xargs grep -l \"OnModelCreating\")",
+      "Read(//c/Projects/Regira/**)",
+      "Bash(xargs grep -l \"AdjustIdForEfCore\")",
+      "Bash(xargs grep -l \"IEntityWithSerial\")",
+      "Bash(xargs grep -l \"\\\\.Related\\(\")",
+      "Bash(xargs grep -l \"RelatedEntityPrepper\\\\|RelatedPrepper\\\\|IRelated\\\\|AddRelated\")",
+      "Bash(xargs grep -rl \"Related.*Func\\\\|PrepareRelated\")",
+      "Bash(xargs grep -l \"AddPrepper\\\\|FindMatchingServices\")",
+      "Bash(xargs grep -n \"FindMatchingServices\")",
+      "Bash(xargs cat)",
+      "Bash(xargs grep -l \"UpdateRelatedCollection\")"
     ]
   }
 }
