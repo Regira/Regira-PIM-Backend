@@ -1,15 +1,15 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using PIM.Core.Constants;
+using PIM.DependencyInjection.Extensions;
+using PIM.Identity.Data;
+using PIM.Identity.DependencyInjection;
+using PIM.Shop.API.Infrastructure;
 using Regira.Office.Mail.MailGun;
 using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
-using System.Text.Json.Serialization;
-using PIM.Core.Constants;
-using PIM.Identity.Data;
-using PIM.Identity.DependencyInjection;
-using PIM.Shop.API.Infrastructure;
-using PIM.DependencyInjection.Extensions;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 

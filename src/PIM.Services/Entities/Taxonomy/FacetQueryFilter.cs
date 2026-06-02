@@ -1,6 +1,6 @@
 using PIM.Data;
 using PIM.Models.Taxonomy.Facets;
-using Regira.Entities.EFcore.QueryBuilders.Abstractions;
+using Regira.Entities.QueryBuilders.Abstractions;
 
 namespace PIM.Services.Entities.Taxonomy;
 

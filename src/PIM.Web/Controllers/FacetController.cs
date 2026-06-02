@@ -1,10 +1,10 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PIM.Models.Taxonomy.Facets;
 using PIM.Services.Entities.Taxonomy.Abstractions;
 using PIM.Web.Extensions;
 using Regira.Entities.Models;
 using Regira.Entities.Web.Controllers.Abstractions;
-using System.Diagnostics;
 
 namespace PIM.Web.Controllers;
 

@@ -1,7 +1,7 @@
-﻿using PIM.Models.Catalog.UnitTypes;
+﻿using System.ComponentModel.DataAnnotations;
+using PIM.Models.Catalog.UnitTypes;
 using Regira.Entities.Models.Abstractions;
 using Regira.Normalizing;
-using System.ComponentModel.DataAnnotations;
 
 namespace PIM.Models.Catalog.Products;
 

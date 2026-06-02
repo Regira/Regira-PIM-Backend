@@ -1,7 +1,7 @@
 using PIM.Models.Stakeholders.Parties;
 using PIM.Services.Entities.Stakeholders.Addresses;
 using PIM.Services.Entities.Stakeholders.ContactData;
-using Regira.Entities.EFcore.Normalizing.Abstractions;
+using Regira.Entities.Normalizing.Abstractions;
 
 namespace PIM.Services.Entities.Stakeholders.Parties;
 

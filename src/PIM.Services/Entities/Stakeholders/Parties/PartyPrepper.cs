@@ -2,7 +2,7 @@
 using PIM.Data;
 using PIM.Models.Stakeholders.Parties;
 using Regira.Entities.EFcore.Extensions;
-using Regira.Entities.EFcore.Preppers.Abstractions;
+using Regira.Entities.Preppers.Abstractions;
 
 namespace PIM.Services.Entities.Stakeholders.Parties;
 

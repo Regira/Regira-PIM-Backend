@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using PIM.Core.Abstractions;
 using PIM.Core.Constants;
 using PIM.Identity.Models;
-using System.Security.Claims;
 
 namespace PIM.Identity.Services;
 

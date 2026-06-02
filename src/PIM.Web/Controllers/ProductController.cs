@@ -1,10 +1,10 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PIM.Models.Catalog.Products;
 using PIM.Models.Catalog.Products.DTO;
 using PIM.Services.Entities.Catalog.Abstractions;
 using PIM.Web.Extensions;
 using Regira.Entities.Web.Controllers.Abstractions;
-using System.Diagnostics;
 
 namespace PIM.Web.Controllers;
 

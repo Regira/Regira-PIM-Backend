@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Regira.Entities.DependencyInjection" Version="5.4.2" />
-	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="5.4.2" />
-	<PackageReference Include="Regira.Security.Authentication.Web" Version="5.4.1" />
+	<PackageReference Include="Regira.Entities.DependencyInjection" Version="5.5.0" />
+	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="5.5.0" />
+	<PackageReference Include="Regira.Security.Authentication.Web" Version="5.4.3" />
   </ItemGroup>
 
   <ItemGroup>

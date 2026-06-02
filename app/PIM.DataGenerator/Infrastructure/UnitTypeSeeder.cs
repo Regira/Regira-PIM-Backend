@@ -1,9 +1,9 @@
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.Extensions.Logging;
 using PIM.Models.Catalog.UnitTypes;
 using Regira.Entities.Services.Abstractions;
-using System.Globalization;
 
 namespace PIM.DataGenerator.Infrastructure;
 

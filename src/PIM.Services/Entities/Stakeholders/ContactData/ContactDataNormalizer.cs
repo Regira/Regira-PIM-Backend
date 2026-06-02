@@ -1,5 +1,5 @@
 ﻿using PIM.Models.Stakeholders.ContactData;
-using Regira.Entities.EFcore.Normalizing.Abstractions;
+using Regira.Entities.Normalizing.Abstractions;
 using Regira.Globalization.LibPhoneNumber;
 using Regira.Normalizing.Abstractions;
 

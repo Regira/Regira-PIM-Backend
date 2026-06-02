@@ -3,7 +3,7 @@ using PIM.Data;
 using PIM.Models.Catalog.Products;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Taxonomy.Facets;
-using Regira.Entities.EFcore.Normalizing.Abstractions;
+using Regira.Entities.Normalizing.Abstractions;
 using Regira.Normalizing.Abstractions;
 
 namespace PIM.Services.Entities.Catalog.Products;

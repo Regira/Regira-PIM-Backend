@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using FastEndpoints;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PIM.Admin.API.Infrastructure;
@@ -10,7 +11,6 @@ using Regira.Office.Mail.MailGun;
 using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
-using System.Text.Json.Serialization;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 

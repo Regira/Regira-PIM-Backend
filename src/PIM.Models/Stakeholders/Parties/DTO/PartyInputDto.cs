@@ -1,8 +1,8 @@
-﻿using PIM.Core.Constants;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using PIM.Core.Constants;
 using PIM.Models.Stakeholders.Addresses;
 using PIM.Models.Stakeholders.ContactData;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace PIM.Models.Stakeholders.Parties.DTO;
 

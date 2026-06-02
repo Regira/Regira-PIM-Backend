@@ -1,6 +1,6 @@
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
-using System.Globalization;
 
 namespace PIM.DataGenerator.Infrastructure;
 

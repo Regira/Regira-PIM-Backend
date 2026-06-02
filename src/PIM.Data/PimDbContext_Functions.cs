@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using PIM.Models.Catalog.Products;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Taxonomy.Facets;
-using System.Reflection;
 
 namespace PIM.Data;
 

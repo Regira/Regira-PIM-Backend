@@ -1,4 +1,4 @@
-﻿using Regira.Entities.EFcore.QueryBuilders.Abstractions;
+﻿using Regira.Entities.QueryBuilders.Abstractions;
 
 namespace PIM.Identity.Models;
 

@@ -1,3 +1,4 @@
+using System.Globalization;
 using Bogus;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -9,7 +10,6 @@ using PIM.Models.Taxonomy.Facets;
 using PIM.Services.Entities.Taxonomy.Abstractions;
 using Regira.Entities.Models;
 using Regira.Entities.Services.Abstractions;
-using System.Globalization;
 
 namespace PIM.DataGenerator.Infrastructure;
 

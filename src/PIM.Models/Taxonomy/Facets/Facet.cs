@@ -1,7 +1,7 @@
-using Regira.Entities.Models.Abstractions;
-using Regira.Normalizing;
 using System.ComponentModel.DataAnnotations;
 using PIM.Models.Taxonomy.FacetGroupFacets;
+using Regira.Entities.Models.Abstractions;
+using Regira.Normalizing;
 
 namespace PIM.Models.Taxonomy.Facets;
 
