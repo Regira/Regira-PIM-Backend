@@ -1,4 +1,3 @@
-using System.Globalization;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +8,7 @@ using PIM.DependencyInjection.Extensions;
 using Regira.DAL.EFcore.Services;
 using Regira.Entities.EFcore.Normalizing;
 using Regira.Entities.EFcore.Primers;
+using System.Globalization;
 
 namespace PIM.API.Tests;
 
@@ -63,7 +63,7 @@ public class TestFixture
                     .AddAutoTruncateInterceptors();
             })
             // Entity Services
-            .AddEntityServices();
+            .AddEntityServices(null!);
 
         ServiceProvider = services.BuildServiceProvider();
     }

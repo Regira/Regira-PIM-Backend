@@ -47,15 +47,16 @@ public static class ServiceCollectionExtensions
                             .AddAutoTruncateInterceptors()
                             .ConfigureWarnings(w => w.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
                 })
-                .AddEntityServices();
+                .AddEntityServices(config);
             return services;
         }
 
-        public IServiceCollection AddEntityServices()
+        public IServiceCollection AddEntityServices(IConfiguration config)
         {
             services
                 .UseEntities<PimDbContext>(options =>
                 {
+                    options.LicenseKey = config["Regira:LicenseKey"];
                     options.UseDefaults();
                     options.UseMapsterMapping(cfg =>
                     {

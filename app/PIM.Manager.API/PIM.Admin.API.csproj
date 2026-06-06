@@ -16,15 +16,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Regira.Entities.Web.FastEndpoints" Version="5.5.0" />
+		<PackageReference Include="Regira.Entities.Web.FastEndpoints" Version="6.0.0" />
 		<PackageReference Include="Serilog.AspNetCore" Version="*" />
 		<PackageReference Include="Serilog.Settings.Configuration" Version="*" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="*" />
 		<PackageReference Include="Serilog.Sinks.File" Version="*" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="*" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="*" />
-		<PackageReference Include="Regira.Security.Authentication.Web" Version="5.4.3" />
-		<PackageReference Include="Scalar.AspNetCore" Version="2.14.11" />
+		<PackageReference Include="Regira.Security.Authentication.Web" Version="6.0.0" />
+		<PackageReference Include="Scalar.AspNetCore" Version="2.14.14" />
 	</ItemGroup>
 
 	<ItemGroup>

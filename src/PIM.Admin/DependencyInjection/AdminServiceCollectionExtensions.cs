@@ -32,15 +32,16 @@ public static class AdminServiceCollectionExtensions
                         .AddNormalizerInterceptors(sp)
                         .AddAutoTruncateInterceptors();
                 })
-                .AddEntityServices();
+                .AddEntityServices(config);
             return services;
         }
 
-        public IServiceCollection AddEntityServices()
+        public IServiceCollection AddEntityServices(IConfiguration config)
         {
             services
                 .UseEntities<AccountsDbContext>(options =>
                 {
+                    options.LicenseKey = config["Regira:LicenseKey"];
                     options.UseDefaults();
                     options.UseMapsterMapping();
                 })
