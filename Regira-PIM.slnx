@@ -2,18 +2,20 @@
   <Folder Name="/.github/" />
   <Folder Name="/app/" />
   <Folder Name="/app/APIs/">
-    <Project Path="app/PIM.Manager.API/PIM.Admin.API.csproj" Id="7f9fa34f-522f-424a-bc1d-0f6d9efe704f" />
-    <Project Path="app/PIM.Public.API/PIM.Shop.API.csproj" />
+    <Project Path="app/PIM.Manager.API/PIM.Manager.API.csproj" />
   </Folder>
   <Folder Name="/app/Data/">
     <Project Path="app/PIM.AccountDataGenerator/PIM.AccountDataGenerator.csproj" />
-    <Project Path="app/PIM.EFConsole/PIM.EFConsole.csproj" Id="54796c36-9a39-4310-b2f6-b874d9c57806" />
     <Project Path="app/PIM.DataGenerator/PIM.DataGenerator.csproj" />
+    <Project Path="app/PIM.EFConsole/PIM.EFConsole.csproj" Id="54796c36-9a39-4310-b2f6-b874d9c57806" />
   </Folder>
   <Folder Name="/Solution Items/">
+    <File Path=".gitattributes" />
     <File Path=".gitignore" />
-    <File Path="AGENTS.md" />
+    <File Path=".mcp.json" />
+    <File Path="global.json" />
     <File Path="NuGet.Config" />
+    <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/PIM.Core/PIM.Core.csproj" />
@@ -28,8 +30,5 @@
   </Folder>
   <Folder Name="/src/Identity/">
     <Project Path="src/PIM.Identity/PIM.Identity.csproj" Id="89b45eb0-405e-45b4-a75b-b846d36b7d2b" />
-  </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/PIM.API.Tests/PIM.API.Tests.csproj" />
   </Folder>
 </Solution>
