@@ -41,7 +41,6 @@ public static class AdminServiceCollectionExtensions
             services
                 .UseEntities<AccountsDbContext>(options =>
                 {
-                    options.LicenseKey = config["Regira:LicenseKey"];
                     options.UseDefaults();
                     options.UseMapsterMapping();
                 })

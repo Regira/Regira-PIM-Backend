@@ -2,7 +2,7 @@ using Regira.Entities.Models;
 
 namespace PIM.Models.Stakeholders.Parties;
 
-public class PartySearchObject : SearchObject
+public record PartySearchObject : SearchObject
 {
     public string? PartyType { get; set; }
     public string? Code { get; set; }

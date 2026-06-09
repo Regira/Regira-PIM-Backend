@@ -1,16 +1,15 @@
-using System.Text.Json.Serialization;
-using FastEndpoints;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PIM.Admin.API.Infrastructure;
 using PIM.Admin.DependencyInjection;
 using PIM.Core.Constants;
 using PIM.DependencyInjection.Extensions;
 using PIM.Identity.DependencyInjection;
-using Regira.Entities.Web.FastEndpoints.Extensions;
+using Regira.Licensing.DependencyInjection;
 using Regira.Office.Mail.MailGun;
 using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
+using System.Text.Json.Serialization;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 
@@ -76,6 +75,7 @@ try
     // .NET DI resolves the LAST registered instance, so PIM's config (which contains
     // the custom MapWith rules for abstract types like Party->PartyDto) must win.
     builder.Services
+        .UseRegira(builder.Configuration["Regira:LicenseKey"])
         .AddAdminServices(builder.Configuration)
         .AddPimServices(builder.Configuration, PimAppTypes.Manager);
 

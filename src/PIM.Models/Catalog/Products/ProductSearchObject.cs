@@ -2,7 +2,7 @@ using Regira.Entities.Models;
 
 namespace PIM.Models.Catalog.Products;
 
-public class ProductSearchObject : SearchObject
+public record ProductSearchObject : SearchObject
 {
     public string? Title { get; set; }
 

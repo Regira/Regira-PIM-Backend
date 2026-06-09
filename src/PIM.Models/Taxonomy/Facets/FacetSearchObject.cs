@@ -2,7 +2,7 @@ using Regira.Entities.Models;
 
 namespace PIM.Models.Taxonomy.Facets;
 
-public class FacetSearchObject : SearchObject
+public record FacetSearchObject : SearchObject
 {
     public ICollection<int>? ParentId { get; set; }
     public ICollection<int>? ChildId { get; set; }

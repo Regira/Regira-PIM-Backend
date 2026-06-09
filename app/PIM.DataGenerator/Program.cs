@@ -9,6 +9,7 @@ using PIM.Data;
 using PIM.DataGenerator.Infrastructure;
 using PIM.DependencyInjection.Extensions;
 using PIM.Identity.DependencyInjection;
+using Regira.Licensing.DependencyInjection;
 using Regira.Office.Mail.MailGun;
 using Serilog;
 
@@ -30,6 +31,7 @@ try
         .AddPimAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection("MailGun").Get<MailgunConfig>()!));
 
     builder.Services
+        .UseRegira(builder.Configuration["Regira:LicenseKey"])
         .AddPimServices(builder.Configuration, PimAppTypes.System)
         .AddAdminServices(builder.Configuration)
         .AddTransient<StakeholderSeeder>()

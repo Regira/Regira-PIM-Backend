@@ -56,7 +56,6 @@ public static class ServiceCollectionExtensions
             services
                 .UseEntities<PimDbContext>(options =>
                 {
-                    options.LicenseKey = config["Regira:LicenseKey"];
                     options.UseDefaults();
                     options.UseMapsterMapping(cfg =>
                     {
