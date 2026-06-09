@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using PIM.Core.Constants;
@@ -6,10 +5,12 @@ using PIM.DependencyInjection.Extensions;
 using PIM.Identity.Data;
 using PIM.Identity.DependencyInjection;
 using PIM.Shop.API.Infrastructure;
+using Regira.Licensing.DependencyInjection;
 using Regira.Office.Mail.MailGun;
 using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
+using System.Text.Json.Serialization;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 
@@ -74,6 +75,7 @@ try
                 ? options.UseSqlServer(sqlServerConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                 : options.UseSqlite(sqliteConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
         })
+        .UseRegira(builder.Configuration["Regira:LicenseKey"])
         .AddPimServices(builder.Configuration, PimAppTypes.Public);
 
     // APP configuration
