@@ -1,6 +1,6 @@
 # PIM Backend
 
-A sample **Product Information Management** API built on top of the [Regira Entities](https://www.nuget.org/packages/Regira.Entities) framework.
+A sample **Product Information Management** API built on top of the [Regira Entities](https://regira.github.io/Regira-Codebase/src/Common.Entities/) framework.
 
 The project is intentionally kept close to real-world complexity — it shows how Regira Entities handles filtering, sorting, includes, DTO mapping, tree structures, and DI wiring — without hiding anything behind project-specific magic. If you are evaluating the package or looking for patterns to follow, this codebase is meant to be that reference.
 
@@ -15,14 +15,13 @@ A live instance is running at **[pim.regira.com/manager](https://pim.regira.com/
 | Layer | Technology |
 |---|---|
 | Framework | .NET 10 / ASP.NET Core |
-| ORM | Entity Framework Core (SQL Server or SQLite) |
-| Entity framework | [Regira.Entities](https://www.nuget.org/packages/Regira.Entities) v6 |
-| DTO mapping | Mapster via `Regira.Entities.Mapping.Mapster` |
-| Tree queries | `Regira.TreeList` |
+| ORM | [Entity Framework Core](https://www.nuget.org/packages/microsoft.entityframeworkcore/) (SQL Server or SQLite) |
+| DTO mapping | [Mapster](https://www.nuget.org/packages/Mapster/) via `Regira.Entities.Mapping.Mapster` |
+| Tree queries | [Regira.TreeList](https://regira.github.io/Regira-Codebase/src/TreeList/) |
 | Authentication | JWT Bearer via `Regira.Security.Authentication.Web` |
-| Email | MailGun via `Regira.Office.Mail.MailGun` |
-| API docs | OpenAPI + Scalar |
-| Logging | Serilog |
+| Email | [MailGun](https://www.mailgun.com/) via `Regira.Office.Mail.MailGun` |
+| API docs | OpenAPI + [Scalar](https://www.nuget.org/packages/Scalar.AspNetCore) |
+| Logging | [Serilog](https://www.nuget.org/packages/Serilog) |
 
 ---
 
