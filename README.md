@@ -6,7 +6,16 @@ The project is intentionally kept close to real-world complexity — it shows ho
 
 The sample dataset is a **worldwide recipe book**: ~195 countries, hundreds of ingredients, and traditional dishes seeded from CSV files. It could just as well be a product catalogue, a parts inventory, or a digital library. The domain is flexible by design.
 
-A live instance is running at **[pim.regira.com/manager](https://pim.regira.com/manager/)**, backed by the front-end app at [Regira/Regira-PIM-Admin](https://github.com/Regira/Regira-PIM-Admin).
+A live instance is running, backed by a separate front-end app.
+
+### Links
+
+| | |
+|---|---|
+| 🏢 Regira | [www.regira.com](https://www.regira.com) |
+| 📚 Regira Entities | [Regira Entities framework](https://regira.github.io/Regira-Codebase/src/Common.Entities/) |
+| 🌐 Live demo | [pim.regira.com/manager](https://pim.regira.com/manager/) |
+| 💻 Front-end app | [Regira/Regira-PIM-Admin](https://github.com/Regira/Regira-PIM-Admin) |
 
 ---
 
