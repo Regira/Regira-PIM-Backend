@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PIM.Models.Countries;
 using PIM.Services.Entities.Countries;
-using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
+using Regira.Entities.DependencyInjection.ServiceCollections.Abstractions;
 
 namespace PIM.DependencyInjection.Countries;
 

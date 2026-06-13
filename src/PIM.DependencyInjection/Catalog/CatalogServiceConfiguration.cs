@@ -1,6 +1,6 @@
 ﻿using PIM.Data;
 using PIM.DependencyInjection.Taxonomy;
-using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
+using Regira.Entities.DependencyInjection.ServiceCollections.Abstractions;
 
 namespace PIM.DependencyInjection.Catalog;
 

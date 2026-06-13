@@ -18,7 +18,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Regira.Entities.Web.FastEndpoints" Version="6.0.0" />
 		<PackageReference Include="Regira.Licensing" Version="6.0.0" />
 		<PackageReference Include="Regira.Security.Authentication.Web" Version="6.0.0" />
 	</ItemGroup>

@@ -2,7 +2,7 @@ using PIM.Data;
 using PIM.Models.Catalog.Products;
 using PIM.Services.Entities.Catalog.Abstractions;
 using PIM.Services.Entities.Catalog.Products;
-using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
+using Regira.Entities.DependencyInjection.ServiceCollections.Abstractions;
 using Regira.Entities.Extensions;
 
 namespace PIM.DependencyInjection.Catalog;

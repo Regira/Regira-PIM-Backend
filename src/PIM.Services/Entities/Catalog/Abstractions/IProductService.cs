@@ -1,4 +1,3 @@
-using PIM.Data;
 using PIM.Models.Catalog.Products;
 using Regira.Entities.Services.Abstractions;
 using Regira.TreeList;

@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PIM.Data;
 using PIM.Services.Entities.Stakeholders.Addresses;
 using PIM.Services.Entities.Stakeholders.ContactData;
-using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
+using Regira.Entities.DependencyInjection.ServiceCollections.Abstractions;
 using Regira.Globalization.LibPhoneNumber;
 
 namespace PIM.DependencyInjection.Stakeholders;

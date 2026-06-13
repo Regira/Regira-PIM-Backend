@@ -3,7 +3,7 @@ using PIM.Data;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Services.Entities.Stakeholders.Abstractions;
 using PIM.Services.Entities.Stakeholders.Parties;
-using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
+using Regira.Entities.DependencyInjection.ServiceCollections.Abstractions;
 
 namespace PIM.DependencyInjection.Stakeholders;
 

@@ -1,6 +1,6 @@
 using PIM.Data;
 using PIM.Models.Catalog.UnitTypes;
-using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
+using Regira.Entities.DependencyInjection.ServiceCollections.Abstractions;
 
 namespace PIM.DependencyInjection.Catalog;
 

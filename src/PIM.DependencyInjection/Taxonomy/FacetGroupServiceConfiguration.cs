@@ -1,7 +1,7 @@
 using PIM.Data;
 using PIM.Models.Taxonomy.FacetGroups;
 using PIM.Services.Entities.Taxonomy;
-using Regira.Entities.DependencyInjection.ServiceBuilders.Abstractions;
+using Regira.Entities.DependencyInjection.ServiceCollections.Abstractions;
 using Regira.Entities.Models;
 
 namespace PIM.DependencyInjection.Taxonomy;
