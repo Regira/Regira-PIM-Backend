@@ -2,17 +2,15 @@
 
 A sample **Product Information Management** API built on top of the [Regira Entities](https://regira.github.io/Regira-Codebase/src/Common.Entities/) framework.
 
-The project is intentionally kept close to real-world complexity — it shows how Regira Entities handles filtering, sorting, includes, DTO mapping, tree structures, and DI wiring — without hiding anything behind project-specific magic. If you are evaluating the package or looking for patterns to follow, this codebase is meant to be that reference.
+The project is intentionally kept close to real-world complexity — it shows how Regira Entities handles filtering, sorting, includes, DTO mapping, tree structures, and DI wiring — without hiding anything behind project-specific magic.
 
 The sample dataset is a **worldwide recipe book**: ~195 countries, hundreds of ingredients, and traditional dishes seeded from CSV files. It could just as well be a product catalogue, a parts inventory, or a digital library. The domain is flexible by design.
 
 A live instance is running, backed by a separate front-end app.
 
-### Links
-
-| | |
+| Site | URL |
 |---|---|
-| 🏢 Regira | [www.regira.com](https://www.regira.com) |
+| 🏢 Regira | [regira.com](https://www.regira.com) |
 | 📚 Regira Entities | [Regira Entities framework](https://regira.github.io/Regira-Codebase/src/Common.Entities/) |
 | 🌐 Live demo | [pim.regira.com/manager](https://pim.regira.com/manager/) |
 | 💻 Front-end app | [Regira/Regira-PIM-Admin](https://github.com/Regira/Regira-PIM-Admin) |
