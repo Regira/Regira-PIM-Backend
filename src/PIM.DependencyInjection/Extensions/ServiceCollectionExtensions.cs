@@ -57,6 +57,8 @@ public static class ServiceCollectionExtensions
                 .UseEntities<PimDbContext>(options =>
                 {
                     options.UseDefaults();
+                    // allow get all items
+                    options.SetPageSize();
                     options.UseMapsterMapping(cfg =>
                     {
                         cfg.ForType<Party, PartyDto>()

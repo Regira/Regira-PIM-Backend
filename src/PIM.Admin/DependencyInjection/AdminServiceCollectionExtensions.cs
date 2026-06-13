@@ -42,6 +42,8 @@ public static class AdminServiceCollectionExtensions
                 .UseEntities<AccountsDbContext>(options =>
                 {
                     options.UseDefaults();
+                    // allow get all items
+                    options.SetPageSize();
                     options.UseMapsterMapping();
                 })
                 .AddPimUsers();
