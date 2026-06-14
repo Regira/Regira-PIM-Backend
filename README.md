@@ -15,6 +15,8 @@ A live instance is running, backed by a separate front-end app.
 | 🌐 Live demo | [pim.regira.com/manager](https://pim.regira.com/manager/) |
 | 💻 Front-end app | [Regira/Regira-PIM-Admin](https://github.com/Regira/Regira-PIM-Admin) |
 
+> ⚠️ **A valid license for Regira Entities is required to run this example.** You can request one — including a free trial — at [regira.com/licensing?product=regira.entities](https://regira.com/licensing?product=regira.entities#request). See [License](#license) for details.
+
 ---
 
 ## Stack
@@ -246,7 +248,7 @@ dotnet run --project app/PIM.Manager.API
 # http://localhost:<port>/scalar
 ```
 
-Set `Regira:LicenseKey` in `appsettings.json` (or as an environment variable). A free key is available at [regira.com/licensing](https://regira.com/licensing). Set `REGIRA_LICENSE_SKIP_VALIDATION=true` to bypass validation during local development.
+> ⚠️ **A license for Regira Entities is required to run this example.** Set `Regira:LicenseKey` in `appsettings.json` (or as an environment variable). You can request a license — including a free trial — at [regira.com/licensing?product=regira.entities](https://regira.com/licensing?product=regira.entities#request).
 
 Switch to SQL Server by replacing the `ConnectionStrings:PimDb` value and the EF provider in `appsettings.json`.
 
@@ -279,3 +281,20 @@ Obtain a token via `POST /account/login`. The `AccountsDbContext` runs in a sepa
 | [`Regira.DAL.EFcore.Services`](https://www.nuget.org/packages/Regira.DAL.EFcore.Services) | Low-level data-access helpers |
 | [`Regira.Security.Authentication.Web`](https://www.nuget.org/packages/Regira.Security.Authentication.Web) | JWT bearer setup |
 | [`Regira.Office.Mail.MailGun`](https://www.nuget.org/packages/Regira.Office.Mail.MailGun) | Transactional email |
+
+---
+
+## License
+
+This example is built on the **Regira Entities** framework, which requires a valid license to run. Without a license key the API will not start (unless validation is explicitly skipped during local development).
+
+You can request a license — including a **free trial** — here:
+
+➡️ **[regira.com/licensing?product=regira.entities](https://regira.com/licensing?product=regira.entities#request)**
+
+Once you have a key, provide it via either:
+
+- `Regira:LicenseKey` in `appsettings.json`, or
+- the `Regira__LicenseKey` environment variable.
+
+For local development only, set `REGIRA_LICENSE_SKIP_VALIDATION=true` to bypass validation.
