@@ -31,7 +31,8 @@ public static class PartyServiceConfiguration
             e.AddNormalizer<PartyNormalizer>();
             e.HasRepository<PartyRepository>();
             e.AddTransient<IPartyRepository, PartyRepository>();
-            e.AddTransient<IPartyService, PartyRepository>();
+            e.AddTransient<IPartyService, PartyManager>();
+            e.UseEntityService<PartyManager>();
         });
 
         return services;

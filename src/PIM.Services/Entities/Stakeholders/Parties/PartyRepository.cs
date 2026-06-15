@@ -8,8 +8,7 @@ using Regira.TreeList;
 
 namespace PIM.Services.Entities.Stakeholders.Parties;
 
-public class PartyRepository(
-    PimDbContext dbContext,
+public class PartyRepository(PimDbContext dbContext,
     IEntityReadService<Party, int, PartySearchObject, PartySortBy, PartyIncludes> readService,
     IEntityWriteService<Party, int> writeService)
     : EntityRepository<Party, PartySearchObject, PartySortBy, PartyIncludes>(readService, writeService), IPartyRepository

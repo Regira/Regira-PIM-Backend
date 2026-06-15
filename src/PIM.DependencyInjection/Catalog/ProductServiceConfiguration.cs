@@ -1,3 +1,4 @@
+using FluentValidation;
 using PIM.Data;
 using PIM.Models.Catalog.Products;
 using PIM.Services.Entities.Catalog.Abstractions;
@@ -23,10 +24,12 @@ public static class ProductServiceConfiguration
 
             e.AddNormalizer<ProductNormalizer>();
 
+            e.AddTransient<IValidator<Product>, ProductValidator>();
+
             e.HasRepository<ProductRepository>();
             e.AddTransient<IProductRepository, ProductRepository>();
-            e.AddTransient<IProductService, ProductValidateManager>();
-            e.UseEntityService<ProductValidateManager>();
+            e.AddTransient<IProductService, ProductManager>();
+            e.UseEntityService<ProductManager>();
         });
         return services;
     }
