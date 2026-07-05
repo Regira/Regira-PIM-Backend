@@ -39,7 +39,7 @@ public class CountryRepository(ICultureContext cultureContext) : IEntityService<
         var itemQuery = query.Select(x => Convert(x));
         if (pagingInfo?.PageSize > 0)
         {
-            itemQuery = itemQuery.PageItems(pagingInfo.PageSize, pagingInfo.Page - 1);
+            itemQuery = itemQuery.PageItems(pagingInfo.PageSize??0, pagingInfo.Page - 1);
         }
         var items = itemQuery.ToList();
         return Task.FromResult(items as IList<CountryEntity>);
