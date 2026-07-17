@@ -36,16 +36,15 @@ public static class ServiceCollectionExtensions
                 .AddScoped<ICultureContext, CultureContext>()
                 .AddScoped<IUserContext, UserContext>()
                 // DbContext
-                .AddDbContext<PimDbContext>((sp, options) =>
+                .AddDbContext<PimDbContext>((_, options) =>
                 {
+                    // Primer/normalizer/auto-truncate interceptors + the UTC date convention are auto-wired by
+                    // UseEntities<PimDbContext>().UseDefaults() below (same context type → the wiring applies).
                     var dbBuilder = !string.IsNullOrWhiteSpace(sqlServerConnectionString)
                         ? options.UseSqlServer(sqlServerConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                         : options.UseSqlite(sqliteConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
                     dbBuilder
-                            .AddPrimerInterceptors(sp)
-                            .AddNormalizerInterceptors(sp)
-                            .AddAutoTruncateInterceptors()
-                            .ConfigureWarnings(w => w.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
+                        .ConfigureWarnings(w => w.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
                 })
                 .AddEntityServices(config);
             return services;

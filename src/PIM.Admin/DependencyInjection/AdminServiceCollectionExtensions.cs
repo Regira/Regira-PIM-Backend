@@ -22,15 +22,13 @@ public static class AdminServiceCollectionExtensions
 
             services
                 .AddHttpContextAccessor()
-                .AddDbContext<AccountsDbContext>((sp, options) =>
+                .AddDbContext<AccountsDbContext>((_, options) =>
                 {
-                    var dbBuilder = !string.IsNullOrWhiteSpace(sqlServerConnectionString)
-                        ? options.UseSqlServer(sqlServerConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
-                        : options.UseSqlite(sqliteConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
-                    dbBuilder
-                        .AddPrimerInterceptors(sp)
-                        .AddNormalizerInterceptors(sp)
-                        .AddAutoTruncateInterceptors();
+                    // Interceptors + UTC convention are auto-wired by UseEntities<AccountsDbContext>().UseDefaults().
+                    if (!string.IsNullOrWhiteSpace(sqlServerConnectionString))
+                        options.UseSqlServer(sqlServerConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+                    else
+                        options.UseSqlite(sqliteConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
                 })
                 .AddEntityServices(config);
             return services;

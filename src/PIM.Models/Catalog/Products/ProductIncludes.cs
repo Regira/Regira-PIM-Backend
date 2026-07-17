@@ -4,8 +4,8 @@ namespace PIM.Models.Catalog.Products;
 public enum ProductIncludes
 {
     None = 0,
-    Facets = 1 << 1,
-    Components = 1 << 2,
-    Suppliers = 1 << 3,
+    Facets = 1 << 0,
+    Components = 1 << 1,
+    Suppliers = 1 << 2,
     All = Facets | Components | Suppliers
 }
