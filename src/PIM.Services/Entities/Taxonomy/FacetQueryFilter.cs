@@ -20,12 +20,23 @@ public class FacetQueryFilter(PimDbContext dbContext) : FilteredQueryBuilderBase
         if (so.ChildGroupId?.Any() == true)
             query = query.Where(x => x.FacetChildGroups!.Any(fg => so.ChildGroupId.Contains(fg.FacetGroupId)));
 
-        if (so.IsRoot != null)
-            query = query.Where(x => so.IsRoot == !x.ParentEntities!.Any());
-        if (so.IsParent != null)
-            query = query.Where(x => so.IsParent == (x.ChildEntities!.Any() || x.FacetChildGroups!.Any()));
-        if (so.IsChild != null)
-            query = query.Where(x => so.IsChild == (x.ParentEntities!.Any() || x.FacetParentGroups!.Any()));
+        // Branch on the flag instead of comparing it to the expression: comparing emits
+        // "@flag = CASE WHEN EXISTS (...) THEN 1 ELSE 0 END", which the parameter stops SQL Server
+        // folding, so it evaluates the subquery per row rather than running an anti-semi-join.
+        if (so.IsRoot == true)
+            query = query.Where(x => !x.ParentEntities!.Any());
+        else if (so.IsRoot == false)
+            query = query.Where(x => x.ParentEntities!.Any());
+
+        if (so.IsParent == true)
+            query = query.Where(x => x.ChildEntities!.Any() || x.FacetChildGroups!.Any());
+        else if (so.IsParent == false)
+            query = query.Where(x => !x.ChildEntities!.Any() && !x.FacetChildGroups!.Any());
+
+        if (so.IsChild == true)
+            query = query.Where(x => x.ParentEntities!.Any() || x.FacetParentGroups!.Any());
+        else if (so.IsChild == false)
+            query = query.Where(x => !x.ParentEntities!.Any() && !x.FacetParentGroups!.Any());
 
         if (so.AncestorId?.Any() == true)
         {
