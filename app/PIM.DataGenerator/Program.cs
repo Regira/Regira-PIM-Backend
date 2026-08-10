@@ -24,8 +24,7 @@ try
     var builder = Host.CreateApplicationBuilder(args);
 
     // Source selection: the hand-built recipe catalog, or the Open Food Facts dump.
-    var useOpenFoodFacts = true;
-    //useOpenFoodFacts = args.Contains("--off", StringComparer.OrdinalIgnoreCase)        || string.Equals(builder.Configuration["DataSource"], "OpenFoodFacts", StringComparison.OrdinalIgnoreCase);
+    var useOpenFoodFacts = args.Contains("--off", StringComparer.OrdinalIgnoreCase)        || string.Equals(builder.Configuration["DataSource"], "OpenFoodFacts", StringComparison.OrdinalIgnoreCase);
 
     builder.Configuration
         .AddUserSecrets(typeof(Program).Assembly, true);
