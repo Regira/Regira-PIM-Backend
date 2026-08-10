@@ -26,12 +26,23 @@ public class PartyQueryFilter(PimDbContext dbContext) : FilteredQueryBuilderBase
                 x.ChildRelationships!.Any(r => so.RelationshipId.Contains(r.RelationshipTypeId)) ||
                 x.ParentRelationships!.Any(r => so.RelationshipId.Contains(r.RelationshipTypeId)));
 
-        if (so.IsRoot.HasValue)
-            query = query.Where(x => so.IsRoot.Value == !x.ParentRelationships!.Any());
-        if (so.IsParent.HasValue)
-            query = query.Where(x => so.IsParent.Value == x.ChildRelationships!.Any());
-        if (so.IsChild.HasValue)
-            query = query.Where(x => so.IsChild.Value == x.ParentRelationships!.Any());
+        // Branch on the flag instead of comparing it to the expression: comparing emits
+        // "@flag = CASE WHEN EXISTS (...) THEN 1 ELSE 0 END", which the parameter stops SQL Server
+        // folding, so it evaluates the subquery per row rather than running an anti-semi-join.
+        if (so.IsRoot == true)
+            query = query.Where(x => !x.ParentRelationships!.Any());
+        else if (so.IsRoot == false)
+            query = query.Where(x => x.ParentRelationships!.Any());
+
+        if (so.IsParent == true)
+            query = query.Where(x => x.ChildRelationships!.Any());
+        else if (so.IsParent == false)
+            query = query.Where(x => !x.ChildRelationships!.Any());
+
+        if (so.IsChild == true)
+            query = query.Where(x => x.ParentRelationships!.Any());
+        else if (so.IsChild == false)
+            query = query.Where(x => !x.ParentRelationships!.Any());
 
         if (so.AncestorId?.Any() == true)
             query = query.Where(x => dbContext.GetPartyOffspring(so.AncestorId, 9).Any(o => o.ChildId == x.Id));
