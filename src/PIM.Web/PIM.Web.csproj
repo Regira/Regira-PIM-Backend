@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Regira.Entities.DependencyInjection" Version="6.0.0" />
-	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="6.0.0" />
-	<PackageReference Include="Regira.Entities.Web" Version="6.0.0" />
-	<PackageReference Include="Regira.Security.Authentication.Web" Version="6.0.0" />
+	<PackageReference Include="Regira.Entities.DependencyInjection" Version="6.0.2" />
+	<PackageReference Include="Regira.Entities.Mapping.Mapster" Version="6.0.2" />
+	<PackageReference Include="Regira.Entities.Web" Version="6.0.2" />
+	<PackageReference Include="Regira.Security.Authentication.Web" Version="6.0.2" />
   </ItemGroup>
 
   <ItemGroup>

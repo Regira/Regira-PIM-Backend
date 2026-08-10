@@ -3,10 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PIM.Identity.Data;
 using PIM.Identity.DependencyInjection;
-using Regira.DAL.EFcore.Services;
 using Regira.Entities.DependencyInjection.Extensions;
-using Regira.Entities.EFcore.Normalizing;
-using Regira.Entities.EFcore.Primers;
 using Regira.Entities.Mapping.Mapster;
 
 namespace PIM.Admin.DependencyInjection;

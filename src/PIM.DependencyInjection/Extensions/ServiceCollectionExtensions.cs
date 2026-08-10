@@ -12,10 +12,7 @@ using PIM.DependencyInjection.Stakeholders;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Stakeholders.Parties.DTO;
 using PIM.Web.Models;
-using Regira.DAL.EFcore.Services;
 using Regira.Entities.DependencyInjection.Extensions;
-using Regira.Entities.EFcore.Normalizing;
-using Regira.Entities.EFcore.Primers;
 using Regira.Entities.Mapping.Mapster;
 
 namespace PIM.DependencyInjection.Extensions;
@@ -36,7 +33,7 @@ public static class ServiceCollectionExtensions
                 .AddScoped<ICultureContext, CultureContext>()
                 .AddScoped<IUserContext, UserContext>()
                 // DbContext
-                .AddDbContext<PimDbContext>((_, options) =>
+                .AddDbContext<PimDbContext>(options =>
                 {
                     // Primer/normalizer/auto-truncate interceptors + the UTC date convention are auto-wired by
                     // UseEntities<PimDbContext>().UseDefaults() below (same context type → the wiring applies).
@@ -44,7 +41,13 @@ public static class ServiceCollectionExtensions
                         ? options.UseSqlServer(sqlServerConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
                         : options.UseSqlite(sqliteConnectionString, db => db.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
                     dbBuilder
-                        .ConfigureWarnings(w => w.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
+                        .ConfigureWarnings(w => w
+                            .Ignore(CoreEventId.NavigationBaseIncludeIgnored)
+                            // Product/Party/Facet are IArchivable aggregate parents with required dependents
+                            // (ProductComponent, PartyRelationship, FacetLink, ...). Archiving a parent taking its
+                            // children along is the intent, and none of those dependents is separately registered,
+                            // so no list can report a count its own page does not contain.
+                            .Ignore(CoreEventId.PossibleIncorrectRequiredNavigationWithQueryFilterInteractionWarning));
                 })
                 .AddEntityServices(config);
             return services;

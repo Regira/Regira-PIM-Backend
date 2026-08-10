@@ -7,6 +7,8 @@ public class CategoryCoreDto
     public string? Description { get; set; }
     public DateTime Created { get; set; }
     public DateTime? LastModified { get; set; }
+    // IArchivable: DELETE soft-deletes, so the flag must round-trip or the row cannot be restored.
+    public bool IsArchived { get; set; }
 }
 
 public class CategoryDto : CategoryCoreDto

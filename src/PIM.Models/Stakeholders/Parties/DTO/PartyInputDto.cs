@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using PIM.Core.Constants;
 using PIM.Models.Stakeholders.Addresses;
@@ -18,6 +18,8 @@ public class PartyInputDto
 
     [MaxLength(2048)]
     public string? Description { get; set; }
+    // Must stay on the input DTO: it is the only way a payload can clear the archived flag (restore).
+    public bool IsArchived { get; set; }
 
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }

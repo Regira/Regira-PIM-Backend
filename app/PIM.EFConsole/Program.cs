@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PIM.Data;
+using Regira.Entities.EFcore.Extensions;
 
 Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration((_, builder) =>
@@ -18,7 +19,9 @@ Host.CreateDefaultBuilder(args)
         var config = context.Configuration;
         var connectionString = config.GetConnectionString("PIM");
 
-        services.AddDbContext<PimDbContext>(options => options.UseSqlite(connectionString));
+        // PimDbContext holds IArchivable entities but is registered here without UseEntities(), so
+        // DbContextWiring.ArchivedQueryFilter never reaches it — add the filter to the options directly.
+        services.AddDbContext<PimDbContext>(options => options.UseSqlite(connectionString).AddArchivedQueryFilter());
     })
     .Build();
 
