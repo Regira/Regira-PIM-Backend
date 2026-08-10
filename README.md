@@ -1,6 +1,6 @@
 # PIM Backend
 
-A sample **Product Information Management** API built on top of the [Regira Entities](https://regira.github.io/Regira-Codebase/src/Common.Entities/) framework.
+A sample **Product Information Management** API built on top of the [Regira Entities](https://regira.github.io/Regira-Packages/src/Common.Entities/) framework.
 
 The project is intentionally kept close to real-world complexity — it shows how Regira Entities handles filtering, sorting, includes, DTO mapping, tree structures, and DI wiring — without hiding anything behind project-specific magic.
 
@@ -11,7 +11,7 @@ A live instance is running, backed by a separate front-end app.
 | Site | URL |
 |---|---|
 | 🏢 Regira | [regira.com](https://www.regira.com) |
-| 📚 Regira Entities | [Regira Entities framework](https://regira.github.io/Regira-Codebase/src/Common.Entities/) |
+| 📚 Regira Entities | [Regira Entities framework](https://regira.github.io/Regira-Packages/src/Common.Entities/) |
 | 🌐 Live demo | [pim.regira.com/manager](https://pim.regira.com/manager/) |
 | 💻 Front-end app | [Regira/Regira-PIM-Admin](https://github.com/Regira/Regira-PIM-Admin) |
 
@@ -26,7 +26,7 @@ A live instance is running, backed by a separate front-end app.
 | Framework | .NET 10 / ASP.NET Core |
 | ORM | [Entity Framework Core](https://www.nuget.org/packages/microsoft.entityframeworkcore/) (SQL Server or SQLite) |
 | DTO mapping | [Mapster](https://www.nuget.org/packages/Mapster/) via `Regira.Entities.Mapping.Mapster` |
-| Tree queries | [Regira.TreeList](https://regira.github.io/Regira-Codebase/src/TreeList/) |
+| Tree queries | [Regira.TreeList](https://regira.github.io/Regira-Packages/src/TreeList/) |
 | Authentication | JWT Bearer via `Regira.Security.Authentication.Web` |
 | Email | [MailGun](https://www.mailgun.com/) via `Regira.Office.Mail.MailGun` |
 | API docs | OpenAPI + [Scalar](https://www.nuget.org/packages/Scalar.AspNetCore) |
@@ -278,7 +278,6 @@ Obtain a token via `POST /account/login`. The `AccountsDbContext` runs in a sepa
 | [`Regira.Entities.Mapping.Mapster`](https://www.nuget.org/packages/Regira.Entities.Mapping.Mapster) | Mapster DTO pipeline integration |
 | [`Regira.Entities.Web.Controllers.Abstractions`](https://www.nuget.org/packages/Regira.Entities.Web.Controllers.Abstractions) | `EntityControllerBase` |
 | [`Regira.TreeList`](https://www.nuget.org/packages/Regira.TreeList) | Ancestor / offspring / family tree queries |
-| [`Regira.DAL.EFcore.Services`](https://www.nuget.org/packages/Regira.DAL.EFcore.Services) | Low-level data-access helpers |
 | [`Regira.Security.Authentication.Web`](https://www.nuget.org/packages/Regira.Security.Authentication.Web) | JWT bearer setup |
 | [`Regira.Office.Mail.MailGun`](https://www.nuget.org/packages/Regira.Office.Mail.MailGun) | Transactional email |
 
@@ -286,7 +285,9 @@ Obtain a token via `POST /account/login`. The `AccountsDbContext` runs in a sepa
 
 ## License
 
-This example is built on the **Regira Entities** framework, which requires a valid license to run. Without a license key the API will not start (unless validation is explicitly skipped during local development).
+The sample code in this repository is licensed under the **MIT License** — see [LICENSE](LICENSE). The referenced Regira NuGet packages keep their own licenses (most are Apache-2.0; the Entities registration packages are commercially licensed with a free tier).
+
+This example registers more entities than the free tier covers (5 simple + 2 complex), so the **Regira Entities** framework requires a valid license to run it. Without a license key the API will not start (unless validation is explicitly skipped during local development).
 
 You can request a license — including a **free trial** — here:
 
