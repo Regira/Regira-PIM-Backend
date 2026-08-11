@@ -22,8 +22,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Regira.Licensing" Version="6.0.2" />
-		<PackageReference Include="Regira.Security.Authentication.Web" Version="6.0.2" />
+		<PackageReference Include="Regira.Licensing" Version="6.1.0" />
+		<PackageReference Include="Regira.Security.Authentication.Web" Version="6.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
