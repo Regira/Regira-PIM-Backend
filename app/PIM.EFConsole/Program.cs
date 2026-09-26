@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,9 +19,9 @@ Host.CreateDefaultBuilder(args)
         var config = context.Configuration;
         var connectionString = config.GetConnectionString("PIM");
 
-        // PimDbContext holds IArchivable entities but is registered here without UseEntities(), so
-        // DbContextWiring.ArchivedQueryFilter never reaches it — add the filter to the options directly.
-        services.AddDbContext<PimDbContext>(options => options.UseSqlite(connectionString).AddArchivedQueryFilter());
+        // PimDbContext holds IArchivable and IHasConcurrencyToken entities but is registered here without UseEntities(),
+        // so DbContextWiring never reaches it — add the archived filter and the token convention to the options directly.
+        services.AddDbContext<PimDbContext>(options => options.UseSqlite(connectionString).AddArchivedQueryFilter().AddConcurrencyTokenConvention());
     })
     .Build();
 

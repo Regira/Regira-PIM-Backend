@@ -2,14 +2,15 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PIM.Admin.API.Infrastructure;
 using PIM.Admin.DependencyInjection;
 using PIM.Core.Constants;
+using PIM.Data;
 using PIM.DependencyInjection.Extensions;
 using PIM.Identity.DependencyInjection;
+using Regira.Entities.Web.DependencyInjection;
 using Regira.Licensing.DependencyInjection;
 using Regira.Office.Mail.MailGun;
 using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
-using System.Text.Json.Serialization;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 
@@ -25,14 +26,12 @@ try
         .AddControllers(options =>
         {
             options.Filters.Add<PermissionAuthorizationFilter>();
-        })
-        .AddJsonOptions(options =>
-        {
-            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            options.JsonSerializerOptions.AllowOutOfOrderMetadataProperties = true;
         });
+    // Cycles, nulls, enum names and UTC request dates on both the MVC and Http.Json (OpenAPI) options,
+    // plus the entity exception filter (EntityInputException → 400, constraint/concurrency → 409) for every action
+    builder.Services.ConfigureDefaultJsonOptions(
+        options => options.JsonSerializerOptions.AllowOutOfOrderMetadataProperties = true,
+        options => options.SerializerOptions.AllowOutOfOrderMetadataProperties = true);
 
     // OpenAPI
     builder.Services.AddOpenApi(options =>
@@ -99,6 +98,9 @@ try
     }).AllowAnonymous();
 
     await app.AddWalMode();
+    // The database is created without migrations: add columns introduced since (e.g. ConcurrencyToken)
+    using (var scope = app.Services.CreateScope())
+        await scope.ServiceProvider.GetRequiredService<PimDbContext>().UpgradeSchemaAsync();
 
     app
         // HTTPS

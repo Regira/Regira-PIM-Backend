@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -84,6 +84,8 @@ try
     }
 
     await pimDb.Database.EnsureCreatedAsync();
+    // EnsureCreated leaves an existing database alone: add columns introduced since
+    await pimDb.UpgradeSchemaAsync();
 
     if (pimDb.Database.ProviderName == "Microsoft.EntityFrameworkCore.SqlServer")
     {

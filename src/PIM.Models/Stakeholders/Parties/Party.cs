@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using PIM.Models.Stakeholders.ContactData;
 using Regira.Entities.Models.Abstractions;
 
 namespace PIM.Models.Stakeholders.Parties;
 
-public abstract class Party(string partyType) : IEntityWithSerial, IHasCode, IHasDescription, IHasTimestamps, IArchivable, IHasContactData, IHasContactData<PartyContactDetails>, IHasStartEndDate, IHasNormalizedTitle, IHasNormalizedContent
+public abstract class Party(string partyType) : IEntityWithSerial, IHasCode, IHasDescription, IHasTimestamps, IArchivable, IHasContactData, IHasContactData<PartyContactDetails>, IHasStartEndDate, IHasNormalizedTitle, IHasNormalizedContent, IHasConcurrencyToken
 {
     public int Id { get; set; }
     [MaxLength(16)]
@@ -27,6 +27,7 @@ public abstract class Party(string partyType) : IEntityWithSerial, IHasCode, IHa
     public DateTime Created { get; set; } = DateTime.Now;
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
+    public Guid ConcurrencyToken { get; set; }
 
     // Contact data
     public ICollection<PartyContactDetails>? ContactData { get; set; }

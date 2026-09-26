@@ -136,7 +136,8 @@ public class OffCatalogImporter(
                 Created = ToUtc(offProduct.CreatedT) ?? now,
                 LastModified = ToUtc(offProduct.LastModifiedT),
                 NormalizedTitle = normalizer.Normalize(title),
-                NormalizedContent = normalizer.Normalize(OffText.Join(title, description))
+                NormalizedContent = normalizer.Normalize(OffText.Join(title, description)),
+                ConcurrencyToken = Guid.NewGuid()
             });
             stats.Products++;
 
@@ -182,7 +183,8 @@ public class OffCatalogImporter(
                             Description = "Brand imported from Open Food Facts.",
                             Created = now,
                             NormalizedTitle = normalizer.Normalize(brandName),
-                            NormalizedContent = normalizer.Normalize(OffText.Join(brandName, "Brand imported from Open Food Facts."))
+                            NormalizedContent = normalizer.Normalize(OffText.Join(brandName, "Brand imported from Open Food Facts.")),
+                            ConcurrencyToken = Guid.NewGuid()
                         });
                         stats.Brands++;
                     }
@@ -254,7 +256,8 @@ public class OffCatalogImporter(
                 UnitTypeId = PercentUnitId,
                 Created = now,
                 NormalizedTitle = normalizer.Normalize(ingredient.Title),
-                NormalizedContent = normalizer.Normalize(OffText.Join(ingredient.Title, "Ingredient from the Open Food Facts ingredients taxonomy."))
+                NormalizedContent = normalizer.Normalize(OffText.Join(ingredient.Title, "Ingredient from the Open Food Facts ingredients taxonomy.")),
+                ConcurrencyToken = Guid.NewGuid()
             });
         }
         stats.IngredientProducts = ingredients.Count;
