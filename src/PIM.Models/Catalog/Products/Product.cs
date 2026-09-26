@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using PIM.Models.Catalog.UnitTypes;
 using Regira.Entities.Models.Abstractions;
 using Regira.Normalizing;
@@ -9,7 +9,7 @@ namespace PIM.Models.Catalog.Products;
 /// A product can be any producible item. 
 /// They can be categorized using Facets. The facets are usually more general than products and in plural form, while a Product usually represents a single item.
 /// </summary>
-public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasNormalizedTitle, IHasNormalizedContent, IArchivable
+public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasNormalizedTitle, IHasNormalizedContent, IArchivable, IHasConcurrencyToken
 {
     public int Id { get; set; }
 
@@ -31,6 +31,7 @@ public class Product : IEntityWithSerial, IHasDescription, IHasTimestamps, IHasN
     public DateTime Created { get; set; }
     public DateTime? LastModified { get; set; }
     public bool IsArchived { get; set; }
+    public Guid ConcurrencyToken { get; set; }
 
     public UnitType? UnitType { get; set; }
     public ICollection<ProductFacet>? Facets { get; set; }

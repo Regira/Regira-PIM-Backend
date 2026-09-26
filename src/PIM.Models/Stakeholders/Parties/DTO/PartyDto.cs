@@ -24,6 +24,7 @@ public abstract class PartyDto : IPartyCore
     public DateTime? LastModified { get; set; }
     // IArchivable: DELETE soft-deletes, so the flag must round-trip or the row cannot be restored.
     public bool IsArchived { get; set; }
+    public Guid ConcurrencyToken { get; set; }
 
     public ICollection<ContactDetailsDto>? ContactData { get; set; }
     public ICollection<AddressDto>? Addresses { get; set; }

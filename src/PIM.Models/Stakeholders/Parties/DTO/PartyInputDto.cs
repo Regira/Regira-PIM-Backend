@@ -20,6 +20,8 @@ public class PartyInputDto
     public string? Description { get; set; }
     // Must stay on the input DTO: it is the only way a payload can clear the archived flag (restore).
     public bool IsArchived { get; set; }
+    // Send back the token that was read: a stale one answers 409 Conflict
+    public Guid ConcurrencyToken { get; set; }
 
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }

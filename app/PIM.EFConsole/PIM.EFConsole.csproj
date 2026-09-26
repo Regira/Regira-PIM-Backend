@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 	<OutputType>Exe</OutputType>
@@ -13,13 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.10">
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.12">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
-	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.10" />
-	<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.10" />
-	<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.10" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.12" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.12" />
+	<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.12" />
   </ItemGroup>
 
 </Project>

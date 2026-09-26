@@ -53,6 +53,8 @@ public class OpenFoodFactsImporter(
         await downloader.DownloadAllAsync(cancellationToken);
 
         await dbContext.Database.EnsureCreatedAsync(cancellationToken);
+        // EnsureCreated leaves an existing database alone: add the columns the bulk writer now expects
+        await dbContext.UpgradeSchemaAsync(cancellationToken);
 
         await using var connection = new SqlConnection(dbContext.Database.GetConnectionString());
         await connection.OpenAsync(cancellationToken);
