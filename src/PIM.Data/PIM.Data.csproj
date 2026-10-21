@@ -11,9 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="*" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
-	<PackageReference Include="Regira.Entities.EFcore" Version="6.4.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.13" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
+	<PackageReference Include="Regira.Entities.EFcore" Version="6.6.0" />
+	<!-- Fix vulnerability -->
+	<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@ using PIM.Identity.DependencyInjection;
 using Regira.Entities.Web.DependencyInjection;
 using Regira.Licensing.DependencyInjection;
 using Regira.Office.Mail.MailGun;
+using Regira.Security.Authentication.Web.Models;
 using Regira.Security.Authentication.Web.OpenApi.Transformers;
 using Scalar.AspNetCore;
 using Serilog;
@@ -36,13 +37,15 @@ try
     // OpenAPI
     builder.Services.AddOpenApi(options =>
     {
-        options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+        options.AddDocumentTransformer<AuthenticationSchemeDocumentTransformer>();
     });
 
     // Authentication (JWT)
     builder.Services
         .AddPimAuthentication(builder.Configuration, _ => new MailGunMailer(builder.Configuration.GetSection(PimConfig.MailGunSectionName).Get<MailgunConfig>()!))
         .WithJwtAuthentication();
+    // Password-reset mails: the origins their links may open, and the site name in the subject
+    builder.Services.Configure<AccountEmailOptions>(builder.Configuration.GetSection("Authentication:AccountEmails"));
 
     // Authorization policies
     builder.Services.AddAuthorization(options =>

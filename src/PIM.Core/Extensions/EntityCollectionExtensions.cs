@@ -9,10 +9,6 @@ public static class EntityCollectionExtensions
     public static ICollection<T> Prepare<T>(this ICollection<T> items)
     {
         var entityType = typeof(T);
-        if (TypeUtility.ImplementsInterface<IEntity<int>>(entityType))
-        {
-            items.Cast<IEntity<int>>().AdjustIdForEfCore();
-        }
 
         if (items is ICollection<ISortable> sortableItems)
         {

@@ -146,7 +146,7 @@ public partial class PimDbContext(DbContextOptions<PimDbContext> options) : DbCo
             entity.HasDiscriminator(p => p.PartyType)
                 .HasValue<Person>(PartyTypes.Person)
                 .HasValue<Organization>(PartyTypes.Organization);
-            entity.HasMany(e => e.ContactData).WithOne().OnDelete(DeleteBehavior.Cascade);
+            entity.HasMany(e => e.ContactData).WithOne().HasForeignKey(a => a.PartyId).OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(e => e.Addresses).WithOne().HasForeignKey(a => a.PartyId).OnDelete(DeleteBehavior.Cascade);
 
             // A party list filters on the discriminator and sorts by NormalizedTitle by default
