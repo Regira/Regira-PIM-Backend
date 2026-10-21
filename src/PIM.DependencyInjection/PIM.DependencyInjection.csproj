@@ -12,6 +12,7 @@
 
   <ItemGroup>
 	<PackageReference Include="Regira.Office.Mail.MailGun" Version="6.6.0" />
+	<PackageReference Include="Regira.System.Hosting" Version="6.6.0" />
   </ItemGroup>
 
 </Project>

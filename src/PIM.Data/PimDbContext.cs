@@ -184,6 +184,16 @@ public partial class PimDbContext(DbContextOptions<PimDbContext> options) : DbCo
                 byChild.IncludeProperties(r => new { r.ParentId, r.RelationshipTypeId });
 
             entity.HasMany(e => e.ContactData).WithOne().HasForeignKey(c => c.PartyRelationshipId).OnDelete(DeleteBehavior.Cascade);
+            // By convention a required foreign key cascades, which made deleting a relationship type delete its relationships
+            entity.HasOne(r => r.RelationshipType).WithMany().HasForeignKey(r => r.RelationshipTypeId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // Unit types
+        modelBuilder.Entity<UnitType>(entity =>
+        {
+            // A backstop for new databases: it follows the column's collation (case-sensitive on SQLite), while the
+            // unit type validator also refuses a code that differs only in case or surrounding spaces
+            entity.HasIndex(e => e.Code).IsUnique();
         });
 
         ConfigureFunctions(modelBuilder);

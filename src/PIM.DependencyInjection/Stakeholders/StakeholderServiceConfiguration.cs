@@ -14,6 +14,7 @@ public static class StakeholderServiceConfiguration
         services.Services.AddTransient<PhoneNumberFormatter>();
         services.Services.AddTransient<ContactDataNormalizer>();
         services.Services.AddTransient<AddressNormalizer>();
+        services.Services.AddTransient<ContactDataChecker>();
 
         services.AddParties();
         services.AddRelationshipTypes();
