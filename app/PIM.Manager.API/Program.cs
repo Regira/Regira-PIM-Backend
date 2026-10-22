@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using PIM.Admin.API.Infrastructure;
 using PIM.Admin.DependencyInjection;
 using PIM.Core.Constants;
 using PIM.Data;
 using PIM.DependencyInjection.Extensions;
 using PIM.Identity.DependencyInjection;
+using PIM.Manager.API.Infrastructure;
 using Regira.Entities.Web.DependencyInjection;
 using Regira.Licensing.DependencyInjection;
 using Regira.Office.Mail.MailGun;

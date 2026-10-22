@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PIM.Admin.API.Models;
 using PIM.Core.Constants;
 using PIM.Identity.Models;
+using PIM.Manager.API.Models;
 using Regira.Entities.Services.Abstractions;
 using Regira.Security.Authentication.Jwt.Extensions;
 
-namespace PIM.Admin.API.Controllers;
+namespace PIM.Manager.API.Controllers;
 
 [ApiController]
 [Route("profile")]
