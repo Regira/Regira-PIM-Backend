@@ -1,4 +1,4 @@
-﻿namespace PIM.Admin.API.Models;
+﻿namespace PIM.Manager.API.Models;
 
 public class ChangePersonalDataInput
 {

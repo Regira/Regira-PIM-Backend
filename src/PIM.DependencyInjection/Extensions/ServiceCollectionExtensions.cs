@@ -11,9 +11,12 @@ using PIM.DependencyInjection.Countries;
 using PIM.DependencyInjection.Stakeholders;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Models.Stakeholders.Parties.DTO;
+using PIM.Services.Entities.Validation;
 using PIM.Web.Models;
 using Regira.Entities.DependencyInjection.Extensions;
+using Regira.Entities.DependencyInjection.Validators;
 using Regira.Entities.Mapping.Mapster;
+using Regira.System.Hosting.Background.DependencyInjection;
 
 namespace PIM.DependencyInjection.Extensions;
 
@@ -56,11 +59,15 @@ public static class ServiceCollectionExtensions
         public IServiceCollection AddEntityServices(IConfiguration config)
         {
             services
+                // Background work the reactors below queue (product search content)
+                .UseBackgroundQueue()
                 .UseEntities<PimDbContext>(options =>
                 {
                     options.UseDefaults();
                     // allow get all items
                     options.SetPageSize();
+                    // every entity with a start and an end date (parties)
+                    options.AddValidator<StartEndDateValidator>();
                     options.UseMapsterMapping(cfg =>
                     {
                         cfg.ForType<Party, PartyDto>()

@@ -17,6 +17,7 @@ public static class FacetGroupServiceConfiguration
             e.AddIncludes<FacetGroupIncludingQueryBuilder>();
             e.Related(x => x.ParentFacets);
             e.Related(x => x.ChildFacets);
+            e.AddValidator<FacetGroupHierarchyValidator>();
         });
         return services;
     }

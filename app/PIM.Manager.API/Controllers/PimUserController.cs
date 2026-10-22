@@ -5,7 +5,7 @@ using PIM.Identity.Models;
 using Regira.Entities.Models;
 using Regira.Entities.Web.Controllers.Abstractions;
 
-namespace PIM.Admin.API.Controllers;
+namespace PIM.Manager.API.Controllers;
 
 [ApiController]
 [Route("user")]

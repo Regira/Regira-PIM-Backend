@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PIM.Identity.Data;
 
-namespace PIM.Admin.API.Infrastructure;
+namespace PIM.Manager.API.Infrastructure;
 
 public static class SqLiteExtensions
 {

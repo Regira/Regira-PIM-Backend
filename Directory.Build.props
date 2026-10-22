@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- Publish the neutral (English) resources only: packages bring satellite assemblies for a dozen languages
+         (Microsoft.Data.SqlClient's error messages: cs, de, es, ...), which the APIs never show to a user -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+</Project>

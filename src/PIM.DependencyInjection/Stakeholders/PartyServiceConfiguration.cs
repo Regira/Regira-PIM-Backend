@@ -1,9 +1,11 @@
 using PIM.Core.Extensions;
 using PIM.Data;
+using PIM.DependencyInjection.Catalog;
 using PIM.Models.Stakeholders.Parties;
 using PIM.Services.Entities.Stakeholders.Abstractions;
 using PIM.Services.Entities.Stakeholders.Parties;
 using Regira.Entities.DependencyInjection.ServiceCollections.Abstractions;
+using Regira.Entities.Reactors.Abstractions;
 
 namespace PIM.DependencyInjection.Stakeholders;
 
@@ -29,6 +31,11 @@ public static class PartyServiceConfiguration
             );
 
             e.AddNormalizer<PartyNormalizer>();
+            e.AddValidator<PartyValidator>();
+            // A renamed, archived or restored supplier changes the search text of the products it supplies. Title is
+            // computed, so the stored column its names feed is watched instead.
+            e.React(c => c.Kind == EntityChangeKind.Modified && (c.HasChanged(x => x.NormalizedTitle) || c.HasChanged(x => x.IsArchived)),
+                (c, sp, _) => ProductSearchContentReactions.Refresh(sp, (refresher, token) => refresher.ForSupplier(c.Entity.Id, token)));
             e.HasRepository<PartyRepository>();
             e.AddTransient<IPartyRepository, PartyRepository>();
             e.AddTransient<IPartyService, PartyRepository>();

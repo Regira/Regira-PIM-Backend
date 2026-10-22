@@ -14,7 +14,7 @@ public static class PimUserServiceConfiguration
         services.For<PimUserEntity, string, PimUserSearchObject, EntitySortBy, PimUserIncludes>(e =>
         {
             // The internal DbContext User entity is of type PimIdentityUser, so we need to add a query filter for that type
-            e.AddTransient<IFilteredQueryBuilder<PimIdentityUser, string, PimUserSearchObject>, PimUserQueryFiler>();
+            e.AddTransient<IFilteredQueryBuilder<PimIdentityUser, string, PimUserSearchObject>, PimUserQueryFilter>();
             e.HasRepository<PimUserRepository>();
             e.UseEntityService<PimUserRepository>();
         });
